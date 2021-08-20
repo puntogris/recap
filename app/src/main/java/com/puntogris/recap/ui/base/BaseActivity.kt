@@ -1,4 +1,4 @@
-package com.puntogris.posture.ui.base
+package com.puntogris.recap.ui.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
@@ -6,13 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.NavController
-import com.puntogris.posture.ui.main.UiInterfaceListener
-import com.puntogris.posture.utils.getNavHostFragment
+import com.puntogris.recap.utils.getNavHostFragment
 
 abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity(),
-    NavController.OnDestinationChangedListener,
-    UiInterfaceListener
+    NavController.OnDestinationChangedListener
 {
 
     private var _binding: T? = null

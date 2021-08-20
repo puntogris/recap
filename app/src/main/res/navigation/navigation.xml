@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation">
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainFragment">
 
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.puntogris.recap.ui.explore.ExploreFragment"
+        android:label="ExploreFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.puntogris.recap.ui.main.MainFragment"
+        android:label="MainFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.puntogris.recap.ui.login.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/createRecap"
+        android:name="com.puntogris.recap.ui.recap.CreateRecapFragment"
+        android:label="CreateRecap" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"
+        android:label="WelcomeFragment" />
 </navigation>
