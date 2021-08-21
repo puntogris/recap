@@ -24,4 +24,12 @@
         android:id="@+id/welcomeFragment"
         android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"
         android:label="WelcomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.puntogris.recap.ui.search.SearchFragment"
+        android:label="SearchFragment" />
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="com.puntogris.recap.ui.search.SearchActivity"
+        android:label="SearchActivity" />
 </navigation>

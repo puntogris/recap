@@ -9,8 +9,7 @@ import androidx.navigation.NavController
 import com.puntogris.recap.utils.getNavHostFragment
 
 abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
-    AppCompatActivity(),
-    NavController.OnDestinationChangedListener
+    AppCompatActivity()
 {
 
     private var _binding: T? = null

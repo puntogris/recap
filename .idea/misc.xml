@@ -3,14 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.36102564102564105" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_create_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_rate_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20989583333333334" />
       </map>
     </option>
