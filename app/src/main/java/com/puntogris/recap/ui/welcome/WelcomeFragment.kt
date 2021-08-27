@@ -6,4 +6,7 @@ import com.puntogris.recap.ui.base.BaseFragment
 
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(R.layout.fragment_welcome) {
 
+    override fun initializeViews() {
+
+    }
 }

@@ -1,47 +1,54 @@
 package com.puntogris.recap.ui.explore
 
+import androidx.annotation.NonNull
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
-import com.rubensousa.decorator.ColumnProvider
-import com.rubensousa.decorator.GridBoundsMarginDecoration
-import com.rubensousa.decorator.GridMarginDecoration
+import com.puntogris.recap.ui.explore.recaps.ExploreRecapFragment
+import com.puntogris.recap.ui.explore.reviews.ExploreReviewFragment
+import com.puntogris.recap.ui.main.MainViewModel
+import com.puntogris.recap.ui.recap.RecapFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_explore) {
 
     private val viewModel: ExploreViewModel by viewModels()
+    private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {
-
-        setupRecyclerViewAdapter()
-    }
-
-    private fun setupRecyclerViewAdapter(){
-        val adapter = ExploreAdapter({ onRecapShortClick(it) },{ onRecapLongClick(it) })
-        binding.recyclerView.adapter = adapter
-
-        val list = mutableListOf<Recap>()
-        for (i in 1..10){
-            list.add(Recap(title = i.toString(),
-                image = "https://es.web.img2.acsta.net/pictures/20/08/16/19/46/2263125.jpg"))
+        binding.viewPager.adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = when(position){
+                0 -> "Explorar"
+                else -> "Calificar"
+            }
         }
-
-        adapter.submitList(list)
-    }
-
-    private fun onRecapShortClick(recap: Recap){
+        mediator?.attach()
 
     }
 
-    private fun onRecapLongClick(recap: Recap){
+    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager) : FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
 
+        override fun getItemCount(): Int = 2
+
+        override fun createFragment(position: Int): Fragment =
+            (if (position == 0 ) ExploreRecapFragment() else ExploreReviewFragment()).apply {
+
+            }
+    }
+
+    override fun onDestroyView() {
+        mediator?.detach()
+        mediator = null
+        binding.viewPager.adapter = null
+        super.onDestroyView()
     }
 
 }
