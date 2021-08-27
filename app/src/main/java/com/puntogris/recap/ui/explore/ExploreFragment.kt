@@ -4,6 +4,7 @@ import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
@@ -23,6 +24,28 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
     private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {
+        setupBottomAppBar()
+        setupExplorePager()
+    }
+
+    private fun setupBottomAppBar(){
+        binding.bottomAppBar.apply {
+            setOnMenuItemClickListener {
+                when(it.itemId){
+                    R.id.action_search -> {
+                        findNavController().navigate(R.id.searchFragment)
+                        true
+                    }
+                    else -> true
+                }
+            }
+            setNavigationOnClickListener {
+                findNavController().navigate(R.id.mainBottomNavigationDrawer)
+            }
+        }
+    }
+
+    private fun setupExplorePager(){
         binding.viewPager.adapter = ScreenSlidePagerAdapter(childFragmentManager)
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when(position){
@@ -31,7 +54,6 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
             }
         }
         mediator?.attach()
-
     }
 
     private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager) : FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
@@ -50,5 +72,6 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
         binding.viewPager.adapter = null
         super.onDestroyView()
     }
+
 
 }

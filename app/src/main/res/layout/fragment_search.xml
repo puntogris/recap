@@ -24,9 +24,10 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
 
-                <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/search_text_input_layout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -48,13 +49,47 @@
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.appbar.MaterialToolbar>
-            <!--            <com.b_lam.resplash.ui.widget.AutoSizeTabLayout-->
-            <!--                android:id="@+id/tab_layout"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layoutDirection="ltr"-->
-            <!--                app:tabMode="fixed"-->
-            <!--                app:tabGravity="fill" />-->
         </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/app_bar">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/recapsTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/usersTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/filter_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:text="Filtrar"
+            android:visibility="visible"
+            app:elevation="7dp"
+            app:icon="@drawable/ic_baseline_filter_list_24"
+            app:layout_behavior="com.puntogris.recap.ui.widget.ScrollAwareExtendedFabBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

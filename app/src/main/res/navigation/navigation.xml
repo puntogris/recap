@@ -20,4 +20,8 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.puntogris.recap.ui.search.SearchFragment" />
+    <dialog
+        android:id="@+id/mainBottomNavigationDrawer"
+        android:name="com.puntogris.recap.ui.explore.MainBottomNavigationDrawer"
+        android:label="MainBottomNavigationDrawer" />
 </navigation>

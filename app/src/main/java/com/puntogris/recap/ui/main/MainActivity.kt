@@ -15,28 +15,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun initializeViews() {
         setupNavigation()
-        setupBottomAppBar()
     }
 
     private fun setupNavigation() {
         navController = getNavController()
     }
 
-    private fun setupBottomAppBar(){
-        binding.bottomAppBar.apply {
-            setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.action_search -> {
-                        findNavController().navigate(R.id.searchFragment)
-                        true
-                    }
-                    else -> true
-                }
-            }
-            setNavigationOnClickListener {
 
-            }
-        }
-    }
 
 }

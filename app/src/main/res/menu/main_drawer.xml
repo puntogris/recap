@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--    <group-->
+<!--        android:id="@+id/group_unauthorized"-->
+<!--        android:checkableBehavior="none">-->
+<!--        <item-->
+<!--            android:id="@+id/recap"-->
+<!--            android:icon="@drawable/ic_baseline_account_circle_24"-->
+<!--            android:title="recap" />-->
+<!--    </group>-->
+    <group
+        android:id="@+id/group_authorized"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/action_add_account"
+            android:icon="@drawable/ic_baseline_account_circle_24"
+            android:title="Cuenta" />
+        <item
+            android:id="@+id/action_edit_profile"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Configuracion" />
+        <item
+            android:id="@+id/action_log_out"
+            android:icon="@drawable/ic_outline_info_24"
+            android:title="Info" />
+    </group>
+</menu>
