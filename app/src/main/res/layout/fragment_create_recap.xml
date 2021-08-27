@@ -12,6 +12,31 @@
         android:layout_height="match_parent"
         tools:context=".ui.recap.CreateRecapFragment">
 
+        <HorizontalScrollView
+            android:id="@+id/editorActions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content">
+
+               <include
+                   app:recapEditor="@{recapEditor}"
+                   layout="@layout/editor_text_alignment" />
+
+               <include
+                   app:recapEditor="@{recapEditor}"
+                   layout="@layout/editor_text_format" />
+
+           </LinearLayout>
+
+        </HorizontalScrollView>
         <jp.wasabeef.richeditor.RichEditor
             android:id="@+id/recapEditor"
             android:layout_width="match_parent"
@@ -19,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editorActions" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

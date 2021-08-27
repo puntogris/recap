@@ -12,5 +12,10 @@ class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fr
     override fun initializeViews() {
         binding.recapEditor.setEditorBackgroundColor(Color.BLACK)
         binding.recapEditor.setEditorFontColor(Color.WHITE)
+
     }
+
+    private var fontSize = 1
+
+
 }

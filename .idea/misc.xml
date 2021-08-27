@@ -5,11 +5,20 @@
       <map>
         <entry key="app/src/main/res/drawable/bottom_sheet_handle.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.36102564102564105" />
+        <entry key="app/src/main/res/drawable/ic_baseline_format_align_center_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_format_bold_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_decrease_font.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_desert.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_increase_font.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/bottom_sheet_search_recap_filter.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/content_search.xml" value="0.1953125" />
+        <entry key="app/src/main/res/layout/editor_text_alignment.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/editor_text_font_size.xml" value="0.4881565396498455" />
+        <entry key="app/src/main/res/layout/editor_text_type.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/empty_error_state_layout.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_create_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.35052083333333334" />
@@ -28,6 +37,7 @@
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_content.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_header.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/recap_editor_modifier_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20989583333333334" />
