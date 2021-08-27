@@ -1,10 +1,9 @@
 package com.puntogris.recap.ui.main
 
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import com.puntogris.recap.R
-import com.puntogris.recap.ui.base.BaseActivity
 import com.puntogris.recap.databinding.ActivityMainBinding
+import com.puntogris.recap.ui.base.BaseActivity
 import com.puntogris.recap.utils.getNavController
 import dagger.hilt.android.AndroidEntryPoint
 

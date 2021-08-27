@@ -5,16 +5,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreBinding
-import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.explore.recaps.ExploreRecapFragment
 import com.puntogris.recap.ui.explore.reviews.ExploreReviewFragment
-import com.puntogris.recap.ui.main.MainViewModel
-import com.puntogris.recap.ui.recap.RecapFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +22,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
     private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {
+        binding.fragment = this
         setupBottomAppBar()
         setupExplorePager()
     }
@@ -34,6 +33,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
                 when(it.itemId){
                     R.id.action_search -> {
                         findNavController().navigate(R.id.searchFragment)
+                        true
+                    }
+                    R.id.action_order -> {
+
                         true
                     }
                     else -> true
@@ -66,12 +69,16 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
             }
     }
 
+    fun navigateToCreateRecap(){
+        findNavController().navigate(R.id.createRecapFragment)
+    }
+
+
     override fun onDestroyView() {
         mediator?.detach()
         mediator = null
         binding.viewPager.adapter = null
         super.onDestroyView()
     }
-
 
 }

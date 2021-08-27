@@ -7,21 +7,22 @@
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.puntogris.recap.ui.explore.ExploreFragment"/>
-
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.recap.ui.login.LoginFragment" />
+        android:name="com.puntogris.recap.ui.login.LoginFragment"/>
     <fragment
-        android:id="@+id/createRecap"
+        android:id="@+id/createRecapFragment"
         android:name="com.puntogris.recap.ui.recap.CreateRecapFragment"/>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.recap.ui.welcome.WelcomeFragment" />
+        android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.puntogris.recap.ui.search.SearchFragment" />
+        android:name="com.puntogris.recap.ui.search.SearchFragment"/>
     <dialog
         android:id="@+id/mainBottomNavigationDrawer"
-        android:name="com.puntogris.recap.ui.explore.MainBottomNavigationDrawer"
-        android:label="MainBottomNavigationDrawer" />
+        android:name="com.puntogris.recap.ui.explore.MainBottomNavigationDrawer"/>
+    <dialog
+        android:id="@+id/searchRecapFilterBottomSheet"
+        android:name="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet"/>
 </navigation>

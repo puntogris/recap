@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="fragment"
+            type="com.puntogris.recap.ui.search.SearchFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,8 +34,8 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
+                    app:boxStrokeWidth="@dimen/keyline_0"
+                    app:boxStrokeWidthFocused="@dimen/keyline_0"
                     app:endIconMode="clear_text"
                     app:hintEnabled="false">
 
@@ -80,10 +82,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/keyline_7"
             android:text="Filtrar"
             android:visibility="visible"
-            app:elevation="7dp"
+            app:elevation="@dimen/keyline_7"
+            android:onClick="@{()-> fragment.showFilterBottomSheet()}"
             app:icon="@drawable/ic_baseline_filter_list_24"
             app:layout_behavior="com.puntogris.recap.ui.widget.ScrollAwareExtendedFabBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
