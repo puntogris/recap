@@ -10,6 +10,28 @@
 
     <merge>
         <Button
+            app:icon="@drawable/ic_font_size_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:onClick="@{() -> recapEditor.setFontSize(3)}"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_font_size_medium"
+            android:layout_marginHorizontal="2dp"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:onClick="@{() -> recapEditor.setFontSize(4)}"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
+            app:icon="@drawable/ic_font_size_large"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:onClick="@{() -> recapEditor.setFontSize(5)}"/>
+
+        <Button
             app:icon="@drawable/ic_baseline_format_bold_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,27 +54,5 @@
             android:layout_marginHorizontal="2dp"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:onClick="@{() -> recapEditor.setUnderline()}"/>
-
-        <Button
-            app:icon="@drawable/ic_increase_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="2dp"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:onClick="@{() -> recapEditor.setFontSize(5)}"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:icon="@drawable/ic_decrease_font"
-            android:layout_marginHorizontal="2dp"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:onClick="@{() -> recapEditor.setFontSize(4)}"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="2dp"
-            app:icon="@drawable/ic_baseline_format_clear_24"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            android:onClick="@{() -> recapEditor.removeFormat()}"/>
     </merge>
 </layout>

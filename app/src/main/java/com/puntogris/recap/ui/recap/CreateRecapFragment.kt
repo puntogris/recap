@@ -15,7 +15,9 @@ class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fr
 
     }
 
-    private var fontSize = 1
+    fun onDoneFabClicked(){
+        //mostrar bottom sheet o 2 fabs arriba para guardar en borrador o publicar
 
+    }
 
 }

@@ -17,6 +17,7 @@
         <entry key="app/src/main/res/layout/content_search.xml" value="0.1953125" />
         <entry key="app/src/main/res/layout/editor_text_alignment.xml" value="0.75" />
         <entry key="app/src/main/res/layout/editor_text_font_size.xml" value="0.4881565396498455" />
+        <entry key="app/src/main/res/layout/editor_text_format.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/editor_text_type.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/empty_error_state_layout.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />

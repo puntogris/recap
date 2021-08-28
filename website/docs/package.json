@@ -1,0 +1,19 @@
+{
+  "name": "recap",
+  "version": "0.0.1",
+  "description": "recap by fans for fans",
+  "main": "index.js",
+  "authors": {
+    "name": "Joaquin",
+    "email": "puntogrishelp@gmail.com"
+  },
+  "repository": "puntogris/recap/recap",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.5.3"
+  }
+}
