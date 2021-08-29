@@ -28,4 +28,7 @@
     <fragment
         android:id="@+id/recapFragment"
         android:name="com.puntogris.recap.ui.recap.RecapFragment"/>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.puntogris.recap.ui.about.AboutFragment"/>
 </navigation>

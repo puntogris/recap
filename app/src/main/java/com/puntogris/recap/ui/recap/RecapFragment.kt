@@ -22,14 +22,30 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
     }
 
     fun onFavoriteClicked(){
+        findNavController().navigate(R.id.loginFragment)
+        if (viewModel.isUserLoggedIn()){
+
+        }else{
+
+        }
         showSnackBar("Agregado a favoritos")
 
     }
 
     fun onLikedClicked(){
+        if (viewModel.isUserLoggedIn()){
+
+        }else{
+
+        }
     }
 
     fun onShareClicked(){
+        if (viewModel.isUserLoggedIn()){
 
+        }else{
+
+        }
     }
+
 }

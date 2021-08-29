@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">recap</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_search">SearchActivity</string>
     <!-- Strings used for fragments for navigation -->
@@ -11,4 +10,42 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string name="package_name" translatable="false">com.puntogris.recap</string>
+    <string name="recap" translatable="false">Recap</string>
+    <string name="unsplash_url" translatable="false">https://unsplash.com/?utm_source=resplash&amp;utm_medium=referral&amp;utm_campaign=api-credit</string>
+    <string name="unsplash_authed_submit_url" translatable="false">https://unsplash.com/submit</string>
+    <string name="unsplash_unauthed_submit_url" translatable="false">https://unsplash.com/?modal=%7B%22tag%22%3A%22Login%22%2C%22value%22%3A%7B%22tag%22%3A%22SubmitAPhoto%22%2C%22value%22%3A%7B%7D%7D%7D</string>
+    <string name="unsplash_join_url" translatable="false">https://unsplash.com/join</string>
+
+    <!-- Donation -->
+    <string name="support_development">Support development</string>
+    <string name="donate_banner_text" translatable="false">Hello &#128075;,\n\nI\'m Brandon, the developer of Resplash. If you want to support further development of the app, you can choose to send a few dollars my way by selecting one of the options below.</string>
+    <string name="you_are_welcome">You\'re welcome</string>
+
+    <!-- About -->
+    <string name="about">About</string>
+    <string name="licenses">Licenses</string>
+    <string name="unsplash_summary">The internet’s source of freely-usable images</string>
+    <string name="donate_summary">If you really like Resplash, consider supporting its development by sending me a couple of dollars</string>
+    <string name="report_bug_title">Report Bug</string>
+    <string name="report_bug_summary">Report bugs or request new features</string>
+    <string name="rate_app_title">Rate App</string>
+    <string name="rate_app_summary">If you like Resplash, rate it on the Google Play Store</string>
+    <string name="github_title" translatable="false">GitHub</string>
+    <string name="github_summary">Resplash is open-source, check it out on GitHub</string>
+    <string name="github_url" translatable="false">https://github.com/b-lam/Resplash</string>
+    <string name="play_store_url" translatable="false">https://play.google.com/store/apps/details?id=com.b_lam.resplash</string>
+    <string name="github_issues_url" translatable="false">https://github.com/b-lam/Resplash/issues</string>
+    <string name="developer_title">Developer</string>
+    <string name="developer_unsplash_username" translatable="false">\@brandon_lam</string>
+    <string name="instagram" translatable="false">Instagram</string>
+    <string name="developer_instagram_username" translatable="false">\@brandon.c.lam</string>
+    <string name="developer_instagram_url" translatable="false">https://www.instagram.com/brandon.c.lam/</string>
+    <string name="developer_unsplash_url" translatable="false">https://unsplash.com/@brandon_lam</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/PRIVACY.md</string>
+    <string name="terms_and_conditions">Terms &amp; Conditions</string>
+    <string name="terms_and_conditions_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/TERMS.md</string>
 </resources>
