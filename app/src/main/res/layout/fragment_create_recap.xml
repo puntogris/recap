@@ -12,6 +12,15 @@
         android:layout_height="match_parent"
         tools:context=".ui.recap.CreateRecapFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
+
         <HorizontalScrollView
             android:id="@+id/editorActions"
             android:layout_width="match_parent"
@@ -19,22 +28,22 @@
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-           <LinearLayout
-               android:orientation="horizontal"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-               <include
-                   app:recapEditor="@{recapEditor}"
-                   layout="@layout/editor_text_alignment" />
+                <include
+                    layout="@layout/editor_text_alignment"
+                    app:recapEditor="@{recapEditor}" />
 
-               <include
-                   app:recapEditor="@{recapEditor}"
-                   layout="@layout/editor_text_format" />
+                <include
+                    layout="@layout/editor_text_format"
+                    app:recapEditor="@{recapEditor}" />
 
-           </LinearLayout>
+            </LinearLayout>
 
         </HorizontalScrollView>
         <jp.wasabeef.richeditor.RichEditor

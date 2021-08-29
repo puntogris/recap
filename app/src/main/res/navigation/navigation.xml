@@ -25,4 +25,7 @@
     <dialog
         android:id="@+id/searchRecapFilterBottomSheet"
         android:name="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet"/>
+    <fragment
+        android:id="@+id/recapFragment"
+        android:name="com.puntogris.recap.ui.recap.RecapFragment"/>
 </navigation>

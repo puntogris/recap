@@ -85,7 +85,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginBottom="@dimen/keyline_7"
             android:text="Filtrar"
-            android:visibility="visible"
+            android:visibility="invisible"
             app:elevation="@dimen/keyline_7"
             android:onClick="@{()-> fragment.showFilterBottomSheet()}"
             app:icon="@drawable/ic_baseline_filter_list_24"

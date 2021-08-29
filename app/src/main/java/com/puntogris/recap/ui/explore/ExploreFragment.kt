@@ -13,6 +13,7 @@ import com.puntogris.recap.databinding.FragmentExploreBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.explore.recaps.ExploreRecapFragment
 import com.puntogris.recap.ui.explore.reviews.ExploreReviewFragment
+import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -73,6 +74,9 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
         findNavController().navigate(R.id.createRecapFragment)
     }
 
+    fun showFavoriteSnack(){
+        showSnackBar("Agregado a favoritos", anchorView = binding.createFab)
+    }
 
     override fun onDestroyView() {
         mediator?.detach()

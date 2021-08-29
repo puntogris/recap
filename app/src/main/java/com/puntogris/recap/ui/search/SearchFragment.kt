@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
@@ -22,11 +25,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         binding.fragment = this
         setupExplorePager()
         binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
-
     }
 
     private fun setupExplorePager(){
-        binding.viewPager.adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        binding.viewPager.apply {
+            adapter = ScreenSlidePagerAdapter(childFragmentManager)
+            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+
+                //also check if the query is empty to not show and filter nothing
+                override fun onPageSelected(position: Int) {
+                    binding.filterButton.setVisibility(position == 0)
+                }
+            })
+        }
+
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when(position){
                 0 -> "Recaps"
@@ -44,6 +56,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
             (if (position == 0 ) SearchRecapFragment() else SearchUserFragment()).apply {
 
             }
+    }
+
+    private fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
+        if (visible) show() else hide()
     }
 
     fun showFilterBottomSheet(){

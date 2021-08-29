@@ -1,11 +1,13 @@
 package com.puntogris.recap.ui.explore.recaps
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreRecapBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.explore.ExploreAdapter
+import com.puntogris.recap.ui.explore.ExploreFragment
 import com.puntogris.recap.ui.explore.ExploreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,11 +37,12 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
     }
 
     private fun onRecapShortClick(recap: Recap){
-
+        findNavController().navigate(R.id.recapFragment)
     }
 
+    //add the recap to fav
     private fun onRecapLongClick(recap: Recap){
-
+        (requireParentFragment() as ExploreFragment).showFavoriteSnack()
     }
 
 }
