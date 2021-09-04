@@ -7,12 +7,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.explore.recaps.ExploreRecapFragment
 import com.puntogris.recap.ui.explore.reviews.ExploreReviewFragment
+import com.puntogris.recap.utils.RecapOrder
+import com.puntogris.recap.utils.ReviewOrder
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +40,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_e
                         true
                     }
                     R.id.action_order -> {
-
+                        when (binding.tabLayout.selectedTabPosition) {
+                            0 -> findNavController().navigate(R.id.recapOrderDialog)
+                            1 -> findNavController().navigate(R.id.reviewOrderDialog)
+                        }
                         true
                     }
                     else -> true

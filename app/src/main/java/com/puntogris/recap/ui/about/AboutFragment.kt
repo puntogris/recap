@@ -1,9 +1,7 @@
 package com.puntogris.recap.ui.about
 
 import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.findNavController
-import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentAboutBinding
@@ -22,23 +20,8 @@ class AboutFragment: BaseFragment<FragmentAboutBinding>(R.layout.fragment_about)
     }
 
     class AboutPreferences: PreferenceFragmentCompat() {
-
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.about_preferences, rootKey)
-        }
-
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-
-            findPreference<Preference>("licenses")?.setOnPreferenceClickListener {
-                context?.let {
-//                Intent(it, OssLicensesMenuActivity::class.java).apply {
-//                    OssLicensesMenuActivity.setActivityTitle(getString(R.string.licenses))
-//                    startActivity(this)
-//                }
-                }
-                true
-            }
         }
     }
 }

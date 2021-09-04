@@ -82,8 +82,4 @@
         <intent android:action="android.intent.action.VIEW"
             android:data="@string/terms_and_conditions_url" />
     </Preference>
-
-    <Preference app:key="licenses"
-        app:title="@string/licenses"
-        app:iconSpaceReserved="false" />
 </PreferenceScreen>

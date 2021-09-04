@@ -48,4 +48,11 @@
     <string name="privacy_policy_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/PRIVACY.md</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="terms_and_conditions_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/TERMS.md</string>
+
+
+    <string name="order_latest">Latest</string>
+    <string name="order_oldest">Oldest</string>
+    <string name="order_popular">Popular</string>
+    <string name="order_all">All</string>
+
 </resources>

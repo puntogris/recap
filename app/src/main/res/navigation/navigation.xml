@@ -31,4 +31,12 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.puntogris.recap.ui.about.AboutFragment"/>
+    <dialog
+        android:id="@+id/reviewOrderDialog"
+        android:name="com.puntogris.recap.ui.explore.order.ReviewOrderDialog"
+        android:label="ReviewOrderDialog" />
+    <dialog
+        android:id="@+id/recapOrderDialog"
+        android:name="com.puntogris.recap.ui.explore.order.RecapOrderDialog"
+        android:label="RecapOrderDialog" />
 </navigation>
