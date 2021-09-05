@@ -17,6 +17,10 @@ class MainBottomNavigationDrawer :
                     findNavController().navigate(R.id.aboutFragment)
                     true
                 }
+                R.id.action_settings ->{
+                    findNavController().navigate(R.id.settingsFragment)
+                    true
+                }
                 else -> true
             }
         }

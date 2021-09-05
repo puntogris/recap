@@ -1,14 +1,18 @@
 package com.puntogris.recap.utils
 
 import android.view.View
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
+import com.puntogris.recap.ui.about.AboutPreferences
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -39,5 +43,11 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
         viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
             block()
         }
+    }
+}
+
+fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar){
+    toolbar.setNavigationOnClickListener {
+        findNavController().navigateUp()
     }
 }

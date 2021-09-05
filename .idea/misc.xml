@@ -36,6 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_search_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_search_user.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_welcome.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_content.xml" value="0.35052083333333334" />
@@ -46,6 +47,7 @@
         <entry key="app/src/main/res/menu/recap_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/xml/about_preferences.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/xml/settings_preferences.xml" value="0.35052083333333334" />
       </map>
     </option>
   </component>

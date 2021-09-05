@@ -13,6 +13,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.utils.registerToolbarBackButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +25,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     override fun initializeViews() {
         binding.fragment = this
         setupExplorePager()
-        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        registerToolbarBackButton(binding.toolbar)
     }
 
     private fun setupExplorePager(){

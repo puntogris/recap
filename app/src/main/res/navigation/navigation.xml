@@ -39,4 +39,8 @@
         android:id="@+id/recapOrderDialog"
         android:name="com.puntogris.recap.ui.explore.order.RecapOrderDialog"
         android:label="RecapOrderDialog" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.puntogris.recap.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

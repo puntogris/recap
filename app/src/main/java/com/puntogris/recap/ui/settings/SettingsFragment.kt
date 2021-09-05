@@ -1,11 +1,11 @@
-package com.puntogris.recap.ui.about
+package com.puntogris.recap.ui.settings
 
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentAboutBinding
+import com.puntogris.recap.databinding.FragmentSettingsBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 
-class AboutFragment: BaseFragment<FragmentAboutBinding>(R.layout.fragment_about) {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
 
     override fun initializeViews() {
         inflatePreferences()
@@ -13,9 +13,10 @@ class AboutFragment: BaseFragment<FragmentAboutBinding>(R.layout.fragment_about)
     }
 
     private fun inflatePreferences(){
-        parentFragmentManager
+        childFragmentManager
             .beginTransaction()
-            .replace(R.id.container, AboutPreferences())
+            .replace(binding.container.id, PreferencesFragment())
             .commit()
     }
+
 }

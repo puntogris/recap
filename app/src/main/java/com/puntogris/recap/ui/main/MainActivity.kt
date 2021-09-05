@@ -20,6 +20,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         navController = getNavController()
     }
 
-
-
 }
