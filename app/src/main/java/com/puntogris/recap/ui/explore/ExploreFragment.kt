@@ -1,16 +1,17 @@
 package com.puntogris.recap.ui.explore
 
 import androidx.annotation.NonNull
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.*
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreBinding
+import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.explore.recaps.ExploreRecapFragment
 import com.puntogris.recap.ui.explore.reviews.ExploreReviewFragment
@@ -18,17 +19,28 @@ import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class ExploreFragment : BaseFragment<FragmentExploreBinding>(R.layout.fragment_explore) {
 
-    private val viewModel: ExploreViewModel by viewModels()
+    private val viewModel: ExploreViewModel by activityViewModels()
     private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {
         binding.fragment = this
         setupBottomAppBar()
         setupExplorePager()
+
+//        repeat(10){
+//            val recap = Recap(
+//                title = "the office $it",
+//                rating = (1..10).random()
+//            )
+//            Firebase.firestore.collection("recaps").add(recap)
+//        }
+
     }
 
     private fun setupBottomAppBar(){

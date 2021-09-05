@@ -2,7 +2,9 @@ package com.puntogris.recap.ui.explore.order
 
 import android.app.Dialog
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.recap.ui.explore.ExploreViewModel
@@ -12,18 +14,18 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RecapOrderDialog: DialogFragment() {
 
-    private val viewModel: ExploreViewModel by viewModels(ownerProducer = {requireParentFragment()})
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<RecapOrder>()
             .map { getString(it.titleRes) }.toTypedArray()
-        val currentSelection = viewModel.recapOrderLiveData.value?.ordinal ?: 0
+     //   val currentSelection = viewModel.recapOrderLiveData.value?.ordinal ?: 0
+
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Ordenar por")
-            .setSingleChoiceItems(orderOptions, currentSelection) { dialog, which ->
-                if (which != currentSelection) viewModel.orderRecapsBy(which)
+            .setSingleChoiceItems(orderOptions, 1) { dialog, which ->
+           //     if (which != currentSelection) viewModel.orderRecapsBy(which)
                 dialog.dismiss()
+                setFragmentResult("data", bundleOf("order" to which))
             }
             .create()
     }

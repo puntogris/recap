@@ -1,5 +1,7 @@
 package com.puntogris.recap.models
 
+import com.google.firebase.Timestamp
+
 data class Recap(
     var id : String = "",
     var title: String = "",
@@ -10,5 +12,6 @@ data class Recap(
     var html: String = "",
     var approved: Boolean = false,
     var category: String = "",
-    var image: String = ""
+    var image: String = "",
+    var created: Timestamp = Timestamp.now()
 )

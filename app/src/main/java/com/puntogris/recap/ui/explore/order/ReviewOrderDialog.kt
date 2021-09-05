@@ -17,7 +17,7 @@ class ReviewOrderDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<ReviewOrder>()
             .map { getString(it.titleRes) }.toTypedArray()
-        val currentSelection = viewModel.reviewOrderLiveData.value?.ordinal ?: 0
+        val currentSelection = viewModel.reviewOrder.value?.ordinal ?: 0
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Ordenar por")

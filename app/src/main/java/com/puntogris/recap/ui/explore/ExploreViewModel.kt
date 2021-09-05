@@ -1,42 +1,44 @@
 package com.puntogris.recap.ui.explore
 
 import androidx.lifecycle.*
+import androidx.paging.cachedIn
+import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @HiltViewModel
-class ExploreViewModel @Inject constructor(): ViewModel() {
+class ExploreViewModel @Inject constructor(
+    private val recapRepository: RecapRepository
+): ViewModel() {
 
-    private val _recapOrderLiveData = MutableLiveData(RecapOrder.LATEST)
-    val recapOrderLiveData: LiveData<RecapOrder> = _recapOrderLiveData
+    private val _recapOrder = MutableStateFlow(RecapOrder.LATEST)
+    val recapOrder: StateFlow<RecapOrder> = _recapOrder
 
-    private val _reviewOrderLiveData = MutableLiveData(ReviewOrder.ALL)
-    val reviewOrderLiveData: LiveData<ReviewOrder> = _reviewOrderLiveData
+    private val _reviewOrder = MutableStateFlow(ReviewOrder.ALL)
+    val reviewOrder: StateFlow<ReviewOrder> = _reviewOrder
 
-    private val recapsListing = Transformations.map(_recapOrderLiveData) {
-       // photoRepository.getPhotos(it, viewModelScope)
+    val recapsFlow = _recapOrder.flatMapLatest {
+        recapRepository.getRecapsPagingData(it)
+    }.cachedIn(viewModelScope)
+
+    val reviewsFlow = _reviewOrder.flatMapLatest {
+        recapRepository.getReviewsPagingData(it)
     }
-
-    private val reviewListing = Transformations.map(_reviewOrderLiveData) {
-      //  collectionRepository.getCollections(it, viewModelScope)
-    }
-
- //   fun refreshRecaps() = recapsListing.value?.refresh?.invoke()
-
- //   fun refreshReviews() = reviewListing.value?.refresh?.invoke()
-
 
     fun orderRecapsBy(selection: Int) {
         RecapOrder.values().getOrNull(selection)?.let {
-            _recapOrderLiveData.postValue(it)
+            _recapOrder.value = it
         }
     }
 
     fun orderReviewsBy(selection: Int) {
         ReviewOrder.values().getOrNull(selection)?.let {
-            _reviewOrderLiveData.postValue(it)
+            _reviewOrder.value = it
         }
     }
 }
