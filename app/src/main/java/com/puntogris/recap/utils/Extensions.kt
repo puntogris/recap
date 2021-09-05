@@ -10,6 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
 import com.puntogris.recap.ui.about.AboutPreferences
@@ -50,4 +51,8 @@ fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar){
     toolbar.setNavigationOnClickListener {
         findNavController().navigateUp()
     }
+}
+
+fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
+    if (visible) show() else hide()
 }

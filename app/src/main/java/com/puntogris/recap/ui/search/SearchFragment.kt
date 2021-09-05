@@ -7,13 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
+import com.puntogris.recap.utils.setVisibility
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,18 +48,13 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         mediator?.attach()
     }
 
-    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager) : FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
+    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager):
+        FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
 
         override fun getItemCount(): Int = 2
 
-        override fun createFragment(position: Int): Fragment =
-            (if (position == 0 ) SearchRecapFragment() else SearchUserFragment()).apply {
-
-            }
-    }
-
-    private fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
-        if (visible) show() else hide()
+        override fun createFragment(position: Int) =
+            if (position == 0 ) SearchRecapFragment() else SearchUserFragment()
     }
 
     fun showFilterBottomSheet(){

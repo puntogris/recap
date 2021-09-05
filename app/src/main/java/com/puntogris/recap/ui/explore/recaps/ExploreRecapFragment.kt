@@ -1,6 +1,7 @@
 package com.puntogris.recap.ui.explore.recaps
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -48,6 +49,9 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
             viewModel.recapsFlow.collectLatest {
                 adapter.submitData(it)
             }
+        }
+        adapter.addLoadStateListener { state ->
+            binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
         }
     }
 

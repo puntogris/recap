@@ -8,6 +8,7 @@ import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -28,7 +29,8 @@ class ExploreViewModel @Inject constructor(
 
     val reviewsFlow = _reviewOrder.flatMapLatest {
         recapRepository.getReviewsPagingData(it)
-    }
+    }.cachedIn(viewModelScope)
+
 
     fun orderRecapsBy(selection: Int) {
         RecapOrder.values().getOrNull(selection)?.let {

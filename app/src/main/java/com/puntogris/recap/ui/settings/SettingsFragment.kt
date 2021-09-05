@@ -4,7 +4,9 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSettingsBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
 
     override fun initializeViews() {
@@ -18,5 +20,4 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment
             .replace(binding.container.id, PreferencesFragment())
             .commit()
     }
-
 }

@@ -60,6 +60,7 @@ ext{
     editorVersion = "2.0.0"
     navigationVersion = "2.3.5"
     lifecycleVersion = "2.4.0-alpha03"
+    lottieVersion = "3.5.0"
 }
 
 dependencies {
@@ -126,4 +127,7 @@ dependencies {
 
     //Preferences
     implementation "androidx.preference:preference-ktx:1.1.0-alpha04"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

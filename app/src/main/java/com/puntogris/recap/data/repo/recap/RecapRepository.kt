@@ -60,6 +60,7 @@ class RecapRepository @Inject constructor(
         val query = firebase
             .firestore
             .collection("recaps")
+            .whereEqualTo("aproved",false)
 
         return Pager(
             PagingConfig(
