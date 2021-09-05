@@ -1,4 +1,4 @@
-package com.puntogris.recap.ui.explore
+package com.puntogris.recap.ui.home
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
@@ -8,12 +8,11 @@ import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class ExploreViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val recapRepository: RecapRepository
 ): ViewModel() {
 

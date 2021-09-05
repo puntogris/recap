@@ -6,14 +6,14 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.explore.ExploreFragment" />
+            type="com.puntogris.recap.ui.home.HomeFragment" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="ui.explore.ExploreFragment">
+        tools:context=".ui.home.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/top_app_bar"

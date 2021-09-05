@@ -1,34 +1,27 @@
-package com.puntogris.recap.ui.explore.recaps
+package com.puntogris.recap.ui.home.explore
 
-import android.view.View
-import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.LoadType
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreRecapBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
-import com.puntogris.recap.ui.explore.ExploreAdapter
-import com.puntogris.recap.ui.explore.ExploreFragment
-import com.puntogris.recap.ui.explore.ExploreViewModel
+import com.puntogris.recap.ui.home.ExploreAdapter
+import com.puntogris.recap.ui.home.HomeFragment
+import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.fragment_explore_recap) {
 
-    private val viewModel: ExploreViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
@@ -60,7 +53,7 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
     }
 
     private fun onRecapLongClick(recap: Recap){
-        (requireParentFragment() as ExploreFragment).showFavoriteSnack()
+        (requireParentFragment() as HomeFragment).showFavoriteSnack()
     }
 
 }

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.puntogris.recap.ui.explore.ExploreFragment"/>
+        android:name="com.puntogris.recap.ui.home.HomeFragment"/>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.puntogris.recap.ui.login.LoginFragment"/>
@@ -21,7 +21,7 @@
         android:name="com.puntogris.recap.ui.search.SearchFragment"/>
     <dialog
         android:id="@+id/mainBottomNavigationDrawer"
-        android:name="com.puntogris.recap.ui.explore.MainBottomNavigationDrawer"/>
+        android:name="com.puntogris.recap.ui.home.HomeBottomNavigationDrawer"/>
     <dialog
         android:id="@+id/searchRecapFilterBottomSheet"
         android:name="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet"/>
@@ -33,11 +33,11 @@
         android:name="com.puntogris.recap.ui.about.AboutFragment"/>
     <dialog
         android:id="@+id/reviewOrderDialog"
-        android:name="com.puntogris.recap.ui.explore.order.ReviewOrderDialog"
+        android:name="com.puntogris.recap.ui.home.reviews.ReviewOrderDialog"
         android:label="ReviewOrderDialog" />
     <dialog
         android:id="@+id/recapOrderDialog"
-        android:name="com.puntogris.recap.ui.explore.order.RecapOrderDialog"
+        android:name="com.puntogris.recap.ui.home.explore.RecapOrderDialog"
         android:label="RecapOrderDialog" />
     <fragment
         android:id="@+id/settingsFragment"
