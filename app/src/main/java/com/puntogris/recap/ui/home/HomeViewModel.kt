@@ -3,6 +3,7 @@ package com.puntogris.recap.ui.home
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.recap.RecapRepository
+import com.puntogris.recap.data.repo.user.UserRepository
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val recapRepository: RecapRepository
+    private val recapRepository: RecapRepository,
+    private val userRepository: UserRepository
 ): ViewModel() {
 
     private val _recapOrder = MutableStateFlow(RecapOrder.LATEST)
@@ -42,4 +44,6 @@ class HomeViewModel @Inject constructor(
             _reviewOrder.value = it
         }
     }
+
+    fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 }

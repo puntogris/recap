@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -55,4 +57,24 @@ fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar){
 
 fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
     if (visible) show() else hide()
+}
+
+inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
+    findPreference<Preference>(key)?.apply {
+        block(this)
+    }
+}
+
+inline fun Preference.onClick(crossinline block: () -> Unit){
+    setOnPreferenceClickListener {
+        block()
+        true
+    }
+}
+
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+    findPreference<Preference>(key)?.setOnPreferenceClickListener {
+        block()
+        true
+    }
 }

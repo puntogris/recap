@@ -42,4 +42,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.puntogris.recap.ui.settings.SettingsFragment"/>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.puntogris.recap.ui.user.UserFragment" />
 </navigation>
