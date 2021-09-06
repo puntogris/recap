@@ -21,6 +21,7 @@
         <entry key="app/src/main/res/layout/editor_text_format.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/editor_text_type.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/empty_error_state_layout.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/expandable_card_view.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_create_recap.xml" value="0.35052083333333334" />
@@ -46,6 +47,7 @@
         <entry key="app/src/main/res/layout/recap_editor_modifier_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/menu/menu_drawer_header.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/recap_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/xml/about_preferences.xml" value="0.35052083333333334" />

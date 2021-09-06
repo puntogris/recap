@@ -2,6 +2,7 @@ package com.puntogris.recap.ui.home
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
+import com.puntogris.recap.data.repo.login.LoginRepository
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.user.UserRepository
 import com.puntogris.recap.utils.RecapOrder
@@ -17,6 +18,9 @@ class HomeViewModel @Inject constructor(
     private val recapRepository: RecapRepository,
     private val userRepository: UserRepository
 ): ViewModel() {
+
+    private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
+    val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
 
     private val _recapOrder = MutableStateFlow(RecapOrder.LATEST)
     val recapOrder: StateFlow<RecapOrder> = _recapOrder

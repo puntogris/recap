@@ -23,13 +23,13 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/bottom_sheet_handle" />
 
-            <!--        <com.b_lam.resplash.ui.widget.ExpandableCardView-->
-            <!--            android:id="@+id/expandable_profile"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            app:header_view="@layout/main_bottom_navigation_drawer_profile_header"-->
-            <!--            app:content_view="@layout/main_bottom_navigation_drawer_profile_content"-->
-            <!--            tools:expanded="true" />-->
+            <com.puntogris.recap.ui.widget.ExpandableCardView
+                android:id="@+id/expandable_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:header_view="@layout/main_bottom_navigation_drawer_profile_header"
+                app:content_view="@layout/main_bottom_navigation_drawer_profile_content"
+                tools:expanded="true" />
 
             <View
                 android:layout_width="match_parent"

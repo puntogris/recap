@@ -44,8 +44,8 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures{
-        dataBinding true
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -130,4 +130,7 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
+
 }

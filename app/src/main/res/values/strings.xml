@@ -54,5 +54,9 @@
     <string name="order_oldest">Oldest</string>
     <string name="order_popular">Popular</string>
     <string name="order_all">All</string>
+    <string name="add_account">Add account</string>
+    <string name="view_profile">View profile</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="log_out">Log out</string>
 
 </resources>

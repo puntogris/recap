@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Expandable CardView-->
+    <declare-styleable name="ExpandableCardView">
+        <attr name="header_view" format="reference"/>
+        <attr name="content_view" format="reference"/>
+        <attr name="expanded" format="boolean"/>
+        <attr name="animation_duration" format="integer"/>
+    </declare-styleable>
+
+</resources>
