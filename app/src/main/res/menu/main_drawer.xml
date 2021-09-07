@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    <group-->
-<!--        android:id="@+id/group_unauthorized"-->
-<!--        android:checkableBehavior="none">-->
-<!--        <item-->
-<!--            android:id="@+id/recap"-->
-<!--            android:icon="@drawable/ic_baseline_account_circle_24"-->
-<!--            android:title="recap" />-->
-<!--    </group>-->
     <group
-        android:id="@+id/group_authorized"
         android:checkableBehavior="none">
-        <item
-            android:id="@+id/action_user"
-            android:icon="@drawable/ic_baseline_account_circle_24"
-            android:title="Cuenta" />
         <item
             android:id="@+id/action_settings"
             android:icon="@drawable/ic_baseline_settings_24"

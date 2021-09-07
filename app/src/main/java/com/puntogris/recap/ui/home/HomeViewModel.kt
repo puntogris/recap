@@ -5,6 +5,7 @@ import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.login.LoginRepository
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.user.UserRepository
+import com.puntogris.recap.utils.Event
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val recapRepository: RecapRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val loginRepository: LoginRepository
 ): ViewModel() {
 
     private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
@@ -50,4 +52,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun isUserLoggedIn() = userRepository.isUserLoggedIn()
+
+    suspend fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
 }

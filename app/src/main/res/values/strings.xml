@@ -59,4 +59,8 @@
     <string name="edit_profile">Edit profile</string>
     <string name="log_out">Log out</string>
 
+
+    <string name="action_undo">Undo</string>
+    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
+
 </resources>

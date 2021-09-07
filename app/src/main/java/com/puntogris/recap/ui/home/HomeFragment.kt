@@ -1,22 +1,24 @@
 package com.puntogris.recap.ui.home
 
+import android.view.View
 import androidx.annotation.NonNull
 import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapFragment
 import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
-import com.puntogris.recap.utils.showSnackBar
+import com.puntogris.recap.ui.main.UiListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
 
     private val viewModel: HomeViewModel by activityViewModels()
     private var mediator: TabLayoutMediator? = null
@@ -26,14 +28,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         setupBottomAppBar()
         setupExplorePager()
 
-//        repeat(10){
-//            val recap = Recap(
-//                title = "the office $it",
-//                rating = (1..10).random()
-//            )
-//            Firebase.firestore.collection("recaps").add(recap)
-//        }
-
+        setFragmentResultListener("data"){requestKey, bundle ->
+            if (bundle.containsKey("result"))
+            if (bundle.getBoolean("result")) showSnackBar("Cuenta cerrada correctamente.")
+        }
     }
 
     private fun setupBottomAppBar(){
@@ -96,4 +94,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         super.onDestroyView()
     }
 
+    override fun showSnackBar(
+        message: String,
+        duration: Int,
+        actionText: Int,
+        anchorView: View?,
+        actionListener: View.OnClickListener?
+    ) {
+        Snackbar.make(binding.root, message, duration).apply {
+            this.anchorView = binding.createFab
+            if (actionListener != null) setAction(actionText, actionListener)
+            show()
+        }
+    }
 }

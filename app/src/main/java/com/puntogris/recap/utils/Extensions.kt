@@ -4,9 +4,7 @@ import android.view.View
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
@@ -77,4 +75,11 @@ inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline b
         block()
         true
     }
+}
+
+inline fun <T> LiveData<Event<T>>.observeEvent(
+    owner: LifecycleOwner,
+    crossinline onEventUnhandledContent: (T) -> Unit
+) {
+    observe(owner, Observer { it?.getContentIfNotHandled()?.let(onEventUnhandledContent) })
 }

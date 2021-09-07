@@ -36,7 +36,7 @@ class LoginRepository @Inject constructor(
         firebase.auth.signInWithCredential(credential)
             .addOnSuccessListener {
              //   val firestoreUser = getUserPrivateDataFromFirebaseUser(it.user)
-            //    result.value = LoginResult.Success(firestoreUser)
+                result.value = LoginResult.Success()
             }
             .addOnFailureListener { result.value = LoginResult.Error() }
 

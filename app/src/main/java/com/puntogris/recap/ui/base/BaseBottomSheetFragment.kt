@@ -25,9 +25,16 @@ abstract class BaseBottomSheetFragment<T: ViewDataBinding>(@LayoutRes val layout
         return binding.root
     }
 
-    open fun initializeViews() {}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewCreated()
+    }
 
     open fun preInitializeViews() {}
+
+    open fun initializeViews() {}
+
+    open fun viewCreated(){}
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -1,19 +1,20 @@
 package com.puntogris.recap.ui.home
 
-import android.app.Dialog
-import android.os.Bundle
-import android.widget.FrameLayout
+import android.view.MenuItem
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileContentBinding
-import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileHeaderBinding
 import com.puntogris.recap.ui.base.BaseBottomSheetFragment
+import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -26,24 +27,15 @@ class HomeBottomNavigationDrawer :
             MainBottomNavigationDrawerProfileContentBinding by viewBinding(R.id.bottom_navigation_content)
 
     override fun initializeViews() {
+
+    }
+
+    override fun viewCreated() {
+        navigationDrawerContentBinding.headerNavigationView.setNavigationItemSelectedListener {
+            onNavigationItemSelected(it)
+        }
         binding.drawerNavigationView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.action_about ->{
-                    findNavController().navigate(R.id.aboutFragment)
-                    true
-                }
-                R.id.action_settings ->{
-                    findNavController().navigate(R.id.settingsFragment)
-                    true
-                }
-                R.id.action_user -> {
-                    findNavController().navigate(
-                        if (viewModel.isUserLoggedIn()) R.id.userFragment else R.id.loginFragment
-                    )
-                    true
-                }
-                else -> true
-            }
+            onNavigationItemSelected(it)
         }
 
         viewModel.authorizedLiveData.observe(viewLifecycleOwner) {
@@ -54,19 +46,43 @@ class HomeBottomNavigationDrawer :
         }
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val bottomSheetDialog = super.onCreateDialog(savedInstanceState)
+    private fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        when (menuItem.itemId) {
+            R.id.action_add_account -> findNavController().navigate(R.id.loginFragment)
+            R.id.action_view_profile -> findNavController().navigate(R.id.userFragment)
+            R.id.action_edit_profile -> { }
+            R.id.action_log_out -> handleLogOut()
+            R.id.action_settings -> findNavController().navigate(R.id.settingsFragment)
+            R.id.action_about -> findNavController().navigate(R.id.aboutFragment)
+        }
+        return true
+    }
 
-        bottomSheetDialog.setOnShowListener {
-            val bottomSheet = bottomSheetDialog
-                .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
-            BottomSheetBehavior.from(bottomSheet).apply {
-                skipCollapsed = true
-                state = BottomSheetBehavior.STATE_EXPANDED
+    private fun handleLogOut(){
+        lifecycleScope.launch {
+            when(viewModel.logOut()){
+                SimpleResult.Failure -> {}
+                SimpleResult.Success -> {
+                    dismiss()
+                    setFragmentResult("data", bundleOf("result" to true))
+                }
             }
         }
-
-        return bottomSheetDialog
     }
+
+//    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+//        val bottomSheetDialog = super.onCreateDialog(savedInstanceState)
+//
+//        bottomSheetDialog.setOnShowListener {
+//            val bottomSheet = bottomSheetDialog
+//                .findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+//            BottomSheetBehavior.from(bottomSheet).apply {
+//                skipCollapsed = true
+//                state = BottomSheetBehavior.STATE_EXPANDED
+//            }
+//        }
+//
+//        return bottomSheetDialog
+//    }
 
 }
