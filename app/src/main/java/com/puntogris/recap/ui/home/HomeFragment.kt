@@ -25,6 +25,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
 
+    private val bottomNavDrawer: HomeBottomNavigationDrawer by lazy(LazyThreadSafetyMode.NONE) {
+        HomeBottomNavigationDrawer.newInstance()
+    }
+
     override fun initializeViews() {
         binding.fragment = this
         setupBottomAppBar()
@@ -104,9 +108,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     }
 
     private fun showBottomDrawer() {
-        HomeBottomNavigationDrawer
-            .newInstance()
-            .show(childFragmentManager, HomeBottomNavigationDrawer.TAG)
+        bottomNavDrawer.show(childFragmentManager, HomeBottomNavigationDrawer.TAG)
     }
 
     override fun onStart() {

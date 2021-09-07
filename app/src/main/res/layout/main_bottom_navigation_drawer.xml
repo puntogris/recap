@@ -43,7 +43,7 @@
                 android:background="@color/color_tinted_surface"
                 app:itemBackground="@color/color_tinted_surface"
                 app:elevation="0dp"
-                app:menu="@menu/main_drawer" />
+                app:menu="@menu/menu_drawer_content" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

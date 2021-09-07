@@ -25,43 +25,40 @@ class HomeBottomNavigationDrawer :
 
     private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
 
-    private val navigationDrawerContentBinding:
+    private val contentBinding:
             MainBottomNavigationDrawerProfileContentBinding by viewBinding(R.id.bottom_navigation_content)
 
-    private val navigationDrawerHeaderBinding:
+    private val headerBinding:
             MainBottomNavigationDrawerProfileHeaderBinding by viewBinding(R.id.bottom_navigation_header)
 
-    override fun initializeViews() {
+    override fun onViewCreated() {
 
-    }
-
-    override fun viewCreated() {
-
-        navigationDrawerContentBinding.headerNavigationView.setNavigationItemSelectedListener {
+        contentBinding.headerNavigationView.setNavigationItemSelectedListener {
             onNavigationItemSelected(it)
         }
         binding.drawerNavigationView.setNavigationItemSelectedListener {
             onNavigationItemSelected(it)
         }
 
-        viewModel.authorizedLiveData.observe(viewLifecycleOwner) {
-            with(navigationDrawerContentBinding.headerNavigationView.menu) {
-                setGroupVisible(R.id.group_unauthorized, !it)
-                setGroupVisible(R.id.group_authorized, it)
+        with(viewModel){
+            authorizedLiveData.observe(viewLifecycleOwner) {
+                with(contentBinding.headerNavigationView.menu) {
+                    setGroupVisible(R.id.group_unauthorized, !it)
+                    setGroupVisible(R.id.group_authorized, it)
+                }
             }
-        }
-
-        viewModel.usernameLiveData.observe(viewLifecycleOwner) {
-            navigationDrawerHeaderBinding.headerTitle.text = it ?: getString(R.string.app_name)
-        }
-        viewModel.emailLiveData.observe(viewLifecycleOwner) {
-            navigationDrawerHeaderBinding.headerSubtitle.text = it ?: "...."
-        }
-        viewModel.profilePictureLiveData.observe(viewLifecycleOwner) { url ->
-            url?.let {
-                navigationDrawerHeaderBinding.headerImageView.loadProfilePicture(it)
-            } ?: run {
-                navigationDrawerHeaderBinding.headerImageView.setImageResource(R.mipmap.ic_launcher_round)
+            usernameLiveData.observe(viewLifecycleOwner) {
+                headerBinding.headerTitle.text = it ?: getString(R.string.app_name)
+            }
+            emailLiveData.observe(viewLifecycleOwner) {
+                headerBinding.headerSubtitle.text = it ?: "Open source recap platform for Android"
+            }
+            profilePictureLiveData.observe(viewLifecycleOwner) { url ->
+                url?.let {
+                    headerBinding.headerImageView.loadProfilePicture(it)
+                } ?: run {
+                    headerBinding.headerImageView.setImageResource(R.mipmap.ic_launcher_round)
+                }
             }
         }
     }
@@ -75,6 +72,7 @@ class HomeBottomNavigationDrawer :
             R.id.action_settings -> findNavController().navigate(R.id.settingsFragment)
             R.id.action_about -> findNavController().navigate(R.id.aboutFragment)
         }
+        dismiss()
         return true
     }
 
@@ -107,7 +105,6 @@ class HomeBottomNavigationDrawer :
 
     companion object {
         val TAG: String = HomeBottomNavigationDrawer::class.java.simpleName
-
         fun newInstance() = HomeBottomNavigationDrawer()
     }
 }

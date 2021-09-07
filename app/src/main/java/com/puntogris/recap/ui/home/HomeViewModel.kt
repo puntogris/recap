@@ -2,6 +2,7 @@ package com.puntogris.recap.ui.home
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
+import com.google.firebase.auth.FirebaseUser
 import com.puntogris.recap.data.repo.login.LoginRepository
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.user.UserRepository
@@ -49,7 +50,6 @@ class HomeViewModel @Inject constructor(
         recapRepository.getReviewsPagingData(it)
     }.cachedIn(viewModelScope)
 
-
     fun orderRecapsBy(selection: Int) {
         RecapOrder.values().getOrNull(selection)?.let {
             _recapOrder.value = it
@@ -75,15 +75,6 @@ class HomeViewModel @Inject constructor(
         if (currentUser != null) {
             _authorizedLiveData.postValue(true)
             updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString())
-            if (currentUser.displayName.isNullOrBlank()) {
-//                viewModelScope.launch {
-//                    val result = loginRepository.getMe()
-//                    if (result is Result.Success) {
-//                        val me = result.value
-//                        updateUser(me.username, me.email, me.profile_image?.large)
-//                    }
-//                }
-            }
         }
     }
 
