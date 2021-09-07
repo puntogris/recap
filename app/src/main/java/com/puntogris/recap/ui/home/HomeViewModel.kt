@@ -8,9 +8,11 @@ import com.puntogris.recap.data.repo.user.UserRepository
 import com.puntogris.recap.utils.Event
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
+import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
@@ -20,9 +22,15 @@ class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val loginRepository: LoginRepository
 ): ViewModel() {
-    init {
-        println("init")
-    }
+
+    private val _usernameLiveData = MutableLiveData<String?>()
+    val usernameLiveData: LiveData<String?> = _usernameLiveData
+
+    private val _emailLiveData = MutableLiveData<String?>()
+    val emailLiveData: LiveData<String?> = _emailLiveData
+
+    private val _profilePictureLiveData = MutableLiveData<String?>()
+    val profilePictureLiveData: LiveData<String?> = _profilePictureLiveData
 
     private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
@@ -56,5 +64,32 @@ class HomeViewModel @Inject constructor(
 
     fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 
-    suspend fun logOut() = loginRepository.signOutUserFromFirebaseAndGoogle()
+    private fun updateUser(username: String?, email: String?, profilePicture: String?) {
+        _usernameLiveData.postValue(username)
+        _emailLiveData.postValue(email)
+        _profilePictureLiveData.postValue(profilePicture)
+    }
+
+    fun refreshUserProfile() {
+        val currentUser = userRepository.getFirebaseUser()
+        if (currentUser != null) {
+            _authorizedLiveData.postValue(true)
+            updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString())
+            if (currentUser.displayName.isNullOrBlank()) {
+//                viewModelScope.launch {
+//                    val result = loginRepository.getMe()
+//                    if (result is Result.Success) {
+//                        val me = result.value
+//                        updateUser(me.username, me.email, me.profile_image?.large)
+//                    }
+//                }
+            }
+        }
+    }
+
+    suspend fun logOut(): SimpleResult {
+        _authorizedLiveData.value = false
+        updateUser(null, null, null)
+        return loginRepository.signOutUserFromFirebaseAndGoogle()
+    }
 }

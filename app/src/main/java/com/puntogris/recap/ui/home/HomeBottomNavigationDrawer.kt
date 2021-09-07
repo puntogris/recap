@@ -10,8 +10,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileContentBinding
+import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileHeaderBinding
 import com.puntogris.recap.ui.base.BaseBottomSheetFragment
 import com.puntogris.recap.utils.SimpleResult
+import com.puntogris.recap.utils.loadProfilePicture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -21,16 +23,20 @@ import kotlinx.coroutines.launch
 class HomeBottomNavigationDrawer :
     BaseBottomSheetFragment<MainBottomNavigationDrawerBinding>(R.layout.main_bottom_navigation_drawer) {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
 
     private val navigationDrawerContentBinding:
             MainBottomNavigationDrawerProfileContentBinding by viewBinding(R.id.bottom_navigation_content)
+
+    private val navigationDrawerHeaderBinding:
+            MainBottomNavigationDrawerProfileHeaderBinding by viewBinding(R.id.bottom_navigation_header)
 
     override fun initializeViews() {
 
     }
 
     override fun viewCreated() {
+
         navigationDrawerContentBinding.headerNavigationView.setNavigationItemSelectedListener {
             onNavigationItemSelected(it)
         }
@@ -42,6 +48,20 @@ class HomeBottomNavigationDrawer :
             with(navigationDrawerContentBinding.headerNavigationView.menu) {
                 setGroupVisible(R.id.group_unauthorized, !it)
                 setGroupVisible(R.id.group_authorized, it)
+            }
+        }
+
+        viewModel.usernameLiveData.observe(viewLifecycleOwner) {
+            navigationDrawerHeaderBinding.headerTitle.text = it ?: getString(R.string.app_name)
+        }
+        viewModel.emailLiveData.observe(viewLifecycleOwner) {
+            navigationDrawerHeaderBinding.headerSubtitle.text = it ?: "...."
+        }
+        viewModel.profilePictureLiveData.observe(viewLifecycleOwner) { url ->
+            url?.let {
+                navigationDrawerHeaderBinding.headerImageView.loadProfilePicture(it)
+            } ?: run {
+                navigationDrawerHeaderBinding.headerImageView.setImageResource(R.mipmap.ic_launcher_round)
             }
         }
     }
@@ -85,4 +105,9 @@ class HomeBottomNavigationDrawer :
 //        return bottomSheetDialog
 //    }
 
+    companion object {
+        val TAG: String = HomeBottomNavigationDrawer::class.java.simpleName
+
+        fun newInstance() = HomeBottomNavigationDrawer()
+    }
 }

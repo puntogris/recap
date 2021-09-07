@@ -1,6 +1,7 @@
 package com.puntogris.recap.utils
 
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -82,4 +85,14 @@ inline fun <T> LiveData<Event<T>>.observeEvent(
     crossinline onEventUnhandledContent: (T) -> Unit
 ) {
     observe(owner, Observer { it?.getContentIfNotHandled()?.let(onEventUnhandledContent) })
+}
+
+fun ImageView.loadProfilePicture(url: String?) {
+    Glide.with(context)
+        .load(url)
+      //  .placeholder(R.drawable.user_profile_picture_small_placeholder)
+        .circleCrop()
+      //  .transition(DrawableTransitionOptions.withCrossFade(CROSS_FADE_DURATION))
+        .into(this)
+        .clearOnDetach()
 }

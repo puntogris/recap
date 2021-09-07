@@ -55,7 +55,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
                 }
             }
             setNavigationOnClickListener {
-                findNavController().navigate(R.id.mainBottomNavigationDrawer)
+                showBottomDrawer()
             }
         }
     }
@@ -89,13 +89,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         showSnackBar("Agregado a favoritos", anchorView = binding.createFab)
     }
 
-    override fun onDestroyView() {
-        mediator?.detach()
-        mediator = null
-        binding.viewPager.adapter = null
-        super.onDestroyView()
-    }
-
     override fun showSnackBar(
         message: String,
         duration: Int,
@@ -108,5 +101,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
             if (actionListener != null) setAction(actionText, actionListener)
             show()
         }
+    }
+
+    private fun showBottomDrawer() {
+        HomeBottomNavigationDrawer
+            .newInstance()
+            .show(childFragmentManager, HomeBottomNavigationDrawer.TAG)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.refreshUserProfile()
+    }
+
+    override fun onDestroyView() {
+        mediator?.detach()
+        mediator = null
+        binding.viewPager.adapter = null
+        super.onDestroyView()
     }
 }
