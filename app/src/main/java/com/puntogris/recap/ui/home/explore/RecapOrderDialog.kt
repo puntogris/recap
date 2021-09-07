@@ -26,9 +26,8 @@ class RecapOrderDialog: DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Ordenar por")
             .setSingleChoiceItems(orderOptions, currentSelection) { dialog, which ->
-           //     if (which != currentSelection) viewModel.orderRecapsBy(which)
+                if (which != currentSelection) viewModel.orderRecapsBy(which)
                 dialog.dismiss()
-                setFragmentResult("data", bundleOf("order" to which))
             }
             .create()
     }

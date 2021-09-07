@@ -64,7 +64,7 @@ class HomeBottomNavigationDrawer :
                 SimpleResult.Failure -> {}
                 SimpleResult.Success -> {
                     dismiss()
-                    setFragmentResult("data", bundleOf("result" to true))
+                    setFragmentResult("home_fragment", bundleOf("log_out_result" to true))
                 }
             }
         }

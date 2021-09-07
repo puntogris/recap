@@ -25,11 +25,6 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
-
-//        requireParentFragment().setFragmentResultListener("data"){requestKey, bundle ->
-//            println("aaaaa333")
-//            if (bundle.containsKey("order")) viewModel.orderRecapsBy(bundle["order"].toString().toInt())
-//        }
     }
 
     private fun setupRecyclerViewAdapter(){

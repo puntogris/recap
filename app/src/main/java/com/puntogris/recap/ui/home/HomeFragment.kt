@@ -11,7 +11,9 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapFragment
+import com.puntogris.recap.ui.home.explore.RecapOrderDialog
 import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
+import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog
 import com.puntogris.recap.ui.main.UiListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,7 +22,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
 
-    private val viewModel: HomeViewModel by activityViewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {
@@ -28,9 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         setupBottomAppBar()
         setupExplorePager()
 
-        setFragmentResultListener("data"){requestKey, bundle ->
-            if (bundle.containsKey("result"))
-            if (bundle.getBoolean("result")) showSnackBar("Cuenta cerrada correctamente.")
+        setFragmentResultListener("home_fragment"){_, bundle ->
+            if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
+                showSnackBar("Cuenta cerrada correctamente.")
         }
     }
 
@@ -44,8 +46,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
                     }
                     R.id.action_order -> {
                         when (binding.tabLayout.selectedTabPosition) {
-                            0 -> findNavController().navigate(R.id.recapOrderDialog)
-                            1 -> findNavController().navigate(R.id.reviewOrderDialog)
+                            0 -> RecapOrderDialog().show(childFragmentManager, "recap_order_dialog")
+                            1 -> ReviewOrderDialog().show(childFragmentManager, "review_order_dialog")
                         }
                         true
                     }

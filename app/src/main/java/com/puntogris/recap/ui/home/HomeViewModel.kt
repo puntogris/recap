@@ -20,6 +20,9 @@ class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val loginRepository: LoginRepository
 ): ViewModel() {
+    init {
+        println("init")
+    }
 
     private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData

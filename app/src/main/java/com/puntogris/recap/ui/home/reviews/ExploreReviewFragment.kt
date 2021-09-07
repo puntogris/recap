@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.collectLatest
 @ExperimentalCoroutinesApi
 class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layout.fragment_explore_review) {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
