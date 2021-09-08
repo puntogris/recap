@@ -79,10 +79,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         override fun getItemCount(): Int = 2
 
-        override fun createFragment(position: Int): Fragment =
-            (if (position == 0 ) ExploreRecapFragment() else ExploreReviewFragment()).apply {
-
-            }
+        override fun createFragment(position: Int) =
+            if (position == 0 ) ExploreRecapFragment() else ExploreReviewFragment()
     }
 
     fun navigateToCreateRecap(){

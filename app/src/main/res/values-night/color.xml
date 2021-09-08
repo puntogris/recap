@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!--Dark Color Theme-->
+
+    <!--The same color values are defined for dark theme, but with values more appropriate for -->
+    <!--low-luminance UIs. These colors will be used by night/themes.xml.-->
 
     <color name="color_primary">#ffffff</color>
     <color name="color_primary_variant">#4b01d0</color>
@@ -27,6 +25,4 @@
 
     <color name="color_divider">#1FFFFFFF</color>
     <color name="color_tinted_surface">#262626</color>
-
-    <color name="immersive_sys_ui">#33000000</color>
 </resources>
