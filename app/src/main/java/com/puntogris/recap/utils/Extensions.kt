@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
 import com.puntogris.recap.ui.about.AboutPreferences
+import com.puntogris.recap.utils.Constants.CROSS_FADE_DURATION
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -90,9 +91,8 @@ inline fun <T> LiveData<Event<T>>.observeEvent(
 fun ImageView.loadProfilePicture(url: String?) {
     Glide.with(context)
         .load(url)
-      //  .placeholder(R.drawable.user_profile_picture_small_placeholder)
         .circleCrop()
-      //  .transition(DrawableTransitionOptions.withCrossFade(CROSS_FADE_DURATION))
+        .transition(DrawableTransitionOptions.withCrossFade(CROSS_FADE_DURATION))
         .into(this)
         .clearOnDetach()
 }

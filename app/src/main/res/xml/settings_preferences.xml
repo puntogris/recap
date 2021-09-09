@@ -2,6 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
+        android:key="theme_preference"
         android:title="Tema"/>
 
     <SwitchPreference

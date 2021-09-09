@@ -45,4 +45,7 @@
     <fragment
         android:id="@+id/userFragment"
         android:name="com.puntogris.recap.ui.user.UserFragment" />
+    <dialog
+        android:id="@+id/selectThemeDialog"
+        android:name="com.puntogris.recap.ui.settings.SelectThemeDialog"/>
 </navigation>
