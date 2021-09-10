@@ -1,8 +1,7 @@
 package com.puntogris.recap
 
 import android.app.Application
-import androidx.appcompat.app.AppCompatDelegate
-import com.puntogris.recap.utils.DataStore
+import com.puntogris.recap.utils.SharedPref
 import com.puntogris.recap.utils.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.runBlocking
@@ -12,7 +11,7 @@ import javax.inject.Inject
 @HiltAndroidApp
 class RecapApp: Application() {
 
-    @Inject lateinit var dataStore: DataStore
+    @Inject lateinit var sharedPref: SharedPref
 
     override fun onCreate() {
         super.onCreate()
@@ -24,7 +23,7 @@ class RecapApp: Application() {
     }
 
     private fun applyAppTheme(){
-        val theme = runBlocking { dataStore.appTheme() }
+        val theme = runBlocking { sharedPref.appTheme() }
         ThemeUtils.applyTheme(theme)
     }
 }

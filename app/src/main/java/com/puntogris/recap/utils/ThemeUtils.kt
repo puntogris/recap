@@ -1,12 +1,13 @@
 package com.puntogris.recap.utils
 
 import androidx.appcompat.app.AppCompatDelegate
+import com.puntogris.recap.R
 
 object ThemeUtils {
 
     const val LIGHT = "light"
     const val DARK = "dark"
-    const val SYSTEM = "default"
+    const val SYSTEM = "system"
 
     fun applyTheme(theme: String?) {
         when (theme) {
@@ -16,4 +17,12 @@ object ThemeUtils {
         }
     }
 
+    fun getThemeNameRes(theme: String?): Int{
+        return when (theme) {
+            LIGHT -> R.string.theme_light
+            DARK -> R.string.theme_dark
+            SYSTEM -> R.string.theme_system
+            else -> R.string.error
+        }
+    }
 }

@@ -63,6 +63,9 @@
     <string name="action_undo">Undo</string>
     <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
 
+    <string name="error">Error</string>
+
+
     <!--Theme-->
     <string name="theme">Theme</string>
     <string name="theme_light">Light</string>
@@ -80,4 +83,6 @@
         <item>dark</item>
         <item>system</item>
     </string-array>
+    <string name="default_theme_value" translatable="false">system</string>
+
 </resources>

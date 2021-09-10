@@ -61,8 +61,8 @@ fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
     if (visible) show() else hide()
 }
 
-inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.() -> Unit){
-    findPreference<Preference>(key)?.apply {
+inline fun <T: Preference>PreferenceFragmentCompat.preference(key: String, block: T.() -> Unit){
+    findPreference<T>(key)?.apply {
         block(this)
     }
 }
@@ -70,6 +70,13 @@ inline fun PreferenceFragmentCompat.preference(key: String, block: Preference.()
 inline fun Preference.onClick(crossinline block: () -> Unit){
     setOnPreferenceClickListener {
         block()
+        true
+    }
+}
+
+inline fun Preference.onChange(crossinline block: (Any) -> Unit){
+    setOnPreferenceChangeListener { preference, newValue ->
+        block(newValue)
         true
     }
 }
