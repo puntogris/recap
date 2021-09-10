@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.preference.PreferenceManager
+import com.puntogris.recap.utils.Constants.PREF_APP_THEME
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -22,13 +23,4 @@ class SharedPref @Inject constructor(@ApplicationContext private val context: Co
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun appTheme() = sharedPreferences.getString(PREF_APP_THEME, ThemeUtils.SYSTEM)
-
-    fun setAppThemePreference(value: String) = sharedPreferences.edit().putString(PREF_APP_THEME, value)
-
-    companion object {
-        private const val APP_PREFERENCES_NAME = "app_preferences"
-        const val PREF_LAST_VERSION_CODE = "last_version_code"
-        const val PREF_APP_THEME = "pref_app_theme"
-        const val PREF_SHOW_NOTIFICATIONS = "pref_show_notifications"
-    }
 }
