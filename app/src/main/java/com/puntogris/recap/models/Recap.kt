@@ -1,7 +1,10 @@
 package com.puntogris.recap.models
 
+import android.os.Parcelable
 import com.google.firebase.Timestamp
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Recap(
     var id : String = "",
     var title: String = "",
@@ -14,4 +17,4 @@ data class Recap(
     var category: String = "",
     var image: String = "",
     var created: Timestamp = Timestamp.now()
-)
+): Parcelable

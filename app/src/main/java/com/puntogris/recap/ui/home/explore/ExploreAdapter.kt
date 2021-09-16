@@ -1,4 +1,4 @@
-package com.puntogris.recap.ui.home
+package com.puntogris.recap.ui.home.explore
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

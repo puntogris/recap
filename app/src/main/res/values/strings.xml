@@ -84,5 +84,10 @@
         <item>system</item>
     </string-array>
     <string name="default_theme_value" translatable="false">system</string>
+    <string name="general">General</string>
+
+    <!-- Report -->
+    <string name="inappropriate">General</string>
+    <string name="misinformation">General</string>
 
 </resources>

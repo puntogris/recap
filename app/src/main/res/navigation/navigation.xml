@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.puntogris.recap.ui.home.HomeFragment"/>
+        android:name="com.puntogris.recap.ui.home.HomeFragment">
+        <action
+            android:id="@+id/action_homeFragment_to_recapFragment"
+            app:destination="@id/recapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.puntogris.recap.ui.login.LoginFragment"/>
@@ -27,7 +32,14 @@
         android:name="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet"/>
     <fragment
         android:id="@+id/recapFragment"
-        android:name="com.puntogris.recap.ui.recap.RecapFragment"/>
+        android:name="com.puntogris.recap.ui.recap.RecapFragment">
+        <action
+            android:id="@+id/action_recapFragment_to_reportRecapBottomSheet"
+            app:destination="@id/reportRecapBottomSheet" />
+        <argument
+            android:name="recap"
+            app:argType="com.puntogris.recap.models.Recap" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.puntogris.recap.ui.about.AboutFragment"/>
@@ -45,7 +57,12 @@
     <fragment
         android:id="@+id/userFragment"
         android:name="com.puntogris.recap.ui.user.UserFragment" />
+
     <dialog
-        android:id="@+id/selectThemeDialog"
-        android:name="com.puntogris.recap.ui.settings.SelectThemeDialog"/>
+        android:id="@+id/reportRecapBottomSheet"
+        android:name="com.puntogris.recap.ui.recap.report.ReportRecapBottomSheet" >
+        <argument
+            android:name="recapId"
+            app:argType="string" />
+    </dialog>
 </navigation>

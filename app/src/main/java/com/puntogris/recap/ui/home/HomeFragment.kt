@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
+import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapFragment
 import com.puntogris.recap.ui.home.explore.RecapOrderDialog
@@ -85,6 +86,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
     fun navigateToCreateRecap(){
         findNavController().navigate(R.id.createRecapFragment)
+    }
+
+    fun navigateToRecap(recap: Recap){
+        val action = HomeFragmentDirections.actionHomeFragmentToRecapFragment(recap)
+        findNavController().navigate(action)
     }
 
     fun showFavoriteSnack(){

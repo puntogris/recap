@@ -7,6 +7,7 @@ import com.google.firebase.firestore.Query
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
 import com.puntogris.recap.models.Recap
+import com.puntogris.recap.models.Report
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import com.puntogris.recap.utils.SimpleResult
@@ -27,6 +28,7 @@ class RecapRepository @Inject constructor(
                 .document(firebase.currentUid()!!)
                 .collection("recaps")
                 .document()
+
 
             recap.id = ref.id
             ref.set(recap).await()
@@ -68,6 +70,15 @@ class RecapRepository @Inject constructor(
                 enablePlaceholders = true,
                 maxSize = 200)
         ){ FirestoreRecapPagingSource(query) }.flow
+    }
+
+    override suspend fun sendRecapReport(report: Report): SimpleResult = withContext(Dispatchers.IO){
+        try {
+
+            SimpleResult.Success
+        }catch (e:Exception){
+            SimpleResult.Failure
+        }
     }
 
 }

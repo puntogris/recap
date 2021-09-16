@@ -4,7 +4,6 @@ import android.app.Application
 import com.puntogris.recap.utils.SharedPref
 import com.puntogris.recap.utils.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,7 +22,6 @@ class RecapApp: Application() {
     }
 
     private fun applyAppTheme(){
-        val theme = runBlocking { sharedPref.appTheme() }
-        ThemeUtils.applyTheme(theme)
+        ThemeUtils.applyTheme(sharedPref.getAppTheme())
     }
 }

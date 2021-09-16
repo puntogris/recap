@@ -81,6 +81,13 @@ inline fun Preference.onChange(crossinline block: (Any) -> Unit){
     }
 }
 
+inline fun PreferenceFragmentCompat.onPreferenceChange(key: String, crossinline block: (Any) -> Unit){
+    findPreference<Preference>(key)?.setOnPreferenceChangeListener { preference, newValue ->
+        block(newValue)
+        true
+    }
+}
+
 inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
     findPreference<Preference>(key)?.setOnPreferenceClickListener {
         block()

@@ -22,5 +22,5 @@ class SharedPref @Inject constructor(@ApplicationContext private val context: Co
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    fun appTheme() = sharedPreferences.getString(PREF_APP_THEME, ThemeUtils.SYSTEM)
+    fun getAppTheme() = sharedPreferences.getString(PREF_APP_THEME, ThemeUtils.SYSTEM)
 }

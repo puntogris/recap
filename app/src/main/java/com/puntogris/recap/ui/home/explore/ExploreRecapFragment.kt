@@ -1,6 +1,5 @@
 package com.puntogris.recap.ui.home.explore
 
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
@@ -9,7 +8,6 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreRecapBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
-import com.puntogris.recap.ui.home.ExploreAdapter
 import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.launchAndRepeatWithViewLifecycle
@@ -45,7 +43,7 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
     }
 
     private fun onRecapShortClick(recap: Recap){
-        findNavController().navigate(R.id.recapFragment)
+        (requireParentFragment() as HomeFragment).navigateToRecap(recap)
     }
 
     private fun onRecapLongClick(recap: Recap){
