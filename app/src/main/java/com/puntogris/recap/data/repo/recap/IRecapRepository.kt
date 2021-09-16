@@ -12,5 +12,4 @@ interface IRecapRepository {
     suspend fun saveRecapIntoDb(recap: Recap): SimpleResult
     fun getRecapsPagingData(order: RecapOrder): Flow<PagingData<Recap>>
     fun getReviewsPagingData(order: ReviewOrder): Flow<PagingData<Recap>>
-    suspend fun sendRecapReport(report: Report): SimpleResult
 }

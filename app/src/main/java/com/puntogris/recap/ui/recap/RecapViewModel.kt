@@ -12,7 +12,4 @@ class RecapViewModel @Inject constructor(
 ): ViewModel() {
 
     fun isUserLoggedIn() = true
-
-
-    suspend fun sendReport(report: Report) = recapRepository.sendRecapReport(report)
 }

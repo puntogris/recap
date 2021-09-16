@@ -87,7 +87,7 @@
     <string name="general">General</string>
 
     <!-- Report -->
-    <string name="inappropriate">General</string>
-    <string name="misinformation">General</string>
+    <string name="inappropriate">Inapropiado</string>
+    <string name="misinformation">Informacion erronea</string>
 
 </resources>

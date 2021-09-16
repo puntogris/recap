@@ -72,13 +72,6 @@ class RecapRepository @Inject constructor(
         ){ FirestoreRecapPagingSource(query) }.flow
     }
 
-    override suspend fun sendRecapReport(report: Report): SimpleResult = withContext(Dispatchers.IO){
-        try {
 
-            SimpleResult.Success
-        }catch (e:Exception){
-            SimpleResult.Failure
-        }
-    }
 
 }
