@@ -2,8 +2,10 @@
     <!-- Base application theme. -->
     <style name="Recap.Theme.DayNight" parent="Base.Theme" />
 
-    <style name="Recap.Theme.DayNight.Launcher">
-<!--        <item name="android:windowBackground">@drawable/splash_screen</item>-->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/color_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_by_fans_for_fans</item>
+        <item name="postSplashScreenTheme">@style/Recap.Theme.DayNight</item>
     </style>
 
     <style name="Recap.Theme.DayNight.ActionBar">

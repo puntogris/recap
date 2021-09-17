@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-abstract class FirebaseDataSource @Inject constructor() {
+class FirebaseDataSource @Inject constructor() {
 
     val firestore = Firebase.firestore
     val auth = Firebase.auth

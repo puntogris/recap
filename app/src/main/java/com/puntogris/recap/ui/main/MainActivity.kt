@@ -1,6 +1,7 @@
 package com.puntogris.recap.ui.main
 
 import android.view.View
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
@@ -15,7 +16,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private lateinit var navController: NavController
 
     override fun preInitViews() {
-        setTheme(R.style.Recap_Theme_DayNight)
+        installSplashScreen()
+        Thread.sleep(5000)
     }
     override fun initializeViews() {
         setupNavigation()

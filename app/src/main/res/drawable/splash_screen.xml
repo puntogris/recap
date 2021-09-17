@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
 
-    <item android:drawable="?android:attr/colorBackground" />
+    <item android:drawable="@color/color_error" />
 
-    <item>
-        <bitmap
-            android:src="@drawable/ic_baseline_account_circle_24"
-            android:gravity="center" />
-    </item>
+    <item
+        android:gravity="center"
+        android:drawable="@drawable/ic_by_fans_for_fans" />
 </layer-list>
