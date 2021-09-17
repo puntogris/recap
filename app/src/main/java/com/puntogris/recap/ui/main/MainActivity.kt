@@ -17,8 +17,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun preInitViews() {
         installSplashScreen()
-        Thread.sleep(5000)
     }
+
     override fun initializeViews() {
         setupNavigation()
     }
@@ -26,7 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     private fun setupNavigation() {
         navController = getNavController()
     }
-
 
     override fun showSnackBar(message: String,
                               duration: Int,
