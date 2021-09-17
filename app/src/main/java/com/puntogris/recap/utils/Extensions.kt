@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
@@ -18,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
 import com.puntogris.recap.ui.about.AboutPreferences
 import com.puntogris.recap.utils.Constants.CROSS_FADE_DURATION
+import jp.wasabeef.richeditor.RichEditor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -109,4 +111,9 @@ fun ImageView.loadProfilePicture(url: String?) {
         .transition(DrawableTransitionOptions.withCrossFade(CROSS_FADE_DURATION))
         .into(this)
         .clearOnDetach()
+}
+
+fun RichEditor.setupBackgroundAndFontColors(){
+    setEditorBackgroundColor(ResourcesCompat.getColor(resources, R.color.color_background, null))
+    setEditorFontColor(ResourcesCompat.getColor(resources, R.color.color_on_background, null))
 }

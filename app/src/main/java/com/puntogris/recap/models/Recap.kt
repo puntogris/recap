@@ -16,5 +16,6 @@ data class Recap(
     var approved: Boolean = false,
     var category: String = "",
     var image: String = "",
+    var deepLink: String = "",
     var created: Timestamp = Timestamp.now()
 ): Parcelable

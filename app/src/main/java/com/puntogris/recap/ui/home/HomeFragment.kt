@@ -1,5 +1,6 @@
 package com.puntogris.recap.ui.home
 
+import android.net.Uri
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.fragment.app.*
@@ -7,6 +8,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.dynamiclinks.ktx.androidParameters
+import com.google.firebase.dynamiclinks.ktx.dynamicLinks
+import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
+import com.google.firebase.dynamiclinks.ktx.socialMetaTagParameters
+import com.google.firebase.ktx.Firebase
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.models.Recap
@@ -16,8 +22,10 @@ import com.puntogris.recap.ui.home.explore.RecapOrderDialog
 import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
 import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog
 import com.puntogris.recap.ui.main.UiListener
+import com.puntogris.recap.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.tasks.await
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -35,6 +43,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         setupBottomAppBar()
         setupExplorePager()
 
+//        launchAndRepeatWithViewLifecycle {
+//            try {
+//                val shortLinkTask = Firebase.dynamicLinks.shortLinkAsync {
+//                    link = Uri.parse("https://mybrand.com/a")
+//                    domainUriPrefix = "https://recap.puntogris.com/recaps"
+//                    androidParameters("com.puntogris.recap") {
+//                        fallbackUrl =  Uri.parse("https://play.google.com/store/apps/details?id=" + "com.puntogris.posture")
+//
+//                    }
+//                    socialMetaTagParameters {
+//                        title = "Titulo"
+//                        description = "descripciom"
+//                        imageUrl = Uri.parse("https://recap.puntogris.com/icons/logo_square.png")
+//                    }
+//                }.await()
+//
+//                val asd = shortLinkTask.shortLink
+//                println(asd)
+//                println(shortLinkTask.previewLink)
+//
+//            }catch (e:Exception){
+//                println(e.localizedMessage)
+//            }
+//        }
         setFragmentResultListener("home_fragment"){_, bundle ->
             if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
                 showSnackBar("Cuenta cerrada correctamente.")

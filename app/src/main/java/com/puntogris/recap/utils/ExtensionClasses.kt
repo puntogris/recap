@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.paging.PagingData
 import com.puntogris.recap.R
 import com.puntogris.recap.models.Recap
+import com.puntogris.recap.models.RecapInteractions
 import kotlinx.coroutines.flow.Flow
 
 sealed class SimpleResult{
@@ -16,6 +17,19 @@ sealed class LoginResult {
     class Success(): LoginResult()
     class Error(): LoginResult()
 }
+
+
+sealed class Result<out T : Any> {
+    data class Success<out T : Any>(val data: T) : Result<T>()
+    data class Error(val exception: Exception) : Result<Nothing>()
+}
+
+sealed class RecapInteractionResult {
+    data class Success(val data: RecapInteractions) : RecapInteractionResult()
+    data class Error(val exception: Exception) : RecapInteractionResult()
+    object NotFound: RecapInteractionResult()
+}
+
 
 enum class RecapOrder(@StringRes val titleRes: Int, val value: String) {
     LATEST(R.string.order_latest, "latest"),

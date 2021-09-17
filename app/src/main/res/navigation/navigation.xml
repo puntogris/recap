@@ -38,11 +38,22 @@
             app:destination="@id/reportRecapBottomSheet" />
         <argument
             android:name="recap"
-            app:argType="com.puntogris.recap.models.Recap" />
+            android:defaultValue="@null"
+            app:argType="com.puntogris.recap.models.Recap"
+            app:nullable="true" />
+        <argument
+            android:name="recapId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.puntogris.recap.ui.about.AboutFragment"/>
+        android:name="com.puntogris.recap.ui.about.AboutFragment">
+        <deepLink
+            app:uri="wwww.puntogris.recap/{myArg}" />
+    </fragment>
     <dialog
         android:id="@+id/reviewOrderDialog"
         android:name="com.puntogris.recap.ui.home.reviews.ReviewOrderDialog"

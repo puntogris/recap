@@ -1,5 +1,6 @@
 package com.puntogris.recap.ui.main
 
+import android.net.Uri
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController

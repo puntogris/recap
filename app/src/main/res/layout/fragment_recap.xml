@@ -7,6 +7,9 @@
         <variable
             name="fragment"
             type="com.puntogris.recap.ui.recap.RecapFragment" />
+        <variable
+            name="viewModel"
+            type="com.puntogris.recap.ui.recap.RecapViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
