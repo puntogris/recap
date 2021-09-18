@@ -9,9 +9,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SearchRecapFragment : BaseFragment<FragmentSearchRecapBinding>(R.layout.fragment_search_recap) {
 
-    private val viewModel: SearchViewModel by viewModels()
+    private val viewModel: SearchViewModel by viewModels(ownerProducer = {requireParentFragment()})
 
     override fun initializeViews() {
 
+        viewModel.recapsLiveData.observe(viewLifecycleOwner){
+
+        }
     }
 }

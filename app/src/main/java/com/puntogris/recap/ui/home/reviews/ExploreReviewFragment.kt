@@ -2,6 +2,7 @@ package com.puntogris.recap.ui.home.reviews
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.puntogris.recap.R
@@ -33,10 +34,8 @@ class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layou
     }
 
     private fun collectUiState(adapter: ExploreAdapter){
-        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            viewModel.reviewsFlow.collectLatest {
-                adapter.submitData(it)
-            }
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner) {
+            adapter.submitData(lifecycle, it)
         }
         adapter.addLoadStateListener { state ->
             binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)

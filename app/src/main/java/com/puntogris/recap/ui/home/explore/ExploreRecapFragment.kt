@@ -32,11 +32,10 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
     }
 
     private fun collectUiState(adapter: ExploreAdapter){
-        launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            viewModel.recapsFlow.collectLatest {
-                adapter.submitData(it)
-            }
+        viewModel.recapsLiveData.observe(viewLifecycleOwner) {
+            adapter.submitData(lifecycle, it)
         }
+
         adapter.addLoadStateListener { state ->
             binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
         }

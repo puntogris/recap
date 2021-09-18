@@ -1,5 +1,6 @@
 package com.puntogris.recap.ui.search
 
+import android.view.inputmethod.EditorInfo
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -25,6 +26,22 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         binding.fragment = this
         setupExplorePager()
         registerToolbarBackButton(binding.toolbar)
+        registerQueryTextListener()
+    }
+
+    private fun registerQueryTextListener(){
+        binding.searchTextInputLayout.editText?.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                viewModel.updateQuery(binding.searchTextInputLayout.editText?.text.toString())
+                //currentFocus?.hideKeyboard()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+
+        viewModel.queryLiveData.observe(viewLifecycleOwner) {
+          //  binding.filterButton.setVisibility()
+        }
     }
 
     private fun setupExplorePager(){

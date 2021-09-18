@@ -36,18 +36,18 @@ class HomeViewModel @Inject constructor(
     private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
 
-    private val _recapOrder = MutableStateFlow(RecapOrder.LATEST)
-    val recapOrder: StateFlow<RecapOrder> = _recapOrder
+    private val _recapOrder = MutableLiveData(RecapOrder.LATEST)
+    val recapOrder: LiveData<RecapOrder> = _recapOrder
 
-    private val _reviewOrder = MutableStateFlow(ReviewOrder.ALL)
-    val reviewOrder: StateFlow<ReviewOrder> = _reviewOrder
+    private val _reviewOrder = MutableLiveData(ReviewOrder.ALL)
+    val reviewOrder: LiveData<ReviewOrder> = _reviewOrder
 
-    val recapsFlow = _recapOrder.flatMapLatest {
-        recapRepository.getRecapsPagingData(it)
+    val recapsLiveData = Transformations.switchMap(recapOrder){
+        recapRepository.getRecapsPagingData(it).asLiveData()
     }.cachedIn(viewModelScope)
 
-    val reviewsFlow = _reviewOrder.flatMapLatest {
-        recapRepository.getReviewsPagingData(it)
+    val reviewsLiveData = Transformations.switchMap(reviewOrder) {
+        recapRepository.getReviewsPagingData(it).asLiveData()
     }.cachedIn(viewModelScope)
 
     fun orderRecapsBy(selection: Int) {

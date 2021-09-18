@@ -52,23 +52,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.appbar.MaterialToolbar>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+            <com.puntogris.recap.ui.widget.AutoSizeTabLayout
+                android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/app_bar">
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/recapsTab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/usersTab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.tabs.TabLayout>
+                android:layoutDirection="ltr"
+                app:tabMode="fixed"
+                app:tabGravity="fill" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2

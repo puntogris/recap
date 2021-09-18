@@ -12,4 +12,6 @@ interface IRecapRepository {
     fun getReviewsPagingData(order: ReviewOrder): Flow<PagingData<Recap>>
     suspend fun getRecapWithId(recapId: String): Result<Recap>
     suspend fun getUserRecapInteractions(recapId: String): RecapInteractions?
+    fun searchRecaps(query: String): Flow<PagingData<Recap>>
+
 }
