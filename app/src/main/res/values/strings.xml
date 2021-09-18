@@ -65,6 +65,8 @@
 
     <string name="error">Error</string>
 
+    <!-- Links -->
+    <string name="recap_link_title">"Te invito a ver %1$s en Recap app!"</string>
 
     <!--Theme-->
     <string name="theme">Theme</string>

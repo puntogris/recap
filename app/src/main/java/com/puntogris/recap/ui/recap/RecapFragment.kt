@@ -1,9 +1,6 @@
 package com.puntogris.recap.ui.recap
 
-import android.content.ContentResolver
 import android.content.Intent
-import android.net.Uri
-import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,7 +11,6 @@ import com.puntogris.recap.utils.Result
 import com.puntogris.recap.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
 
 @AndroidEntryPoint
 class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap) {
@@ -53,7 +49,7 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
             setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.action_report -> {
-                        val id = if (args.recap != null) args.recap!!.id else args.recapId!!
+                        val id = args.recap?.id ?: args.recapId!!
                         val action = RecapFragmentDirections.actionRecapFragmentToReportRecapBottomSheet(id)
                         findNavController().navigate(action)
                     }
@@ -87,15 +83,9 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TITLE, "Share this recap!")
-            putExtra(Intent.EXTRA_TEXT, "https://recap.puntogris.com/recaps/test4")
+            putExtra(Intent.EXTRA_TEXT, viewModel.recap.value?.deepLink)
         }, null)
         startActivity(share)
-
     }
-
-    private fun sharePhoto() {
-
-    }
-
 
 }

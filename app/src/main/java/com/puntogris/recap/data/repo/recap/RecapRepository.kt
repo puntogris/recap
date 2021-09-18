@@ -1,24 +1,26 @@
 package com.puntogris.recap.data.repo.recap
 
+import android.content.Context
 import android.net.Uri
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.google.firebase.dynamiclinks.ktx.*
 import com.google.firebase.firestore.Query
-import com.google.firebase.ktx.Firebase
+import com.puntogris.recap.R
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.models.RecapInteractions
 import com.puntogris.recap.utils.*
 import com.puntogris.recap.utils.Constants.ANDROID_FALL_BACK_URL
+import com.puntogris.recap.utils.Constants.DEEP_LINK_PATH
 import com.puntogris.recap.utils.Constants.DOMAIN_URI_PREFIX
-import com.puntogris.recap.utils.Constants.PACKAGE_NAME
+import com.puntogris.recap.utils.Constants.INTERACTIONS_COLLECTION
 import com.puntogris.recap.utils.Constants.RECAPS_COLLECTION
 import com.puntogris.recap.utils.Constants.SQUARE_APP_LOGO_URL
 import com.puntogris.recap.utils.Constants.USERS_COLLECTION
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
@@ -26,7 +28,8 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RecapRepository @Inject constructor(
-    private val firebase: FirebaseDataSource
+    private val firebase: FirebaseDataSource,
+    @ApplicationContext private val context: Context
 ):IRecapRepository {
 
     override suspend fun saveRecapIntoDb(recap: Recap): SimpleResult  = withContext(Dispatchers.IO){
@@ -48,17 +51,20 @@ class RecapRepository @Inject constructor(
     }
 
     private suspend fun generateRecapDynamicLink(recap: Recap): String{
-        return Firebase.dynamicLinks.shortLinkAsync {
-            link = Uri.parse("https://recap.puntogris.com/recaps/${recap.id}")
+        return firebase.links.shortLinkAsync {
+            link = Uri.parse(DEEP_LINK_PATH + recap.id)
             domainUriPrefix = DOMAIN_URI_PREFIX
-            androidParameters(PACKAGE_NAME) {
+
+            androidParameters(context.packageName) {
                 fallbackUrl = Uri.parse(ANDROID_FALL_BACK_URL)
             }
+
             socialMetaTagParameters {
                 title = recap.title
-                description = "Te invito a ver ${recap.title} en Recap app!"
+                description = context.getString(R.string.recap_link_title, recap.title)
                 imageUrl = Uri.parse(SQUARE_APP_LOGO_URL)
             }
+
         }.await().shortLink?.path!!
     }
 
@@ -116,7 +122,7 @@ class RecapRepository @Inject constructor(
             .firestore
             .collection(USERS_COLLECTION)
             .document(firebase.currentUid()!!)
-            .collection("interaction")
+            .collection(INTERACTIONS_COLLECTION)
             .document(recapId)
             .get()
             .await()

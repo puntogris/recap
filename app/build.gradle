@@ -54,11 +54,11 @@ android {
 ext{
     navigationVersion = "2.3.5"
     hiltVersion = "2.35"
-    fragmentKtxVersion = "1.4.0-alpha06"
+    fragmentKtxVersion = "1.4.0-alpha08"
     coroutinesVersion = "1.4.3"
     googleSignIn = "19.2.0"
     paging_version = "3.0.1"
-    preferencesVersion = "1.1.0-alpha04"
+    preferencesVersion = "1.1.1"
     editorVersion = "2.0.0"
     navigationVersion = "2.3.5"
     lifecycleVersion = "2.4.0-alpha03"
@@ -66,6 +66,8 @@ ext{
     licensesVersion = "17.0.0"
     dataStoreVersion = "1.0.0"
     timberVersion = "5.0.1"
+    splashVersion = "1.0.0-alpha01"
+    viewBindingVersion = "1.4.6"
 }
 
 dependencies {
@@ -131,9 +133,6 @@ dependencies {
     //Paging
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
-    //Preferences
-    implementation "androidx.preference:preference-ktx:1.1.1"
-
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
@@ -146,9 +145,10 @@ dependencies {
     //Debug
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
-    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.6'
+    //View Binding
+    implementation "com.github.kirich1409:viewbindingpropertydelegate:$viewBindingVersion"
 
-    implementation 'androidx.core:core-splashscreen:1.0.0-alpha01'
-
+    //Slash Screen
+    implementation "androidx.core:core-splashscreen:$splashVersion"
 
 }
