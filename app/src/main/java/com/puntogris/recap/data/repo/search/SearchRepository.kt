@@ -23,7 +23,7 @@ class SearchRepository @Inject constructor(
         val firebaseQuery = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
-            .whereEqualTo("aproved",true)
+            .orderBy("title").startAt(query).endAt("$query~")
 
         return Pager(
             PagingConfig(

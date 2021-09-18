@@ -2,6 +2,7 @@ package com.puntogris.recap.ui.search
 
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.NonNull
+import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -12,11 +13,10 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
-import com.puntogris.recap.ui.home.HomeFragmentDirections
 import com.puntogris.recap.ui.search.recap.SearchRecapFragment
 import com.puntogris.recap.ui.search.user.SearchUserFragment
+import com.puntogris.recap.utils.hideKeyboard
 import com.puntogris.recap.utils.registerToolbarBackButton
-import com.puntogris.recap.utils.setVisibility
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,7 +37,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         binding.searchTextInputLayout.editText?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 viewModel.updateQuery(binding.searchTextInputLayout.editText?.text.toString())
-                //currentFocus?.hideKeyboard()
+                hideKeyboard()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -55,7 +55,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
                 //also check if the query is empty to not show and filter nothing
                 override fun onPageSelected(position: Int) {
-                    binding.filterButton.setVisibility(position == 0)
+                    binding.filterButton.isVisible = position == 0
                 }
             })
         }

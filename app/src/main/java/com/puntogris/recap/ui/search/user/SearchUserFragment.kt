@@ -30,6 +30,6 @@ class SearchUserFragment : BaseFragment<FragmentSearchUserBinding>(R.layout.frag
     }
 
     private fun onProfileClicked(publicProfile: PublicProfile){
-        
+
     }
 }

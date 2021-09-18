@@ -17,7 +17,6 @@ class FirestoreRecapPagingSource(
                 .get()
                 .await()
 
-            if (currentPage.size() != 0) {
                 val lastDocumentSnapshot = currentPage.documents[currentPage.size() - 1]
 
                 val nextPage = query.startAfter(lastDocumentSnapshot)
@@ -29,13 +28,7 @@ class FirestoreRecapPagingSource(
                     prevKey = null,
                     nextKey = nextPage
                 )
-            } else {
-                LoadResult.Page(
-                    data = emptyList(),
-                    prevKey = null,
-                    nextKey = null
-                )
-            }
+
 
         } catch (e: Exception) {
             LoadResult.Error(e)

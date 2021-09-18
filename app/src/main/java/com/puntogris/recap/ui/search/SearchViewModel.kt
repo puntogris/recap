@@ -1,6 +1,7 @@
 package com.puntogris.recap.ui.search
 
 import androidx.lifecycle.*
+import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
@@ -20,7 +21,7 @@ class SearchViewModel @Inject constructor(
         if (it.isNotBlank()) {
             searchRepository.searchRecaps(it).asLiveData()
         } else {
-            null
+            MutableLiveData(PagingData.empty())
         }
     }.cachedIn(viewModelScope)
 
@@ -28,7 +29,7 @@ class SearchViewModel @Inject constructor(
         if (it.isNotBlank()) {
             searchRepository.searchUsers(it).asLiveData()
         } else {
-            null
+            MutableLiveData(PagingData.empty())
         }
     }.cachedIn(viewModelScope)
 

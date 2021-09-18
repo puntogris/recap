@@ -1,6 +1,9 @@
 package com.puntogris.recap.utils
 
+import android.app.Activity
+import android.content.Context
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +25,14 @@ import com.puntogris.recap.utils.Constants.CROSS_FADE_DURATION
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+
+fun View.gone() {
+    visibility = View.GONE
+}
+
+fun View.visible() {
+    visibility = View.VISIBLE
+}
 
 fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 
@@ -59,9 +70,15 @@ fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar){
     }
 }
 
-fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
-    if (visible) show() else hide()
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
+
+fun Fragment.hideKeyboard() {
+    view?.let { requireActivity().hideKeyboard(it) }
+}
+
 
 inline fun <T: Preference>PreferenceFragmentCompat.preference(key: String, block: T.() -> Unit){
     findPreference<T>(key)?.apply {
