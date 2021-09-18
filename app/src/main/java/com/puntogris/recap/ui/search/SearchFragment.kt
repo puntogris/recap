@@ -2,7 +2,6 @@ package com.puntogris.recap.ui.search
 
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.NonNull
-import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,9 +14,7 @@ import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.search.recap.SearchRecapFragment
 import com.puntogris.recap.ui.search.user.SearchUserFragment
-import com.puntogris.recap.utils.hideKeyboard
-import com.puntogris.recap.utils.registerToolbarBackButton
-import com.puntogris.recap.utils.showSnackBar
+import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,34 +25,43 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun initializeViews() {
         binding.fragment = this
-        setupExplorePager()
+        setupViewPager()
         registerToolbarBackButton(binding.toolbar)
         registerQueryTextListener()
+        subscribeFilterButtonVisibility()
     }
 
     private fun registerQueryTextListener(){
-        binding.searchTextInputLayout.editText?.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.updateQuery(binding.searchTextInputLayout.editText?.text.toString())
-                hideKeyboard()
-                return@setOnEditorActionListener true
-            }
-            return@setOnEditorActionListener false
-        }
+        binding.searchTextInputLayout.editText?.apply {
 
-        viewModel.queryLiveData.observe(viewLifecycleOwner) {
-          //  binding.filterButton.setVisibility()
+            if (text.isNullOrBlank()) focusAndShowKeyboard()
+
+            setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    viewModel.updateQuery(text.toString())
+                    hideKeyboard()
+                    return@setOnEditorActionListener true
+                }
+                return@setOnEditorActionListener false
+            }
         }
     }
 
-    private fun setupExplorePager(){
+    private fun subscribeFilterButtonVisibility(){
+        viewModel.queryLiveData.observe(viewLifecycleOwner) {
+            binding.filterButton.setVisibility(binding.viewPager.currentItem == 0 && it.isNotBlank())
+        }
+    }
+
+    private fun setupViewPager(){
         binding.viewPager.apply {
             adapter = ScreenSlidePagerAdapter(childFragmentManager)
             registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
 
-                //also check if the query is empty to not show and filter nothing
                 override fun onPageSelected(position: Int) {
-                    binding.filterButton.isVisible = position == 0
+                    binding.filterButton.setVisibility(
+                        position == 0 && !viewModel.queryLiveData.value.isNullOrBlank()
+                    )
                 }
             })
         }

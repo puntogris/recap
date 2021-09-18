@@ -34,6 +34,6 @@ class SearchViewModel @Inject constructor(
     }.cachedIn(viewModelScope)
 
     fun updateQuery(query: String) {
-        _queryLiveData.postValue(query)
+        _queryLiveData.value = query
     }
 }

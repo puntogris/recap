@@ -3,6 +3,7 @@ package com.puntogris.recap.utils
 import android.app.Activity
 import android.content.Context
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.Toolbar
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.paging.CombinedLoadStates
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.bumptech.glide.Glide
@@ -78,7 +80,36 @@ fun Context.hideKeyboard(view: View) {
 fun Fragment.hideKeyboard() {
     view?.let { requireActivity().hideKeyboard(it) }
 }
+fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
+    if (visible) show() else hide()
+}
 
+fun View.focusAndShowKeyboard() {
+    fun View.showTheKeyboardNow() {
+        if (isFocused) {
+            post {
+                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+            }
+        }
+    }
+
+    requestFocus()
+
+    if (hasFocus()) {
+        showTheKeyboardNow()
+    } else {
+        viewTreeObserver.addOnWindowFocusChangeListener(
+            object : ViewTreeObserver.OnWindowFocusChangeListener {
+                override fun onWindowFocusChanged(hasFocus: Boolean) {
+                    if (hasFocus) {
+                        this@focusAndShowKeyboard.showTheKeyboardNow()
+                        viewTreeObserver.removeOnWindowFocusChangeListener(this)
+                    }
+                }
+            })
+    }
+}
 
 inline fun <T: Preference>PreferenceFragmentCompat.preference(key: String, block: T.() -> Unit){
     findPreference<T>(key)?.apply {
@@ -134,3 +165,5 @@ fun RichEditor.setupBackgroundAndFontColors(){
     setEditorBackgroundColor(ResourcesCompat.getColor(resources, R.color.color_background, null))
     setEditorFontColor(ResourcesCompat.getColor(resources, R.color.color_on_background, null))
 }
+
+typealias PagingStateListener = (CombinedLoadStates) -> Unit
