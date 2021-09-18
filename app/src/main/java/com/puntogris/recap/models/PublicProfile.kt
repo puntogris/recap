@@ -1,8 +1,10 @@
 package com.puntogris.recap.models
 
+import androidx.annotation.Keep
 import com.google.firebase.Timestamp
 
-class PublicProfile(
+@Keep
+data class PublicProfile(
     val uid: String = "",
     val name: String = "",
     val bio: String = "",

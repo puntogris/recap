@@ -2,7 +2,6 @@ package com.puntogris.recap.ui.search
 
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.NonNull
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,9 +10,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
+import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.home.HomeFragmentDirections
+import com.puntogris.recap.ui.search.recap.SearchRecapFragment
+import com.puntogris.recap.ui.search.user.SearchUserFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 import com.puntogris.recap.utils.setVisibility
+import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -77,6 +81,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     fun showFilterBottomSheet(){
         findNavController().navigate(R.id.searchRecapFilterBottomSheet)
     }
+
+    fun navigateToRecap(recap: Recap){
+        val action = SearchFragmentDirections.actionSearchFragmentToRecapFragment(recap)
+        findNavController().navigate(action)
+    }
+
+    fun showFavoriteSnack(){
+        showSnackBar("Agregado a favoritos")
+    }
+
 
     override fun onDestroyView() {
         mediator?.detach()

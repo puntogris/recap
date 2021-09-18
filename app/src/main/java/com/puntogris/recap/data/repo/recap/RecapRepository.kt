@@ -130,17 +130,4 @@ class RecapRepository @Inject constructor(
 
     }
 
-    override fun searchRecaps(query: String): Flow<PagingData<Recap>> {
-        val firebaseQuery = firebase
-            .firestore
-            .collection(RECAPS_COLLECTION)
-            .whereEqualTo("aproved",true)
-
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200)
-        ){ FirestoreRecapPagingSource(firebaseQuery) }.flow
-    }
 }

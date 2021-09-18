@@ -13,6 +13,7 @@ object Constants {
 
     //Firebase
     const val USERS_COLLECTION = "users"
+    const val PUBLIC_PROFILES_GROUP_COLLECTION = "public_profile"
     const val RECAPS_COLLECTION = "recaps"
     const val INTERACTIONS_COLLECTION = "interactions"
 

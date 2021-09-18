@@ -5,7 +5,7 @@ import androidx.paging.PagingDataAdapter
 import com.puntogris.recap.diff.RecapDiffCallBack
 import com.puntogris.recap.models.Recap
 
-class ExploreAdapter(
+class ExploreRecapAdapter(
     private val shortClickListener: (Recap) -> Unit,
     private val longClickListener: (Recap) -> Unit
 ): PagingDataAdapter<Recap, ExploreRecapViewHolder>(RecapDiffCallBack()) {

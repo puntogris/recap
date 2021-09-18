@@ -12,7 +12,6 @@ import com.puntogris.recap.utils.RecapOrder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class RecapOrderDialog: DialogFragment() {
 
@@ -21,7 +20,7 @@ class RecapOrderDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<RecapOrder>()
             .map { getString(it.titleRes) }.toTypedArray()
-        val currentSelection = viewModel.recapOrder.value.ordinal
+        val currentSelection = viewModel.recapOrder.value!!.ordinal
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Ordenar por")

@@ -1,4 +1,4 @@
-package com.puntogris.recap.ui.search
+package com.puntogris.recap.ui.search.recap
 
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.BottomSheetSearchRecapFilterBinding

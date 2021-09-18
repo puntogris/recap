@@ -10,7 +10,6 @@ import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class ReviewOrderDialog: DialogFragment() {
 
@@ -19,7 +18,7 @@ class ReviewOrderDialog: DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<ReviewOrder>()
             .map { getString(it.titleRes) }.toTypedArray()
-        val currentSelection = viewModel.reviewOrder.value.ordinal
+        val currentSelection = viewModel.reviewOrder.value!!.ordinal
 
         return MaterialAlertDialogBuilder(requireContext())
             .setTitle("Ordenar por")

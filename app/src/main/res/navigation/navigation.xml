@@ -23,13 +23,17 @@
         android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.puntogris.recap.ui.search.SearchFragment"/>
+        android:name="com.puntogris.recap.ui.search.SearchFragment">
+        <action
+            android:id="@+id/action_searchFragment_to_recapFragment"
+            app:destination="@id/recapFragment" />
+    </fragment>
     <dialog
         android:id="@+id/mainBottomNavigationDrawer"
         android:name="com.puntogris.recap.ui.home.HomeBottomNavigationDrawer"/>
     <dialog
         android:id="@+id/searchRecapFilterBottomSheet"
-        android:name="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet"/>
+        android:name="com.puntogris.recap.ui.search.recap.SearchRecapFilterBottomSheet"/>
     <fragment
         android:id="@+id/recapFragment"
         android:name="com.puntogris.recap.ui.recap.RecapFragment">
@@ -51,8 +55,6 @@
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.puntogris.recap.ui.about.AboutFragment">
-        <deepLink
-            app:uri="wwww.puntogris.recap/{myArg}" />
     </fragment>
     <dialog
         android:id="@+id/reviewOrderDialog"

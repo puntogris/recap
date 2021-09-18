@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bottomSheet"
-            type="com.puntogris.recap.ui.search.SearchRecapFilterBottomSheet" />
+            type="com.puntogris.recap.ui.search.recap.SearchRecapFilterBottomSheet" />
     </data>
 
     <androidx.core.widget.NestedScrollView
