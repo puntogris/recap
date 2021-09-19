@@ -23,6 +23,9 @@ class HomeViewModel @Inject constructor(
     private val loginRepository: LoginRepository
 ): ViewModel() {
 
+    private val _userId = MutableLiveData<String?>()
+    val userId: LiveData<String?> = _userId
+
     private val _usernameLiveData = MutableLiveData<String?>()
     val usernameLiveData: LiveData<String?> = _usernameLiveData
 
@@ -63,23 +66,24 @@ class HomeViewModel @Inject constructor(
 
     fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 
-    private fun updateUser(username: String?, email: String?, profilePicture: String?) {
+    private fun updateUser(username: String?, email: String?, profilePicture: String?, uid: String?) {
         _usernameLiveData.postValue(username)
         _emailLiveData.postValue(email)
         _profilePictureLiveData.postValue(profilePicture)
+        _userId.postValue(uid)
     }
 
     fun refreshUserProfile() {
         val currentUser = userRepository.getFirebaseUser()
         if (currentUser != null) {
             _authorizedLiveData.postValue(true)
-            updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString())
+            updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString(), currentUser.uid)
         }
     }
 
     suspend fun logOut(): SimpleResult {
         _authorizedLiveData.value = false
-        updateUser(null, null, null)
+        updateUser(null, null, null, null)
         return loginRepository.signOutUserFromFirebaseAndGoogle()
     }
 }

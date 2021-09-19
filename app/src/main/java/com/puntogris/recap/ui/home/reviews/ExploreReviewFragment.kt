@@ -2,7 +2,6 @@ package com.puntogris.recap.ui.home.reviews
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreReviewBinding
@@ -12,11 +11,11 @@ import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
 import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.PagingStateListener
+import com.puntogris.recap.utils.pagingStateListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
-@ExperimentalCoroutinesApi
 class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layout.fragment_explore_review) {
 
     private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
@@ -28,8 +27,15 @@ class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layou
     }
 
     private fun setupRecyclerViewAdapter(){
-        adapter = ExploreRecapAdapter({ onRecapShortClick(it) },{ onRecapLongClick(it) }).also {
+        adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick).also {
             binding.recyclerView.adapter = it
+
+            stateListener = pagingStateListener { state ->
+                binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
+            }
+
+            it.addLoadStateListener(stateListener)
+
             collectUiState(it)
         }
     }
@@ -38,20 +44,12 @@ class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layou
         viewModel.reviewsLiveData.observe(viewLifecycleOwner) {
             adapter.submitData(lifecycle, it)
         }
-        stateListener = object : PagingStateListener {
-            override operator fun invoke(loadState: CombinedLoadStates) {
-                binding.contentLoadingLayout.registerState(loadState.refresh is LoadState.Loading)
-            }
-        }
-
-        adapter.addLoadStateListener(stateListener)
     }
 
     private fun onRecapShortClick(recap: Recap){
         findNavController().navigate(R.id.recapFragment)
     }
 
-    //add the recap to fav
     private fun onRecapLongClick(recap: Recap){
         (requireParentFragment() as HomeFragment).showFavoriteSnack()
     }

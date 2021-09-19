@@ -17,6 +17,7 @@ import com.puntogris.recap.ui.search.SearchFragment
 import com.puntogris.recap.ui.search.SearchViewModel
 import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.gone
+import com.puntogris.recap.utils.pagingStateListener
 import com.puntogris.recap.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -33,8 +34,16 @@ class SearchRecapFragment : BaseFragment<FragmentSearchRecapBinding>(R.layout.fr
     }
 
     private fun setupRecyclerViewAdapter(){
-        adapter = ExploreRecapAdapter({onRecapShortClick(it)}, {onRecapLongClick(it)}).also {
+        adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick).also {
             binding.recyclerView.adapter = it
+
+            stateListener = pagingStateListener { state ->
+                binding.emptyStateLayout.root.isVisible = it.itemCount == 0
+                binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
+            }
+
+            it.addLoadStateListener(stateListener)
+
             collectUiState(it)
         }
     }
@@ -43,14 +52,6 @@ class SearchRecapFragment : BaseFragment<FragmentSearchRecapBinding>(R.layout.fr
         viewModel.recapsLiveData.observe(viewLifecycleOwner){
             adapter.submitData(lifecycle, it)
         }
-
-        stateListener = object : PagingStateListener {
-            override operator fun invoke(loadState: CombinedLoadStates) {
-                binding.emptyStateLayout.root.isVisible = adapter.itemCount == 0
-                binding.contentLoadingLayout.registerState(loadState.refresh is LoadState.Loading)            }
-        }
-
-        adapter.addLoadStateListener(stateListener)
     }
 
     private fun onRecapShortClick(recap: Recap){

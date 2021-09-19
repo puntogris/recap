@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileContentBinding
@@ -65,7 +66,10 @@ class HomeBottomNavigationDrawer :
     private fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.action_add_account -> findNavController().navigate(R.id.loginFragment)
-            R.id.action_view_profile -> findNavController().navigate(R.id.userFragment)
+            R.id.action_view_profile -> {
+                val action = NavigationDirections.actionGlobalUserFragment(viewModel.userId.value)
+                findNavController().navigate(action)
+            }
             R.id.action_edit_profile -> { }
             R.id.action_log_out -> handleLogOut()
             R.id.action_settings -> findNavController().navigate(R.id.settingsFragment)

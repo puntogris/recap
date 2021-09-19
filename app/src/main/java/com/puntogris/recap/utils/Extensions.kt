@@ -14,8 +14,11 @@ import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.PagingDataAdapter
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
@@ -167,3 +170,10 @@ fun RichEditor.setupBackgroundAndFontColors(){
 }
 
 typealias PagingStateListener = (CombinedLoadStates) -> Unit
+
+
+inline fun pagingStateListener(crossinline block: (CombinedLoadStates) -> Unit) = object : PagingStateListener {
+    override operator fun invoke(loadState: CombinedLoadStates) {
+        block(loadState)
+    }
+}

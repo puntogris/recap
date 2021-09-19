@@ -16,19 +16,17 @@ class FirestoreRecapPagingSource(
             val currentPage = params.key ?: query
                 .get()
                 .await()
+            val lastDocumentSnapshot = currentPage.documents[currentPage.size() - 1]
 
-                val lastDocumentSnapshot = currentPage.documents[currentPage.size() - 1]
+            val nextPage = query.startAfter(lastDocumentSnapshot)
+                .get()
+                .await()
 
-                val nextPage = query.startAfter(lastDocumentSnapshot)
-                    .get()
-                    .await()
-
-                LoadResult.Page(
-                    data = currentPage.toObjects(Recap::class.java),
-                    prevKey = null,
-                    nextKey = nextPage
-                )
-
+            LoadResult.Page(
+                data = currentPage.toObjects(Recap::class.java),
+                prevKey = null,
+                nextKey = nextPage
+            )
 
         } catch (e: Exception) {
             LoadResult.Error(e)

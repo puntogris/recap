@@ -59,6 +59,11 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
         }
     }
 
+    private fun navigateToProfile(){
+        val action = RecapFragmentDirections.actionRecapFragmentToUserFragment(viewModel.recap.value?.author)
+        findNavController().navigate(action)
+    }
+
     fun onFavoriteClicked(){
         findNavController().navigate(R.id.loginFragment)
         if (viewModel.isUserLoggedIn()){

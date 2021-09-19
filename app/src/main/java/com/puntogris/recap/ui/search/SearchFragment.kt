@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
+import com.puntogris.recap.models.PublicProfile
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.search.recap.SearchRecapFragment
@@ -93,10 +94,19 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         findNavController().navigate(action)
     }
 
+    fun navigateToProfile(userId: String){
+        val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(userId = userId)
+        findNavController().navigate(action)
+    }
+
+    fun navigateToProfile(publicProfile: PublicProfile){
+        val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(profile = publicProfile)
+        findNavController().navigate(action)
+    }
+
     fun showFavoriteSnack(){
         showSnackBar("Agregado a favoritos")
     }
-
 
     override fun onDestroyView() {
         mediator?.detach()

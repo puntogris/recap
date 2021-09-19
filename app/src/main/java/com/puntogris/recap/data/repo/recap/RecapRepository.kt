@@ -72,7 +72,6 @@ class RecapRepository @Inject constructor(
         val baseQuery = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
-
         val query = when(order){
             RecapOrder.LATEST -> baseQuery.orderBy("created", Query.Direction.DESCENDING)
             RecapOrder.OLDEST -> baseQuery.orderBy("created", Query.Direction.ASCENDING)
