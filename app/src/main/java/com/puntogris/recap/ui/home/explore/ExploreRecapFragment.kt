@@ -1,7 +1,6 @@
 package com.puntogris.recap.ui.home.explore
 
 import androidx.fragment.app.viewModels
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreRecapBinding
@@ -11,6 +10,7 @@ import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.pagingStateListener
+import com.puntogris.recap.utils.scrollToTop
 import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.fragment_explore_recap) {
@@ -34,6 +34,10 @@ class ExploreRecapFragment : BaseFragment<FragmentExploreRecapBinding>(R.layout.
             it.addLoadStateListener(stateListener)
 
             collectUiState(it)
+        }
+
+        viewModel.reselectedTabId.observe(viewLifecycleOwner){
+            if (it == id) binding.recyclerView.scrollToTop()
         }
     }
 

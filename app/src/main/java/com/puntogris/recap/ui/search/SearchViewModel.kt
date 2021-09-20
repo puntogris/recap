@@ -14,6 +14,14 @@ class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
 ): ViewModel() {
 
+    private val _reselectedTabId = MutableLiveData<Int>()
+    val reselectedTabId: LiveData<Int> = _reselectedTabId
+
+    fun updateReselectedTabId(position: Int){
+        _reselectedTabId.value = position
+    }
+
+
     private val _queryLiveData = MutableLiveData("")
     val queryLiveData: LiveData<String> = _queryLiveData
 

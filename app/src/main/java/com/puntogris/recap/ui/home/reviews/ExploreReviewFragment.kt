@@ -12,8 +12,8 @@ import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.pagingStateListener
+import com.puntogris.recap.utils.scrollToTop
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
 class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layout.fragment_explore_review) {
@@ -24,6 +24,10 @@ class ExploreReviewFragment : BaseFragment<FragmentExploreReviewBinding>(R.layou
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
+
+        viewModel.reselectedTabId.observe(viewLifecycleOwner){
+            if (it == id) binding.recyclerView.scrollToTop()
+        }
     }
 
     private fun setupRecyclerViewAdapter(){

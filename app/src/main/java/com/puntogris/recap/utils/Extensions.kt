@@ -18,12 +18,16 @@ import androidx.paging.LoadState
 import androidx.paging.PagingDataAdapter
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.R
 import com.puntogris.recap.ui.about.AboutPreferences
 import com.puntogris.recap.utils.Constants.CROSS_FADE_DURATION
@@ -175,5 +179,28 @@ typealias PagingStateListener = (CombinedLoadStates) -> Unit
 inline fun pagingStateListener(crossinline block: (CombinedLoadStates) -> Unit) = object : PagingStateListener {
     override operator fun invoke(loadState: CombinedLoadStates) {
         block(loadState)
+    }
+}
+
+fun RecyclerView.scrollToTop() {
+    layoutManager?.let {
+        val firstVisibleItemPosition = it.findFirstVisibleItemPosition()
+        if (firstVisibleItemPosition > 6) {
+            scrollToPosition(6)
+        }
+        smoothScrollToPosition(0)
+
+        if (it is StaggeredGridLayoutManager) {
+            it.invalidateSpanAssignments()
+        }
+    }
+}
+
+fun RecyclerView.LayoutManager?.findFirstVisibleItemPosition(): Int {
+    return when (this) {
+        is LinearLayoutManager -> findFirstVisibleItemPosition()
+        is GridLayoutManager -> findFirstVisibleItemPosition()
+        is StaggeredGridLayoutManager -> findFirstVisibleItemPositions(null).first()
+        else -> RecyclerView.NO_POSITION
     }
 }

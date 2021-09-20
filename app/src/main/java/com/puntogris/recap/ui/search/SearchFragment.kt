@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
@@ -55,17 +56,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     }
 
     private fun setupViewPager(){
-        binding.viewPager.apply {
-            adapter = ScreenSlidePagerAdapter(childFragmentManager)
-            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        val adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        binding.viewPager.adapter = adapter
 
-                override fun onPageSelected(position: Int) {
-                    binding.filterButton.setVisibility(
-                        position == 0 && !viewModel.queryLiveData.value.isNullOrBlank()
-                    )
+        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                binding.filterButton.setVisibility(
+                    tab?.position == 0 && !viewModel.queryLiveData.value.isNullOrBlank()
+                )
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                tab?.position?.let {
+                    viewModel.updateReselectedTabId(adapter.getItemId(it).toInt())
                 }
-            })
-        }
+            }
+        })
 
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when(position){

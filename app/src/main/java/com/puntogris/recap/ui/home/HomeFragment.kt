@@ -1,18 +1,13 @@
 package com.puntogris.recap.ui.home
 
-import android.net.Uri
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.firebase.dynamiclinks.ktx.androidParameters
-import com.google.firebase.dynamiclinks.ktx.dynamicLinks
-import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
-import com.google.firebase.dynamiclinks.ktx.socialMetaTagParameters
-import com.google.firebase.ktx.Firebase
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.models.Recap
@@ -22,10 +17,7 @@ import com.puntogris.recap.ui.home.explore.RecapOrderDialog
 import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
 import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog
 import com.puntogris.recap.ui.main.UiListener
-import com.puntogris.recap.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.tasks.await
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
@@ -66,6 +58,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 //                println(e.localizedMessage)
 //            }
 //        }
+
         setFragmentResultListener("home_fragment"){_, bundle ->
             if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
                 showSnackBar("Cuenta cerrada correctamente.")
@@ -75,20 +68,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     private fun setupBottomAppBar(){
         binding.bottomAppBar.apply {
             setOnMenuItemClickListener {
-                when(it.itemId){
-                    R.id.action_search -> {
-                        findNavController().navigate(R.id.searchFragment)
-                        true
-                    }
-                    R.id.action_order -> {
-                        when (binding.tabLayout.selectedTabPosition) {
-                            0 -> RecapOrderDialog().show(childFragmentManager, "recap_order_dialog")
-                            1 -> ReviewOrderDialog().show(childFragmentManager, "review_order_dialog")
-                        }
-                        true
-                    }
-                    else -> true
-                }
+                handleMenuItemClick(it.itemId)
+                true
             }
             setNavigationOnClickListener {
                 showBottomDrawer()
@@ -96,8 +77,35 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         }
     }
 
+    private fun handleMenuItemClick(itemId: Int){
+        when(itemId){
+            R.id.action_search -> {
+                findNavController().navigate(R.id.searchFragment)
+            }
+            R.id.action_order -> {
+                when (binding.tabLayout.selectedTabPosition) {
+                    0 -> RecapOrderDialog().show(childFragmentManager, "recap_order_dialog")
+                    1 -> ReviewOrderDialog().show(childFragmentManager, "review_order_dialog")
+                }
+            }
+        }
+    }
+
     private fun setupExplorePager(){
-        binding.viewPager.adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        val adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        binding.viewPager.adapter = adapter
+
+        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                tab?.position?.let {
+                    viewModel.updateReselectedTabId(adapter.getItemId(it).toInt())
+                }
+            }
+        })
+
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when(position){
                 0 -> "Explorar"

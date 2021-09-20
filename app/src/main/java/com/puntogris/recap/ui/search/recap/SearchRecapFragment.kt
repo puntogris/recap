@@ -15,10 +15,7 @@ import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
 import com.puntogris.recap.ui.search.SearchFragment
 import com.puntogris.recap.ui.search.SearchViewModel
-import com.puntogris.recap.utils.PagingStateListener
-import com.puntogris.recap.utils.gone
-import com.puntogris.recap.utils.pagingStateListener
-import com.puntogris.recap.utils.visible
+import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -45,6 +42,10 @@ class SearchRecapFragment : BaseFragment<FragmentSearchRecapBinding>(R.layout.fr
             it.addLoadStateListener(stateListener)
 
             collectUiState(it)
+        }
+
+        viewModel.reselectedTabId.observe(viewLifecycleOwner){
+            if (it == id) binding.recyclerView.scrollToTop()
         }
     }
 

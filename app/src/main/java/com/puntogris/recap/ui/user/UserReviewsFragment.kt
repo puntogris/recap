@@ -28,6 +28,8 @@ class UserReviewsFragment : BaseFragment<FragmentUserReviewsBinding>(R.layout.fr
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
+
+
     }
 
     private fun setupRecyclerViewAdapter(){

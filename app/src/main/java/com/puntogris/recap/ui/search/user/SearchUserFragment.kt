@@ -12,6 +12,7 @@ import com.puntogris.recap.ui.search.SearchFragment
 import com.puntogris.recap.ui.search.SearchViewModel
 import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.pagingStateListener
+import com.puntogris.recap.utils.scrollToTop
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +24,10 @@ class SearchUserFragment : BaseFragment<FragmentSearchUserBinding>(R.layout.frag
 
     override fun initializeViews() {
         setupRecyclerViewAdapter()
+
+        viewModel.reselectedTabId.observe(viewLifecycleOwner){
+            if (it == id) binding.recyclerView.scrollToTop()
+        }
     }
 
     private fun setupRecyclerViewAdapter(){
@@ -30,7 +35,7 @@ class SearchUserFragment : BaseFragment<FragmentSearchUserBinding>(R.layout.frag
             binding.recyclerView.adapter = it
 
             stateListener = pagingStateListener { state ->
-                binding.emptyStateLayout.root.isVisible = adapter.itemCount == 0
+                binding.emptyStateLayout.root.isVisible = it.itemCount == 0
                 binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
             }
 

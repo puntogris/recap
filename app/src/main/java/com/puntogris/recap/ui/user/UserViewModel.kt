@@ -19,8 +19,15 @@ class UserViewModel @Inject constructor(
     private val recapRepository: RecapRepository
 ): ViewModel() {
 
+//    private val _scrollToTop = MutableLiveData<Boolean>()
+//    val scrollToTop: LiveData<Boolean> = _scrollToTop
+
     private val _userProfile = MutableLiveData<PublicProfile>()
     val userProfile: LiveData<PublicProfile> = _userProfile
+//
+//    fun setScrollToTop(position: Int){
+//        _scrollToTop.value = position == 0
+//    }
 
     private val userId = MutableLiveData<String>()
 

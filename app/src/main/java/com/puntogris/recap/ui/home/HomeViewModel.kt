@@ -2,18 +2,13 @@ package com.puntogris.recap.ui.home
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.google.firebase.auth.FirebaseUser
 import com.puntogris.recap.data.repo.login.LoginRepository
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.user.UserRepository
-import com.puntogris.recap.utils.Event
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,6 +17,13 @@ class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val loginRepository: LoginRepository
 ): ViewModel() {
+
+    private val _reselectedTabId = MutableLiveData<Int>()
+    val reselectedTabId: LiveData<Int> = _reselectedTabId
+
+    fun updateReselectedTabId(position: Int){
+        _reselectedTabId.value = position
+    }
 
     private val _userId = MutableLiveData<String?>()
     val userId: LiveData<String?> = _userId

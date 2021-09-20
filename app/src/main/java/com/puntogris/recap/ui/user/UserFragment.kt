@@ -28,8 +28,6 @@ class UserFragment : BaseFragment<FragmentUserBinding>(R.layout.fragment_user) {
         binding.lifecycleOwner = viewLifecycleOwner
         registerToolbarBackButton(binding.toolbar)
 
-        binding.contentLoadingLayout.hide()
-
         if (args.profile != null){
             viewModel.setUser(args.profile!!)
             viewModel.setUserId(args.profile!!.uid)
@@ -39,11 +37,19 @@ class UserFragment : BaseFragment<FragmentUserBinding>(R.layout.fragment_user) {
         }
 
         setupViewPager()
+
+        binding.contentLoadingLayout.hide()
+
     }
 
     private fun setupViewPager(){
         binding.viewPager.apply {
             adapter = ScreenSlidePagerAdapter(childFragmentManager)
+            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+
+                override fun onPageSelected(position: Int) {
+                }
+            })
         }
 
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
@@ -55,13 +61,15 @@ class UserFragment : BaseFragment<FragmentUserBinding>(R.layout.fragment_user) {
         mediator?.attach()
     }
 
-    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager):
+    private inner class ScreenSlidePagerAdapter(@NonNull val parentFragment: FragmentManager):
         FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
 
         override fun getItemCount(): Int = 2
 
         override fun createFragment(position: Int) =
-            if (position == 0) UserRecapsFragment() else UserReviewsFragment()
+            if (position == 0) UserRecapsFragment() else {
+                UserReviewsFragment()
+            }
     }
 
 

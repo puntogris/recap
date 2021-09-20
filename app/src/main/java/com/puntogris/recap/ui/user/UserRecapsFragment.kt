@@ -1,7 +1,12 @@
 package com.puntogris.recap.ui.user
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.distinctUntilChanged
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserRecapsBinding
 import com.puntogris.recap.models.Recap
@@ -37,6 +42,7 @@ class UserRecapsFragment : BaseFragment<FragmentUserRecapsBinding>(R.layout.frag
         }
     }
 
+
     private fun collectUiState(adapter: ExploreRecapAdapter){
         viewModel.recapsLiveData.observe(viewLifecycleOwner) {
             adapter.submitData(lifecycle, it)
@@ -44,11 +50,11 @@ class UserRecapsFragment : BaseFragment<FragmentUserRecapsBinding>(R.layout.frag
     }
 
     private fun onRecapShortClick(recap: Recap){
-        (requireParentFragment() as HomeFragment).navigateToRecap(recap)
+      //  (requireParentFragment() as UserFragment).navigateToRecap(recap)
     }
 
     private fun onRecapLongClick(recap: Recap){
-        (requireParentFragment() as HomeFragment).showFavoriteSnack()
+        //(requireParentFragment() as UserFragment).showFavoriteSnack()
     }
 
     override fun onDestroyView() {
