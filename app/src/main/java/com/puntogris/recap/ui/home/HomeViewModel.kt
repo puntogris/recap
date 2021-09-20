@@ -5,6 +5,7 @@ import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.login.LoginRepository
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.user.UserRepository
+import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder
 import com.puntogris.recap.utils.SimpleResult
@@ -16,14 +17,7 @@ class HomeViewModel @Inject constructor(
     private val recapRepository: RecapRepository,
     private val userRepository: UserRepository,
     private val loginRepository: LoginRepository
-): ViewModel() {
-
-    private val _reselectedTabId = MutableLiveData<Int>()
-    val reselectedTabId: LiveData<Int> = _reselectedTabId
-
-    fun updateReselectedTabId(position: Int){
-        _reselectedTabId.value = position
-    }
+): BaseRvViewModel() {
 
     private val _userId = MutableLiveData<String?>()
     val userId: LiveData<String?> = _userId

@@ -7,6 +7,7 @@ import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
 import com.puntogris.recap.data.repo.user.UserRepository
 import com.puntogris.recap.models.PublicProfile
+import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,17 +18,10 @@ class UserViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val searchRepository: SearchRepository,
     private val recapRepository: RecapRepository
-): ViewModel() {
-
-//    private val _scrollToTop = MutableLiveData<Boolean>()
-//    val scrollToTop: LiveData<Boolean> = _scrollToTop
+): BaseRvViewModel() {
 
     private val _userProfile = MutableLiveData<PublicProfile>()
     val userProfile: LiveData<PublicProfile> = _userProfile
-//
-//    fun setScrollToTop(position: Int){
-//        _scrollToTop.value = position == 0
-//    }
 
     private val userId = MutableLiveData<String>()
 

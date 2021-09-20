@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserBinding
@@ -39,18 +40,22 @@ class UserFragment : BaseFragment<FragmentUserBinding>(R.layout.fragment_user) {
         setupViewPager()
 
         binding.contentLoadingLayout.hide()
-
     }
 
     private fun setupViewPager(){
-        binding.viewPager.apply {
-            adapter = ScreenSlidePagerAdapter(childFragmentManager)
-            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        val adapter = ScreenSlidePagerAdapter(childFragmentManager)
+        binding.viewPager.adapter = adapter
 
-                override fun onPageSelected(position: Int) {
+        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {}
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                tab?.position?.let {
+                    viewModel.updateReselectedTabId(adapter.getItemId(it).toInt())
                 }
-            })
-        }
+            }
+        })
 
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when(position){

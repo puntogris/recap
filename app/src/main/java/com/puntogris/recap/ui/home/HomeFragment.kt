@@ -1,38 +1,45 @@
 package com.puntogris.recap.ui.home
 
 import android.view.View
-import androidx.annotation.NonNull
 import androidx.fragment.app.*
 import androidx.navigation.fragment.findNavController
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseViewPagerFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapFragment
 import com.puntogris.recap.ui.home.explore.RecapOrderDialog
 import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
 import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog
 import com.puntogris.recap.ui.main.UiListener
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.ref.WeakReference
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
+class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
+
+
+    override val viewPager: ViewPager2
+        get() = binding.viewPager
+    override val tabLayout: TabLayout
+        get() = binding.tabLayout
+
+    override val tabsNames = listOf("Explorar", "Calificar")
 
     private val viewModel: HomeViewModel by viewModels()
-    private var mediator: TabLayoutMediator? = null
 
     private val bottomNavDrawer: HomeBottomNavigationDrawer by lazy(LazyThreadSafetyMode.NONE) {
         HomeBottomNavigationDrawer.newInstance()
     }
 
     override fun initializeViews() {
+        super.initializeViews()
         binding.fragment = this
         setupBottomAppBar()
-        setupExplorePager()
+
 
 //        launchAndRepeatWithViewLifecycle {
 //            try {
@@ -91,36 +98,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         }
     }
 
-    private fun setupExplorePager(){
-        val adapter = ScreenSlidePagerAdapter(childFragmentManager)
-        binding.viewPager.adapter = adapter
-
-        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {}
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                tab?.position?.let {
-                    viewModel.updateReselectedTabId(adapter.getItemId(it).toInt())
-                }
-            }
-        })
-
-        mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when(position){
-                0 -> "Explorar"
-                else -> "Calificar"
-            }
+    override fun onTabReselected(tab: TabLayout.Tab?) {
+        tab?.position?.let {
+            viewModel.updateReselectedTabId(viewPager.adapter!!.getItemId(it).toInt())
         }
-        mediator?.attach()
-    }
-
-    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager) : FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
-
-        override fun getItemCount(): Int = 2
-
-        override fun createFragment(position: Int) =
-            if (position == 0 ) ExploreRecapFragment() else ExploreReviewFragment()
     }
 
     fun navigateToCreateRecap(){
@@ -159,10 +140,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         viewModel.refreshUserProfile()
     }
 
-    override fun onDestroyView() {
-        mediator?.detach()
-        mediator = null
-        binding.viewPager.adapter = null
-        super.onDestroyView()
-    }
 }

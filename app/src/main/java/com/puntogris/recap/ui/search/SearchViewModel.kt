@@ -6,21 +6,14 @@ import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
 import com.puntogris.recap.models.Recap
+import com.puntogris.recap.ui.base.BaseRvViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
-): ViewModel() {
-
-    private val _reselectedTabId = MutableLiveData<Int>()
-    val reselectedTabId: LiveData<Int> = _reselectedTabId
-
-    fun updateReselectedTabId(position: Int){
-        _reselectedTabId.value = position
-    }
-
+): BaseRvViewModel() {
 
     private val _queryLiveData = MutableLiveData("")
     val queryLiveData: LiveData<String> = _queryLiveData
