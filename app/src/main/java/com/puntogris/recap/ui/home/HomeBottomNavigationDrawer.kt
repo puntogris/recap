@@ -16,7 +16,6 @@ import com.puntogris.recap.ui.base.BaseBottomSheetFragment
 import com.puntogris.recap.utils.SimpleResult
 import com.puntogris.recap.utils.loadProfilePicture
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

@@ -8,10 +8,8 @@ import com.puntogris.recap.data.repo.FirestorePublicProfilePagingSource
 import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
 import com.puntogris.recap.models.PublicProfile
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.utils.Constants
 import com.puntogris.recap.utils.Constants.PUBLIC_PROFILES_GROUP_COLLECTION
 import com.puntogris.recap.utils.Constants.RECAPS_COLLECTION
-import com.puntogris.recap.utils.Constants.USERS_COLLECTION
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

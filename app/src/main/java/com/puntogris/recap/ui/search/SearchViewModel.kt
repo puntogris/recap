@@ -3,9 +3,7 @@ package com.puntogris.recap.ui.search
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
-import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseRvViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,7 +1,6 @@
 package com.puntogris.recap.ui.main
 
 import android.view.View
-import androidx.annotation.StringRes
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
 

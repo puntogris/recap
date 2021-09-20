@@ -3,12 +3,8 @@ package com.puntogris.recap.ui.recap
 import androidx.lifecycle.*
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.models.Report
 import com.puntogris.recap.utils.Result
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

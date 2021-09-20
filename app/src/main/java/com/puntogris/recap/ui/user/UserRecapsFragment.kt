@@ -1,24 +1,14 @@
 package com.puntogris.recap.ui.user
 
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.distinctUntilChanged
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserRecapsBinding
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.base.BasePagerTabFragment
-import com.puntogris.recap.ui.home.HomeFragment
-import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
-import com.puntogris.recap.utils.PagingStateListener
-import com.puntogris.recap.utils.pagingStateListener
-import com.puntogris.recap.utils.scrollToTop
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

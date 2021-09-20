@@ -2,7 +2,6 @@ package com.puntogris.recap.ui.about
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.puntogris.recap.R

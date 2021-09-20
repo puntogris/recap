@@ -8,14 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentExploreReviewBinding
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.ui.base.BasePagerTabFragment
-import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
 import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.HomeViewModel
-import com.puntogris.recap.utils.PagingStateListener
-import com.puntogris.recap.utils.pagingStateListener
-import com.puntogris.recap.utils.scrollToTop
+import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

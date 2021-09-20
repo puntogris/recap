@@ -3,15 +3,13 @@ package com.puntogris.recap.ui.base
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.paging.CombinedLoadStates
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.scrollToTop
 
 abstract class BasePagerTabFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
     BaseFragment<T>(layout), PagerTabConfiguration{
 
-    lateinit var stateListener: PagingStateListener
+    private lateinit var stateListener: PagingStateListener
 
     override fun initializeViews() {
         super.initializeViews()

@@ -1,8 +1,10 @@
 package com.puntogris.recap.ui.home
 
 import android.view.View
-import androidx.fragment.app.*
+import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -10,26 +12,26 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseViewPagerFragment
-import com.puntogris.recap.ui.home.explore.ExploreRecapFragment
 import com.puntogris.recap.ui.home.explore.RecapOrderDialog
-import com.puntogris.recap.ui.home.reviews.ExploreReviewFragment
 import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog
 import com.puntogris.recap.ui.main.UiListener
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.ref.WeakReference
 
 @AndroidEntryPoint
 class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
 
-
     override val viewPager: ViewPager2
         get() = binding.viewPager
+
     override val tabLayout: TabLayout
         get() = binding.tabLayout
 
     override val tabsNames = listOf("Explorar", "Calificar")
 
-    private val viewModel: HomeViewModel by viewModels()
+    override val viewModel: HomeViewModel by viewModels()
+
+    override val adapter: FragmentStateAdapter
+        get() = HomeSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
 
     private val bottomNavDrawer: HomeBottomNavigationDrawer by lazy(LazyThreadSafetyMode.NONE) {
         HomeBottomNavigationDrawer.newInstance()
@@ -39,37 +41,7 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         super.initializeViews()
         binding.fragment = this
         setupBottomAppBar()
-
-
-//        launchAndRepeatWithViewLifecycle {
-//            try {
-//                val shortLinkTask = Firebase.dynamicLinks.shortLinkAsync {
-//                    link = Uri.parse("https://mybrand.com/a")
-//                    domainUriPrefix = "https://recap.puntogris.com/recaps"
-//                    androidParameters("com.puntogris.recap") {
-//                        fallbackUrl =  Uri.parse("https://play.google.com/store/apps/details?id=" + "com.puntogris.posture")
-//
-//                    }
-//                    socialMetaTagParameters {
-//                        title = "Titulo"
-//                        description = "descripciom"
-//                        imageUrl = Uri.parse("https://recap.puntogris.com/icons/logo_square.png")
-//                    }
-//                }.await()
-//
-//                val asd = shortLinkTask.shortLink
-//                println(asd)
-//                println(shortLinkTask.previewLink)
-//
-//            }catch (e:Exception){
-//                println(e.localizedMessage)
-//            }
-//        }
-
-        setFragmentResultListener("home_fragment"){_, bundle ->
-            if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
-                showSnackBar("Cuenta cerrada correctamente.")
-        }
+        registerResultListener()
     }
 
     private fun setupBottomAppBar(){
@@ -98,9 +70,10 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         }
     }
 
-    override fun onTabReselected(tab: TabLayout.Tab?) {
-        tab?.position?.let {
-            viewModel.updateReselectedTabId(viewPager.adapter!!.getItemId(it).toInt())
+    private fun registerResultListener(){
+        setFragmentResultListener("home_fragment"){_, bundle ->
+            if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
+                showSnackBar("Cuenta cerrada correctamente.")
         }
     }
 
@@ -139,5 +112,4 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         super.onStart()
         viewModel.refreshUserProfile()
     }
-
 }

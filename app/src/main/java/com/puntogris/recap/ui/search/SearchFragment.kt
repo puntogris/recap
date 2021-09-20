@@ -1,33 +1,39 @@
 package com.puntogris.recap.ui.search
 
 import android.view.inputmethod.EditorInfo
-import androidx.annotation.NonNull
-import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.models.PublicProfile
 import com.puntogris.recap.models.Recap
-import com.puntogris.recap.ui.base.BaseFragment
-import com.puntogris.recap.ui.search.recap.SearchRecapFragment
-import com.puntogris.recap.ui.search.user.SearchUserFragment
+import com.puntogris.recap.ui.base.BaseViewPagerFragment
+import com.puntogris.recap.ui.home.HomeSlidePagerAdapter
 import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
+class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 
-    private val viewModel: SearchViewModel by viewModels()
-    private var mediator: TabLayoutMediator? = null
+    override val viewPager: ViewPager2
+        get() = binding.viewPager
+
+    override val tabLayout: TabLayout
+        get() = binding.tabLayout
+
+    override val tabsNames = listOf("Recaps", "Usuarios")
+
+    override val viewModel: SearchViewModel by viewModels()
+
+    override val adapter: FragmentStateAdapter
+        get() = SearchSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
 
     override fun initializeViews() {
+        super.initializeViews()
         binding.fragment = this
-        setupViewPager()
         registerToolbarBackButton(binding.toolbar)
         registerQueryTextListener()
         subscribeFilterButtonVisibility()
@@ -55,42 +61,10 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         }
     }
 
-    private fun setupViewPager(){
-        val adapter = ScreenSlidePagerAdapter(childFragmentManager)
-        binding.viewPager.adapter = adapter
-
-        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                binding.filterButton.setVisibility(
-                    tab?.position == 0 && !viewModel.queryLiveData.value.isNullOrBlank()
-                )
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                tab?.position?.let {
-                    viewModel.updateReselectedTabId(adapter.getItemId(it).toInt())
-                }
-            }
-        })
-
-        mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when(position){
-                0 -> "Recaps"
-                else -> "Usuarios"
-            }
-        }
-        mediator?.attach()
-    }
-
-    private inner class ScreenSlidePagerAdapter(@NonNull parentFragment: FragmentManager):
-        FragmentStateAdapter(parentFragment, viewLifecycleOwner.lifecycle) {
-
-        override fun getItemCount(): Int = 2
-
-        override fun createFragment(position: Int) =
-            if (position == 0 ) SearchRecapFragment() else SearchUserFragment()
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        binding.filterButton.setVisibility(
+            tab?.position == 0 && !viewModel.queryLiveData.value.isNullOrBlank()
+        )
     }
 
     fun showFilterBottomSheet(){
@@ -114,12 +88,5 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     fun showFavoriteSnack(){
         showSnackBar("Agregado a favoritos")
-    }
-
-    override fun onDestroyView() {
-        mediator?.detach()
-        mediator = null
-        binding.viewPager.adapter = null
-        super.onDestroyView()
     }
 }

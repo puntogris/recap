@@ -1,9 +1,7 @@
 package com.puntogris.recap.ui.main
 
-import android.net.Uri
 import android.view.View
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.splashscreen.SplashScreenViewProvider
 import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R

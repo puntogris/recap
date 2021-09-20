@@ -8,9 +8,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.BottomSheetReportRecapBinding
 import com.puntogris.recap.models.Report
 import com.puntogris.recap.ui.base.BaseBottomSheetFragment
-import com.puntogris.recap.ui.recap.RecapViewModel
 import com.puntogris.recap.utils.SimpleResult
-import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

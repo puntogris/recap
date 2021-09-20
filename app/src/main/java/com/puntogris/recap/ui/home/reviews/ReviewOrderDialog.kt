@@ -8,7 +8,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.recap.ui.home.HomeViewModel
 import com.puntogris.recap.utils.ReviewOrder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 @AndroidEntryPoint
 class ReviewOrderDialog: DialogFragment() {

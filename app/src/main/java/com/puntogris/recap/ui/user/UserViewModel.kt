@@ -1,7 +1,6 @@
 package com.puntogris.recap.ui.user
 
 import androidx.lifecycle.*
-import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
