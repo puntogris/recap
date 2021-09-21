@@ -18,7 +18,7 @@ android {
         applicationId "com.puntogris.recap"
         minSdk 23
         targetSdk 31
-        versionCode 1
+        versionCode 4
         versionName "1.0"
 
         resConfigs "en", "es"
@@ -151,6 +151,5 @@ dependencies {
 
     //Rv decorator
     implementation 'com.rubensousa:decorator:2.0.0'
-
 
 }

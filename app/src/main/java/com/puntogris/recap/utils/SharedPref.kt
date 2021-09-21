@@ -12,13 +12,13 @@ import javax.inject.Singleton
 
 @Singleton
 @Keep
-class SharedPref @Inject constructor(@ApplicationContext private val context: Context) {
+class SharedPref @Inject constructor(@ApplicationContext context: Context) {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun getAppTheme() = sharedPreferences.getString(PREF_APP_THEME, ThemeUtils.SYSTEM)
 
-    fun lastVersionCode() = sharedPreferences.getInt(LAST_VERSION_CODE, BuildConfig.VERSION_CODE)
+    fun lastVersionCode() = sharedPreferences.getInt(LAST_VERSION_CODE, 0)
 
     fun updateLastVersionCode(){
         sharedPreferences.edit().putInt(LAST_VERSION_CODE, BuildConfig.VERSION_CODE).apply()
