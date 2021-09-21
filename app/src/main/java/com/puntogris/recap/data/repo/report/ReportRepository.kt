@@ -1,7 +1,7 @@
 package com.puntogris.recap.data.repo.report
 
 import com.puntogris.recap.data.remote.FirebaseDataSource
-import com.puntogris.recap.models.Report
+import com.puntogris.recap.model.Report
 import com.puntogris.recap.utils.SimpleResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -1,8 +1,8 @@
 package com.puntogris.recap.data.repo.recap
 
 import androidx.paging.PagingData
-import com.puntogris.recap.models.Recap
-import com.puntogris.recap.models.RecapInteractions
+import com.puntogris.recap.model.Recap
+import com.puntogris.recap.model.RecapInteractions
 import com.puntogris.recap.utils.*
 import kotlinx.coroutines.flow.Flow
 

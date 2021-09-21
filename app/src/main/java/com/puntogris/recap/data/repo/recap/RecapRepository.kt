@@ -10,8 +10,8 @@ import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
-import com.puntogris.recap.models.Recap
-import com.puntogris.recap.models.RecapInteractions
+import com.puntogris.recap.model.Recap
+import com.puntogris.recap.model.RecapInteractions
 import com.puntogris.recap.utils.*
 import com.puntogris.recap.utils.Constants.ANDROID_FALL_BACK_URL
 import com.puntogris.recap.utils.Constants.DEEP_LINK_PATH

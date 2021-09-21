@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 import kotlinx.coroutines.tasks.await
 
 class FirestoreRecapPagingSource(

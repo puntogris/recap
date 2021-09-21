@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.databinding.PublicProfileVhBinding
-import com.puntogris.recap.models.PublicProfile
+import com.puntogris.recap.model.PublicProfile
 
 class PublicProfileViewHolder(private val binding: PublicProfileVhBinding): RecyclerView.ViewHolder(binding.root) {
 

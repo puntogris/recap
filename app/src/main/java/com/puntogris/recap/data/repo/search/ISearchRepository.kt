@@ -1,8 +1,8 @@
 package com.puntogris.recap.data.repo.search
 
 import androidx.paging.PagingData
-import com.puntogris.recap.models.PublicProfile
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.PublicProfile
+import com.puntogris.recap.model.Recap
 import kotlinx.coroutines.flow.Flow
 
 interface ISearchRepository {

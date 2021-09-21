@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.BottomSheetReportRecapBinding
-import com.puntogris.recap.models.Report
+import com.puntogris.recap.model.Report
 import com.puntogris.recap.ui.base.BaseBottomSheetFragment
 import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.AndroidEntryPoint

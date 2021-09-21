@@ -1,7 +1,7 @@
 package com.puntogris.recap.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 
 class RecapDiffCallBack: DiffUtil.ItemCallback<Recap>() {
     override fun areItemsTheSame(oldItem: Recap, newItem: Recap): Boolean {

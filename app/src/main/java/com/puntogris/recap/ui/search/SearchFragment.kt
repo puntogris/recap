@@ -8,8 +8,8 @@ import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
-import com.puntogris.recap.models.PublicProfile
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.PublicProfile
+import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseViewPagerFragment
 import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint

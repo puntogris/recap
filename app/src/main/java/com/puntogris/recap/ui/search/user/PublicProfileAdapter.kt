@@ -3,7 +3,7 @@ package com.puntogris.recap.ui.search.user
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.puntogris.recap.diff.PublicProfileDiffCallBack
-import com.puntogris.recap.models.PublicProfile
+import com.puntogris.recap.model.PublicProfile
 
 class PublicProfileAdapter(
     private val shortClickListener: (PublicProfile) -> Unit

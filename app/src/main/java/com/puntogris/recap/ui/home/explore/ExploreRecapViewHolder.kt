@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.databinding.ExploreApprovedRecapBinding
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 
 class ExploreRecapViewHolder(private val binding: ExploreApprovedRecapBinding): RecyclerView.ViewHolder(binding.root) {
 

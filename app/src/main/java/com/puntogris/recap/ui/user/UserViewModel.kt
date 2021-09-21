@@ -5,7 +5,7 @@ import androidx.paging.cachedIn
 import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
 import com.puntogris.recap.data.repo.user.UserRepository
-import com.puntogris.recap.models.PublicProfile
+import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel

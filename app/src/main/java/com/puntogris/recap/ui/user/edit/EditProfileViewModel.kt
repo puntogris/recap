@@ -1,10 +1,13 @@
 package com.puntogris.recap.ui.user.edit
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puntogris.recap.data.repo.user.UserRepository
-import com.puntogris.recap.models.PublicProfile
+import com.puntogris.recap.model.EditProfile
+import com.puntogris.recap.model.PublicProfile
+import com.puntogris.recap.utils.EditProfileResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -13,12 +16,46 @@ class EditProfileViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel() {
 
-    private val _userProfile = MutableLiveData<PublicProfile>(PublicProfile())
+    private var initialProfile: PublicProfile? = null
+
+    private val _userProfile = MutableLiveData(PublicProfile())
     val userProfile: LiveData<PublicProfile> = _userProfile
 
     fun setUser(publicProfile: PublicProfile){
         _userProfile.value = publicProfile
+        initialProfile = publicProfile
     }
 
-    suspend fun saveProfileChanges() = userRepository.updateUserProfile(userProfile.value!!)
+    suspend fun saveProfileChanges(): EditProfileResult{
+        return if(profileDataChanged()){
+            userRepository.updateUserProfile(getEditProfile())
+        } else EditProfileResult.Success
+    }
+
+    private fun getEditProfile() = userProfile.value!!.run {
+        val editProfile = EditProfile(uid = userProfile.value!!.uid)
+
+        if (nameChanged()) editProfile.name = name
+        if (bioChanged()) editProfile.bio = bio
+        if (imageChanged()) editProfile.imageUri = profileImageUrl
+        if (accountChanged()) editProfile.account = account
+
+        editProfile
+    }
+
+
+    private fun nameChanged() = initialProfile?.name != userProfile.value!!.name
+
+    private fun bioChanged() = initialProfile?.bio != userProfile.value!!.bio
+
+    private fun imageChanged() = initialProfile?.profileImageUrl != userProfile.value!!.profileImageUrl
+
+    private fun accountChanged() = initialProfile?.account != userProfile.value!!.account
+
+    private fun profileDataChanged() =
+        nameChanged() || bioChanged() || imageChanged() || accountChanged()
+
+    fun updateProfileUri(uri: Uri){
+
+    }
 }

@@ -10,7 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentHomeBinding
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseViewPagerFragment
 import com.puntogris.recap.ui.home.explore.RecapOrderDialog
 import com.puntogris.recap.ui.home.reviews.ReviewOrderDialog

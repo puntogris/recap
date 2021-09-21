@@ -1,4 +1,4 @@
-package com.puntogris.recap.models
+package com.puntogris.recap.model
 
 import android.os.Parcelable
 import com.google.firebase.Timestamp

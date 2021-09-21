@@ -3,7 +3,7 @@ package com.puntogris.recap.ui.home.explore
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import com.puntogris.recap.diff.RecapDiffCallBack
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 
 class ExploreRecapAdapter(
     private val shortClickListener: (Recap) -> Unit,

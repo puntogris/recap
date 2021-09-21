@@ -1,13 +1,16 @@
 package com.puntogris.recap.ui.user.edit
 
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentEditProfileBinding
 import com.puntogris.recap.ui.base.BaseFragment
-import com.puntogris.recap.utils.SimpleResult
-import com.puntogris.recap.utils.registerToolbarBackButton
+import com.puntogris.recap.utils.*
+import com.puntogris.recap.utils.EditProfileResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -16,8 +19,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fr
 
     private val args: EditProfileFragmentArgs by navArgs()
     private val viewModel: EditProfileViewModel by viewModels()
+    private lateinit var getContent: ActivityResultLauncher<String>
 
     override fun initializeViews() {
+        binding.fragment = this
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
@@ -25,25 +30,51 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fr
 
         registerToolbarBackButton(binding.toolbar)
 
-        binding.toolbar.setOnMenuItemClickListener {
-            when(it.itemId){
-                R.id.action_save_profile -> saveProfile()
+        getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                viewModel.updateProfileUri(it)
             }
-            true
+        }
+
+        getContent.launch("image/*")
+    }
+
+    fun saveProfile(){
+        binding.saveButton.gone()
+        binding.saveProgressBar.visible()
+
+        lifecycleScope.launch {
+            val result = viewModel.saveProfileChanges()
+
+            binding.saveButton.visible()
+            binding.saveProgressBar.gone()
+
+            when(result){
+                EditProfileResult.Failure.AccountIdLimit -> {
+
+                }
+                EditProfileResult.Failure.BioLimit -> {
+
+                }
+                EditProfileResult.Failure.Error -> {
+
+                }
+                EditProfileResult.Failure.NameLimit -> {
+
+                }
+                EditProfileResult.Failure.PhotoLimit -> {
+
+                }
+                EditProfileResult.Success -> {
+
+                }
+            }
+
         }
     }
 
-    private fun saveProfile(){
-        lifecycleScope.launch {
-            when(viewModel.saveProfileChanges()){
-                SimpleResult.Failure -> {
-
-                }
-                SimpleResult.Success -> {
-
-                }
-            }
-        }
+    fun changeProfileImage(){
+        findNavController().navigate(R.id.changeProfileImageBottomSheet)
     }
 
 }

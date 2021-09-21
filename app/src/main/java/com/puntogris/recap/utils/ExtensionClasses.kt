@@ -3,13 +3,24 @@ package com.puntogris.recap.utils
 import androidx.annotation.StringRes
 import androidx.paging.PagingData
 import com.puntogris.recap.R
-import com.puntogris.recap.models.Recap
-import com.puntogris.recap.models.RecapInteractions
+import com.puntogris.recap.model.Recap
+import com.puntogris.recap.model.RecapInteractions
 import kotlinx.coroutines.flow.Flow
 
 sealed class SimpleResult{
     object Success: SimpleResult()
     object Failure: SimpleResult()
+}
+
+sealed class EditProfileResult{
+    object Success: EditProfileResult()
+    sealed class Failure: EditProfileResult(){
+        object NameLimit: Failure()
+        object BioLimit: Failure()
+        object PhotoLimit: Failure()
+        object AccountIdLimit: Failure()
+        object Error: Failure()
+    }
 }
 
 sealed class LoginResult {

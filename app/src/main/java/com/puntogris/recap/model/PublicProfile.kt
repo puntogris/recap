@@ -1,4 +1,4 @@
-package com.puntogris.recap.models
+package com.puntogris.recap.model
 
 import android.os.Parcelable
 import androidx.annotation.Keep
@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 data class PublicProfile(
     val uid: String = "",
     val name: String = "",
+    val account: String = "",
     val bio: String = "",
     val registered: Timestamp = Timestamp.now(),
     val likesCounter: Int = 0,

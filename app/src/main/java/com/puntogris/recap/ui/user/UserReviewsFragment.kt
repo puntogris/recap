@@ -7,7 +7,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserReviewsBinding
-import com.puntogris.recap.models.Recap
+import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BasePagerTabFragment
 import com.puntogris.recap.ui.home.HomeFragment
 import com.puntogris.recap.ui.home.explore.ExploreRecapAdapter
