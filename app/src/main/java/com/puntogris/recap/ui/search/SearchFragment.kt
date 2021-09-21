@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.models.PublicProfile
@@ -69,12 +70,12 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
     }
 
     fun navigateToProfile(userId: String){
-        val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(userId = userId)
+        val action = NavigationDirections.actionGlobalUserFragment(userId = userId)
         findNavController().navigate(action)
     }
 
     fun navigateToProfile(publicProfile: PublicProfile){
-        val action = SearchFragmentDirections.actionSearchFragmentToUserFragment(profile = publicProfile)
+        val action = NavigationDirections.actionGlobalUserFragment(profile = publicProfile)
         findNavController().navigate(action)
     }
 

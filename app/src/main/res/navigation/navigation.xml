@@ -27,9 +27,6 @@
         <action
             android:id="@+id/action_searchFragment_to_recapFragment"
             app:destination="@id/recapFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_userFragment"
-            app:destination="@id/userFragment" />
     </fragment>
     <dialog
         android:id="@+id/mainBottomNavigationDrawer"
@@ -53,9 +50,6 @@
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_recapFragment_to_userFragment"
-            app:destination="@id/userFragment" />
 
     </fragment>
     <fragment
@@ -86,6 +80,9 @@
             app:argType="com.puntogris.recap.models.PublicProfile"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_userFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
     </fragment>
 
     <dialog
@@ -101,4 +98,11 @@
     <dialog
         android:id="@+id/whatsNewDialog"
         android:name="com.puntogris.recap.ui.main.WhatsNewDialog" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.puntogris.recap.ui.user.edit.EditProfileFragment">
+        <argument
+            android:name="profile"
+            app:argType="com.puntogris.recap.models.PublicProfile" />
+    </fragment>
 </navigation>

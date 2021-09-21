@@ -46,6 +46,7 @@
         <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_create_recap.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore_review.xml" value="0.35052083333333334" />
@@ -73,7 +74,10 @@
         <entry key="app/src/main/res/menu/main_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/menu/menu_current_user_profile.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/menu/menu_drawer_content.xml" value="0.24895833333333334" />
         <entry key="app/src/main/res/menu/menu_drawer_header.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/menu/menu_edit_profile.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/recap_menu.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20989583333333334" />
         <entry key="app/src/main/res/xml/about_preferences.xml" value="0.35052083333333334" />

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRecapBinding
 import com.puntogris.recap.ui.base.BaseFragment
@@ -60,7 +61,7 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
     }
 
     private fun navigateToProfile(){
-        val action = RecapFragmentDirections.actionRecapFragmentToUserFragment(viewModel.recap.value?.author)
+        val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value?.author)
         findNavController().navigate(action)
     }
 

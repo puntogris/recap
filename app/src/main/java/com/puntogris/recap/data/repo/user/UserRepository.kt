@@ -2,9 +2,11 @@ package com.puntogris.recap.data.repo.user
 
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.models.PublicProfile
-import com.puntogris.recap.utils.Constants.PUBLIC_PROFILES_GROUP_COLLECTION
+import com.puntogris.recap.utils.Constants.PUBLIC_PROFILE_COLLECTION
+import com.puntogris.recap.utils.Constants.PUBLIC_PROFILE_FIELD
 import com.puntogris.recap.utils.Constants.USERS_COLLECTION
 import com.puntogris.recap.utils.Result
+import com.puntogris.recap.utils.SimpleResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
@@ -23,7 +25,7 @@ class UserRepository @Inject constructor(
             val profile = firebase.firestore
                 .collection(USERS_COLLECTION)
                 .document(userId)
-                .collection(PUBLIC_PROFILES_GROUP_COLLECTION)
+                .collection(PUBLIC_PROFILE_COLLECTION)
                 .limit(1)
                 .get()
                 .await()
@@ -33,6 +35,25 @@ class UserRepository @Inject constructor(
             Result.Success(profile)
         } catch (e:Exception){
             Result.Error(e)
+        }
+    }
+
+    override suspend fun updateUserProfile(publicProfile: PublicProfile): SimpleResult = withContext(Dispatchers.IO){
+        try {
+            firebase.firestore
+                .collection(USERS_COLLECTION)
+                .document(firebase.currentUid()!!)
+                .collection(PUBLIC_PROFILE_COLLECTION)
+                .document(PUBLIC_PROFILE_FIELD)
+                .update(
+                    "name", publicProfile.name,
+                    "bio", publicProfile.bio
+                )
+                .await()
+
+            SimpleResult.Success
+        }catch (e:Exception){
+            SimpleResult.Failure
         }
     }
 

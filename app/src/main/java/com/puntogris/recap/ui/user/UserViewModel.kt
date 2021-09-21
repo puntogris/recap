@@ -19,7 +19,7 @@ class UserViewModel @Inject constructor(
     private val recapRepository: RecapRepository
 ): BaseRvViewModel() {
 
-    private val _userProfile = MutableLiveData<PublicProfile>()
+    private val _userProfile = MutableLiveData<PublicProfile>(PublicProfile())
     val userProfile: LiveData<PublicProfile> = _userProfile
 
     private val userId = MutableLiveData<String>()

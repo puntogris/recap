@@ -69,7 +69,7 @@ class HomeBottomNavigationDrawer :
                 val action = NavigationDirections.actionGlobalUserFragment(viewModel.userId.value)
                 findNavController().navigate(action)
             }
-            R.id.action_edit_profile -> { }
+            R.id.action_edit_profile -> findNavController().navigate(R.id.editProfileFragment)
             R.id.action_log_out -> handleLogOut()
             R.id.action_settings -> findNavController().navigate(R.id.settingsFragment)
             R.id.action_about -> findNavController().navigate(R.id.aboutFragment)

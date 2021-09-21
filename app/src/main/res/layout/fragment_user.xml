@@ -54,6 +54,7 @@
                         android:layout_marginStart="@dimen/keyline_8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        imageWithGlide="@{viewModel.userProfile.profileImageUrl}"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
@@ -182,6 +183,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     app:layout_collapseMode="pin"
+                    app:title="@{viewModel.userProfile.name}"
+                    android:onClick="@{()-> appBar.setExpanded(true)}"
                     app:navigationIcon="@drawable/ic_baseline_arrow_back_24"/>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
