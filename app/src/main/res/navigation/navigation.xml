@@ -98,4 +98,7 @@
     <action
         android:id="@+id/action_global_userFragment"
         app:destination="@id/userFragment" />
+    <dialog
+        android:id="@+id/whatsNewDialog"
+        android:name="com.puntogris.recap.ui.main.WhatsNewDialog" />
 </navigation>

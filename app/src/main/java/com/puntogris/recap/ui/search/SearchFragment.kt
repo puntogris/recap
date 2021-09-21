@@ -1,6 +1,5 @@
 package com.puntogris.recap.ui.search
 
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -11,7 +10,6 @@ import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.models.PublicProfile
 import com.puntogris.recap.models.Recap
 import com.puntogris.recap.ui.base.BaseViewPagerFragment
-import com.puntogris.recap.ui.home.HomeSlidePagerAdapter
 import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,12 +22,12 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
     override val tabLayout: TabLayout
         get() = binding.tabLayout
 
+    override val adapter: FragmentStateAdapter
+        get() = SearchSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+
     override val tabsNames = listOf("Recaps", "Usuarios")
 
     override val viewModel: SearchViewModel by viewModels()
-
-    override val adapter: FragmentStateAdapter
-        get() = SearchSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
 
     override fun initializeViews() {
         super.initializeViews()
@@ -41,16 +39,10 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
 
     private fun registerQueryTextListener(){
         binding.searchTextInputLayout.editText?.apply {
-
             if (text.isNullOrBlank()) focusAndShowKeyboard()
-
-            setOnEditorActionListener { _, actionId, _ ->
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    viewModel.updateQuery(text.toString())
-                    hideKeyboard()
-                    return@setOnEditorActionListener true
-                }
-                return@setOnEditorActionListener false
+            onImeActionSearch {
+                viewModel.updateQuery(text.toString())
+                hideKeyboard()
             }
         }
     }

@@ -29,6 +29,7 @@ class ExploreReviewFragment : BasePagerTabFragment<FragmentExploreReviewBinding>
     }
 
     override fun initializeViews() {
+        super.initializeViews()
         collectUiState()
     }
 

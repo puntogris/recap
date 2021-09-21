@@ -33,7 +33,7 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         super.initializeViews()
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        
+
         registerToolbarBackButton(binding.toolbar)
 
         if (args.profile != null){

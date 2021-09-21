@@ -3,7 +3,10 @@ package com.puntogris.recap.utils
 object Constants {
 
     const val CROSS_FADE_DURATION = 350
+
+    //Prefs
     const val PREF_APP_THEME = "pref_app_theme"
+    const val LAST_VERSION_CODE = "last_version_code"
 
     //Dynamic Links
     const val DEEP_LINK_PATH = "https://recap.puntogris.com/recaps/"

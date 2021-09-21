@@ -1,6 +1,7 @@
 package com.puntogris.recap.ui.main
 
 import android.view.View
+import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
@@ -14,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
+    private val viewModel: MainViewModel by viewModels()
 
     override fun preInitViews() {
         installSplashScreen()
@@ -21,10 +23,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun initializeViews() {
         setupNavigation()
+        checkAppCurrentVersion()
     }
 
     private fun setupNavigation() {
         navController = getNavController()
+    }
+
+    private fun checkAppCurrentVersion(){
+        viewModel.appVersionStatus.observe(this){ isNewVersion ->
+            if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
+        }
     }
 
     override fun showSnackBar(message: String,

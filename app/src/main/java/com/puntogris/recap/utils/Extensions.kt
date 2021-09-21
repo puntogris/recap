@@ -2,9 +2,13 @@ package com.puntogris.recap.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +29,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -176,12 +181,6 @@ fun RichEditor.setupBackgroundAndFontColors(){
 typealias PagingStateListener = (CombinedLoadStates) -> Unit
 
 
-inline fun pagingStateListener(crossinline block: (CombinedLoadStates) -> Unit) = object : PagingStateListener {
-    override operator fun invoke(loadState: CombinedLoadStates) {
-        block(loadState)
-    }
-}
-
 fun RecyclerView.scrollToTop() {
     layoutManager?.let {
         val firstVisibleItemPosition = it.findFirstVisibleItemPosition()
@@ -202,5 +201,28 @@ fun RecyclerView.LayoutManager?.findFirstVisibleItemPosition(): Int {
         is GridLayoutManager -> findFirstVisibleItemPosition()
         is StaggeredGridLayoutManager -> findFirstVisibleItemPositions(null).first()
         else -> RecyclerView.NO_POSITION
+    }
+}
+
+inline fun EditText.onImeActionSearch(crossinline block: () -> Unit){
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+            block()
+            return@setOnEditorActionListener true
+        }
+        return@setOnEditorActionListener false
+    }
+}
+
+fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
+    try {
+        Intent(Intent.ACTION_VIEW).let {
+            it.data = Uri.parse(uri)
+            if (packageName != null) it.setPackage(packageName)
+            startActivity(it)
+        }
+
+    }catch (e:Exception){
+        showSnackBar(getString(R.string.snack_general_error))
     }
 }
