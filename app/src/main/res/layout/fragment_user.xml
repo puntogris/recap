@@ -54,7 +54,7 @@
                         android:layout_marginStart="@dimen/keyline_8"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        imageWithGlide="@{viewModel.userProfile.profileImageUrl}"
+                        imageWithGlide="@{viewModel.userProfile.photoUrl}"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout

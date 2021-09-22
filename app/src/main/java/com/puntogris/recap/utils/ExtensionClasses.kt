@@ -1,11 +1,13 @@
 package com.puntogris.recap.utils
 
+import android.os.Parcelable
 import androidx.annotation.StringRes
 import androidx.paging.PagingData
 import com.puntogris.recap.R
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.model.RecapInteractions
 import kotlinx.coroutines.flow.Flow
+import kotlinx.parcelize.Parcelize
 
 sealed class SimpleResult{
     object Success: SimpleResult()
@@ -40,7 +42,6 @@ sealed class RecapInteractionResult {
     object NotFound: RecapInteractionResult()
 }
 
-
 enum class RecapOrder(@StringRes val titleRes: Int, val value: String) {
     LATEST(R.string.order_latest, "latest"),
     OLDEST(R.string.order_oldest,"oldest"),
@@ -55,4 +56,10 @@ sealed class RecapResult {
     object InProgress: RecapResult()
     class Success(val result: Flow<PagingData<Recap>>): RecapResult()
     object Error: RecapResult()
+}
+
+@Parcelize
+enum class EditPhotoOptions(val optionRes: String):Parcelable{
+    Change("Nueva foto de perfil"),
+    Delete("Eliminar foto de perfil")
 }

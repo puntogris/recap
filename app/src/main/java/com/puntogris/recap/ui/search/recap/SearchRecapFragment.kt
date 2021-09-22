@@ -1,5 +1,6 @@
 package com.puntogris.recap.ui.search.recap
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.paging.*
 import androidx.recyclerview.widget.RecyclerView

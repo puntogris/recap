@@ -1,5 +1,6 @@
 package com.puntogris.recap.ui.search.user
 
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState

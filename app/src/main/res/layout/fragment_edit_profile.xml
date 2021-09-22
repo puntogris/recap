@@ -54,7 +54,7 @@
         <ImageView
             android:id="@+id/imageView3"
             android:layout_marginTop="16dp"
-            imageWithGlide="@{viewModel.userProfile.profileImageUrl}"
+            imageWithGlide="@{viewModel.userProfile.photoUrl}"
             android:onClick="@{()-> fragment.changeProfileImage()}"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -97,6 +97,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/usernameField"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -118,7 +119,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionField"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

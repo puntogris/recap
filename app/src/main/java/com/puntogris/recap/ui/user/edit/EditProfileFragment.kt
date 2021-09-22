@@ -2,6 +2,7 @@ package com.puntogris.recap.ui.user.edit
 
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,7 +20,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fr
 
     private val args: EditProfileFragmentArgs by navArgs()
     private val viewModel: EditProfileViewModel by viewModels()
-    private lateinit var getContent: ActivityResultLauncher<String>
+    private lateinit var photoLauncher: ActivityResultLauncher<String>
 
     override fun initializeViews() {
         binding.fragment = this
@@ -29,14 +30,25 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fr
         viewModel.setUser(args.profile)
 
         registerToolbarBackButton(binding.toolbar)
+        registerPhotoLauncher()
+        registerFragmentListener()
+    }
 
-        getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            uri?.let {
-                viewModel.updateProfileUri(it)
+    private fun registerPhotoLauncher(){
+        photoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let { viewModel.updateProfileUri(it) }
+        }
+    }
+
+    private fun registerFragmentListener(){
+        setFragmentResultListener("photoOption"){_, bundle ->
+            bundle.getParcelable<EditPhotoOptions>("data")?.let {
+                when(it){
+                    EditPhotoOptions.Change -> photoLauncher.launch("image/*")
+                    EditPhotoOptions.Delete -> viewModel.updateProfileUri(null)
+                }
             }
         }
-
-        getContent.launch("image/*")
     }
 
     fun saveProfile(){
@@ -76,5 +88,4 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fr
     fun changeProfileImage(){
         findNavController().navigate(R.id.changeProfileImageBottomSheet)
     }
-
 }

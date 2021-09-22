@@ -15,5 +15,5 @@ data class PublicProfile(
     val registered: Timestamp = Timestamp.now(),
     val likesCounter: Int = 0,
     val recapsCounter: Int = 0,
-    val profileImageUrl: String = ""
+    val photoUrl: String = ""
 ):Parcelable

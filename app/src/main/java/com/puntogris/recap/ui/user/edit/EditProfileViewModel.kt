@@ -37,25 +37,24 @@ class EditProfileViewModel @Inject constructor(
 
         if (nameChanged()) editProfile.name = name
         if (bioChanged()) editProfile.bio = bio
-        if (imageChanged()) editProfile.imageUri = profileImageUrl
+        if (imageChanged()) editProfile.imageUri = photoUrl
         if (accountChanged()) editProfile.account = account
 
         editProfile
     }
 
-
     private fun nameChanged() = initialProfile?.name != userProfile.value!!.name
 
     private fun bioChanged() = initialProfile?.bio != userProfile.value!!.bio
 
-    private fun imageChanged() = initialProfile?.profileImageUrl != userProfile.value!!.profileImageUrl
+    private fun imageChanged() = initialProfile?.photoUrl != userProfile.value!!.photoUrl
 
     private fun accountChanged() = initialProfile?.account != userProfile.value!!.account
 
     private fun profileDataChanged() =
         nameChanged() || bioChanged() || imageChanged() || accountChanged()
 
-    fun updateProfileUri(uri: Uri){
+    fun updateProfileUri(uri: Uri?){
 
     }
 }
