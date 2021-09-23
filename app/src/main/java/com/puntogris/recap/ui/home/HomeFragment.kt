@@ -78,7 +78,7 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
     }
 
     fun navigateToCreateRecap(){
-        findNavController().navigate(R.id.createRecapFragment)
+        findNavController().navigate(R.id.createRecapGraph)
     }
 
     fun navigateToRecap(recap: Recap){

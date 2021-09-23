@@ -16,7 +16,7 @@ class AppDatabaseModule {
     private val roomName = "recap_database"
 
     @Provides
-    fun providesDraftDao(appDatabase: AppDatabase) = appDatabase.draftDao()
+    fun providesRecaptDao(appDatabase: AppDatabase) = appDatabase.recapDao()
 
     @Provides
     @Singleton

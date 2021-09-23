@@ -57,7 +57,7 @@ ext{
     fragmentKtxVersion = "1.4.0-alpha08"
     coroutinesVersion = "1.4.3"
     googleSignIn = "19.2.0"
-    paging_version = "3.0.1"
+    pagingVersion = "3.0.1"
     preferencesVersion = "1.1.1"
     editorVersion = "2.0.0"
     navigationVersion = "2.3.5"
@@ -137,7 +137,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$preferencesVersion"
 
     //Paging
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"

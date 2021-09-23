@@ -97,5 +97,8 @@
     <!-- Report -->
     <string name="inappropriate">Inapropiado</string>
     <string name="misinformation">Informacion erronea</string>
+    <string name="snack_recap_title_required">El titulo no puede estar vacio.</string>
+    <string name="snack_recap_season_required">La temporada no puede estar vacia.</string>
+    <string name="snack_recap_episode_required">El episodio no puede estar vacio.</string>
 
 </resources>

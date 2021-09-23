@@ -1,9 +1,8 @@
 package com.puntogris.recap.ui.recap.create
 
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentDraftBinding
+import com.puntogris.recap.databinding.FragmentRecapBodyBinding
 import com.puntogris.recap.ui.base.BaseFragment
 import com.puntogris.recap.utils.focusAndShowKeyboard
 import com.puntogris.recap.utils.registerToolbarBackButton
@@ -11,19 +10,16 @@ import com.puntogris.recap.utils.setupBackgroundAndFontColors
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DraftFragment : BaseFragment<FragmentDraftBinding>(R.layout.fragment_draft) {
+class RecapBodyFragment : BaseFragment<FragmentRecapBodyBinding>(R.layout.fragment_recap_body) {
 
-    private val viewModel: CreateRecapViewModel by viewModels()
-    private val args: DraftFragmentArgs by navArgs()
+    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
 
     override fun initializeViews() {
-        registerToolbarBackButton(binding.toolbar)
-        setDraftFromArgs()
-        setupEditor()
-    }
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
-    private fun setDraftFromArgs(){
-        viewModel.setDraft(args.draft)
+        registerToolbarBackButton(binding.toolbar)
+        setupEditor()
     }
 
     private fun setupEditor(){
@@ -38,3 +34,4 @@ class DraftFragment : BaseFragment<FragmentDraftBinding>(R.layout.fragment_draft
 
     }
 }
+

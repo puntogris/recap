@@ -19,6 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     override fun preInitViews() {
         installSplashScreen()
+
     }
 
     override fun initializeViews() {

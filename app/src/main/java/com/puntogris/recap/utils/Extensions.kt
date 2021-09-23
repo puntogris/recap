@@ -48,6 +48,10 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
+fun EditText.getString() = text.toString()
+
+fun EditText.getIntOrNull() = text.toString().toIntOrNull()
+
 fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 
 fun AppCompatActivity.getNavHostFragment() =
@@ -179,7 +183,6 @@ fun RichEditor.setupBackgroundAndFontColors(){
 }
 
 typealias PagingStateListener = (CombinedLoadStates) -> Unit
-
 
 fun RecyclerView.scrollToTop() {
     layoutManager?.let {

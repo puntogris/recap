@@ -15,13 +15,6 @@
         android:id="@+id/loginFragment"
         android:name="com.puntogris.recap.ui.login.LoginFragment"/>
     <fragment
-        android:id="@+id/createRecapFragment"
-        android:name="com.puntogris.recap.ui.recap.create.CreateRecapFragment">
-        <action
-            android:id="@+id/action_createRecapFragment_to_draftFragment"
-            app:destination="@id/draftFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"/>
     <fragment
@@ -111,11 +104,18 @@
     <dialog
         android:id="@+id/changeProfileImageBottomSheet"
         android:name="com.puntogris.recap.ui.user.edit.ChangeProfileImageBottomSheet" />
-    <fragment
-        android:id="@+id/draftFragment"
-        android:name="com.puntogris.recap.ui.recap.create.DraftFragment">
-        <argument
-            android:name="draft"
-            app:argType="com.puntogris.recap.model.Draft" />
-    </fragment>
+    <navigation android:id="@+id/createRecapGraph"
+        app:startDestination="@id/createRecapFragment">
+        <fragment
+            android:id="@+id/recapBodyFragment"
+            android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment"
+            android:label="RecapBodyFragment" />
+        <fragment
+            android:id="@+id/createRecapFragment"
+            android:name="com.puntogris.recap.ui.recap.create.CreateRecapFragment" >
+            <action
+                android:id="@+id/action_createRecapFragment_to_recapBodyFragment"
+                app:destination="@id/recapBodyFragment" />
+        </fragment>
+    </navigation>
 </navigation>
