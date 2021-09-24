@@ -10,6 +10,7 @@ import kotlinx.parcelize.Parcelize
 @Entity
 @Parcelize
 data class Recap(
+
     @PrimaryKey
     var id : String = "",
 
@@ -35,7 +36,7 @@ data class Recap(
     var author: String = "",
 
     @ColumnInfo
-    var html: String = "",
+    var body: String = "",
 
     @ColumnInfo
     var approved: Boolean = false,

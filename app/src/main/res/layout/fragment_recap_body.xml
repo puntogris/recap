@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.puntogris.recap.ui.recap.create.CreateRecapViewModel" />
+        <variable
+            name="fragment"
+            type="com.puntogris.recap.ui.recap.create.RecapBodyFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,9 +67,36 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
+            android:onClick="@{()-> viewModel.toggleMenu()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_menu_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/checkFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:fabSize="mini"
+            android:onClick="@{()-> fragment.onSaveRecapClicked(true)}"
+            showRecapBodyMenu="@{viewModel.showMenu}"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+            app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
+            app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
             app:srcCompat="@drawable/ic_baseline_check_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/saveFab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            showRecapBodyMenu="@{viewModel.showMenu}"
+            android:onClick="@{()-> fragment.onSaveRecapClicked(false)}"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/checkFab"
+            app:layout_constraintEnd_toEndOf="@+id/checkFab"
+            app:layout_constraintStart_toStartOf="@+id/checkFab"
+            app:srcCompat="@drawable/ic_baseline_save_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

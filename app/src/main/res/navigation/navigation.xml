@@ -109,13 +109,29 @@
         <fragment
             android:id="@+id/recapBodyFragment"
             android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment"
-            android:label="RecapBodyFragment" />
+            android:label="RecapBodyFragment" >
+            <action
+                android:id="@+id/action_recapBodyFragment_to_reviewRecapFragment"
+                app:destination="@id/reviewRecapFragment" />
+        </fragment>
         <fragment
             android:id="@+id/createRecapFragment"
             android:name="com.puntogris.recap.ui.recap.create.CreateRecapFragment" >
             <action
                 android:id="@+id/action_createRecapFragment_to_recapBodyFragment"
                 app:destination="@id/recapBodyFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/publishRecapFragment"
+            android:name="com.puntogris.recap.ui.recap.create.PublishRecapFragment"
+            android:label="PublishRecapFragment" />
+        <fragment
+            android:id="@+id/reviewRecapFragment"
+            android:name="com.puntogris.recap.ui.recap.create.ReviewRecapFragment"
+            android:label="ReviewRecapFragment" >
+            <action
+                android:id="@+id/action_reviewRecapFragment_to_publishRecapFragment"
+                app:destination="@id/publishRecapFragment" />
         </fragment>
     </navigation>
 </navigation>

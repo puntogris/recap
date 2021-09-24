@@ -28,14 +28,14 @@ class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fr
 
         var errorResId = 0
 
-        if (title.isEmpty()) errorResId = R.string.snack_recap_title_required
-        if (season == null)  errorResId = R.string.snack_recap_season_required
-        if (episode == null) errorResId = R.string.snack_recap_episode_required
+//        if (title.isEmpty()) errorResId = R.string.snack_recap_title_required
+//        if (season == null)  errorResId = R.string.snack_recap_season_required
+//        if (episode == null) errorResId = R.string.snack_recap_episode_required
 
         if (errorResId != 0){
             showSnackBar(getString(errorResId))
         }else{
-            viewModel.updateRecap(title, season!!, episode!!)
+            //viewModel.updateRecap(title, season!!, episode!!)
             findNavController().navigate(R.id.action_createRecapFragment_to_recapBodyFragment)
         }
     }
