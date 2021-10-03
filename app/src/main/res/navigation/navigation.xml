@@ -79,6 +79,12 @@
         <action
             android:id="@+id/action_userFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_recapFragment"
+            app:destination="@id/recapFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_createRecapGraph"
+            app:destination="@id/createRecapGraph" />
     </fragment>
 
     <dialog
@@ -106,6 +112,11 @@
         android:name="com.puntogris.recap.ui.user.edit.ChangeProfileImageBottomSheet" />
     <navigation android:id="@+id/createRecapGraph"
         app:startDestination="@id/createRecapFragment">
+        <argument
+            android:name="recap"
+            app:argType="com.puntogris.recap.model.Recap"
+            app:nullable="true"
+            android:defaultValue="@null" />
         <fragment
             android:id="@+id/recapBodyFragment"
             android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment"
@@ -120,6 +131,11 @@
             <action
                 android:id="@+id/action_createRecapFragment_to_recapBodyFragment"
                 app:destination="@id/recapBodyFragment" />
+            <argument
+                android:name="recap"
+                app:argType="com.puntogris.recap.model.Recap"
+                app:nullable="true"
+                android:defaultValue="@null" />
         </fragment>
         <fragment
             android:id="@+id/publishRecapFragment"

@@ -1,6 +1,7 @@
 package com.puntogris.recap.model
 
 import android.os.Parcelable
+import androidx.fragment.app.Fragment
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

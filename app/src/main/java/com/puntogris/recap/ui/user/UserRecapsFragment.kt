@@ -37,7 +37,7 @@ class UserRecapsFragment : BasePagerTabFragment<FragmentUserRecapsBinding>(R.lay
     }
 
     private fun onRecapShortClick(recap: Recap){
-      //  (requireParentFragment() as UserFragment).navigateToRecap(recap)
+        (requireParentFragment() as UserFragment).navigateToRecap(recap)
     }
 
     private fun onRecapLongClick(recap: Recap){

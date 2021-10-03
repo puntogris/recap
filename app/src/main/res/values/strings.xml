@@ -94,6 +94,14 @@
     <string name="default_theme_value" translatable="false">system</string>
     <string name="general">General</string>
 
+    <!-- Draft -->
+    <string-array name="draft_actions">
+        <item>Editar</item>
+        <item>Eliminar</item>
+    </string-array>
+    <string name="action">Action</string>
+
+
     <!-- Report -->
     <string name="inappropriate">Inapropiado</string>
     <string name="misinformation">Informacion erronea</string>

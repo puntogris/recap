@@ -27,8 +27,8 @@ sealed class EditProfileResult{
 
 sealed class LoginResult {
     object InProgress: LoginResult()
-    class Success(): LoginResult()
-    class Error(): LoginResult()
+    class Success : LoginResult()
+    class Error : LoginResult()
 }
 
 sealed class Result<out T : Any> {

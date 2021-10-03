@@ -1,6 +1,7 @@
 package com.puntogris.recap.ui.recap.create
 
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentCreateRecapBinding
@@ -15,10 +16,15 @@ import dagger.hilt.android.AndroidEntryPoint
 class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fragment_create_recap) {
 
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
+    private val args: CreateRecapFragmentArgs by navArgs()
 
     override fun initializeViews() {
         binding.fragment = this
         registerToolbarBackButton(binding.toolbar)
+
+        args.recap?.let {
+            viewModel.setRecap(it)
+        }
     }
 
     fun navigateToRecapBody(){

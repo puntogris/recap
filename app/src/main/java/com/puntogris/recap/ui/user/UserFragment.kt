@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserBinding
+import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseViewPagerFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,9 +23,9 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         get() = binding.tabLayout
 
     override val adapter: FragmentStateAdapter
-        get() = UserSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
+        get() = UserSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle, isProfileFromCurrentUser())
 
-    override val tabsNames = listOf("Recaps", "Calificar")
+    override val tabsNames = listOf("Recaps", "Calificar", "Borrador")
 
     override val viewModel: UserViewModel by viewModels()
 
@@ -54,6 +55,9 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         with(binding.toolbar){
             registerToolbarBackButton(this)
             inflateMenu(R.menu.menu_current_user_profile)
+            if (isProfileFromCurrentUser()){
+                //show the edit button hide the report one
+            }
             setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.action_edit_profile -> {
@@ -64,6 +68,21 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
                 true
             }
         }
+    }
+
+    private fun isProfileFromCurrentUser(): Boolean{
+        val userId = if (args.profile != null) args.profile!!.uid else args.userId!!
+        return viewModel.isProfileFromCurrentUser(userId)
+    }
+
+    fun navigateToRecap(recap: Recap){
+        val action = UserFragmentDirections.actionUserFragmentToRecapFragment(recap)
+        findNavController().navigate(action)
+    }
+
+    fun navigateToCreateRecap(recap: Recap){
+        val action = UserFragmentDirections.actionUserFragmentToCreateRecapGraph(recap)
+        findNavController().navigate(action)
     }
 
 }

@@ -6,8 +6,10 @@ import com.puntogris.recap.data.repo.recap.RecapRepository
 import com.puntogris.recap.data.repo.search.SearchRepository
 import com.puntogris.recap.data.repo.user.UserRepository
 import com.puntogris.recap.model.PublicProfile
+import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.Result
+import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,7 +21,7 @@ class UserViewModel @Inject constructor(
     private val recapRepository: RecapRepository
 ): BaseRvViewModel() {
 
-    private val _userProfile = MutableLiveData<PublicProfile>(PublicProfile())
+    private val _userProfile = MutableLiveData(PublicProfile())
     val userProfile: LiveData<PublicProfile> = _userProfile
 
     private val userId = MutableLiveData<String>()
@@ -31,6 +33,9 @@ class UserViewModel @Inject constructor(
     val reviewsLiveData = Transformations.switchMap(userId){
         searchRepository.searchUsers(it).asLiveData()
     }.cachedIn(viewModelScope)
+
+    fun getDraftsLiveData() =
+        recapRepository.getDraftsPagingData().asLiveData().cachedIn(viewModelScope)
 
     fun setUser(publicProfile: PublicProfile){
         _userProfile.value = publicProfile
@@ -48,5 +53,11 @@ class UserViewModel @Inject constructor(
     fun setUserId(userId: String){
         this.userId.value = userId
     }
+
+    fun isProfileFromCurrentUser(currentUid: String) = userRepository.getFirebaseUser()?.uid == currentUid
+
+    suspend fun deleteDraft(recap: Recap) = recapRepository.deleteDraft(recap)
+
+    suspend fun undoDraftDeletion(recap: Recap) = recapRepository.saveRecapLocalDb(Recap())
 
 }

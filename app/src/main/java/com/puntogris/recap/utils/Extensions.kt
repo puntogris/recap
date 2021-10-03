@@ -10,7 +10,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -18,8 +17,6 @@ import androidx.lifecycle.*
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
-import androidx.paging.LoadState
-import androidx.paging.PagingDataAdapter
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,12 +26,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.R
-import com.puntogris.recap.ui.about.AboutPreferences
 import com.puntogris.recap.utils.Constants.CROSS_FADE_DURATION
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.coroutines.CoroutineScope
@@ -141,14 +135,14 @@ inline fun Preference.onClick(crossinline block: () -> Unit){
 }
 
 inline fun Preference.onChange(crossinline block: (Any) -> Unit){
-    setOnPreferenceChangeListener { preference, newValue ->
+    setOnPreferenceChangeListener { _, newValue ->
         block(newValue)
         true
     }
 }
 
 inline fun PreferenceFragmentCompat.onPreferenceChange(key: String, crossinline block: (Any) -> Unit){
-    findPreference<Preference>(key)?.setOnPreferenceChangeListener { preference, newValue ->
+    findPreference<Preference>(key)?.setOnPreferenceChangeListener { _, newValue ->
         block(newValue)
         true
     }

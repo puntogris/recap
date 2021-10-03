@@ -1,11 +1,10 @@
 package com.puntogris.recap.ui.main
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.utils.SharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

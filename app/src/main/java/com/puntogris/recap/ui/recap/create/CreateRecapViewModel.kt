@@ -36,4 +36,8 @@ class CreateRecapViewModel @Inject constructor(
     }
 
     suspend fun saveRecapLocally() = draftRepository.saveRecapLocalDb(recap.value!!)
+
+    fun setRecap(recap: Recap){
+        _recap.value = recap
+    }
 }

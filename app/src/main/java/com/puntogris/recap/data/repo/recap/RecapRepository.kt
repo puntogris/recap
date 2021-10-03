@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import com.google.firebase.dynamiclinks.ktx.*
 import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
+import com.puntogris.recap.data.local.RecapDao
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
 import com.puntogris.recap.model.Recap
@@ -29,6 +30,7 @@ import javax.inject.Inject
 
 class RecapRepository @Inject constructor(
     private val firebase: FirebaseDataSource,
+    private val recapDao: RecapDao,
     @ApplicationContext private val context: Context
 ):IRecapRepository {
 
@@ -100,6 +102,15 @@ class RecapRepository @Inject constructor(
         ){ FirestoreRecapPagingSource(query) }.flow
     }
 
+    override fun getDraftsPagingData(): Flow<PagingData<Recap>> {
+        return Pager(
+            PagingConfig(
+                pageSize = 30,
+                enablePlaceholders = true,
+                maxSize = 200)
+        ){ recapDao.getDraftsPaged() }.flow
+    }
+
     override suspend fun getRecapWithId(recapId: String): Result<Recap> = withContext(Dispatchers.IO){
         try {
             val recap = firebase
@@ -128,5 +139,15 @@ class RecapRepository @Inject constructor(
             .toObject(RecapInteractions::class.java)
 
     }
+
+    override suspend fun deleteDraft(recap: Recap): SimpleResult {
+        return if (recapDao.delete(recap.id) != 0) SimpleResult.Success else SimpleResult.Failure
+    }
+
+    override suspend fun saveRecapLocalDb(recap: Recap) = withContext(Dispatchers.IO) {
+        recap.id = firebase.firestore.collection("recaps").document().id
+        if (recapDao.insert(recap) != 0L) SimpleResult.Success else SimpleResult.Failure
+    }
+
 
 }
