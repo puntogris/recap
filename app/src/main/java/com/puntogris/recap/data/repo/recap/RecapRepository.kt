@@ -10,7 +10,7 @@ import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
 import com.puntogris.recap.data.local.RecapDao
 import com.puntogris.recap.data.remote.FirebaseDataSource
-import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
+import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.model.RecapInteractions
 import com.puntogris.recap.utils.*

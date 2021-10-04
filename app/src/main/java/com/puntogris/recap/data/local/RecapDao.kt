@@ -1,10 +1,11 @@
 package com.puntogris.recap.data.local
 
-import androidx.paging.PagingData
 import androidx.paging.PagingSource
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.puntogris.recap.model.Recap
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RecapDao {

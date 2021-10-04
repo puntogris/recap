@@ -3,11 +3,8 @@ package com.puntogris.recap.ui.user.draft
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puntogris.recap.databinding.PublicProfileVhBinding
 import com.puntogris.recap.databinding.UserDraftVhBinding
-import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.model.Recap
-import com.puntogris.recap.ui.search.user.PublicProfileViewHolder
 
 class UserDraftViewHolder(private val binding: UserDraftVhBinding): RecyclerView.ViewHolder(binding.root) {
 

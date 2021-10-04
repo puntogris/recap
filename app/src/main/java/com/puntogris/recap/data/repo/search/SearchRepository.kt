@@ -4,8 +4,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.puntogris.recap.data.remote.FirebaseDataSource
-import com.puntogris.recap.data.repo.FirestorePublicProfilePagingSource
-import com.puntogris.recap.data.repo.FirestoreRecapPagingSource
+import com.puntogris.recap.data.remote.FirestorePublicProfilePagingSource
+import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.utils.Constants.PUBLIC_PROFILE_COLLECTION

@@ -7,7 +7,7 @@
         app:iconSpaceReserved="false">
 
         <intent android:action="android.intent.action.VIEW"
-            android:data="@string/unsplash_url" />
+            android:data="@string/recap_url" />
     </Preference>
 
     <PreferenceCategory app:title="@string/app_name"
@@ -41,21 +41,14 @@
     <PreferenceCategory app:title="@string/developer_title"
         app:iconSpaceReserved="false">
 
-        <Preference app:title="@string/instagram"
-            app:summary="@string/developer_instagram_username"
-            app:icon="@drawable/ic_baseline_add_24">
+        <Preference app:title="@string/website"
+            app:iconSpaceReserved="false"
+            app:summary="@string/developer_website_summary">
 
             <intent android:action="android.intent.action.VIEW"
-                android:data="@string/developer_instagram_url" />
+                android:data="@string/developer_website_url" />
         </Preference>
 
-        <Preference app:title="@string/recap"
-            app:summary="@string/developer_unsplash_username"
-            app:icon="@drawable/ic_baseline_add_24">
-
-            <intent android:action="android.intent.action.VIEW"
-                android:data="@string/developer_unsplash_url" />
-        </Preference>
     </PreferenceCategory>
 
     <Preference app:title="@string/privacy_policy"

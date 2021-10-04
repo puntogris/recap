@@ -80,6 +80,7 @@
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_header.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/public_profile_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/recap_editor_modifier_vh.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/select_rating_dialog.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/user_draft_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_drawer.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.35052083333333334" />
@@ -101,5 +102,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.35052083333333334" />
+      </ProjectState>
+    </option>
   </component>
 </project>

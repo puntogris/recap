@@ -1,4 +1,4 @@
-package com.puntogris.recap.data.repo
+package com.puntogris.recap.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

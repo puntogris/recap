@@ -15,5 +15,4 @@ interface IRecapRepository {
     suspend fun getUserRecapInteractions(recapId: String): RecapInteractions?
     suspend fun deleteDraft(recap: Recap):SimpleResult
     suspend fun saveRecapLocalDb(recap: Recap): SimpleResult
-
 }

@@ -9,7 +9,6 @@ import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.Result
-import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

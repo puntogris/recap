@@ -84,7 +84,7 @@
             android:hint="Nombre">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:background="@null"
+                android:background="@drawable/divider_16"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxLines="1"
@@ -106,7 +106,7 @@
             android:hint="Nombre de usuario">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:background="@null"
+                android:background="@drawable/divider_16"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxLines="1"
@@ -128,7 +128,7 @@
             android:hint="Bio">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:background="@null"
+                android:background="@drawable/divider_16"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:text="@{viewModel.userProfile.bio}"
