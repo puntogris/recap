@@ -1,25 +1,29 @@
 package com.puntogris.recap.ui.recap.create
 
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentCreateRecapBinding
+import com.puntogris.recap.databinding.FragmentRecapHeaderBinding
 import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.recap.create.RecapHeaderValidator.*
 import com.puntogris.recap.utils.getIntOrNull
 import com.puntogris.recap.utils.getString
 import com.puntogris.recap.utils.registerToolbarBackButton
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fragment_create_recap) {
+class RecapHeaderFragment :BaseFragment<FragmentRecapHeaderBinding>(R.layout.fragment_recap_header) {
 
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
-    private val args: CreateRecapFragmentArgs by navArgs()
+    private val args: RecapHeaderFragmentArgs by navArgs()
 
     override fun initializeViews() {
         binding.fragment = this
+
         registerToolbarBackButton(binding.toolbar)
 
         args.recap?.let {
@@ -32,17 +36,17 @@ class CreateRecapFragment : BaseFragment<FragmentCreateRecapBinding>(R.layout.fr
         val season = binding.recapSeason.getIntOrNull()
         val episode = binding.recapEpisode.getIntOrNull()
 
-        var errorResId = 0
+        val validation = RecapHeaderValidator.from(title, season, episode)
 
-//        if (title.isEmpty()) errorResId = R.string.snack_recap_title_required
-//        if (season == null)  errorResId = R.string.snack_recap_season_required
-//        if (episode == null) errorResId = R.string.snack_recap_episode_required
-
-        if (errorResId != 0){
-            showSnackBar(getString(errorResId))
-        }else{
-            //viewModel.updateRecap(title, season!!, episode!!)
-            findNavController().navigate(R.id.action_createRecapFragment_to_recapBodyFragment)
+        when(validation){
+            is NotValid -> showSnackBar(getString(validation.error))
+            is Valid -> lifecycleScope.launch {
+                with(viewModel){
+                    updateRecap(title, season!!, episode!!)
+                    saveRecapLocally()
+                }
+                findNavController().navigate(R.id.action_headerRecapFragment_to_recapBodyFragment)
+            }
         }
     }
 }

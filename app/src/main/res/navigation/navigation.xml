@@ -114,7 +114,7 @@
         android:id="@+id/changeProfileImageBottomSheet"
         android:name="com.puntogris.recap.ui.user.edit.ChangeProfileImageBottomSheet" />
     <navigation android:id="@+id/createRecapGraph"
-        app:startDestination="@id/createRecapFragment">
+        app:startDestination="@id/headerRecapFragment">
         <argument
             android:name="recap"
             app:argType="com.puntogris.recap.model.Recap"
@@ -122,17 +122,16 @@
             android:defaultValue="@null" />
         <fragment
             android:id="@+id/recapBodyFragment"
-            android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment"
-            android:label="RecapBodyFragment" >
+            android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment">
             <action
-                android:id="@+id/action_recapBodyFragment_to_reviewRecapFragment"
-                app:destination="@id/reviewRecapFragment" />
+                android:id="@+id/action_recapBodyFragment_to_previewRecapFragment"
+                app:destination="@id/previewRecapFragment" />
         </fragment>
         <fragment
-            android:id="@+id/createRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.CreateRecapFragment" >
+            android:id="@+id/headerRecapFragment"
+            android:name="com.puntogris.recap.ui.recap.create.RecapHeaderFragment" >
             <action
-                android:id="@+id/action_createRecapFragment_to_recapBodyFragment"
+                android:id="@+id/action_headerRecapFragment_to_recapBodyFragment"
                 app:destination="@id/recapBodyFragment" />
             <argument
                 android:name="recap"
@@ -142,12 +141,10 @@
         </fragment>
         <fragment
             android:id="@+id/publishRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.PublishRecapFragment"
-            android:label="PublishRecapFragment" />
+            android:name="com.puntogris.recap.ui.recap.create.PublishRecapFragment" />
         <fragment
-            android:id="@+id/reviewRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.ReviewRecapFragment"
-            android:label="ReviewRecapFragment" >
+            android:id="@+id/previewRecapFragment"
+            android:name="com.puntogris.recap.ui.recap.create.RecapPreviewFragment">
             <action
                 android:id="@+id/action_reviewRecapFragment_to_publishRecapFragment"
                 app:destination="@id/publishRecapFragment" />

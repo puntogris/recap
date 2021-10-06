@@ -6,13 +6,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.recap.create.CreateRecapFragment" />
+            type="com.puntogris.recap.ui.recap.create.RecapHeaderFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.recap.create.CreateRecapFragment">
+        tools:context=".ui.recap.create.RecapHeaderFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"

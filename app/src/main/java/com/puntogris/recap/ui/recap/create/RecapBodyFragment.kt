@@ -31,25 +31,26 @@ class RecapBodyFragment : BaseFragment<FragmentRecapBodyBinding>(R.layout.fragme
         }
     }
 
-    fun onSaveRecapClicked(reviewOnSuccess: Boolean){
+    fun onSaveRecapClicked(previewOnSuccess: Boolean){
         viewModel.toggleMenu()
-        val body = binding.recapEditor.html
-        if (body.isNullOrBlank()){
-            showSnackBar("No puede estar vacio.")
-        }else{
-            viewModel.updateRecapBody(body)
-            saveRecap(reviewOnSuccess)
+
+        binding.recapEditor.html.let {
+            if (it.isNullOrBlank()) showSnackBar("No puede estar vacio.")
+            else{
+                viewModel.updateRecapBody(it)
+                saveRecap(previewOnSuccess)
+            }
         }
     }
 
-    private fun saveRecap(reviewOnSuccess: Boolean){
+    private fun saveRecap(previewOnSuccess: Boolean){
         lifecycleScope.launch {
             when(viewModel.saveRecapLocally()){
                 SimpleResult.Failure -> showSnackBar("Error")
                 SimpleResult.Success -> {
                     showSnackBar("Guardado en borradores")
-                    if (reviewOnSuccess) {
-                        findNavController().navigate(R.id.action_recapBodyFragment_to_reviewRecapFragment)
+                    if (previewOnSuccess) {
+                        findNavController().navigate(R.id.action_recapBodyFragment_to_previewRecapFragment)
                     }
                 }
             }

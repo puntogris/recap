@@ -148,6 +148,4 @@ class RecapRepository @Inject constructor(
         recap.id = firebase.firestore.collection("recaps").document().id
         if (recapDao.insert(recap) != 0L) SimpleResult.Success else SimpleResult.Failure
     }
-
-
 }

@@ -63,7 +63,9 @@
         <entry key="app/src/main/res/layout/fragment_rate_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap_body.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_recap_header.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap_html.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_recap_preview.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_review_recap.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_search_recap.xml" value="0.35052083333333334" />
