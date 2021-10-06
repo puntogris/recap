@@ -40,18 +40,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <include
                     layout="@layout/editor_text_alignment"
                     app:recapEditor="@{recapEditor}" />
-
                 <include
                     layout="@layout/editor_text_format"
                     app:recapEditor="@{recapEditor}" />
-
             </LinearLayout>
-
         </HorizontalScrollView>
+
         <jp.wasabeef.richeditor.RichEditor
             android:id="@+id/recapEditor"
             android:layout_width="match_parent"
@@ -70,7 +67,8 @@
             android:onClick="@{()-> viewModel.toggleMenu()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_menu_24" />
+            app:srcCompat="@drawable/ic_baseline_menu_24"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/checkFab"
@@ -83,7 +81,8 @@
             app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
             app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
             app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
-            app:srcCompat="@drawable/ic_baseline_check_24" />
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            tools:ignore="ContentDescription" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/saveFab"
@@ -96,7 +95,8 @@
             app:layout_constraintBottom_toTopOf="@+id/checkFab"
             app:layout_constraintEnd_toEndOf="@+id/checkFab"
             app:layout_constraintStart_toStartOf="@+id/checkFab"
-            app:srcCompat="@drawable/ic_baseline_save_24" />
+            app:srcCompat="@drawable/ic_baseline_save_24"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

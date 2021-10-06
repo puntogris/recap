@@ -25,7 +25,7 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
     override val adapter: FragmentStateAdapter
         get() = UserSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle, isProfileFromCurrentUser())
 
-    override val tabsNames = listOf("Recaps", "Calificar", "Borrador")
+    override val tabsNames: Array<String> = resources.getStringArray(R.array.profile_tabs)
 
     override val viewModel: UserViewModel by viewModels()
 

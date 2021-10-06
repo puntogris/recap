@@ -52,7 +52,8 @@
             android:onClick="@{()-> fragment.navigateToCreateRecap()}"
             app:layout_behavior="com.puntogris.recap.ui.widget.ScrollAwareFabBehaviour"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            app:layout_anchor="@id/bottomAppBar" />
+            app:layout_anchor="@id/bottomAppBar"
+            tools:ignore="ContentDescription" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

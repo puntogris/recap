@@ -7,7 +7,7 @@ import com.google.android.material.tabs.TabLayout
 interface PagerConfiguration {
     val viewPager: ViewPager2
     val tabLayout: TabLayout
-    val tabsNames: List<String>
+    val tabsNames: Array<String>
     val viewModel: BaseRvViewModel
     val adapter: FragmentStateAdapter
 }

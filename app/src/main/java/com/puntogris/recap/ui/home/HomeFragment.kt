@@ -26,7 +26,7 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
     override val tabLayout: TabLayout
         get() = binding.tabLayout
 
-    override val tabsNames = listOf("Explorar", "Calificar")
+    override val tabsNames: Array<String> = resources.getStringArray(R.array.home_tabs)
 
     override val viewModel: HomeViewModel by viewModels()
 

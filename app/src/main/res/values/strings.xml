@@ -1,28 +1,72 @@
 <resources>
     <string name="app_name">recap</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_search">SearchActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-
     <string name="package_name" translatable="false">com.puntogris.recap</string>
     <string name="recap" translatable="false">Recap</string>
-    <string name="recap_url" translatable="false">https://unsplash.com/?utm_source=resplash&amp;utm_medium=referral&amp;utm_campaign=api-credit</string>
-    <string name="unsplash_authed_submit_url" translatable="false">https://unsplash.com/submit</string>
-    <string name="unsplash_unauthed_submit_url" translatable="false">https://unsplash.com/?modal=%7B%22tag%22%3A%22Login%22%2C%22value%22%3A%7B%22tag%22%3A%22SubmitAPhoto%22%2C%22value%22%3A%7B%7D%7D%7D</string>
-    <string name="unsplash_join_url" translatable="false">https://unsplash.com/join</string>
 
-    <!-- Donation -->
-    <string name="support_development">Support development</string>
-    <string name="donate_banner_text" translatable="false">Hello &#128075;,\n\nI\'m Brandon, the developer of Recap. If you want to support further development of the app, you can choose to send a few dollars my way by selecting one of the options below.</string>
-    <string name="you_are_welcome">You\'re welcome</string>
+    <!-- Navigation -->
+
+    <!-- Actions -->
+    <string name="action_undo">Undo</string>
+
+    <!-- Profile -->
+    <string-array name="profile_tabs">
+        <item>Recaps</item>
+        <item>Pending</item>
+        <item>Drafts</item>
+    </string-array>
+
+    <!-- Search -->
+    <string-array name="search_tabs">
+        <item>Recaps</item>
+        <item>Users</item>
+    </string-array>
+
+    <!-- Home -->
+    <string-array name="home_tabs">
+        <item>Explore</item>
+        <item>Rate</item>
+    </string-array>
+
+    <!-- Home Filter -->
+    <string name="order_latest">Latest</string>
+    <string name="order_oldest">Oldest</string>
+    <string name="order_popular">Popular</string>
+    <string name="order_all">All</string>
+
+    <!-- Home Drawer -->
+    <string name="add_account">Add account</string>
+    <string name="view_profile">View profile</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="log_out">Log out</string>
+
+    <!-- Recap -->
+    <string name="name">Name</string>
+    <string name="title">Title</string>
+    <string name="season">Season</string>
+    <string name="episode">Episode</string>
+    <string name="language">Language</string>
+    <string name="recap_title_hint">The office</string>
+    <string name="recap_season_hint">1</string>
+    <string name="recap_episode_hint">14</string>
+    <string name="recap_header_alert">* This information may be changed later.</string>
+    <string name="recap_header_title">What do you want to publish?</string>
+
+    <!-- Other -->
+    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
+    <string name="snack_general_error">An error occurred. Please try again.</string>
+    <string name="error">Error</string>
+    <string name="recap_link_title">"Watch %1$s recap here!"</string>
+
+    <!-- What's new dialog-->
+    <string name="updated_version">Updated to v%1$s</string>
+    <string name="whats_new">What\'s new</string>
+
+    <!-- Report -->
+    <string name="inappropriate">Inappropriate</string>
+    <string name="misinformation">Wrong information</string>
+    <string name="snack_recap_title_required">Title can\'t be empty.</string>
+    <string name="snack_recap_season_required">Season can\'t be empty.</string>
+    <string name="snack_recap_episode_required">Episode can\'t be empty.</string>
 
     <!-- About -->
     <string name="about">About</string>
@@ -49,30 +93,11 @@
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="terms_and_conditions_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/TERMS.md</string>
 
-
-    <string name="order_latest">Latest</string>
-    <string name="order_oldest">Oldest</string>
-    <string name="order_popular">Popular</string>
-    <string name="order_all">All</string>
-    <string name="add_account">Add account</string>
-    <string name="view_profile">View profile</string>
-    <string name="edit_profile">Edit profile</string>
-    <string name="log_out">Log out</string>
-
-
-    <string name="action_undo">Undo</string>
-    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
-    <string name="snack_general_error">An error occurred. Please try again.</string>
-
-    <string name="error">Error</string>
-
-    <!-- What's new dialog-->
-    <string name="updated_version">Updated to v%1$s</string>
-    <string name="whats_new">What\'s new</string>
-
-
-    <!-- Links -->
-    <string name="recap_link_title">"Te invito a ver %1$s en Recap app!"</string>
+    <!-- Urls -->
+    <string name="recap_url" translatable="false">https://unsplash.com/?utm_source=resplash&amp;utm_medium=referral&amp;utm_campaign=api-credit</string>
+    <string name="unsplash_authed_submit_url" translatable="false">https://unsplash.com/submit</string>
+    <string name="unsplash_unauthed_submit_url" translatable="false">https://unsplash.com/?modal=%7B%22tag%22%3A%22Login%22%2C%22value%22%3A%7B%22tag%22%3A%22SubmitAPhoto%22%2C%22value%22%3A%7B%7D%7D%7D</string>
+    <string name="unsplash_join_url" translatable="false">https://unsplash.com/join</string>
 
     <!--Theme-->
     <string name="theme">Theme</string>
@@ -91,22 +116,15 @@
         <item>dark</item>
         <item>system</item>
     </string-array>
+
     <string name="default_theme_value" translatable="false">system</string>
     <string name="general">General</string>
 
     <!-- Draft -->
     <string-array name="draft_actions">
-        <item>Editar</item>
-        <item>Eliminar</item>
+        <item>Edit</item>
+        <item>Delete</item>
     </string-array>
     <string name="action">Action</string>
-
-
-    <!-- Report -->
-    <string name="inappropriate">Inapropiado</string>
-    <string name="misinformation">Informacion erronea</string>
-    <string name="snack_recap_title_required">El titulo no puede estar vacio.</string>
-    <string name="snack_recap_season_required">La temporada no puede estar vacia.</string>
-    <string name="snack_recap_episode_required">El episodio no puede estar vacio.</string>
 
 </resources>

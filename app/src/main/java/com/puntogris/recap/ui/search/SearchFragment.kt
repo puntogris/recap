@@ -26,7 +26,7 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
     override val adapter: FragmentStateAdapter
         get() = SearchSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
 
-    override val tabsNames = listOf("Recaps", "Usuarios")
+    override val tabsNames: Array<String> = resources.getStringArray(R.array.search_tabs)
 
     override val viewModel: SearchViewModel by viewModels()
 
