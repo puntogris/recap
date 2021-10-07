@@ -7,6 +7,15 @@
 
     <!-- Actions -->
     <string name="action_undo">Undo</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_send">Send</string>
+    <string name="action_apply">Apply</string>
+
+    <!-- Login -->
+    <string name="action_continue_anonymously">Continue anonymously</string>
+    <string name="action_login_with_google">Login con google</string>
+    <string name="login_subtitle">The biggest recap database free forever by fans for fans</string>
+    <string name="login_title">Sharing starts here</string>
 
     <!-- Profile -->
     <string-array name="profile_tabs">
@@ -16,6 +25,15 @@
     </string-array>
 
     <!-- Search -->
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort_by">Sort by</string>
+    <string name="likes">Likes</string>
+    <string name="filter_by">Filter by</string>
+    <string name="order_date">Date</string>
+    <string name="filter_low">Low</string>
+    <string name="filter_high">High</string>
+
     <string-array name="search_tabs">
         <item>Recaps</item>
         <item>Users</item>
@@ -67,6 +85,7 @@
     <string name="snack_recap_title_required">Title can\'t be empty.</string>
     <string name="snack_recap_season_required">Season can\'t be empty.</string>
     <string name="snack_recap_episode_required">Episode can\'t be empty.</string>
+    <string name="report_recap_title">Report reason</string>
 
     <!-- About -->
     <string name="about">About</string>
@@ -126,5 +145,10 @@
         <item>Delete</item>
     </string-array>
     <string name="action">Action</string>
+
+    <!-- Languages -->
+    <string name="english">English</string>
+    <string name="spanish">Spanish</string>
+    <string name="portuguese">Portuguese</string>
 
 </resources>

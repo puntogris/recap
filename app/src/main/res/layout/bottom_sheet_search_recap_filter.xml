@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_5"
-                android:text="string/sort_by"
+                android:text="@string/filter_by"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-medium" />
 
@@ -35,23 +35,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_7"
                 app:singleSelection="true"
+                app:checkedButton="@+id/order_latest_button"
                 app:selectionRequired="true">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/order_relevance_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="string/filter_relevance"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/order_latest_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="string/filter_latest"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                    android:text="@string/order_popular"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/order_relevance_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/order_date"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <TextView
@@ -59,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_5"
-                android:text="string/content_filter"
+                android:text="@string/sort_by"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-medium" />
 
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_7"
                 app:singleSelection="true"
+                app:checkedButton="@+id/content_filter_high_button"
                 app:selectionRequired="true">
 
                 <com.google.android.material.button.MaterialButton
@@ -76,7 +78,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="tring/filter_low"
+                    android:text="@string/filter_low"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
                 <com.google.android.material.button.MaterialButton
@@ -84,7 +86,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="string/filter_high"
+                    android:text="@string/filter_high"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -93,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_5"
-                android:text="string/filter_color"
+                android:text="@string/language"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-medium" />
 
@@ -107,60 +109,19 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
 
                 <AutoCompleteTextView
+                    android:id="@+id/languages_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/orientation_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/keyline_5"
-                android:text="aaaa"
-                android:textSize="16sp"
-                android:fontFamily="sans-serif-medium" />
-
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/orientation_toggle_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/keyline_7"
-                app:singleSelection="true"
-                app:selectionRequired="true">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/orientation_any_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="ANY" />
-                <!--            style="@style/Widget.MaterialComponents.Button.OutlinedButton.IconOnly"-->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/orientation_portrait_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/orientation_landscape_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/orientation_square_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </com.google.android.material.button.MaterialButtonToggleGroup>
-
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/apply_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="apply"
+                android:text="@string/action_apply"
+                android:onClick="@{()-> bottomSheet.onApplyFilters()}"
                 style="@style/Widget.MaterialComponents.Button" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

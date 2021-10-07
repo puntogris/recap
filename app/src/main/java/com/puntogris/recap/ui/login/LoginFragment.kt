@@ -25,11 +25,11 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
 
-    private lateinit var UiListener: UiListener
+    private lateinit var uiListener: UiListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        UiListener = context as UiListener
+        uiListener = context as UiListener
     }
 
     override fun initializeViews() {
@@ -46,7 +46,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
                 binding.contentLoadingLayout.show()
             }
             else if (it.resultCode == Activity.RESULT_CANCELED) {
-                UiListener.showSnackBar(getString(R.string.snack_fail_login))
+                uiListener.showSnackBar(getString(R.string.snack_fail_login))
             }
         }
     }
@@ -57,7 +57,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
             val account = task.getResult(ApiException::class.java)!!
             authUserIntoFirebase(account.idToken!!)
         } catch (e: ApiException) {
-            UiListener.showSnackBar(getString(R.string.snack_fail_login))
+            uiListener.showSnackBar(getString(R.string.snack_fail_login))
         }
     }
 
@@ -72,14 +72,14 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login
     private fun handleAuthUserIntoFirebaseResult(result: LoginResult){
         when (result) {
             is LoginResult.Error -> {
-                UiListener.showSnackBar(getString(R.string.snack_fail_login))
+                uiListener.showSnackBar(getString(R.string.snack_fail_login))
             }
             LoginResult.InProgress -> {
                 binding.contentLoadingLayout.show()
             }
             is LoginResult.Success -> {
                 findNavController().navigateUp()
-                UiListener.showSnackBar("Sesion iniciada correctamente.")
+                uiListener.showSnackBar("Sesion iniciada correctamente.")
             }
         }
     }
