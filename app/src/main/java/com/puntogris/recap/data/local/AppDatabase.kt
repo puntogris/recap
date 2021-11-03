@@ -6,9 +6,7 @@ import androidx.room.TypeConverters
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.utils.Converters
 
-@Database(entities = [
-    Recap::class
-                     ], version = 1, exportSchema = false)
+@Database(entities = [Recap::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun recapDao(): RecapDao

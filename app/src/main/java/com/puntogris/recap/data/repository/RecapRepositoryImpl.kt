@@ -1,4 +1,4 @@
-package com.puntogris.recap.data.repo.recap
+package com.puntogris.recap.data.repository
 
 import android.content.Context
 import android.net.Uri
@@ -11,6 +11,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.data.local.RecapDao
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
+import com.puntogris.recap.domain.repository.RecapRepository
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.model.RecapInteractions
 import com.puntogris.recap.utils.*
@@ -21,21 +22,19 @@ import com.puntogris.recap.utils.Constants.INTERACTIONS_COLLECTION
 import com.puntogris.recap.utils.Constants.RECAPS_COLLECTION
 import com.puntogris.recap.utils.Constants.SQUARE_APP_LOGO_URL
 import com.puntogris.recap.utils.Constants.USERS_COLLECTION
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class RecapRepository @Inject constructor(
+class RecapRepositoryImpl(
     private val firebase: FirebaseDataSource,
     private val recapDao: RecapDao,
-    @ApplicationContext private val context: Context
-):IRecapRepository {
+    private val context: Context
+) : RecapRepository {
 
-    override suspend fun saveRecapIntoDb(recap: Recap): SimpleResult  = withContext(Dispatchers.IO){
-        try {
+    override suspend fun saveRecapIntoDb(recap: Recap): SimpleResult = withContext(Dispatchers.IO) {
+        SimpleResult.build {
             val ref = firebase.firestore
                 .collection(USERS_COLLECTION)
                 .document(firebase.currentUid()!!)
@@ -45,14 +44,10 @@ class RecapRepository @Inject constructor(
             recap.id = ref.id
             recap.deepLink = generateRecapDynamicLink(recap)
             ref.set(recap).await()
-
-            SimpleResult.Success
-        }catch (E:Exception){
-            SimpleResult.Failure
         }
     }
 
-    private suspend fun generateRecapDynamicLink(recap: Recap): String{
+    private suspend fun generateRecapDynamicLink(recap: Recap): String {
         return firebase.links.shortLinkAsync {
             link = Uri.parse(DEEP_LINK_PATH + recap.id)
             domainUriPrefix = DOMAIN_URI_PREFIX
@@ -74,7 +69,7 @@ class RecapRepository @Inject constructor(
         val baseQuery = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
-        val query = when(order){
+        val query = when (order) {
             RecapOrder.LATEST -> baseQuery.orderBy("created", Query.Direction.DESCENDING)
             RecapOrder.OLDEST -> baseQuery.orderBy("created", Query.Direction.ASCENDING)
             RecapOrder.POPULAR -> baseQuery.orderBy("likes", Query.Direction.DESCENDING)
@@ -84,22 +79,24 @@ class RecapRepository @Inject constructor(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
-                maxSize = 200)
-        ){ FirestoreRecapPagingSource(query) }.flow
+                maxSize = 200
+            )
+        ) { FirestoreRecapPagingSource(query) }.flow
     }
 
     override fun getReviewsPagingData(order: ReviewOrder): Flow<PagingData<Recap>> {
         val query = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
-            .whereEqualTo("aproved",false)
+            .whereEqualTo("aproved", false)
 
         return Pager(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
-                maxSize = 200)
-        ){ FirestoreRecapPagingSource(query) }.flow
+                maxSize = 200
+            )
+        ) { FirestoreRecapPagingSource(query) }.flow
     }
 
     override fun getDraftsPagingData(): Flow<PagingData<Recap>> {
@@ -107,38 +104,38 @@ class RecapRepository @Inject constructor(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
-                maxSize = 200)
-        ){ recapDao.getDraftsPaged() }.flow
+                maxSize = 200
+            )
+        ) { recapDao.getDraftsPaged() }.flow
     }
 
-    override suspend fun getRecapWithId(recapId: String): Result<Recap> = withContext(Dispatchers.IO){
-        try {
-            val recap = firebase
+    override suspend fun getRecapWithId(recapId: String): Result<Exception, Recap> =
+        withContext(Dispatchers.IO) {
+            Result.build {
+                firebase
+                    .firestore
+                    .collection(RECAPS_COLLECTION)
+                    .document(recapId)
+                    .get()
+                    .await()
+                    .toObject(Recap::class.java)!!
+
+            }
+        }
+
+    override suspend fun getUserRecapInteractions(recapId: String): RecapInteractions? =
+        withContext(Dispatchers.IO) {
+            firebase
                 .firestore
-                .collection(RECAPS_COLLECTION)
+                .collection(USERS_COLLECTION)
+                .document(firebase.currentUid()!!)
+                .collection(INTERACTIONS_COLLECTION)
                 .document(recapId)
                 .get()
                 .await()
-                .toObject(Recap::class.java)
+                .toObject(RecapInteractions::class.java)
 
-            Result.Success(recap!!)
-        }catch (e:Exception){
-            Result.Error(e)
         }
-    }
-
-    override suspend fun getUserRecapInteractions(recapId: String): RecapInteractions? = withContext(Dispatchers.IO){
-        firebase
-            .firestore
-            .collection(USERS_COLLECTION)
-            .document(firebase.currentUid()!!)
-            .collection(INTERACTIONS_COLLECTION)
-            .document(recapId)
-            .get()
-            .await()
-            .toObject(RecapInteractions::class.java)
-
-    }
 
     override suspend fun deleteDraft(recap: Recap): SimpleResult {
         return if (recapDao.delete(recap.id) != 0) SimpleResult.Success else SimpleResult.Failure

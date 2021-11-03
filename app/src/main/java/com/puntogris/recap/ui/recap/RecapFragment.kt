@@ -7,14 +7,14 @@ import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRecapBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.Result
 import com.puntogris.recap.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.utils.showSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap) {
+class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragment_recap) {
 
     private val viewModel: RecapViewModel by viewModels()
     private val args: RecapFragmentArgs by navArgs()
@@ -36,7 +36,7 @@ class RecapFragment : BaseFragment<FragmentRecapBinding>(R.layout.fragment_recap
 
                 }
                 is Result.Success -> {
-                    viewModel.updateRecap(it.data)
+                    viewModel.updateRecap(it.value)
                 }
             }
         }

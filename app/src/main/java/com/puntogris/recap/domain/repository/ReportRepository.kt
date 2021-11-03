@@ -1,8 +1,8 @@
-package com.puntogris.recap.data.repo.report
+package com.puntogris.recap.domain.repository
 
 import com.puntogris.recap.model.Report
 import com.puntogris.recap.utils.SimpleResult
 
-interface IReportRepository {
+interface ReportRepository {
     suspend fun sendRecapReport(report: Report): SimpleResult
 }

@@ -12,7 +12,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileContentBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileHeaderBinding
-import com.puntogris.recap.ui.base.BaseBottomSheetFragment
+import com.puntogris.recap.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.recap.utils.SimpleResult
 import com.puntogris.recap.utils.loadProfilePicture
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeBottomNavigationDrawer :
-    BaseBottomSheetFragment<MainBottomNavigationDrawerBinding>(R.layout.main_bottom_navigation_drawer) {
+    BaseBindingBottomSheetFragment<MainBottomNavigationDrawerBinding>(R.layout.main_bottom_navigation_drawer) {
 
     private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
 

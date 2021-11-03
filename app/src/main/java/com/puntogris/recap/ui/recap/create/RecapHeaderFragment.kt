@@ -6,7 +6,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRecapHeaderBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.ui.recap.create.RecapHeaderValidator.*
 import com.puntogris.recap.utils.getIntOrNull
 import com.puntogris.recap.utils.getString
@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecapHeaderFragment :BaseFragment<FragmentRecapHeaderBinding>(R.layout.fragment_recap_header) {
+class RecapHeaderFragment :BaseBindingFragment<FragmentRecapHeaderBinding>(R.layout.fragment_recap_header) {
 
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
     private val args: RecapHeaderFragmentArgs by navArgs()

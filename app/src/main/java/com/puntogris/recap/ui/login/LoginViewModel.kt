@@ -1,7 +1,7 @@
 package com.puntogris.recap.ui.login
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.data.repo.login.LoginRepository
+import com.puntogris.recap.domain.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -2,9 +2,9 @@ package com.puntogris.recap.ui.home
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.puntogris.recap.data.repo.login.LoginRepository
-import com.puntogris.recap.data.repo.recap.RecapRepository
-import com.puntogris.recap.data.repo.user.UserRepository
+import com.puntogris.recap.domain.repository.LoginRepository
+import com.puntogris.recap.domain.repository.RecapRepository
+import com.puntogris.recap.domain.repository.UserRepository
 import com.puntogris.recap.ui.base.BaseRvViewModel
 import com.puntogris.recap.utils.RecapOrder
 import com.puntogris.recap.utils.ReviewOrder

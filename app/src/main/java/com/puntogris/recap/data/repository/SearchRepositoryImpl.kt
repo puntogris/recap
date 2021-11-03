@@ -1,4 +1,4 @@
-package com.puntogris.recap.data.repo.search
+package com.puntogris.recap.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -6,16 +6,16 @@ import androidx.paging.PagingData
 import com.puntogris.recap.data.remote.FirebaseDataSource
 import com.puntogris.recap.data.remote.FirestorePublicProfilePagingSource
 import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
+import com.puntogris.recap.domain.repository.SearchRepository
 import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.utils.Constants.PUBLIC_PROFILE_COLLECTION
 import com.puntogris.recap.utils.Constants.RECAPS_COLLECTION
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class SearchRepository @Inject constructor(
+class SearchRepositoryImpl(
     private val firebase: FirebaseDataSource
-): ISearchRepository {
+) : SearchRepository {
 
     override fun searchRecaps(query: String): Flow<PagingData<Recap>> {
         val firebaseQuery = firebase
@@ -27,8 +27,9 @@ class SearchRepository @Inject constructor(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
-                maxSize = 200)
-        ){ FirestoreRecapPagingSource(firebaseQuery) }.flow
+                maxSize = 200
+            )
+        ) { FirestoreRecapPagingSource(firebaseQuery) }.flow
     }
 
     override fun searchUsers(query: String): Flow<PagingData<PublicProfile>> {
@@ -40,7 +41,8 @@ class SearchRepository @Inject constructor(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
-                maxSize = 200)
-        ){ FirestorePublicProfilePagingSource(firebaseQuery) }.flow
+                maxSize = 200
+            )
+        ) { FirestorePublicProfilePagingSource(firebaseQuery) }.flow
     }
 }

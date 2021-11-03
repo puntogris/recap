@@ -3,14 +3,14 @@ package com.puntogris.recap.ui.recap.create
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.data.repo.draft.DraftRepository
+import com.puntogris.recap.data.repository.DraftRepositoryImpl
 import com.puntogris.recap.model.Recap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class CreateRecapViewModel @Inject constructor(
-    private val draftRepository: DraftRepository
+    private val draftRepository: DraftRepositoryImpl
 ): ViewModel() {
 
     private val _showMenu = MutableLiveData(false)

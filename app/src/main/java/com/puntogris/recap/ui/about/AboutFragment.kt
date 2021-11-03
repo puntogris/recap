@@ -2,10 +2,10 @@ package com.puntogris.recap.ui.about
 
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentAboutBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 
-class AboutFragment: BaseFragment<FragmentAboutBinding>(R.layout.fragment_about) {
+class AboutFragment: BaseBindingFragment<FragmentAboutBinding>(R.layout.fragment_about) {
 
     override fun initializeViews() {
         inflatePreferences()

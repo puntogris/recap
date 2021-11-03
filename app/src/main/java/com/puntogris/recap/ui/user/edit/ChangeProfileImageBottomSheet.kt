@@ -5,13 +5,13 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.BottomSheetChangeProfileImageBinding
-import com.puntogris.recap.ui.base.BaseBottomSheetFragment
+import com.puntogris.recap.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.recap.utils.EditPhotoOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ChangeProfileImageBottomSheet:
-    BaseBottomSheetFragment<BottomSheetChangeProfileImageBinding>(R.layout.bottom_sheet_change_profile_image) {
+    BaseBindingBottomSheetFragment<BottomSheetChangeProfileImageBinding>(R.layout.bottom_sheet_change_profile_image) {
 
     override fun initializeViews() {
         binding.bottomSheet = this

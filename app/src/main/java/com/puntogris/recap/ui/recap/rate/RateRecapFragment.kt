@@ -6,13 +6,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRateRecapBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.Result
 import com.puntogris.recap.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RateRecapFragment : BaseFragment<FragmentRateRecapBinding>(R.layout.fragment_rate_recap) {
+class RateRecapFragment : BaseBindingFragment<FragmentRateRecapBinding>(R.layout.fragment_rate_recap) {
 
     private val viewModel: RateRecapViewModel by viewModels()
     private val args: RateRecapFragmentArgs by navArgs()

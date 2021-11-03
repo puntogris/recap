@@ -7,19 +7,18 @@ import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.ActivityMainBinding
-import com.puntogris.recap.ui.base.BaseActivity
+import com.puntogris.recap.ui.base.BaseBindingActivity
 import com.puntogris.recap.utils.getNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
     private lateinit var navController: NavController
     private val viewModel: MainViewModel by viewModels()
 
     override fun preInitViews() {
         installSplashScreen()
-
     }
 
     override fun initializeViews() {

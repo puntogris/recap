@@ -7,14 +7,14 @@ import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.BottomSheetReportRecapBinding
 import com.puntogris.recap.model.Report
-import com.puntogris.recap.ui.base.BaseBottomSheetFragment
+import com.puntogris.recap.ui.base.BaseBindingBottomSheetFragment
 import com.puntogris.recap.utils.SimpleResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ReportRecapBottomSheet:
-    BaseBottomSheetFragment<BottomSheetReportRecapBinding>(R.layout.bottom_sheet_report_recap) {
+    BaseBindingBottomSheetFragment<BottomSheetReportRecapBinding>(R.layout.bottom_sheet_report_recap) {
 
     private val viewModel: ReportViewModel by viewModels()
     private val args: ReportRecapBottomSheetArgs by navArgs()

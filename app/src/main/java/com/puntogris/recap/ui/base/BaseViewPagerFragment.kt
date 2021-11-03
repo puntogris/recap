@@ -6,7 +6,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 abstract class BaseViewPagerFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
-    BaseFragment<T>(layout),
+    BaseBindingFragment<T>(layout),
     PagerConfiguration,
     TabLayout.OnTabSelectedListener
 {

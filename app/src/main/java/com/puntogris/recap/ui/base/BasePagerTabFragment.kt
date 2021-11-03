@@ -7,7 +7,7 @@ import com.puntogris.recap.utils.PagingStateListener
 import com.puntogris.recap.utils.scrollToTop
 
 abstract class BasePagerTabFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
-    BaseFragment<T>(layout), PagerTabConfiguration{
+    BaseBindingFragment<T>(layout), PagerTabConfiguration{
 
     private lateinit var stateListener: PagingStateListener
 

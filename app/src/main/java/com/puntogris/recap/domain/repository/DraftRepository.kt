@@ -1,8 +1,8 @@
-package com.puntogris.recap.data.repo.draft
+package com.puntogris.recap.domain.repository
 
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.utils.SimpleResult
 
-interface IDraftRepository {
+interface DraftRepository {
     suspend fun saveRecapLocalDb(recap: Recap): SimpleResult
 }

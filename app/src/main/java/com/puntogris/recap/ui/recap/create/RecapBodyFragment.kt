@@ -5,13 +5,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRecapBodyBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecapBodyFragment : BaseFragment<FragmentRecapBodyBinding>(R.layout.fragment_recap_body) {
+class RecapBodyFragment : BaseBindingFragment<FragmentRecapBodyBinding>(R.layout.fragment_recap_body) {
 
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
 

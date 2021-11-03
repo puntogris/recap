@@ -12,7 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentLoginBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.ui.main.UiListener
 import com.puntogris.recap.utils.LoginResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginFragment : BaseFragment<FragmentLoginBinding>(R.layout.fragment_login) {
+class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(R.layout.fragment_login) {
 
     private val viewModel: LoginViewModel by viewModels()
     private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>

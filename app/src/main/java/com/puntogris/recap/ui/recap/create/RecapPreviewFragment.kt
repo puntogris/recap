@@ -4,12 +4,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentRecapPreviewBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecapPreviewFragment : BaseFragment<FragmentRecapPreviewBinding>(R.layout.fragment_recap_preview) {
+class RecapPreviewFragment : BaseBindingFragment<FragmentRecapPreviewBinding>(R.layout.fragment_recap_preview) {
 
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
 

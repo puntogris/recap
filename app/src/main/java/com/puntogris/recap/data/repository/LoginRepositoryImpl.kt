@@ -1,4 +1,4 @@
-package com.puntogris.recap.data.repo.login
+package com.puntogris.recap.data.repository
 
 import android.content.Context
 import android.content.Intent
@@ -8,17 +8,16 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.domain.repository.LoginRepository
 import com.puntogris.recap.utils.LoginResult
 import com.puntogris.recap.utils.SimpleResult
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import javax.inject.Inject
 
-class LoginRepository @Inject constructor(
-    @ApplicationContext private val context: Context,
+class LoginRepositoryImpl(
+    private val context: Context,
     private val firebase: FirebaseDataSource
-    ): ILoginRepository {
+) : LoginRepository {
 
     private fun getGoogleSignInClient(): GoogleSignInClient {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -35,7 +34,7 @@ class LoginRepository @Inject constructor(
 
         firebase.auth.signInWithCredential(credential)
             .addOnSuccessListener {
-             //   val firestoreUser = getUserPrivateDataFromFirebaseUser(it.user)
+                //   val firestoreUser = getUserPrivateDataFromFirebaseUser(it.user)
                 result.value = LoginResult.Success()
             }
             .addOnFailureListener { result.value = LoginResult.Error() }
@@ -48,13 +47,9 @@ class LoginRepository @Inject constructor(
         return getGoogleSignInClient().signInIntent
     }
 
-    override suspend fun signOutUserFromFirebaseAndGoogle(): SimpleResult {
-        return try {
-            firebase.signOut()
-            getGoogleSignInClient().signOut()
-            SimpleResult.Success
-        }catch (e:Exception){
-            SimpleResult.Failure
-        }
+    override suspend fun signOutUserFromFirebaseAndGoogle() = SimpleResult.build {
+        firebase.signOut()
+        getGoogleSignInClient().signOut()
     }
+
 }

@@ -4,7 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.data.repo.user.UserRepository
+import com.puntogris.recap.domain.repository.UserRepository
 import com.puntogris.recap.model.EditProfile
 import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.utils.EditProfileResult

@@ -1,7 +1,7 @@
 package com.puntogris.recap.ui.recap.rate
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.data.repo.rating.RatingRepository
+import com.puntogris.recap.data.repository.RatingRepositoryImpl
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.model.Review
 import com.puntogris.recap.utils.SimpleResult
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RateRecapViewModel @Inject constructor(
-    private val ratingRepository: RatingRepository
+    private val ratingRepository: RatingRepositoryImpl
 ): ViewModel() {
 
     suspend fun checkRatingData(recapId: String) = ratingRepository.checkIfUserRatedRecap(recapId)

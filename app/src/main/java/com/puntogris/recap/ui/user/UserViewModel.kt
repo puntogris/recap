@@ -2,9 +2,9 @@ package com.puntogris.recap.ui.user
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.puntogris.recap.data.repo.recap.RecapRepository
-import com.puntogris.recap.data.repo.search.SearchRepository
-import com.puntogris.recap.data.repo.user.UserRepository
+import com.puntogris.recap.domain.repository.RecapRepository
+import com.puntogris.recap.domain.repository.SearchRepository
+import com.puntogris.recap.domain.repository.UserRepository
 import com.puntogris.recap.model.PublicProfile
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.ui.base.BaseRvViewModel
@@ -44,7 +44,7 @@ class UserViewModel @Inject constructor(
         viewModelScope.launch {
             val result = userRepository.getPublicProfileWithId(userId)
             if (result is Result.Success){
-                setUser(result.data)
+                setUser(result.value)
             }
         }
     }

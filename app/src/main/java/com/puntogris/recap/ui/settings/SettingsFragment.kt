@@ -2,12 +2,12 @@ package com.puntogris.recap.ui.settings
 
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentSettingsBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.registerToolbarBackButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
+class SettingsFragment : BaseBindingFragment<FragmentSettingsBinding>(R.layout.fragment_settings) {
 
     override fun initializeViews() {
         inflatePreferences()

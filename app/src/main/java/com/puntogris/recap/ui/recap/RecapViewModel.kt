@@ -1,7 +1,7 @@
 package com.puntogris.recap.ui.recap
 
 import androidx.lifecycle.*
-import com.puntogris.recap.data.repo.recap.RecapRepository
+import com.puntogris.recap.domain.repository.RecapRepository
 import com.puntogris.recap.model.Recap
 import com.puntogris.recap.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel

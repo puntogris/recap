@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import com.puntogris.recap.ui.main.UiListener
 import com.puntogris.recap.utils.getNavHostFragment
 
-abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
+abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
     AppCompatActivity(), UiListener
 {
 

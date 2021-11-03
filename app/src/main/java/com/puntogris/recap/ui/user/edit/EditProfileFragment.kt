@@ -9,14 +9,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentEditProfileBinding
-import com.puntogris.recap.ui.base.BaseFragment
+import com.puntogris.recap.ui.base.BaseBindingFragment
 import com.puntogris.recap.utils.*
 import com.puntogris.recap.utils.EditProfileResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>(R.layout.fragment_edit_profile) {
+class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.layout.fragment_edit_profile) {
 
     private val args: EditProfileFragmentArgs by navArgs()
     private val viewModel: EditProfileViewModel by viewModels()
