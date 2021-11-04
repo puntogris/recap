@@ -23,7 +23,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/bottom_sheet_handle" />
 
-            <com.puntogris.recap.ui.widget.ExpandableCardView
+            <com.puntogris.recap.core.presentation.widget.ExpandableCardView
                 android:id="@+id/expandable_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

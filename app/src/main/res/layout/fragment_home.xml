@@ -6,21 +6,21 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.home.HomeFragment" />
+            type="com.puntogris.recap.feature_recap.presentation.main_feed.HomeFragment" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".feature_recap.presentation.main_feed.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.puntogris.recap.ui.widget.AutoSizeTabLayout
+        <com.puntogris.recap.core.presentation.widget.AutoSizeTabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{()-> fragment.navigateToCreateRecap()}"
-            app:layout_behavior="com.puntogris.recap.ui.widget.ScrollAwareFabBehaviour"
+            app:layout_behavior=".core.presentation.widget.ScrollAwareFabBehaviour"
             app:srcCompat="@drawable/ic_baseline_add_24"
             app:layout_anchor="@id/bottomAppBar"
             tools:ignore="ContentDescription" />

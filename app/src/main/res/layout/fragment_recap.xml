@@ -6,17 +6,17 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.recap.RecapFragment" />
+            type="com.puntogris.recap.feature_recap.presentation.RecapFragment" />
         <variable
             name="viewModel"
-            type="com.puntogris.recap.ui.recap.RecapViewModel" />
+            type="com.puntogris.recap.feature_recap.presentation.RecapViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:background="#fff"
-        tools:context=".ui.recap.RecapFragment">
+        tools:context=".feature_recap.presentation.RecapFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"

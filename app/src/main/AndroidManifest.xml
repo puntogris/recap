@@ -3,7 +3,7 @@
     package="com.puntogris.recap">
 
     <application
-        android:name=".RecapApp"
+        android:name=".RecapApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:theme="@style/Recap.Theme.Starting"
         android:fullBackupContent="false">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".core.presentation.main.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>

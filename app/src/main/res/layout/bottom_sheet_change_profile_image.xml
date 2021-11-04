@@ -5,7 +5,7 @@
     <data>
         <variable
             name="bottomSheet"
-            type="com.puntogris.recap.ui.user.edit.ChangeProfileImageBottomSheet" />
+            type="com.puntogris.recap.feature_profile.presentation.edit_profile.ChangeProfileImageBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

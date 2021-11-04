@@ -4,7 +4,7 @@
     <data>
         <variable
             name="profile"
-            type="com.puntogris.recap.model.PublicProfile" />
+            type="com.puntogris.recap.feature_profile.domain.model.PublicProfile" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

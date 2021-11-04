@@ -6,13 +6,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.search.SearchFragment" />
+            type="com.puntogris.recap.feature_search.presentation.SearchFragment" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.search.SearchFragment">
+        tools:context=".feature_search.presentation.SearchFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -52,7 +52,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.appbar.MaterialToolbar>
 
-            <com.puntogris.recap.ui.widget.AutoSizeTabLayout
+            <com.puntogris.recap.core.presentation.widget.AutoSizeTabLayout
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             app:elevation="@dimen/keyline_7"
             android:onClick="@{()-> fragment.showFilterBottomSheet()}"
             app:icon="@drawable/ic_baseline_filter_list_24"
-            app:layout_behavior="com.puntogris.recap.ui.widget.ScrollAwareExtendedFabBehavior"
+            app:layout_behavior=".core.presentation.widget.ScrollAwareExtendedFabBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

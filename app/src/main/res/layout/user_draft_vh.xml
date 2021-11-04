@@ -6,7 +6,7 @@
     <data>
         <variable
             name="recap"
-            type="com.puntogris.recap.model.Recap" />
+            type="com.puntogris.recap.feature_recap.domain.model.Recap" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

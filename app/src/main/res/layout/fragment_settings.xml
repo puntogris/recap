@@ -5,7 +5,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.settings.SettingsFragment" />
+            type="com.puntogris.recap.feature_settings.presentation.settings.SettingsFragment" />
     </data>
 
     <LinearLayout

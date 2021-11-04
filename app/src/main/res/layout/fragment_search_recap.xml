@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.search.SearchCollectionFragment">
+        tools:context=".presentation.search.SearchCollectionFragment">
 
         <include
             android:id="@+id/empty_state_layout"
@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.puntogris.recap.ui.widget.ContentLoadingLayout
+        <com.puntogris.recap.core.presentation.widget.ContentLoadingLayout
             android:id="@+id/content_loading_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

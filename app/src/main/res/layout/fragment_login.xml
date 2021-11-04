@@ -6,13 +6,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.login.LoginFragment" />
+            type="com.puntogris.recap.feature_auth.presentation.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.puntogris.recap.ui.login.LoginFragment">
+        tools:context="com.puntogris.recap.feature_auth.presentation.LoginFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -97,7 +97,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-        <com.puntogris.recap.ui.widget.ContentLoadingLayout
+        <com.puntogris.recap.core.presentation.widget.ContentLoadingLayout
             android:id="@+id/content_loading_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -1,7 +1,7 @@
 package com.puntogris.recap.diff
 
 import androidx.recyclerview.widget.DiffUtil
-import com.puntogris.recap.model.PublicProfile
+import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 
 class PublicProfileDiffCallBack: DiffUtil.ItemCallback<PublicProfile>() {
     override fun areItemsTheSame(oldItem: PublicProfile, newItem: PublicProfile): Boolean {

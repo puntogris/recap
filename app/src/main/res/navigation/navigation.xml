@@ -6,40 +6,40 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.puntogris.recap.ui.home.HomeFragment">
+        android:name="com.puntogris.recap.feature_recap.presentation.main_feed.HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_recapFragment"
             app:destination="@id/recapFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.recap.ui.login.LoginFragment"/>
+        android:name="com.puntogris.recap.feature_auth.presentation.LoginFragment"/>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.recap.ui.welcome.WelcomeFragment"/>
+        android:name="com.puntogris.recap.WelcomeFragment"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.puntogris.recap.ui.search.SearchFragment">
+        android:name="com.puntogris.recap.feature_search.presentation.SearchFragment">
         <action
             android:id="@+id/action_searchFragment_to_recapFragment"
             app:destination="@id/recapFragment" />
     </fragment>
     <dialog
         android:id="@+id/mainBottomNavigationDrawer"
-        android:name="com.puntogris.recap.ui.home.HomeBottomNavigationDrawer"/>
+        android:name="com.puntogris.recap.feature_recap.presentation.main_feed.HomeBottomNavigationDrawer"/>
     <dialog
         android:id="@+id/searchRecapFilterBottomSheet"
-        android:name="com.puntogris.recap.ui.search.recap.SearchRecapFilterBottomSheet"/>
+        android:name="com.puntogris.recap.feature_search.presentation.recap.SearchRecapFilterBottomSheet"/>
     <fragment
         android:id="@+id/recapFragment"
-        android:name="com.puntogris.recap.ui.recap.RecapFragment">
+        android:name="com.puntogris.recap.feature_recap.presentation.RecapFragment">
         <action
             android:id="@+id/action_recapFragment_to_reportRecapBottomSheet"
             app:destination="@id/reportRecapBottomSheet" />
         <argument
             android:name="recap"
             android:defaultValue="@null"
-            app:argType="com.puntogris.recap.model.Recap"
+            app:argType="com.puntogris.recap.feature_recap.domain.model.Recap"
             app:nullable="true" />
         <argument
             android:name="recapId"
@@ -53,22 +53,22 @@
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.puntogris.recap.ui.about.AboutFragment">
+        android:name="com.puntogris.recap.feature_settings.presentation.about.AboutFragment">
     </fragment>
     <dialog
         android:id="@+id/reviewOrderDialog"
-        android:name="com.puntogris.recap.ui.home.reviews.ReviewOrderDialog"
+        android:name="com.puntogris.recap.feature_recap.presentation.main_feed.reviews.ReviewOrderDialog"
         android:label="ReviewOrderDialog" />
     <dialog
         android:id="@+id/recapOrderDialog"
-        android:name="com.puntogris.recap.ui.home.explore.RecapOrderDialog"
+        android:name="com.puntogris.recap.feature_recap.presentation.main_feed.explore.RecapOrderDialog"
         android:label="RecapOrderDialog" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.puntogris.recap.ui.settings.SettingsFragment"/>
+        android:name="com.puntogris.recap.feature_settings.presentation.settings.SettingsFragment"/>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.puntogris.recap.ui.user.UserFragment" >
+        android:name="com.puntogris.recap.feature_profile.presentation.profile.UserFragment" >
         <argument
             android:name="userId"
             app:argType="string"
@@ -76,7 +76,7 @@
             android:defaultValue="@null" />
         <argument
             android:name="profile"
-            app:argType="com.puntogris.recap.model.PublicProfile"
+            app:argType="com.puntogris.recap.feature_profile.domain.model.PublicProfile"
             app:nullable="true"
             android:defaultValue="@null" />
         <action
@@ -92,7 +92,7 @@
 
     <dialog
         android:id="@+id/reportRecapBottomSheet"
-        android:name="com.puntogris.recap.ui.recap.report.ReportRecapBottomSheet" >
+        android:name="com.puntogris.recap.feature_recap.presentation.report.ReportRecapBottomSheet" >
         <argument
             android:name="recapId"
             app:argType="string" />
@@ -102,49 +102,49 @@
         app:destination="@id/userFragment" />
     <dialog
         android:id="@+id/whatsNewDialog"
-        android:name="com.puntogris.recap.ui.main.WhatsNewDialog" />
+        android:name="com.puntogris.recap.WhatsNewDialog" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.puntogris.recap.ui.user.edit.EditProfileFragment">
+        android:name="com.puntogris.recap.feature_profile.presentation.edit_profile.EditProfileFragment">
         <argument
             android:name="profile"
-            app:argType="com.puntogris.recap.model.PublicProfile" />
+            app:argType="com.puntogris.recap.feature_profile.domain.model.PublicProfile" />
     </fragment>
     <dialog
         android:id="@+id/changeProfileImageBottomSheet"
-        android:name="com.puntogris.recap.ui.user.edit.ChangeProfileImageBottomSheet" />
+        android:name="com.puntogris.recap.feature_profile.presentation.edit_profile.ChangeProfileImageBottomSheet" />
     <navigation android:id="@+id/createRecapGraph"
         app:startDestination="@id/headerRecapFragment">
         <argument
             android:name="recap"
-            app:argType="com.puntogris.recap.model.Recap"
+            app:argType="com.puntogris.recap.feature_recap.domain.model.Recap"
             app:nullable="true"
             android:defaultValue="@null" />
         <fragment
             android:id="@+id/recapBodyFragment"
-            android:name="com.puntogris.recap.ui.recap.create.RecapBodyFragment">
+            android:name="com.puntogris.recap.feature_recap.presentation.create_recap.RecapBodyFragment">
             <action
                 android:id="@+id/action_recapBodyFragment_to_previewRecapFragment"
                 app:destination="@id/previewRecapFragment" />
         </fragment>
         <fragment
             android:id="@+id/headerRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.RecapHeaderFragment" >
+            android:name="com.puntogris.recap.feature_recap.presentation.create_recap.RecapHeaderFragment" >
             <action
                 android:id="@+id/action_headerRecapFragment_to_recapBodyFragment"
                 app:destination="@id/recapBodyFragment" />
             <argument
                 android:name="recap"
-                app:argType="com.puntogris.recap.model.Recap"
+                app:argType="com.puntogris.recap.feature_recap.domain.model.Recap"
                 app:nullable="true"
                 android:defaultValue="@null" />
         </fragment>
         <fragment
             android:id="@+id/publishRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.PublishRecapFragment" />
+            android:name="com.puntogris.recap.feature_recap.presentation.create_recap.PublishRecapFragment" />
         <fragment
             android:id="@+id/previewRecapFragment"
-            android:name="com.puntogris.recap.ui.recap.create.RecapPreviewFragment">
+            android:name="com.puntogris.recap.feature_recap.presentation.create_recap.RecapPreviewFragment">
             <action
                 android:id="@+id/action_reviewRecapFragment_to_publishRecapFragment"
                 app:destination="@id/publishRecapFragment" />
@@ -152,19 +152,19 @@
     </navigation>
     <dialog
         android:id="@+id/selectRatingDialog"
-        android:name="com.puntogris.recap.ui.recap.rate.SelectRatingDialog" >
+        android:name="com.puntogris.recap.feature_recap.presentation.rate.SelectRatingDialog" >
         <argument
             android:name="recapId"
             app:argType="string" />
     </dialog>
     <fragment
         android:id="@+id/rateRecapFragment"
-        android:name="com.puntogris.recap.ui.recap.rate.RateRecapFragment">
+        android:name="com.puntogris.recap.feature_recap.presentation.rate.RateRecapFragment">
         <action
             android:id="@+id/action_rateRecapFragment_to_selectRatingDialog"
             app:destination="@id/selectRatingDialog" />
         <argument
             android:name="recap"
-            app:argType="com.puntogris.recap.model.Recap" />
+            app:argType="com.puntogris.recap.feature_recap.domain.model.Recap" />
     </fragment>
 </navigation>

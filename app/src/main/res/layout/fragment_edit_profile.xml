@@ -6,17 +6,17 @@
     <data>
         <variable
             name="viewModel"
-            type="com.puntogris.recap.ui.user.edit.EditProfileViewModel" />
+            type="com.puntogris.recap.feature_profile.presentation.edit_profile.EditProfileViewModel" />
         <variable
             name="fragment"
-            type="com.puntogris.recap.ui.user.edit.EditProfileFragment" />
+            type="com.puntogris.recap.feature_profile.presentation.edit_profile.EditProfileFragment" />
     </data>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.user.edit.EditProfileFragment">
+        tools:context=".feature_profile.presentation.edit_profile.EditProfileFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
