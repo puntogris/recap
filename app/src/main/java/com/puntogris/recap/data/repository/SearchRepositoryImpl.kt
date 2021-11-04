@@ -3,7 +3,7 @@ package com.puntogris.recap.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.data.remote.FirebaseClients
 import com.puntogris.recap.data.remote.FirestorePublicProfilePagingSource
 import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.domain.repository.SearchRepository
@@ -13,9 +13,7 @@ import com.puntogris.recap.utils.Constants.PUBLIC_PROFILE_COLLECTION
 import com.puntogris.recap.utils.Constants.RECAPS_COLLECTION
 import kotlinx.coroutines.flow.Flow
 
-class SearchRepositoryImpl(
-    private val firebase: FirebaseDataSource
-) : SearchRepository {
+class SearchRepositoryImpl(private val firebase: FirebaseClients) : SearchRepository {
 
     override fun searchRecaps(query: String): Flow<PagingData<Recap>> {
         val firebaseQuery = firebase

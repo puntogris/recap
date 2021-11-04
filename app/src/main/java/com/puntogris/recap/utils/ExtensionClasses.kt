@@ -9,11 +9,11 @@ import com.puntogris.recap.model.RecapInteractions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 
-sealed class SimpleResult{
-    object Success: SimpleResult()
-    object Failure: SimpleResult()
+sealed class SimpleResult {
+    object Success : SimpleResult()
+    object Failure : SimpleResult()
 
-    companion object Factory{
+    companion object Factory {
         inline fun build(function: () -> Unit): SimpleResult =
             try {
                 function.invoke()
@@ -24,28 +24,28 @@ sealed class SimpleResult{
     }
 }
 
-sealed class EditProfileResult{
-    object Success: EditProfileResult()
-    sealed class Failure: EditProfileResult(){
-        object NameLimit: Failure()
-        object BioLimit: Failure()
-        object PhotoLimit: Failure()
-        object AccountIdLimit: Failure()
-        object Error: Failure()
+sealed class EditProfileResult {
+    object Success : EditProfileResult()
+    sealed class Failure : EditProfileResult() {
+        object NameLimit : Failure()
+        object BioLimit : Failure()
+        object PhotoLimit : Failure()
+        object AccountIdLimit : Failure()
+        object Error : Failure()
     }
 }
 
 sealed class LoginResult {
-    object InProgress: LoginResult()
-    class Success : LoginResult()
-    class Error : LoginResult()
+    object InProgress : LoginResult()
+    object Success : LoginResult()
+    object Error : LoginResult()
 }
 
-sealed class Result<out E: Exception, out V> {
+sealed class Result<out E : Exception, out V> {
     data class Success<out V>(val value: V) : Result<Nothing, V>()
-    data class Error<out E: Exception>(val exception: Exception) : Result<E, Nothing>()
+    data class Error<out E : Exception>(val exception: Exception) : Result<E, Nothing>()
 
-    companion object Factory{
+    companion object Factory {
         inline fun <V> build(function: () -> V): Result<Exception, V> =
             try {
                 Success(function.invoke())
@@ -58,12 +58,12 @@ sealed class Result<out E: Exception, out V> {
 sealed class RecapInteractionResult {
     data class Success(val data: RecapInteractions) : RecapInteractionResult()
     data class Error(val exception: Exception) : RecapInteractionResult()
-    object NotFound: RecapInteractionResult()
+    object NotFound : RecapInteractionResult()
 }
 
 enum class RecapOrder(@StringRes val titleRes: Int, val value: String) {
     LATEST(R.string.order_latest, "latest"),
-    OLDEST(R.string.order_oldest,"oldest"),
+    OLDEST(R.string.order_oldest, "oldest"),
     POPULAR(R.string.order_popular, "popular")
 }
 
@@ -72,13 +72,13 @@ enum class ReviewOrder(@StringRes val titleRes: Int, val value: String) {
 }
 
 sealed class RecapResult {
-    object InProgress: RecapResult()
-    class Success(val result: Flow<PagingData<Recap>>): RecapResult()
-    object Error: RecapResult()
+    object InProgress : RecapResult()
+    class Success(val result: Flow<PagingData<Recap>>) : RecapResult()
+    object Error : RecapResult()
 }
 
 @Parcelize
-enum class EditPhotoOptions(val optionRes: String):Parcelable{
+enum class EditPhotoOptions(val optionRes: String) : Parcelable {
     Change("Nueva foto de perfil"),
     Delete("Eliminar foto de perfil")
 }

@@ -1,6 +1,6 @@
 package com.puntogris.recap.data.repository
 
-import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.data.remote.FirebaseClients
 import com.puntogris.recap.domain.repository.RatingRepository
 import com.puntogris.recap.model.Review
 import com.puntogris.recap.utils.Result
@@ -9,9 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class RatingRepositoryImpl(
-    private val firebase: FirebaseDataSource,
-) : RatingRepository {
+class RatingRepositoryImpl(private val firebase: FirebaseClients) : RatingRepository {
 
     override suspend fun sendRecapRating(review: Review): SimpleResult =
         withContext(Dispatchers.IO) {

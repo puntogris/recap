@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.puntogris.recap.data.local.AppDatabase
 import com.puntogris.recap.data.local.RecapDao
-import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.data.remote.FirebaseClients
+import com.puntogris.recap.data.remote.GoogleSingInDataSource
 import com.puntogris.recap.data.repository.DraftRepositoryImpl
 import com.puntogris.recap.domain.repository.DraftRepository
 import com.puntogris.recap.domain.repository.LoginRepository
@@ -52,27 +53,27 @@ class AppModule {
     @Provides
     fun providesDraftRepository(
         recapDao: RecapDao,
-        firebase: FirebaseDataSource
+        firebase: FirebaseClients
     ): DraftRepository {
         return DraftRepositoryImpl(recapDao, firebase)
     }
 
     @Provides
     fun providesLoginRepository(
-        @ApplicationContext context: Context,
-        firebase: FirebaseDataSource
+        firebase: FirebaseClients,
+        googleSingInDataSource: GoogleSingInDataSource
     ): LoginRepository {
-        return LoginRepositoryImpl(context, firebase)
+        return LoginRepositoryImpl(firebase, googleSingInDataSource)
     }
 
     @Provides
-    fun providesRatingRepository(firebase: FirebaseDataSource): RatingRepository {
+    fun providesRatingRepository(firebase: FirebaseClients): RatingRepository {
         return RatingRepositoryImpl(firebase)
     }
 
     @Provides
     fun providesRecapRepository(
-        firebase: FirebaseDataSource,
+        firebase: FirebaseClients,
         recapDao: RecapDao,
         @ApplicationContext context: Context
     ): RecapRepository {
@@ -80,18 +81,18 @@ class AppModule {
     }
 
     @Provides
-    fun providesReportRepository(firebase: FirebaseDataSource): ReportRepository {
+    fun providesReportRepository(firebase: FirebaseClients): ReportRepository {
         return ReportRepositoryImpl(firebase)
     }
 
     @Provides
-    fun providesSearchRepository(firebase: FirebaseDataSource): SearchRepository {
+    fun providesSearchRepository(firebase: FirebaseClients): SearchRepository {
         return SearchRepositoryImpl(firebase)
     }
 
     @Provides
-    fun providesUserRepository(firebase: FirebaseDataSource,
-        @ApplicationContext context: Context
+    fun providesUserRepository(firebase: FirebaseClients,
+                               @ApplicationContext context: Context
     ): UserRepository {
         return UserRepositoryImpl(firebase, context)
     }

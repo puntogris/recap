@@ -6,11 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
-    private val loginRepository: LoginRepository
-):ViewModel() {
+class LoginViewModel @Inject constructor(private val repository: LoginRepository):ViewModel() {
 
-    fun authUserWithFirebase(idToken: String) = loginRepository.firebaseAuthWithGoogle(idToken)
+    fun authUserWithFirebase(idToken: String) = repository.serverAuthWithGoogle(idToken)
 
-    fun getGoogleSignInIntent() = loginRepository.createGoogleSignInIntent()
+    fun getGoogleSignInIntent() = repository.getGoogleSignInIntent()
 }

@@ -5,7 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import com.google.firebase.Timestamp
-import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.data.remote.FirebaseClients
 import com.puntogris.recap.domain.repository.UserRepository
 import com.puntogris.recap.model.EditProfile
 import com.puntogris.recap.model.PrivateProfile
@@ -20,10 +20,8 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 
-class UserRepositoryImpl(
-    private val firebase: FirebaseDataSource,
-    private val context: Context
-) : UserRepository {
+class UserRepositoryImpl(private val firebase: FirebaseClients, private val context: Context) :
+    UserRepository {
 
     override fun isUserLoggedIn() = firebase.auth.currentUser != null
 

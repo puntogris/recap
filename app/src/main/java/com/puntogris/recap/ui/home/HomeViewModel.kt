@@ -80,6 +80,6 @@ class HomeViewModel @Inject constructor(
     suspend fun logOut(): SimpleResult {
         _authorizedLiveData.value = false
         updateUser(null, null, null, null)
-        return loginRepository.signOutUserFromFirebaseAndGoogle()
+        return loginRepository.signOutUserFromServerAndGoogle()
     }
 }

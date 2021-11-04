@@ -9,7 +9,7 @@ import com.google.firebase.dynamiclinks.ktx.*
 import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
 import com.puntogris.recap.data.local.RecapDao
-import com.puntogris.recap.data.remote.FirebaseDataSource
+import com.puntogris.recap.data.remote.FirebaseClients
 import com.puntogris.recap.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.domain.repository.RecapRepository
 import com.puntogris.recap.model.Recap
@@ -28,7 +28,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class RecapRepositoryImpl(
-    private val firebase: FirebaseDataSource,
+    private val firebase: FirebaseClients,
     private val recapDao: RecapDao,
     private val context: Context
 ) : RecapRepository {
