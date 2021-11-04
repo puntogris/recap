@@ -24,22 +24,7 @@ sealed class SimpleResult {
     }
 }
 
-sealed class EditProfileResult {
-    object Success : EditProfileResult()
-    sealed class Failure : EditProfileResult() {
-        object NameLimit : Failure()
-        object BioLimit : Failure()
-        object PhotoLimit : Failure()
-        object AccountIdLimit : Failure()
-        object Error : Failure()
-    }
-}
 
-sealed class LoginResult {
-    object InProgress : LoginResult()
-    object Success : LoginResult()
-    object Error : LoginResult()
-}
 
 sealed class Result<out E : Exception, out V> {
     data class Success<out V>(val value: V) : Result<Nothing, V>()

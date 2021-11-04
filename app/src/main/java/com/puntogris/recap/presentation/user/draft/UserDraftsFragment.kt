@@ -15,7 +15,9 @@ import com.puntogris.recap.core.utils.UiListener
 import com.puntogris.recap.feature_profile.presentation.profile.UserFragment
 import com.puntogris.recap.feature_profile.presentation.UserViewModel
 import com.puntogris.recap.core.utils.SimpleResult
+import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -41,8 +43,10 @@ class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.lay
     }
 
     private fun collectUiState(){
-        viewModel.getDraftsLiveData().observe(viewLifecycleOwner) {
-            adapter.submitData(lifecycle, it)
+        launchAndRepeatWithViewLifecycle {
+            viewModel.getDrafts().collect {
+                adapter.submitData(it)
+            }
         }
     }
 
@@ -56,26 +60,9 @@ class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.lay
             .setNegativeButton(android.R.string.cancel, null)
             .setItems(R.array.draft_actions){ _, i ->
                 if (i == 0) (requireParentFragment() as UserFragment).navigateToCreateRecap(recap)
-                else onDeleteDraftAction(recap)
+                //else onDeleteDraftAction(recap)
             }
             .create().show()
-    }
-
-    private fun onDeleteDraftAction(recap: Recap){
-        lifecycleScope.launch {
-            when(viewModel.deleteDraft(recap)){
-                SimpleResult.Failure -> uiListener.showSnackBar("Error al eliminar borrador")
-                SimpleResult.Success -> onDeleteDraftSuccess(recap)
-            }
-        }
-    }
-
-    private fun onDeleteDraftSuccess(recap: Recap){
-        uiListener.showSnackBar("Draft eliminado"){
-            lifecycleScope.launch {
-                viewModel.undoDraftDeletion(recap)
-            }
-        }
     }
 
 }

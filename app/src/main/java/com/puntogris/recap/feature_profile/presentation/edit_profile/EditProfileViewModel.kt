@@ -4,16 +4,16 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.feature_profile.domain.repository.UserRepository
-import com.puntogris.recap.feature_profile.domain.model.EditProfile
+import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
-import com.puntogris.recap.core.utils.EditProfileResult
+import com.puntogris.recap.feature_profile.domain.use_case.UpdateProfileUseCase
+import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-    private val userRepository: UserRepository
+    private val updateProfileUseCase: UpdateProfileUseCase
 ): ViewModel() {
 
     private var initialProfile: PublicProfile? = null
@@ -28,12 +28,12 @@ class EditProfileViewModel @Inject constructor(
 
     suspend fun saveProfileChanges(): EditProfileResult {
         return if(profileDataChanged()){
-            userRepository.updateUserProfile(getEditProfile())
+            updateProfileUseCase(getEditProfile())
         } else EditProfileResult.Success
     }
 
     private fun getEditProfile() = userProfile.value!!.run {
-        val editProfile = EditProfile(uid = userProfile.value!!.uid)
+        val editProfile = UpdateProfileData(uid = userProfile.value!!.uid)
 
         if (nameChanged()) editProfile.name = name
         if (bioChanged()) editProfile.bio = bio

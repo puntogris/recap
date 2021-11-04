@@ -6,13 +6,13 @@
     <data>
         <variable
             name="fragment"
-            type="com.puntogris.recap.feature_auth.presentation.LoginFragment" />
+            type="com.puntogris.recap.feature_auth.presentation.login.LoginFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.puntogris.recap.feature_auth.presentation.LoginFragment">
+        tools:context="com.puntogris.recap.feature_auth.presentation.login.LoginFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"

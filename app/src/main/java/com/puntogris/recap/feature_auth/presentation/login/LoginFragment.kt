@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_auth.presentation
+package com.puntogris.recap.feature_auth.presentation.login
 
 import android.content.Context
 import android.content.Intent
@@ -14,7 +14,6 @@ import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.UiListener
 import com.puntogris.recap.core.utils.LoginResult
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

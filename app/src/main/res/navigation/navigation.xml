@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.puntogris.recap.feature_auth.presentation.LoginFragment"/>
+        android:name="com.puntogris.recap.feature_auth.presentation.login.LoginFragment"/>
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.puntogris.recap.WelcomeFragment"/>

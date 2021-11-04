@@ -1,6 +1,6 @@
 package com.puntogris.recap.feature_profile.domain.model
 
-class EditProfile(
+class UpdateProfileData(
     val uid: String,
     var imageUri: String? = null,
     var name: String? = null,

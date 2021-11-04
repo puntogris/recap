@@ -2,7 +2,7 @@ package com.puntogris.recap.feature_recap.presentation.main_feed.explore
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.puntogris.recap.diff.RecapDiffCallBack
+import com.puntogris.recap.core.utils.diff.RecapDiffCallBack
 import com.puntogris.recap.feature_recap.domain.model.Recap
 
 class ExploreRecapAdapter(

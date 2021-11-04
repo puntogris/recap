@@ -2,9 +2,9 @@ package com.puntogris.recap.feature_recap.presentation.main_feed
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.puntogris.recap.feature_auth.domain.repository.LoginRepository
+import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
-import com.puntogris.recap.feature_profile.domain.repository.UserRepository
+import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
 import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.ReviewOrder
@@ -15,8 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val recapRepository: RecapRepository,
-    private val userRepository: UserRepository,
-    private val loginRepository: LoginRepository
+    private val profileRepository: ProfileRepository,
+    private val authRepository: AuthRepository
 ): BaseRvViewModel() {
 
     private val _userId = MutableLiveData<String?>()
@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
     private val _profilePictureLiveData = MutableLiveData<String?>()
     val profilePictureLiveData: LiveData<String?> = _profilePictureLiveData
 
-    private val _authorizedLiveData = MutableLiveData(userRepository.isUserLoggedIn())
+    private val _authorizedLiveData = MutableLiveData(profileRepository.isUserLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
 
     private val _recapOrder = MutableLiveData(RecapOrder.LATEST)
@@ -60,7 +60,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun isUserLoggedIn() = userRepository.isUserLoggedIn()
+    fun isUserLoggedIn() = profileRepository.isUserLoggedIn()
 
     private fun updateUser(username: String?, email: String?, profilePicture: String?, uid: String?) {
         _usernameLiveData.postValue(username)
@@ -70,7 +70,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshUserProfile() {
-        val currentUser = userRepository.getFirebaseUser()
+        val currentUser = profileRepository.getFirebaseUser()
         if (currentUser != null) {
             _authorizedLiveData.postValue(true)
             updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString(), currentUser.uid)
@@ -80,6 +80,6 @@ class HomeViewModel @Inject constructor(
     suspend fun logOut(): SimpleResult {
         _authorizedLiveData.value = false
         updateUser(null, null, null, null)
-        return loginRepository.signOutUserFromServerAndGoogle()
+        return authRepository.signOutUserFromServerAndGoogle()
     }
 }

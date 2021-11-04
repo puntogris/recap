@@ -3,17 +3,17 @@ package com.puntogris.recap.feature_auth.data.repository
 import androidx.activity.result.ActivityResult
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.feature_auth.data.datasource.GoogleSingInDataSource
-import com.puntogris.recap.feature_auth.domain.repository.LoginRepository
+import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
 import com.puntogris.recap.core.utils.LoginResult
 import com.puntogris.recap.core.utils.SimpleResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class LoginRepositoryImpl(
+class AuthRepositoryImpl(
     private val firebase: FirebaseClients,
     private val googleSingIn: GoogleSingInDataSource
-) : LoginRepository {
+) : AuthRepository {
 
     override fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
@@ -25,8 +25,6 @@ class LoginRepositoryImpl(
             emit(LoginResult.Error)
         }
     }
-
-    override fun getGoogleSignInIntent() = googleSingIn.createSignIntent()
 
     override suspend fun signOutUserFromServerAndGoogle() = SimpleResult.build {
         firebase.signOut()

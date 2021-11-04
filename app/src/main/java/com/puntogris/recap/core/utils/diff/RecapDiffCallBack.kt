@@ -1,4 +1,4 @@
-package com.puntogris.recap.diff
+package com.puntogris.recap.core.utils.diff
 
 import androidx.recyclerview.widget.DiffUtil
 import com.puntogris.recap.feature_recap.domain.model.Recap

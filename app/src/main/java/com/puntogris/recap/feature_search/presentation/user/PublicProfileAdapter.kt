@@ -2,7 +2,7 @@ package com.puntogris.recap.feature_search.presentation.user
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
-import com.puntogris.recap.diff.PublicProfileDiffCallBack
+import com.puntogris.recap.core.utils.diff.PublicProfileDiffCallBack
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 
 class PublicProfileAdapter(
