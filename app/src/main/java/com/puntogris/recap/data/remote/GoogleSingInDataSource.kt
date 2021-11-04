@@ -1,9 +1,12 @@
 package com.puntogris.recap.data.remote
 
 import android.content.Context
+import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.GoogleAuthProvider
 import com.puntogris.recap.BuildConfig
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.tasks.await
@@ -26,4 +29,9 @@ class GoogleSingInDataSource @Inject constructor(
     }
 
     fun createSignIntent() = getGoogleSignInClient().signInIntent
+
+    suspend fun getCredentialWithIntent(intent: Intent): AuthCredential {
+        val task = GoogleSignIn.getSignedInAccountFromIntent(intent).await().idToken
+        return GoogleAuthProvider.getCredential(task, null)
+    }
 }

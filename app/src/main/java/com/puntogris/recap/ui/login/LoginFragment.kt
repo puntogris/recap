@@ -1,15 +1,13 @@
 package com.puntogris.recap.ui.login
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.common.api.ApiException
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentLoginBinding
 import com.puntogris.recap.ui.base.BaseBindingFragment
@@ -22,10 +20,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(R.layout.fragment_login) {
 
-    private val viewModel: LoginViewModel by viewModels()
-    private lateinit var loginActivityResultLauncher: ActivityResultLauncher<Intent>
-
+    private lateinit var googleSingInLauncher: ActivityResultLauncher<Intent>
     private lateinit var uiListener: UiListener
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -34,45 +31,30 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(R.layout.fragmen
 
     override fun initializeViews() {
         binding.fragment = this
-        binding.toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
         registerActivityResultLauncher()
     }
 
-    private fun registerActivityResultLauncher(){
-        loginActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            binding.contentLoadingLayout.hide()
-            if (it.resultCode == Activity.RESULT_OK) {
-                handleLoginActivityResult(it.data)
-                binding.contentLoadingLayout.show()
+    private fun registerActivityResultLauncher() {
+        googleSingInLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                authGoogleUserIntoServer(it)
             }
-            else if (it.resultCode == Activity.RESULT_CANCELED) {
-                uiListener.showSnackBar(getString(R.string.snack_fail_login))
-            }
-        }
     }
 
-    private fun handleLoginActivityResult(intent: Intent?) {
-        try {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(intent)
-            val account = task.getResult(ApiException::class.java)!!
-            authUserIntoFirebase(account.idToken!!)
-        } catch (e: ApiException) {
-            uiListener.showSnackBar(getString(R.string.snack_fail_login))
-        }
-    }
-
-    private fun authUserIntoFirebase(idToken: String){
+    private fun authGoogleUserIntoServer(result: ActivityResult) {
         lifecycleScope.launch {
-            viewModel.authUserWithFirebase(idToken).collect {
-                handleAuthUserIntoFirebaseResult(it)
-            }
+            viewModel.authGoogleUser(result).collect(::handleAuthUserIntoServerResult)
         }
     }
 
-    private fun handleAuthUserIntoFirebaseResult(result: LoginResult){
+    private fun handleAuthUserIntoServerResult(result: LoginResult) {
         when (result) {
             is LoginResult.Error -> {
                 uiListener.showSnackBar(getString(R.string.snack_fail_login))
+                binding.contentLoadingLayout.hide()
             }
             LoginResult.InProgress -> {
                 binding.contentLoadingLayout.show()
@@ -85,11 +67,10 @@ class LoginFragment : BaseBindingFragment<FragmentLoginBinding>(R.layout.fragmen
     }
 
     fun startLoginWithGoogle() {
-        val intent = viewModel.getGoogleSignInIntent()
-        loginActivityResultLauncher.launch(intent)
+        googleSingInLauncher.launch(viewModel.getGoogleSignInIntent())
     }
 
-    fun onNavigateUp(){
+    fun onNavigateUp() {
         findNavController().navigateUp()
     }
 }

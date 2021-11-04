@@ -1,6 +1,6 @@
 package com.puntogris.recap.data.repository
 
-import com.google.firebase.auth.GoogleAuthProvider
+import androidx.activity.result.ActivityResult
 import com.puntogris.recap.data.remote.FirebaseClients
 import com.puntogris.recap.data.remote.GoogleSingInDataSource
 import com.puntogris.recap.domain.repository.LoginRepository
@@ -15,10 +15,10 @@ class LoginRepositoryImpl(
     private val googleSingIn: GoogleSingInDataSource
 ) : LoginRepository {
 
-    override fun serverAuthWithGoogle(idToken: String): Flow<LoginResult> = flow {
+    override fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
             emit(LoginResult.InProgress)
-            val credential = GoogleAuthProvider.getCredential(idToken, null)
+            val credential = googleSingIn.getCredentialWithIntent(result.data!!)
             firebase.auth.signInWithCredential(credential).await()
             emit(LoginResult.Success)
         } catch (e: Exception) {
@@ -32,5 +32,5 @@ class LoginRepositoryImpl(
         firebase.signOut()
         googleSingIn.signOut()
     }
-
 }
+
