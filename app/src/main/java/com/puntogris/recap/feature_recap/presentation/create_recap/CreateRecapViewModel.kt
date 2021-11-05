@@ -4,13 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.puntogris.recap.feature_recap.domain.model.Recap
+import com.puntogris.recap.feature_recap.domain.use_case.PublishRecapUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.SaveRecapDraftUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
 class CreateRecapViewModel @Inject constructor(
-    private val saveRecapDraftUseCase: SaveRecapDraftUseCase
+    private val saveRecapDraftUseCase: SaveRecapDraftUseCase,
+    private val publishRecapUseCase: PublishRecapUseCase
 ) : ViewModel() {
 
     private val _showMenu = MutableLiveData(false)
@@ -20,8 +25,8 @@ class CreateRecapViewModel @Inject constructor(
         _showMenu.value = !_showMenu.value!!
     }
 
-    private val _recap = MutableLiveData(Recap())
-    val recap: LiveData<Recap> = _recap
+    private val _recap = MutableStateFlow(Recap())
+    val recap: StateFlow<Recap> = _recap.asStateFlow()
 
     fun updateRecap(title: String, season: Int, episode: Int) {
         _recap.value?.apply {
@@ -32,12 +37,15 @@ class CreateRecapViewModel @Inject constructor(
     }
 
     fun updateRecapBody(body: String) {
-        _recap.value?.body = body
+        _recap.value.body = body
     }
 
-    suspend fun saveRecapLocally() = saveRecapDraftUseCase(recap.value!!)
+    suspend fun saveRecapLocally() = saveRecapDraftUseCase(recap.value)
 
     fun setRecap(recap: Recap) {
         _recap.value = recap
     }
+
+    suspend fun publishRecap() = publishRecapUseCase(recap.value)
+
 }

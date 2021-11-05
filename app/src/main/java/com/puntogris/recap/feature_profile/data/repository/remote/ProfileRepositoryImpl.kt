@@ -65,6 +65,7 @@ class ProfileRepositoryImpl(
                     .document(firebase.currentUid()!!)
                     .get().await().toObject(PrivateProfile::class.java)!!
 
+
                 updateProfileData.name?.let {
                     if (privateData.canEditName()) {
                         publicProfile["name"] = it

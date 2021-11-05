@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.annotation.RawRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
@@ -228,4 +230,10 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     } catch (e: Exception) {
         showSnackBar(getString(R.string.snack_general_error))
     }
+}
+
+fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int){
+    setAnimation(animation)
+    repeatCount = 0
+    playAnimation()
 }

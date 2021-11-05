@@ -61,4 +61,10 @@ class RecapModule {
     fun provideSaveRecapDraftUseCase(repository: RecapRepository): SaveRecapDraftUseCase {
         return SaveRecapDraftUseCase(repository)
     }
+
+    @Singleton
+    @Provides
+    fun providePublishRecapUseCase(repository: RecapRepository): PublishRecapUseCase {
+        return PublishRecapUseCase(repository)
+    }
 }

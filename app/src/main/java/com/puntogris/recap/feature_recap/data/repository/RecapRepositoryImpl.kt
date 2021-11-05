@@ -39,23 +39,23 @@ class RecapRepositoryImpl(
     private val context: Context
 ) : RecapRepository {
 
-    override suspend fun saveRecap(recap: Recap): SimpleResource = withContext(Dispatchers.IO) {
-        SimpleResource.build {
+    override suspend fun publishRecap(recap: Recap): Resource<String> = withContext(Dispatchers.IO) {
+        Resource.build {
             val ref = firebase.firestore
-                .collection(USERS_COLLECTION)
-                .document(firebase.currentUid()!!)
                 .collection(RECAPS_COLLECTION)
                 .document()
 
-            recap.id = ref.id
-            recap.deepLink = generateRecapDynamicLink(recap)
-            ref.set(recap).await()
+            recap.apply {
+                id = ref.id
+                deepLink = generateRecapDynamicLink(title, id)
+                ref.set(recap).await()
+            }.deepLink
         }
     }
 
-    private suspend fun generateRecapDynamicLink(recap: Recap): String {
+    private suspend fun generateRecapDynamicLink(title: String, id: String): String {
         return firebase.links.shortLinkAsync {
-            link = Uri.parse(DEEP_LINK_PATH + recap.id)
+            link = Uri.parse(DEEP_LINK_PATH + id)
             domainUriPrefix = DOMAIN_URI_PREFIX
 
             androidParameters(context.packageName) {
@@ -63,12 +63,12 @@ class RecapRepositoryImpl(
             }
 
             socialMetaTagParameters {
-                title = recap.title
-                description = context.getString(R.string.recap_link_title, recap.title)
+                this.title = title
+                description = context.getString(R.string.recap_link_title, title)
                 imageUrl = Uri.parse(SQUARE_APP_LOGO_URL)
             }
 
-        }.await().shortLink?.path!!
+        }.await().shortLink.toString()
     }
 
     override fun getRecapsPaged(order: RecapOrder): Flow<PagingData<Recap>> {

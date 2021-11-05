@@ -90,7 +90,7 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
             action = Intent.ACTION_SEND
             type = "text/plain"
             putExtra(Intent.EXTRA_TITLE, "Share this recap!")
-            putExtra(Intent.EXTRA_TEXT, viewModel.recap.value?.deepLink)
+            putExtra(Intent.EXTRA_TEXT, viewModel.recap.value.deepLink)
         }, null)
         startActivity(share)
     }

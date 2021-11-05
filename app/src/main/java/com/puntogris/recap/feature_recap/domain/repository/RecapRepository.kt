@@ -18,7 +18,7 @@ interface RecapRepository {
 
     fun getDraftsPaged(): Flow<PagingData<Recap>>
 
-    suspend fun saveRecap(recap: Recap): SimpleResource
+    suspend fun publishRecap(recap: Recap): Resource<String>
 
     suspend fun getRecap(recapId: String): Resource<Recap>
 

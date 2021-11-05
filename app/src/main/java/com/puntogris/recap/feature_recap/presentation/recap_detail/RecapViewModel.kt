@@ -6,6 +6,8 @@ import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapInteractionsUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,8 +22,8 @@ class RecapViewModel @Inject constructor(
 
     val recapInteractions = getRecapInteractions(recapIdFromArgs()).asLiveData()
 
-    private val _recap = MutableLiveData<Recap>()
-    val recap: LiveData<Recap> = _recap
+    private val _recap = MutableStateFlow(Recap())
+    val recap = _recap.asStateFlow()
 
     val recapState = liveData {
         val recapIdArgs = savedStateHandle.get<String>("recapId")
