@@ -1,13 +1,13 @@
 package com.puntogris.recap.feature_recap.domain.use_case
 
-import com.puntogris.recap.Report
 import com.puntogris.recap.core.utils.SimpleResult
+import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 
-class ReportRecapUseCase(
+class SaveRecapDraftUseCase(
     private val repository: RecapRepository
 ) {
-    suspend operator fun invoke(report: Report): SimpleResult {
-        return repository.reportRecap(report)
+    suspend operator fun invoke(recap: Recap): SimpleResult {
+        return repository.saveRecapDraft(recap)
     }
 }

@@ -9,7 +9,7 @@ abstract class BaseRvViewModel : ViewModel() {
     private val _reselectedTabId = MutableLiveData<Int>()
     val reselectedTabId: LiveData<Int> = _reselectedTabId
 
-    fun updateReselectedTabId(position: Int){
+    fun updateReselectedTabId(position: Int) {
         _reselectedTabId.value = position
     }
 }

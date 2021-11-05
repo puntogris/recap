@@ -5,9 +5,7 @@ import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.feature_recap.data.repository.RecapRepositoryImpl
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
-import com.puntogris.recap.feature_recap.domain.use_case.GetRecapInteractionsUseCase
-import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
-import com.puntogris.recap.feature_recap.domain.use_case.GetReviewsUseCase
+import com.puntogris.recap.feature_recap.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -46,5 +44,21 @@ class RecapModule {
         return GetRecapInteractionsUseCase(repository)
     }
 
+    @Singleton
+    @Provides
+    fun provideReportRecapUseCase(repository: RecapRepository): ReportRecapUseCase {
+        return ReportRecapUseCase(repository)
+    }
 
+    @Singleton
+    @Provides
+    fun provideGetRecapUseCase(repository: RecapRepository): GetRecapUseCase {
+        return GetRecapUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSaveRecapDraftUseCase(repository: RecapRepository): SaveRecapDraftUseCase {
+        return SaveRecapDraftUseCase(repository)
+    }
 }

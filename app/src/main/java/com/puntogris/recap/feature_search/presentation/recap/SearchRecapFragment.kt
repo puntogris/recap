@@ -14,9 +14,10 @@ import com.puntogris.recap.feature_search.presentation.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchRecapFragment : BasePagerTabFragment<FragmentSearchRecapBinding>(R.layout.fragment_search_recap) {
+class SearchRecapFragment :
+    BasePagerTabFragment<FragmentSearchRecapBinding>(R.layout.fragment_search_recap) {
 
-    override val viewModel: SearchViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    override val viewModel: SearchViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override val adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick)
 
@@ -33,17 +34,17 @@ class SearchRecapFragment : BasePagerTabFragment<FragmentSearchRecapBinding>(R.l
         collectUiState()
     }
 
-    private fun collectUiState(){
-        viewModel.recapsLiveData.observe(viewLifecycleOwner){
+    private fun collectUiState() {
+        viewModel.recapsLiveData.observe(viewLifecycleOwner) {
             adapter.submitData(lifecycle, it)
         }
     }
 
-    private fun onRecapShortClick(recap: Recap){
+    private fun onRecapShortClick(recap: Recap) {
         (requireParentFragment() as SearchFragment).navigateToRecap(recap)
     }
 
-    private fun onRecapLongClick(recap: Recap){
+    private fun onRecapLongClick(recap: Recap) {
         (requireParentFragment() as SearchFragment).showFavoriteSnack()
     }
 }

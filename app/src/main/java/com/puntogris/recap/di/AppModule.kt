@@ -40,21 +40,8 @@ class AppModule {
     }
 
     @Provides
-    fun providesDraftRepository(
-        recapDao: RecapDao,
-        firebase: FirebaseClients
-    ): DraftRepository {
-        return DraftRepositoryImpl(recapDao, firebase)
-    }
-
-    @Provides
     fun providesRatingRepository(firebase: FirebaseClients): RatingRepository {
         return RatingRepositoryImpl(firebase)
-    }
-
-    @Provides
-    fun providesReportRepository(firebase: FirebaseClients): ReportRepository {
-        return ReportRepositoryImpl(firebase)
     }
 
     @Singleton

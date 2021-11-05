@@ -21,8 +21,10 @@ class ScrollAwareExtendedFabBehavior(
         type: Int
     ): Boolean {
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL ||
-                super.onStartNestedScroll(coordinatorLayout, child,
-                    directTargetChild, target, axes, type)
+                super.onStartNestedScroll(
+                    coordinatorLayout, child,
+                    directTargetChild, target, axes, type
+                )
     }
 
     override fun onNestedScroll(
@@ -36,9 +38,11 @@ class ScrollAwareExtendedFabBehavior(
         type: Int,
         consumed: IntArray
     ) {
-        super.onNestedScroll(coordinatorLayout, child, target,
+        super.onNestedScroll(
+            coordinatorLayout, child, target,
             dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed,
-            type, consumed)
+            type, consumed
+        )
 
         if (dyConsumed > 5 && child.isExtended) {
             child.shrink()

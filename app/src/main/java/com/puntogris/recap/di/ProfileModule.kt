@@ -57,7 +57,7 @@ class ProfileModule {
         updateProfileUseCase: UpdateProfileUseCase,
         getRecapsForProfileUseCase: GetRecapsForProfileUseCase,
         getDraftsForProfileUseCase: GetDraftsForProfileUseCase
-    ): ProfileUseCases{
+    ): ProfileUseCases {
         return ProfileUseCases(
             getProfile = getProfileUseCase,
             updateProfile = updateProfileUseCase,

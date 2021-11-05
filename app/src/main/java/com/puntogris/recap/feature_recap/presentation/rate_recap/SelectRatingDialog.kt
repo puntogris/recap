@@ -14,11 +14,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SelectRatingDialog: DialogFragment() {
+class SelectRatingDialog : DialogFragment() {
 
     private lateinit var binding: SelectRatingDialogBinding
     private val viewModel: RateRecapViewModel by viewModels()
-    private val  args: SelectRatingDialogArgs by navArgs()
+    private val args: SelectRatingDialogArgs by navArgs()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         binding = SelectRatingDialogBinding.inflate(layoutInflater)
@@ -28,11 +28,13 @@ class SelectRatingDialog: DialogFragment() {
             .create()
     }
 
-    private fun rateRecap(){
+    private fun rateRecap() {
         lifecycleScope.launch {
-            when(viewModel.sendRating(Recap())){
-                SimpleResult.Failure -> {}
-                SimpleResult.Success -> {}
+            when (viewModel.sendRating(Recap())) {
+                SimpleResult.Failure -> {
+                }
+                SimpleResult.Success -> {
+                }
             }
         }
     }

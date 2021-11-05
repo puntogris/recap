@@ -6,7 +6,7 @@ import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 
 class GetRecapUseCase(
     private val repository: RecapRepository
-){
+) {
     suspend operator fun invoke(recapId: String): Result<Exception, Recap> {
         return repository.getRecap(recapId)
     }

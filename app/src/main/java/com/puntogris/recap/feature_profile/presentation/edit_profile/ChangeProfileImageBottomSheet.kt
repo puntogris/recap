@@ -10,7 +10,7 @@ import com.puntogris.recap.core.utils.EditPhotoOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ChangeProfileImageBottomSheet:
+class ChangeProfileImageBottomSheet :
     BaseBindingBottomSheetFragment<BottomSheetChangeProfileImageBinding>(R.layout.bottom_sheet_change_profile_image) {
 
     override fun initializeViews() {
@@ -18,7 +18,7 @@ class ChangeProfileImageBottomSheet:
         setupReportsAdapter()
     }
 
-    private fun setupReportsAdapter(){
+    private fun setupReportsAdapter() {
         val options = EditPhotoOptions.values()
 
         with(binding.reportList) {
@@ -33,7 +33,7 @@ class ChangeProfileImageBottomSheet:
         }
     }
 
-    private fun onOptionClicked(position: Int, options: Array<EditPhotoOptions>){
+    private fun onOptionClicked(position: Int, options: Array<EditPhotoOptions>) {
         options.elementAtOrNull(position)?.let {
             setFragmentResult("photoOption", bundleOf("data" to it))
             dismiss()

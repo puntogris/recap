@@ -39,7 +39,7 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
         subscribeFilterButtonVisibility()
     }
 
-    private fun registerQueryTextListener(){
+    private fun registerQueryTextListener() {
         binding.searchTextInputLayout.editText?.apply {
             if (text.isNullOrBlank()) focusAndShowKeyboard()
             onImeActionSearch {
@@ -49,7 +49,7 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
         }
     }
 
-    private fun subscribeFilterButtonVisibility(){
+    private fun subscribeFilterButtonVisibility() {
         viewModel.queryLiveData.observe(viewLifecycleOwner) {
             binding.filterButton.setVisibility(binding.viewPager.currentItem == 0 && it.isNotBlank())
         }
@@ -61,26 +61,26 @@ class SearchFragment : BaseViewPagerFragment<FragmentSearchBinding>(R.layout.fra
         )
     }
 
-    fun showFilterBottomSheet(){
+    fun showFilterBottomSheet() {
         findNavController().navigate(R.id.searchRecapFilterBottomSheet)
     }
 
-    fun navigateToRecap(recap: Recap){
+    fun navigateToRecap(recap: Recap) {
         val action = SearchFragmentDirections.actionSearchFragmentToRecapFragment(recap)
         findNavController().navigate(action)
     }
 
-    fun navigateToProfile(userId: String){
+    fun navigateToProfile(userId: String) {
         val action = NavigationDirections.actionGlobalUserFragment(userId = userId)
         findNavController().navigate(action)
     }
 
-    fun navigateToProfile(publicProfile: PublicProfile){
+    fun navigateToProfile(publicProfile: PublicProfile) {
         val action = NavigationDirections.actionGlobalUserFragment(profile = publicProfile)
         findNavController().navigate(action)
     }
 
-    fun showFavoriteSnack(){
+    fun showFavoriteSnack() {
         showSnackBar("Agregado a favoritos")
     }
 }

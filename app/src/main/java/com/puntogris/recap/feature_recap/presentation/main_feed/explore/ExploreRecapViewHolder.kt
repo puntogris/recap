@@ -6,9 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.databinding.ExploreApprovedRecapBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
 
-class ExploreRecapViewHolder(private val binding: ExploreApprovedRecapBinding): RecyclerView.ViewHolder(binding.root) {
+class ExploreRecapViewHolder(private val binding: ExploreApprovedRecapBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(recap: Recap, shortClickListener: (Recap) -> Unit, longClickListener: (Recap) -> Unit){
+    fun bind(
+        recap: Recap,
+        shortClickListener: (Recap) -> Unit,
+        longClickListener: (Recap) -> Unit
+    ) {
         binding.apply {
             this.recap = recap
             root.setOnClickListener {
@@ -22,7 +27,7 @@ class ExploreRecapViewHolder(private val binding: ExploreApprovedRecapBinding): 
         }
     }
 
-    companion object{
+    companion object {
         fun from(parent: ViewGroup): ExploreRecapViewHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ExploreApprovedRecapBinding.inflate(layoutInflater, parent, false)

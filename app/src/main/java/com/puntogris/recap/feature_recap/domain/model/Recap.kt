@@ -12,7 +12,7 @@ import kotlinx.parcelize.Parcelize
 data class Recap(
 
     @PrimaryKey
-    var id : String = "",
+    var id: String = "",
 
     @ColumnInfo
     var title: String = "",
@@ -53,4 +53,4 @@ data class Recap(
     @ColumnInfo
     var created: Timestamp = Timestamp.now()
 
-): Parcelable
+) : Parcelable

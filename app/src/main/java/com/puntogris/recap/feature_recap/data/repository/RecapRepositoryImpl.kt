@@ -37,7 +37,7 @@ class RecapRepositoryImpl(
     private val context: Context
 ) : RecapRepository {
 
-    override suspend fun saveRecapIntoDb(recap: Recap): SimpleResult = withContext(Dispatchers.IO) {
+    override suspend fun saveRecap(recap: Recap): SimpleResult = withContext(Dispatchers.IO) {
         SimpleResult.build {
             val ref = firebase.firestore
                 .collection(USERS_COLLECTION)
@@ -103,7 +103,7 @@ class RecapRepositoryImpl(
         ) { FirestoreRecapPagingSource(query) }.flow
     }
 
-    override fun getDraftsPagingData(): Flow<PagingData<Recap>> {
+    override fun getDraftsPaged(): Flow<PagingData<Recap>> {
         return Pager(
             PagingConfig(
                 pageSize = 30,
@@ -145,7 +145,7 @@ class RecapRepositoryImpl(
         return if (recapDao.delete(recap.id) != 0) SimpleResult.Success else SimpleResult.Failure
     }
 
-    override suspend fun saveRecapLocalDb(recap: Recap) = withContext(Dispatchers.IO) {
+    override suspend fun saveRecapDraft(recap: Recap) = withContext(Dispatchers.IO) {
         recap.id = firebase.firestore.collection("recaps").document().id
         if (recapDao.insert(recap) != 0L) SimpleResult.Success else SimpleResult.Failure
     }

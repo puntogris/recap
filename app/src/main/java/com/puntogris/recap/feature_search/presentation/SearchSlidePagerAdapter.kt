@@ -7,11 +7,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.puntogris.recap.feature_search.presentation.recap.SearchRecapFragment
 import com.puntogris.recap.feature_search.presentation.user.SearchUserFragment
 
-class SearchSlidePagerAdapter(@NonNull parentFragment: FragmentManager, lifecycle: Lifecycle):
+class SearchSlidePagerAdapter(@NonNull parentFragment: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(parentFragment, lifecycle) {
 
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int) =
-        if (position == 0 ) SearchRecapFragment() else SearchUserFragment()
+        if (position == 0) SearchRecapFragment() else SearchUserFragment()
 }

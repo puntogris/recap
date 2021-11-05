@@ -25,7 +25,6 @@ sealed class SimpleResult {
 }
 
 
-
 sealed class Result<out E : Exception, out V> {
     data class Success<out V>(val value: V) : Result<Nothing, V>()
     data class Error<out E : Exception>(val exception: Exception) : Result<E, Nothing>()

@@ -9,12 +9,12 @@ import com.puntogris.recap.core.utils.Constants.PREF_APP_THEME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PreferencesFragment: PreferenceFragmentCompat(){
+class PreferencesFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_preferences, rootKey)
 
-        onPreferenceChange(PREF_APP_THEME){ newValue ->
+        onPreferenceChange(PREF_APP_THEME) { newValue ->
             ThemeUtils.applyTheme(newValue.toString())
         }
     }

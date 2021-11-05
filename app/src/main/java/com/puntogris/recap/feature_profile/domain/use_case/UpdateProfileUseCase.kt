@@ -6,7 +6,7 @@ import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 
 class UpdateProfileUseCase(private val profileRepository: ProfileRepository) {
 
-    suspend operator fun invoke(updateProfileData: UpdateProfileData): EditProfileResult{
+    suspend operator fun invoke(updateProfileData: UpdateProfileData): EditProfileResult {
         return profileRepository.updateUserProfile(updateProfileData)
     }
 }

@@ -21,8 +21,10 @@ class ScrollAwareFabBehaviour(
         type: Int
     ): Boolean {
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL ||
-                super.onStartNestedScroll(coordinatorLayout, child,
-                    directTargetChild, target, axes, type)
+                super.onStartNestedScroll(
+                    coordinatorLayout, child,
+                    directTargetChild, target, axes, type
+                )
     }
 
     override fun onNestedScroll(
@@ -36,8 +38,10 @@ class ScrollAwareFabBehaviour(
         type: Int,
         consumed: IntArray
     ) {
-        super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed,
-            dxUnconsumed, dyUnconsumed, type, consumed)
+        super.onNestedScroll(
+            coordinatorLayout, child, target, dxConsumed, dyConsumed,
+            dxUnconsumed, dyUnconsumed, type, consumed
+        )
 
         if (dyConsumed > 0 && child.visibility == View.VISIBLE) {
             child.hide(object : FloatingActionButton.OnVisibilityChangedListener() {

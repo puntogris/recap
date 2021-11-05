@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ReportRecapBottomSheet:
+class ReportRecapBottomSheet :
     BaseBindingBottomSheetFragment<BottomSheetReportRecapBinding>(R.layout.bottom_sheet_report_recap) {
 
     private val viewModel: ReportViewModel by viewModels()
@@ -25,7 +25,7 @@ class ReportRecapBottomSheet:
         setupReportsAdapter()
     }
 
-    private fun setupReportsAdapter(){
+    private fun setupReportsAdapter() {
         binding.reportList.adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_list_item_single_choice,
@@ -33,7 +33,7 @@ class ReportRecapBottomSheet:
         )
     }
 
-    fun onSendReportClicked(){
+    fun onSendReportClicked() {
         val reason = reportReasons[binding.reportList.checkedItemPosition].name
         val report = Report(
             reason = reason,
@@ -41,7 +41,7 @@ class ReportRecapBottomSheet:
         )
 
         lifecycleScope.launch {
-            when(viewModel.sendReport(report)){
+            when (viewModel.sendReport(report)) {
                 SimpleResult.Failure -> {
 
                 }

@@ -32,7 +32,7 @@ class ProfileRepositoryImpl(
     private val firebase: FirebaseClients,
     private val context: Context,
     private val recapDao: RecapDao
-    ) :
+) :
     ProfileRepository {
 
     override fun isUserLoggedIn() = firebase.auth.currentUser != null

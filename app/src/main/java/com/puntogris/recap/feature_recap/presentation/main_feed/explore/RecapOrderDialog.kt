@@ -10,9 +10,9 @@ import com.puntogris.recap.core.utils.RecapOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RecapOrderDialog: DialogFragment() {
+class RecapOrderDialog : DialogFragment() {
 
-    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<RecapOrder>()

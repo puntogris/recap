@@ -8,7 +8,7 @@ import com.puntogris.recap.feature_recap.domain.model.Recap
 class ExploreRecapAdapter(
     private val shortClickListener: (Recap) -> Unit,
     private val longClickListener: (Recap) -> Unit
-): PagingDataAdapter<Recap, ExploreRecapViewHolder>(RecapDiffCallBack()) {
+) : PagingDataAdapter<Recap, ExploreRecapViewHolder>(RecapDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreRecapViewHolder {
         return ExploreRecapViewHolder.from(parent)

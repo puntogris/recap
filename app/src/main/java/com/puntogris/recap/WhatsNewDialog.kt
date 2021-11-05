@@ -8,7 +8,7 @@ import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.R
 import com.puntogris.recap.core.utils.launchWebBrowserIntent
 
-class WhatsNewDialog: DialogFragment() {
+class WhatsNewDialog : DialogFragment() {
 
     override fun onCreateDialog(savedViewState: Bundle?): Dialog {
         return MaterialAlertDialogBuilder(requireContext())

@@ -12,7 +12,8 @@ import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RateRecapFragment : BaseBindingFragment<FragmentRateRecapBinding>(R.layout.fragment_rate_recap) {
+class RateRecapFragment :
+    BaseBindingFragment<FragmentRateRecapBinding>(R.layout.fragment_rate_recap) {
 
     private val viewModel: RateRecapViewModel by viewModels()
     private val args: RateRecapFragmentArgs by navArgs()
@@ -22,17 +23,20 @@ class RateRecapFragment : BaseBindingFragment<FragmentRateRecapBinding>(R.layout
         subscribeUserRatingUi()
     }
 
-    private fun subscribeUserRatingUi(){
+    private fun subscribeUserRatingUi() {
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
-            when(viewModel.checkRatingData(args.recap.id)){
-                is Result.Error -> {}
-                is Result.Success -> {}
+            when (viewModel.checkRatingData(args.recap.id)) {
+                is Result.Error -> {
+                }
+                is Result.Success -> {
+                }
             }
         }
     }
 
-    private fun navigateToRatingDialog(){
-        val action = RateRecapFragmentDirections.actionRateRecapFragmentToSelectRatingDialog(args.recap.id)
+    private fun navigateToRatingDialog() {
+        val action =
+            RateRecapFragmentDirections.actionRateRecapFragmentToSelectRatingDialog(args.recap.id)
         findNavController().navigate(action)
     }
 }

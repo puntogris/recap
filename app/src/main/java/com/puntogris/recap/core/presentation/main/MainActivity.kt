@@ -30,17 +30,19 @@ class MainActivity : BaseBindingActivity<ActivityMainBinding>(R.layout.activity_
         navController = getNavController()
     }
 
-    private fun checkAppCurrentVersion(){
-        viewModel.appVersionStatus.observe(this){ isNewVersion ->
+    private fun checkAppCurrentVersion() {
+        viewModel.appVersionStatus.observe(this) { isNewVersion ->
             if (isNewVersion) navController.navigate(R.id.whatsNewDialog)
         }
     }
 
-    override fun showSnackBar(message: String,
-                              duration: Int,
-                              actionText: Int,
-                              anchorView: View?,
-                              actionListener: View.OnClickListener?){
+    override fun showSnackBar(
+        message: String,
+        duration: Int,
+        actionText: Int,
+        anchorView: View?,
+        actionListener: View.OnClickListener?
+    ) {
 
         Snackbar.make(binding.root, message, duration).apply {
             if (actionListener != null) setAction(actionText, actionListener)

@@ -11,8 +11,8 @@ class Report(
     val recapId: String,
     val reason: String,
     val timestamp: Timestamp = Timestamp.now()
-){
-    enum class Reason(@StringRes val value: Int){
+) {
+    enum class Reason(@StringRes val value: Int) {
         INAPPROPRIATE(R.string.inappropriate),
         MISINFORMATION(R.string.misinformation)
     }

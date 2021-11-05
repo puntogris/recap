@@ -46,7 +46,7 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         registerResultListener()
     }
 
-    private fun setupBottomAppBar(){
+    private fun setupBottomAppBar() {
         binding.bottomAppBar.apply {
             setOnMenuItemClickListener {
                 handleMenuItemClick(it.itemId)
@@ -58,8 +58,8 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         }
     }
 
-    private fun handleMenuItemClick(itemId: Int){
-        when(itemId){
+    private fun handleMenuItemClick(itemId: Int) {
+        when (itemId) {
             R.id.action_search -> {
                 findNavController().navigate(R.id.searchFragment)
             }
@@ -72,23 +72,23 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
         }
     }
 
-    private fun registerResultListener(){
-        setFragmentResultListener("home_fragment"){_, bundle ->
+    private fun registerResultListener() {
+        setFragmentResultListener("home_fragment") { _, bundle ->
             if (bundle.containsKey("log_out_result") && bundle.getBoolean("log_out_result"))
                 showSnackBar("Cuenta cerrada correctamente.")
         }
     }
 
-    fun navigateToCreateRecap(){
+    fun navigateToCreateRecap() {
         findNavController().navigate(R.id.createRecapGraph)
     }
 
-    fun navigateToRecap(recap: Recap){
+    fun navigateToRecap(recap: Recap) {
         val action = HomeFragmentDirections.actionHomeFragmentToRecapFragment(recap)
         findNavController().navigate(action)
     }
 
-    fun showFavoriteSnack(){
+    fun showFavoriteSnack() {
         showSnackBar("Agregado a favoritos", anchorView = binding.createFab)
     }
 

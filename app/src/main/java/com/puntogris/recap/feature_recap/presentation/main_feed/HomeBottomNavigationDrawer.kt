@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 class HomeBottomNavigationDrawer :
     BaseBindingBottomSheetFragment<MainBottomNavigationDrawerBinding>(R.layout.main_bottom_navigation_drawer) {
 
-    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     private val contentBinding:
             MainBottomNavigationDrawerProfileContentBinding by viewBinding(R.id.bottom_navigation_content)
@@ -39,7 +39,7 @@ class HomeBottomNavigationDrawer :
             onNavigationItemSelected(it)
         }
 
-        with(viewModel){
+        with(viewModel) {
             authorizedLiveData.observe(viewLifecycleOwner) {
                 with(contentBinding.headerNavigationView.menu) {
                     setGroupVisible(R.id.group_unauthorized, !it)
@@ -78,10 +78,11 @@ class HomeBottomNavigationDrawer :
         return true
     }
 
-    private fun handleLogOut(){
+    private fun handleLogOut() {
         lifecycleScope.launch {
-            when(viewModel.logOut()){
-                SimpleResult.Failure -> {}
+            when (viewModel.logOut()) {
+                SimpleResult.Failure -> {
+                }
                 SimpleResult.Success -> {
                     dismiss()
                     setFragmentResult("home_fragment", bundleOf("log_out_result" to true))

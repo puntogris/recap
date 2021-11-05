@@ -29,9 +29,9 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         setupNavigation()
     }
 
-    private fun subscribeRecapState(){
-        viewModel.recapState.observe(viewLifecycleOwner){
-            when(it){
+    private fun subscribeRecapState() {
+        viewModel.recapState.observe(viewLifecycleOwner) {
+            when (it) {
                 is Result.Error -> {
 
                 }
@@ -42,16 +42,17 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         }
     }
 
-    private fun setupNavigation(){
-        with(binding.toolbar){
+    private fun setupNavigation() {
+        with(binding.toolbar) {
             setNavigationOnClickListener {
                 findNavController().navigateUp()
             }
             setOnMenuItemClickListener {
-                when(it.itemId){
+                when (it.itemId) {
                     R.id.action_report -> {
                         val id = args.recap?.id ?: args.recapId!!
-                        val action = RecapFragmentDirections.actionRecapFragmentToReportRecapBottomSheet(id)
+                        val action =
+                            RecapFragmentDirections.actionRecapFragmentToReportRecapBottomSheet(id)
                         findNavController().navigate(action)
                     }
                 }
@@ -60,31 +61,31 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         }
     }
 
-    private fun navigateToProfile(){
+    private fun navigateToProfile() {
         val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value?.author)
         findNavController().navigate(action)
     }
 
-    fun onFavoriteClicked(){
+    fun onFavoriteClicked() {
         findNavController().navigate(R.id.loginFragment)
-        if (viewModel.isUserLoggedIn()){
+        if (viewModel.isUserLoggedIn()) {
 
-        }else{
+        } else {
 
         }
         showSnackBar("Agregado a favoritos")
 
     }
 
-    fun onLikedClicked(){
-        if (viewModel.isUserLoggedIn()){
+    fun onLikedClicked() {
+        if (viewModel.isUserLoggedIn()) {
 
-        }else{
+        } else {
 
         }
     }
 
-    fun onShareClicked(){
+    fun onShareClicked() {
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"

@@ -14,7 +14,7 @@ class SettingsFragment : BaseBindingFragment<FragmentSettingsBinding>(R.layout.f
         registerToolbarBackButton(binding.toolbar)
     }
 
-    private fun inflatePreferences(){
+    private fun inflatePreferences() {
         childFragmentManager
             .beginTransaction()
             .replace(binding.container.id, PreferencesFragment())

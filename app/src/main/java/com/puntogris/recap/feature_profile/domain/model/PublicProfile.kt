@@ -16,4 +16,4 @@ data class PublicProfile(
     val likesCounter: Int = 0,
     val recapsCounter: Int = 0,
     val photoUrl: String = ""
-):Parcelable
+) : Parcelable

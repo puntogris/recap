@@ -10,7 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     sharedPref: SharedPref
-):ViewModel() {
+) : ViewModel() {
 
     val appVersionStatus = liveData {
         if (sharedPref.lastVersionCode() < BuildConfig.VERSION_CODE) {

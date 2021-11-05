@@ -9,8 +9,7 @@ import com.puntogris.recap.core.utils.UiListener
 import com.puntogris.recap.core.utils.getNavHostFragment
 
 abstract class BaseBindingActivity<T : ViewDataBinding>(@LayoutRes val layout: Int) :
-    AppCompatActivity(), UiListener
-{
+    AppCompatActivity(), UiListener {
 
     private var _binding: T? = null
     val binding get() = _binding!!

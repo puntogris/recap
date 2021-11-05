@@ -14,9 +14,10 @@ import com.puntogris.recap.feature_recap.presentation.main_feed.explore.ExploreR
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UserReviewsFragment : BasePagerTabFragment<FragmentUserReviewsBinding>(R.layout.fragment_user_reviews) {
+class UserReviewsFragment :
+    BasePagerTabFragment<FragmentUserReviewsBinding>(R.layout.fragment_user_reviews) {
 
-    override val viewModel: UserViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    override val viewModel: UserViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override val adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick)
 
@@ -32,17 +33,17 @@ class UserReviewsFragment : BasePagerTabFragment<FragmentUserReviewsBinding>(R.l
         collectUiState()
     }
 
-    private fun collectUiState(){
+    private fun collectUiState() {
         viewModel.reviewsLiveData.observe(viewLifecycleOwner) {
-          //  adapter.submitData(lifecycle, it)
+            //  adapter.submitData(lifecycle, it)
         }
     }
 
-    private fun onRecapShortClick(recap: Recap){
+    private fun onRecapShortClick(recap: Recap) {
         findNavController().navigate(R.id.recapFragment)
     }
 
-    private fun onRecapLongClick(recap: Recap){
+    private fun onRecapLongClick(recap: Recap) {
         (requireParentFragment() as HomeFragment).showFavoriteSnack()
     }
 

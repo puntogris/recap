@@ -6,7 +6,7 @@ import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
 
 class GetProfileUseCase(private val profileRepository: ProfileRepository) {
 
-    suspend operator fun invoke(userId: String): Result<Exception, PublicProfile>{
+    suspend operator fun invoke(userId: String): Result<Exception, PublicProfile> {
         return profileRepository.getPublicProfile(userId)
     }
 }

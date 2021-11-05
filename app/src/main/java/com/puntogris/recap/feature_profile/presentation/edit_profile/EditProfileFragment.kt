@@ -16,7 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.layout.fragment_edit_profile) {
+class EditProfileFragment :
+    BaseBindingFragment<FragmentEditProfileBinding>(R.layout.fragment_edit_profile) {
 
     private val args: EditProfileFragmentArgs by navArgs()
     private val viewModel: EditProfileViewModel by viewModels()
@@ -34,16 +35,16 @@ class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.la
         registerFragmentListener()
     }
 
-    private fun registerPhotoLauncher(){
+    private fun registerPhotoLauncher() {
         photoLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             uri?.let { viewModel.updateProfileUri(it) }
         }
     }
 
-    private fun registerFragmentListener(){
-        setFragmentResultListener("photoOption"){_, bundle ->
+    private fun registerFragmentListener() {
+        setFragmentResultListener("photoOption") { _, bundle ->
             bundle.getParcelable<EditPhotoOptions>("data")?.let {
-                when(it){
+                when (it) {
                     EditPhotoOptions.Change -> photoLauncher.launch("image/*")
                     EditPhotoOptions.Delete -> viewModel.updateProfileUri(null)
                 }
@@ -51,7 +52,7 @@ class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.la
         }
     }
 
-    fun saveProfile(){
+    fun saveProfile() {
         binding.saveButton.gone()
         binding.saveProgressBar.visible()
 
@@ -61,7 +62,7 @@ class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.la
             binding.saveButton.visible()
             binding.saveProgressBar.gone()
 
-            when(result){
+            when (result) {
                 EditProfileResult.Failure.AccountIdLimit -> {
 
                 }
@@ -85,7 +86,7 @@ class EditProfileFragment : BaseBindingFragment<FragmentEditProfileBinding>(R.la
         }
     }
 
-    fun changeProfileImage(){
+    fun changeProfileImage() {
         findNavController().navigate(R.id.changeProfileImageBottomSheet)
     }
 }

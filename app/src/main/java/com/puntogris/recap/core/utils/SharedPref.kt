@@ -20,7 +20,7 @@ class SharedPref @Inject constructor(@ApplicationContext context: Context) {
 
     fun lastVersionCode() = sharedPreferences.getInt(LAST_VERSION_CODE, 0)
 
-    fun updateLastVersionCode(){
+    fun updateLastVersionCode() {
         sharedPreferences.edit().putInt(LAST_VERSION_CODE, BuildConfig.VERSION_CODE).apply()
     }
 }

@@ -52,11 +52,13 @@ fun AppCompatActivity.getNavHostFragment() =
     (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
 
 
-fun Fragment.showSnackBar(message: String,
-                          duration: Int = Snackbar.LENGTH_LONG,
-                          actionText: String = "",
-                          anchorView: View? = null,
-                          actionListener: View.OnClickListener? = null){
+fun Fragment.showSnackBar(
+    message: String,
+    duration: Int = Snackbar.LENGTH_LONG,
+    actionText: String = "",
+    anchorView: View? = null,
+    actionListener: View.OnClickListener? = null
+) {
 
     Snackbar.make(requireView(), message, duration).let {
         if (anchorView != null) it.anchorView = anchorView
@@ -76,7 +78,7 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
     }
 }
 
-fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar){
+fun Fragment.registerToolbarBackButton(toolbar: MaterialToolbar) {
     toolbar.setNavigationOnClickListener {
         findNavController().navigateUp()
     }
@@ -90,6 +92,7 @@ fun Context.hideKeyboard(view: View) {
 fun Fragment.hideKeyboard() {
     view?.let { requireActivity().hideKeyboard(it) }
 }
+
 fun ExtendedFloatingActionButton.setVisibility(visible: Boolean) {
     if (visible) show() else hide()
 }
@@ -98,7 +101,8 @@ fun View.focusAndShowKeyboard() {
     fun View.showTheKeyboardNow() {
         if (isFocused) {
             post {
-                val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
             }
         }
@@ -121,34 +125,37 @@ fun View.focusAndShowKeyboard() {
     }
 }
 
-inline fun <T: Preference>PreferenceFragmentCompat.preference(key: String, block: T.() -> Unit){
+inline fun <T : Preference> PreferenceFragmentCompat.preference(key: String, block: T.() -> Unit) {
     findPreference<T>(key)?.apply {
         block(this)
     }
 }
 
-inline fun Preference.onClick(crossinline block: () -> Unit){
+inline fun Preference.onClick(crossinline block: () -> Unit) {
     setOnPreferenceClickListener {
         block()
         true
     }
 }
 
-inline fun Preference.onChange(crossinline block: (Any) -> Unit){
+inline fun Preference.onChange(crossinline block: (Any) -> Unit) {
     setOnPreferenceChangeListener { _, newValue ->
         block(newValue)
         true
     }
 }
 
-inline fun PreferenceFragmentCompat.onPreferenceChange(key: String, crossinline block: (Any) -> Unit){
+inline fun PreferenceFragmentCompat.onPreferenceChange(
+    key: String,
+    crossinline block: (Any) -> Unit
+) {
     findPreference<Preference>(key)?.setOnPreferenceChangeListener { _, newValue ->
         block(newValue)
         true
     }
 }
 
-inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit){
+inline fun PreferenceFragmentCompat.preferenceOnClick(key: String, crossinline block: () -> Unit) {
     findPreference<Preference>(key)?.setOnPreferenceClickListener {
         block()
         true
@@ -171,7 +178,7 @@ fun ImageView.loadProfilePicture(url: String?) {
         .clearOnDetach()
 }
 
-fun RichEditor.setupBackgroundAndFontColors(){
+fun RichEditor.setupBackgroundAndFontColors() {
     setEditorBackgroundColor(ResourcesCompat.getColor(resources, R.color.color_background, null))
     setEditorFontColor(ResourcesCompat.getColor(resources, R.color.color_on_background, null))
 }
@@ -201,7 +208,7 @@ fun RecyclerView.LayoutManager?.findFirstVisibleItemPosition(): Int {
     }
 }
 
-inline fun EditText.onImeActionSearch(crossinline block: () -> Unit){
+inline fun EditText.onImeActionSearch(crossinline block: () -> Unit) {
     setOnEditorActionListener { _, actionId, _ ->
         if (actionId == EditorInfo.IME_ACTION_SEARCH) {
             block()
@@ -211,7 +218,7 @@ inline fun EditText.onImeActionSearch(crossinline block: () -> Unit){
     }
 }
 
-fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
+fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     try {
         Intent(Intent.ACTION_VIEW).let {
             it.data = Uri.parse(uri)
@@ -219,7 +226,7 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null){
             startActivity(it)
         }
 
-    }catch (e:Exception){
+    } catch (e: Exception) {
         showSnackBar(getString(R.string.snack_general_error))
     }
 }

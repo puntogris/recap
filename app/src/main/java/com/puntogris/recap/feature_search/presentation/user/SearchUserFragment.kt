@@ -14,9 +14,10 @@ import com.puntogris.recap.feature_search.presentation.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchUserFragment : BasePagerTabFragment<FragmentSearchUserBinding>(R.layout.fragment_search_user) {
+class SearchUserFragment :
+    BasePagerTabFragment<FragmentSearchUserBinding>(R.layout.fragment_search_user) {
 
-    override val viewModel: SearchViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    override val viewModel: SearchViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override val adapter = PublicProfileAdapter(::onProfileClicked)
 
@@ -24,7 +25,7 @@ class SearchUserFragment : BasePagerTabFragment<FragmentSearchUserBinding>(R.lay
         get() = binding.recyclerView
 
     override fun onAdapterLoadStateChanged(state: CombinedLoadStates) {
-        with(binding){
+        with(binding) {
             emptyStateLayout.root.isVisible = adapter.itemCount == 0
             contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
         }
@@ -35,13 +36,13 @@ class SearchUserFragment : BasePagerTabFragment<FragmentSearchUserBinding>(R.lay
         collectUiState()
     }
 
-    private fun collectUiState(){
-        viewModel.usersLiveData.observe(viewLifecycleOwner){
+    private fun collectUiState() {
+        viewModel.usersLiveData.observe(viewLifecycleOwner) {
             adapter.submitData(lifecycle, it)
         }
     }
 
-    private fun onProfileClicked(publicProfile: PublicProfile){
+    private fun onProfileClicked(publicProfile: PublicProfile) {
         (requireParentFragment() as SearchFragment).navigateToProfile(publicProfile)
     }
 }

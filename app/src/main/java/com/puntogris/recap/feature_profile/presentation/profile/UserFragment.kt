@@ -22,7 +22,11 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         get() = binding.tabLayout
 
     override val adapter: FragmentStateAdapter
-        get() = UserSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle, isProfileFromCurrentUser())
+        get() = UserSlidePagerAdapter(
+            childFragmentManager,
+            viewLifecycleOwner.lifecycle,
+            isProfileFromCurrentUser()
+        )
 
     override val tabsNames: Array<String>
         get() = resources.getStringArray(R.array.profile_tabs)
@@ -38,11 +42,11 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
 
         setupToolbar()
 
-        with(viewModel){
-            if (args.profile != null){
+        with(viewModel) {
+            if (args.profile != null) {
                 setUser(args.profile!!)
                 setUserId(args.profile!!.uid)
-            }else {
+            } else {
                 getUser(args.userId!!)
                 setUserId(args.userId!!)
             }
@@ -51,17 +55,18 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         binding.contentLoadingLayout.hide()
     }
 
-    private fun setupToolbar(){
-        with(binding.toolbar){
+    private fun setupToolbar() {
+        with(binding.toolbar) {
             registerToolbarBackButton(this)
             inflateMenu(R.menu.menu_current_user_profile)
-            if (isProfileFromCurrentUser()){
+            if (isProfileFromCurrentUser()) {
                 //show the edit button hide the report one
             }
             setOnMenuItemClickListener {
-                when(it.itemId){
+                when (it.itemId) {
                     R.id.action_edit_profile -> {
-                        val action = UserFragmentDirections.actionUserFragmentToEditProfileFragment(viewModel.userProfile.value!!)
+                        val action =
+                            UserFragmentDirections.actionUserFragmentToEditProfileFragment(viewModel.userProfile.value!!)
                         findNavController().navigate(action)
                     }
                 }
@@ -70,17 +75,17 @@ class UserFragment : BaseViewPagerFragment<FragmentUserBinding>(R.layout.fragmen
         }
     }
 
-    private fun isProfileFromCurrentUser(): Boolean{
+    private fun isProfileFromCurrentUser(): Boolean {
         val userId = if (args.profile != null) args.profile!!.uid else args.userId!!
         return viewModel.isProfileFromCurrentUser(userId)
     }
 
-    fun navigateToRecap(recap: Recap){
+    fun navigateToRecap(recap: Recap) {
         val action = UserFragmentDirections.actionUserFragmentToRecapFragment(recap)
         findNavController().navigate(action)
     }
 
-    fun navigateToCreateRecap(recap: Recap){
+    fun navigateToCreateRecap(recap: Recap) {
         val action = UserFragmentDirections.actionUserFragmentToCreateRecapGraph(recap)
         findNavController().navigate(action)
     }

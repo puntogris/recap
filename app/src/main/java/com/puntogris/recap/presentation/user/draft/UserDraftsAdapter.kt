@@ -5,7 +5,7 @@ import androidx.paging.PagingDataAdapter
 import com.puntogris.recap.core.utils.diff.RecapDiffCallBack
 import com.puntogris.recap.feature_recap.domain.model.Recap
 
-class UserDraftsAdapter(private val clickListener: (Recap) -> Unit):
+class UserDraftsAdapter(private val clickListener: (Recap) -> Unit) :
     PagingDataAdapter<Recap, UserDraftViewHolder>(RecapDiffCallBack()) {
 
     override fun onBindViewHolder(holder: UserDraftViewHolder, position: Int) {

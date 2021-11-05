@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchRepository: SearchRepository
-): BaseRvViewModel() {
+) : BaseRvViewModel() {
 
     private val _queryLiveData = MutableLiveData("")
     val queryLiveData: LiveData<String> = _queryLiveData
@@ -24,7 +24,7 @@ class SearchViewModel @Inject constructor(
         }
     }.cachedIn(viewModelScope)
 
-    val usersLiveData = Transformations.switchMap(queryLiveData){
+    val usersLiveData = Transformations.switchMap(queryLiveData) {
         if (it.isNotBlank()) {
             searchRepository.searchUsers(it).asLiveData()
         } else {

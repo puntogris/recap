@@ -7,7 +7,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.puntogris.recap.R
 
 @BindingAdapter("imageWithGlide")
-fun ImageView.setImageWithGlide(image: String?){
+fun ImageView.setImageWithGlide(image: String?) {
     val uri = if (image.isNullOrBlank()) R.drawable.ic_desert else image
 
     Glide
@@ -18,6 +18,6 @@ fun ImageView.setImageWithGlide(image: String?){
 }
 
 @BindingAdapter("showRecapBodyMenu")
-fun FloatingActionButton.setShowRecapBodyMenu(show: Boolean){
+fun FloatingActionButton.setShowRecapBodyMenu(show: Boolean) {
     if (show) show() else hide()
 }

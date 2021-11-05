@@ -3,7 +3,7 @@ package com.puntogris.recap.core.utils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class StandardDispatchers: DispatcherProvider {
+class StandardDispatchers : DispatcherProvider {
 
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main

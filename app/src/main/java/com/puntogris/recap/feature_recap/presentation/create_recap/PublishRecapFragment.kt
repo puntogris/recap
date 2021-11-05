@@ -9,15 +9,16 @@ import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PublishRecapFragment : BaseBindingFragment<FragmentPublishRecapBinding>(R.layout.fragment_publish_recap) {
+class PublishRecapFragment :
+    BaseBindingFragment<FragmentPublishRecapBinding>(R.layout.fragment_publish_recap) {
 
-    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
+    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph) { defaultViewModelProviderFactory }
 
     override fun initializeViews() {
 
     }
 
-    fun onContinueButtonClicked(){
+    fun onContinueButtonClicked() {
         val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
         findNavController().navigate(R.id.homeFragment, null, nav)
     }

@@ -11,9 +11,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecapBodyFragment : BaseBindingFragment<FragmentRecapBodyBinding>(R.layout.fragment_recap_body) {
+class RecapBodyFragment :
+    BaseBindingFragment<FragmentRecapBodyBinding>(R.layout.fragment_recap_body) {
 
-    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
+    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph) { defaultViewModelProviderFactory }
 
     override fun initializeViews() {
         binding.fragment = this
@@ -24,28 +25,28 @@ class RecapBodyFragment : BaseBindingFragment<FragmentRecapBodyBinding>(R.layout
         setupEditor()
     }
 
-    private fun setupEditor(){
+    private fun setupEditor() {
         binding.recapEditor.apply {
             setupBackgroundAndFontColors()
             focusAndShowKeyboard()
         }
     }
 
-    fun onSaveRecapClicked(previewOnSuccess: Boolean){
+    fun onSaveRecapClicked(previewOnSuccess: Boolean) {
         viewModel.toggleMenu()
 
         binding.recapEditor.html.let {
             if (it.isNullOrBlank()) showSnackBar("No puede estar vacio.")
-            else{
+            else {
                 viewModel.updateRecapBody(it)
                 saveRecap(previewOnSuccess)
             }
         }
     }
 
-    private fun saveRecap(previewOnSuccess: Boolean){
+    private fun saveRecap(previewOnSuccess: Boolean) {
         lifecycleScope.launch {
-            when(viewModel.saveRecapLocally()){
+            when (viewModel.saveRecapLocally()) {
                 SimpleResult.Failure -> showSnackBar("Error")
                 SimpleResult.Success -> {
                     showSnackBar("Guardado en borradores")

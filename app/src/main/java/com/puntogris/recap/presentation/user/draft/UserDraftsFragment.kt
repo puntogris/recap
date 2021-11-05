@@ -18,9 +18,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.layout.fragment_user_drafts) {
+class UserDraftsFragment :
+    BasePagerTabFragment<FragmentUserDraftsBinding>(R.layout.fragment_user_drafts) {
 
-    override val viewModel: UserViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    override val viewModel: UserViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override val adapter = UserDraftsAdapter(::onDraftClickListener)
 
@@ -39,7 +40,7 @@ class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.lay
         collectUiState()
     }
 
-    private fun collectUiState(){
+    private fun collectUiState() {
         launchAndRepeatWithViewLifecycle {
             viewModel.getDrafts().collect {
                 adapter.submitData(it)
@@ -51,11 +52,11 @@ class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.lay
         binding.contentLoadingLayout.registerState(state.refresh is LoadState.Loading)
     }
 
-    private fun onDraftClickListener(recap: Recap){
+    private fun onDraftClickListener(recap: Recap) {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(R.string.action)
             .setNegativeButton(android.R.string.cancel, null)
-            .setItems(R.array.draft_actions){ _, i ->
+            .setItems(R.array.draft_actions) { _, i ->
                 if (i == 0) (requireParentFragment() as UserFragment).navigateToCreateRecap(recap)
                 //else onDeleteDraftAction(recap)
             }

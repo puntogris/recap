@@ -7,7 +7,7 @@ import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 
 class PublicProfileAdapter(
     private val shortClickListener: (PublicProfile) -> Unit
-): PagingDataAdapter<PublicProfile, PublicProfileViewHolder>(PublicProfileDiffCallBack()) {
+) : PagingDataAdapter<PublicProfile, PublicProfileViewHolder>(PublicProfileDiffCallBack()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PublicProfileViewHolder {
         return PublicProfileViewHolder.from(parent)

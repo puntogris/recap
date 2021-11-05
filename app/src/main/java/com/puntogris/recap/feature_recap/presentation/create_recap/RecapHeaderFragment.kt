@@ -16,9 +16,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RecapHeaderFragment : BaseBindingFragment<FragmentRecapHeaderBinding>(R.layout.fragment_recap_header) {
+class RecapHeaderFragment :
+    BaseBindingFragment<FragmentRecapHeaderBinding>(R.layout.fragment_recap_header) {
 
-    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph){defaultViewModelProviderFactory}
+    private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph) { defaultViewModelProviderFactory }
     private val args: RecapHeaderFragmentArgs by navArgs()
 
     override fun initializeViews() {
@@ -31,17 +32,17 @@ class RecapHeaderFragment : BaseBindingFragment<FragmentRecapHeaderBinding>(R.la
         }
     }
 
-    fun navigateToRecapBody(){
+    fun navigateToRecapBody() {
         val title = binding.recapTitle.getString()
         val season = binding.recapSeason.getIntOrNull()
         val episode = binding.recapEpisode.getIntOrNull()
 
         val validation = RecapHeaderValidator.from(title, season, episode)
 
-        when(validation){
+        when (validation) {
             is NotValid -> showSnackBar(getString(validation.error))
             is Valid -> lifecycleScope.launch {
-                with(viewModel){
+                with(viewModel) {
                     updateRecap(title, season!!, episode!!)
                     saveRecapLocally()
                 }

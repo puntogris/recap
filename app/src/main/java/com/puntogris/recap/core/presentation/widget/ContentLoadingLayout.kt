@@ -97,7 +97,7 @@ class ContentLoadingLayout @JvmOverloads constructor(
         }
     }
 
-    fun registerState(show: Boolean){
+    fun registerState(show: Boolean) {
         if (show) show() else hide()
     }
 

@@ -7,7 +7,7 @@ import com.puntogris.recap.core.utils.PagerTabConfiguration
 import com.puntogris.recap.core.utils.PagingStateListener
 import com.puntogris.recap.core.utils.scrollToTop
 
-abstract class BasePagerTabFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
+abstract class BasePagerTabFragment<T : ViewDataBinding>(@LayoutRes override val layout: Int) :
     BaseBindingFragment<T>(layout), PagerTabConfiguration {
 
     private lateinit var stateListener: PagingStateListener
@@ -18,11 +18,11 @@ abstract class BasePagerTabFragment<T: ViewDataBinding>(@LayoutRes override val 
         subscribeReSelectedTabListener()
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         recyclerView.adapter = adapter
 
         stateListener = object : PagingStateListener {
-            override operator fun invoke(loadState: CombinedLoadStates){
+            override operator fun invoke(loadState: CombinedLoadStates) {
                 onAdapterLoadStateChanged(loadState)
             }
         }
@@ -30,8 +30,8 @@ abstract class BasePagerTabFragment<T: ViewDataBinding>(@LayoutRes override val 
         adapter.addLoadStateListener(stateListener)
     }
 
-    private fun subscribeReSelectedTabListener(){
-        viewModel.reselectedTabId.observe(viewLifecycleOwner){
+    private fun subscribeReSelectedTabListener() {
+        viewModel.reselectedTabId.observe(viewLifecycleOwner) {
             if (it == id) recyclerView.scrollToTop()
         }
     }

@@ -14,20 +14,20 @@ import javax.inject.Inject
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
     private val updateProfileUseCase: UpdateProfileUseCase
-): ViewModel() {
+) : ViewModel() {
 
     private var initialProfile: PublicProfile? = null
 
     private val _userProfile = MutableLiveData(PublicProfile())
     val userProfile: LiveData<PublicProfile> = _userProfile
 
-    fun setUser(publicProfile: PublicProfile){
+    fun setUser(publicProfile: PublicProfile) {
         _userProfile.value = publicProfile
         initialProfile = publicProfile
     }
 
     suspend fun saveProfileChanges(): EditProfileResult {
-        return if(profileDataChanged()){
+        return if (profileDataChanged()) {
             updateProfileUseCase(getEditProfile())
         } else EditProfileResult.Success
     }
@@ -54,7 +54,7 @@ class EditProfileViewModel @Inject constructor(
     private fun profileDataChanged() =
         nameChanged() || bioChanged() || imageChanged() || accountChanged()
 
-    fun updateProfileUri(uri: Uri?){
+    fun updateProfileUri(uri: Uri?) {
 
     }
 }

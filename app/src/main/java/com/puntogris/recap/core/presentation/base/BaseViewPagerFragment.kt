@@ -6,11 +6,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.puntogris.recap.core.utils.PagerConfiguration
 
-abstract class BaseViewPagerFragment<T: ViewDataBinding>(@LayoutRes override val layout: Int):
+abstract class BaseViewPagerFragment<T : ViewDataBinding>(@LayoutRes override val layout: Int) :
     BaseBindingFragment<T>(layout),
     PagerConfiguration,
-    TabLayout.OnTabSelectedListener
-{
+    TabLayout.OnTabSelectedListener {
     private var mediator: TabLayoutMediator? = null
 
     override fun initializeViews() {

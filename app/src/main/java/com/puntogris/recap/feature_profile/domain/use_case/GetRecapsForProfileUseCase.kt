@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 class GetRecapsForProfileUseCase(
     private val repository: ProfileRepository
-){
+) {
     operator fun invoke(): Flow<PagingData<Recap>> {
         return repository.getRecapsPaged()
     }

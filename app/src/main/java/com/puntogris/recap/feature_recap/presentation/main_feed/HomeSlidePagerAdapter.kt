@@ -13,5 +13,5 @@ class HomeSlidePagerAdapter(@NonNull parentFragment: FragmentManager, lifecycle:
     override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int) =
-        if (position == 0 ) ExploreRecapFragment() else ExploreReviewFragment()
+        if (position == 0) ExploreRecapFragment() else ExploreReviewFragment()
 }

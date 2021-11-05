@@ -8,9 +8,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltAndroidApp
-class RecapApplication: Application() {
+class RecapApplication : Application() {
 
-    @Inject lateinit var sharedPref: SharedPref
+    @Inject
+    lateinit var sharedPref: SharedPref
 
     override fun onCreate() {
         super.onCreate()
@@ -21,7 +22,7 @@ class RecapApplication: Application() {
 
     }
 
-    private fun applyAppTheme(){
+    private fun applyAppTheme() {
         ThemeUtils.applyTheme(sharedPref.getAppTheme())
     }
 }

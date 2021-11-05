@@ -9,7 +9,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ReportViewModel @Inject constructor(
     private val reportRecapUseCase: ReportRecapUseCase
-): ViewModel() {
+) : ViewModel() {
 
     suspend fun sendReport(report: Report) = reportRecapUseCase(report)
 

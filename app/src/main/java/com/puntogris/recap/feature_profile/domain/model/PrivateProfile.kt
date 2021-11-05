@@ -14,7 +14,7 @@ class PrivateProfile(
     val nameEdited: Timestamp = Timestamp.now(),
     val photoEdited: Timestamp = Timestamp.now(),
     val bioEdited: Timestamp = Timestamp.now()
-){
+) {
     fun canEditName() = nameEdited < Timestamp.now()
 
     fun canEditPhoto() = photoEdited < Timestamp.now()

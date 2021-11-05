@@ -10,9 +10,9 @@ import com.puntogris.recap.core.utils.ReviewOrder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReviewOrderDialog: DialogFragment() {
+class ReviewOrderDialog : DialogFragment() {
 
-    private val viewModel: HomeViewModel by viewModels(ownerProducer = {requireParentFragment()})
+    private val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val orderOptions = enumValues<ReviewOrder>()

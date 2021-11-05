@@ -16,17 +16,17 @@ interface RecapRepository {
 
     fun getReviewsPaged(order: ReviewOrder): Flow<PagingData<Recap>>
 
-    fun getDraftsPagingData(): Flow<PagingData<Recap>>
+    fun getDraftsPaged(): Flow<PagingData<Recap>>
 
-    suspend fun saveRecapIntoDb(recap: Recap): SimpleResult
+    suspend fun saveRecap(recap: Recap): SimpleResult
 
     suspend fun getRecap(recapId: String): Result<Exception, Recap>
+
+    suspend fun reportRecap(report: Report): SimpleResult
 
     suspend fun getUserRecapInteractions(recapId: String): RecapInteractions?
 
     suspend fun deleteDraft(recap: Recap): SimpleResult
 
-    suspend fun saveRecapLocalDb(recap: Recap): SimpleResult
-
-    suspend fun reportRecap(report: Report): SimpleResult
+    suspend fun saveRecapDraft(recap: Recap): SimpleResult
 }

@@ -9,8 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RateRecapViewModel @Inject constructor(private val ratingRepository: RatingRepository
-): ViewModel() {
+class RateRecapViewModel @Inject constructor(
+    private val ratingRepository: RatingRepository
+) : ViewModel() {
 
     suspend fun checkRatingData(recapId: String) = ratingRepository.checkIfUserRatedRecap(recapId)
 
