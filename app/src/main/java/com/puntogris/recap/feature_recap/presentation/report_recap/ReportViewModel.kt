@@ -1,7 +1,7 @@
 package com.puntogris.recap.feature_recap.presentation.report_recap
 
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.Report
+import com.puntogris.recap.feature_recap.domain.model.Report
 import com.puntogris.recap.feature_recap.domain.use_case.ReportRecapUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

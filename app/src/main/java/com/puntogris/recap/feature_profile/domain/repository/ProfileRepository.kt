@@ -19,7 +19,7 @@ interface ProfileRepository {
 
     suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult
 
-    fun getLocalRecapsPaged(): Flow<PagingData<Recap>>
+    fun getRecapDraftsPaged(): Flow<PagingData<Recap>>
 
     fun getRecapsPaged(): Flow<PagingData<Recap>>
 }

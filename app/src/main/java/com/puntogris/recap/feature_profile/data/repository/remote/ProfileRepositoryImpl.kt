@@ -133,7 +133,7 @@ class ProfileRepositoryImpl(
         return baos.toByteArray()
     }
 
-    override fun getLocalRecapsPaged(): Flow<PagingData<Recap>> {
+    override fun getRecapDraftsPaged(): Flow<PagingData<Recap>> {
         return Pager(
             PagingConfig(
                 pageSize = 30,
@@ -147,7 +147,8 @@ class ProfileRepositoryImpl(
         val query = firebase
             .firestore
             .collection(Constants.RECAPS_COLLECTION)
-            .whereEqualTo("aproved", true)
+            .whereEqualTo("approved", true)
+            .whereEqualTo("uid", firebase.currentUid())
 
         return Pager(
             PagingConfig(

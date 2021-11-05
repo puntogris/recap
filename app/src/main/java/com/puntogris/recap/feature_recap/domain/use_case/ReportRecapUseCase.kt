@@ -1,6 +1,6 @@
 package com.puntogris.recap.feature_recap.domain.use_case
 
-import com.puntogris.recap.Report
+import com.puntogris.recap.feature_recap.domain.model.Report
 import com.puntogris.recap.core.utils.SimpleResult
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 

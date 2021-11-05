@@ -9,6 +9,6 @@ class GetDraftsForProfileUseCase(
     private val repository: ProfileRepository
 ) {
     operator fun invoke(): Flow<PagingData<Recap>> {
-        return repository.getLocalRecapsPaged()
+        return repository.getRecapDraftsPaged()
     }
 }

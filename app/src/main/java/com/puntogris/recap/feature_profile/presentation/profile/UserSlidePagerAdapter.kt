@@ -4,7 +4,9 @@ import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.puntogris.recap.presentation.user.draft.UserDraftsFragment
+import com.puntogris.recap.feature_profile.presentation.profile.profile_drafts.UserDraftsFragment
+import com.puntogris.recap.feature_profile.presentation.profile.profile_recaps.UserRecapsFragment
+import com.puntogris.recap.feature_profile.presentation.profile.profile_reviews.UserReviewsFragment
 
 class UserSlidePagerAdapter(
     @NonNull parentFragment: FragmentManager,

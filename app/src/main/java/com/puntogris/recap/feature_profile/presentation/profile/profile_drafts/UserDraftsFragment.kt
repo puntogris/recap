@@ -1,4 +1,4 @@
-package com.puntogris.recap.presentation.user.draft
+package com.puntogris.recap.feature_profile.presentation.profile.profile_drafts
 
 import android.content.Context
 import androidx.fragment.app.viewModels

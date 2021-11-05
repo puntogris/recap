@@ -1,4 +1,4 @@
-package com.puntogris.recap
+package com.puntogris.recap.feature_recap.domain.model
 
 import androidx.annotation.Keep
 import androidx.annotation.StringRes

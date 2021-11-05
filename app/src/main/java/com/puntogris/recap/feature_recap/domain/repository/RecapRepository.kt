@@ -1,7 +1,7 @@
 package com.puntogris.recap.feature_recap.domain.repository
 
 import androidx.paging.PagingData
-import com.puntogris.recap.Report
+import com.puntogris.recap.feature_recap.domain.model.Report
 import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.Result
 import com.puntogris.recap.core.utils.ReviewOrder

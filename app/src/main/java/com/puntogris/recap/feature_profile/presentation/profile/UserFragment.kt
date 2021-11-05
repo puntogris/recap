@@ -10,6 +10,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentUserBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.presentation.base.BaseViewPagerFragment
+import com.puntogris.recap.core.utils.registerToolbarBackButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

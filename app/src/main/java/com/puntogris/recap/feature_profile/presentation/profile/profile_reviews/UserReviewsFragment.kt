@@ -1,19 +1,22 @@
-package com.puntogris.recap.feature_profile.presentation.profile
+package com.puntogris.recap.feature_profile.presentation.profile.profile_reviews
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentUserRecapsBinding
+import com.puntogris.recap.databinding.FragmentUserReviewsBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
+import com.puntogris.recap.feature_profile.presentation.profile.UserViewModel
+import com.puntogris.recap.feature_recap.presentation.main_feed.HomeFragment
 import com.puntogris.recap.feature_recap.presentation.main_feed.explore.ExploreRecapAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UserRecapsFragment :
-    BasePagerTabFragment<FragmentUserRecapsBinding>(R.layout.fragment_user_recaps) {
+class UserReviewsFragment :
+    BasePagerTabFragment<FragmentUserReviewsBinding>(R.layout.fragment_user_reviews) {
 
     override val viewModel: UserViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
@@ -32,16 +35,17 @@ class UserRecapsFragment :
     }
 
     private fun collectUiState() {
-        viewModel.recapsLiveData.observe(viewLifecycleOwner) {
-            adapter.submitData(lifecycle, it)
+        viewModel.reviewsLiveData.observe(viewLifecycleOwner) {
+            //  adapter.submitData(lifecycle, it)
         }
     }
 
     private fun onRecapShortClick(recap: Recap) {
-        (requireParentFragment() as UserFragment).navigateToRecap(recap)
+        findNavController().navigate(R.id.recapFragment)
     }
 
     private fun onRecapLongClick(recap: Recap) {
-        //(requireParentFragment() as UserFragment).showFavoriteSnack()
+        (requireParentFragment() as HomeFragment).showFavoriteSnack()
     }
+
 }
