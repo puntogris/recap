@@ -5,10 +5,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
+import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.databinding.BottomSheetReportRecapBinding
 import com.puntogris.recap.feature_recap.domain.model.Report
-import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
-import com.puntogris.recap.core.utils.SimpleResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -42,10 +42,10 @@ class ReportRecapBottomSheet :
 
         lifecycleScope.launch {
             when (viewModel.sendReport(report)) {
-                SimpleResult.Failure -> {
+                is SimpleResource.Error -> {
 
                 }
-                SimpleResult.Success -> {
+                SimpleResource.Success -> {
 
                 }
             }

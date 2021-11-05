@@ -4,8 +4,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentPublishRecapBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
+import com.puntogris.recap.databinding.FragmentPublishRecapBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

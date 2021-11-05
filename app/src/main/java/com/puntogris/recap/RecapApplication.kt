@@ -1,7 +1,7 @@
 package com.puntogris.recap
 
 import android.app.Application
-import com.puntogris.recap.core.utils.SharedPref
+import com.puntogris.recap.core.data.local.SharedPref
 import com.puntogris.recap.core.utils.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber

@@ -6,11 +6,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentRecapBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
-import com.puntogris.recap.core.utils.Result
+import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.core.utils.showSnackBar
+import com.puntogris.recap.databinding.FragmentRecapBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,11 +32,11 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
     private fun subscribeRecapState() {
         viewModel.recapState.observe(viewLifecycleOwner) {
             when (it) {
-                is Result.Error -> {
+                is Resource.Error -> {
 
                 }
-                is Result.Success -> {
-                    viewModel.updateRecap(it.value)
+                is Resource.Success -> {
+                    viewModel.updateRecap(it.data)
                 }
             }
         }

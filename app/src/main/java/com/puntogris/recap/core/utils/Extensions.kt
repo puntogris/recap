@@ -51,7 +51,6 @@ fun AppCompatActivity.getNavController() = getNavHostFragment().navController
 fun AppCompatActivity.getNavHostFragment() =
     (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment)
 
-
 fun Fragment.showSnackBar(
     message: String,
     duration: Int = Snackbar.LENGTH_LONG,

@@ -9,12 +9,12 @@ import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
+import com.puntogris.recap.core.utils.SimpleResource
+import com.puntogris.recap.core.utils.loadProfilePicture
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileContentBinding
 import com.puntogris.recap.databinding.MainBottomNavigationDrawerProfileHeaderBinding
-import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
-import com.puntogris.recap.core.utils.SimpleResult
-import com.puntogris.recap.core.utils.loadProfilePicture
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -81,9 +81,9 @@ class HomeBottomNavigationDrawer :
     private fun handleLogOut() {
         lifecycleScope.launch {
             when (viewModel.logOut()) {
-                SimpleResult.Failure -> {
+                is SimpleResource.Error -> {
                 }
-                SimpleResult.Success -> {
+                SimpleResource.Success -> {
                     dismiss()
                     setFragmentResult("home_fragment", bundleOf("log_out_result" to true))
                 }

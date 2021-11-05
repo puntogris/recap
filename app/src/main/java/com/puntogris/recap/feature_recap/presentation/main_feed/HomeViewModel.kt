@@ -4,12 +4,10 @@ import androidx.lifecycle.*
 import androidx.paging.cachedIn
 import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
 import com.puntogris.recap.core.domain.use_case.isLoggedIn
-import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
-import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
 import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.ReviewOrder
-import com.puntogris.recap.core.utils.SimpleResult
+import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.feature_auth.domain.user_case.LogoutUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetReviewsUseCase
@@ -91,7 +89,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    suspend fun logOut(): SimpleResult {
+    suspend fun logOut(): SimpleResource {
         _authorizedLiveData.value = false
         updateUser(null, null, null, null)
         return logoutUseCase()

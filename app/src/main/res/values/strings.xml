@@ -74,6 +74,7 @@
     <string name="snack_general_error">An error occurred. Please try again.</string>
     <string name="error">Error</string>
     <string name="recap_link_title">"Watch %1$s recap here!"</string>
+    <string name="error_unknown">Unknown error</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Updated to v%1$s</string>

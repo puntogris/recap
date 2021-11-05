@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.databinding.SelectRatingDialogBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.utils.SimpleResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -31,9 +31,9 @@ class SelectRatingDialog : DialogFragment() {
     private fun rateRecap() {
         lifecycleScope.launch {
             when (viewModel.sendRating(Recap())) {
-                SimpleResult.Failure -> {
+                is SimpleResource.Error -> {
                 }
-                SimpleResult.Success -> {
+                SimpleResource.Success -> {
                 }
             }
         }

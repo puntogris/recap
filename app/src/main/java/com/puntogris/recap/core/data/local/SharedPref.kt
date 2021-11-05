@@ -1,4 +1,4 @@
-package com.puntogris.recap.core.utils
+package com.puntogris.recap.core.data.local
 
 import android.content.Context
 import androidx.annotation.Keep
@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager
 import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.core.utils.Constants.LAST_VERSION_CODE
 import com.puntogris.recap.core.utils.Constants.PREF_APP_THEME
+import com.puntogris.recap.core.utils.ThemeUtils
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton

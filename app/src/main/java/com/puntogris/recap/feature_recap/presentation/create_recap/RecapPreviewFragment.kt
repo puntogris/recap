@@ -3,9 +3,9 @@ package com.puntogris.recap.feature_recap.presentation.create_recap
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentRecapPreviewBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.registerToolbarBackButton
+import com.puntogris.recap.databinding.FragmentRecapPreviewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

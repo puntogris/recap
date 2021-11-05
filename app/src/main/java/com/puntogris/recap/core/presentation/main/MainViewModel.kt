@@ -3,7 +3,7 @@ package com.puntogris.recap.core.presentation.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.puntogris.recap.BuildConfig
-import com.puntogris.recap.core.utils.SharedPref
+import com.puntogris.recap.core.data.local.SharedPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

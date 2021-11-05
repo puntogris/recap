@@ -12,14 +12,14 @@ import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
-import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
-import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
-import com.puntogris.recap.feature_profile.domain.model.PrivateProfile
-import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.core.utils.Constants.PUBLIC_PROFILE_COLLECTION
 import com.puntogris.recap.core.utils.Constants.PUBLIC_PROFILE_FIELD
 import com.puntogris.recap.core.utils.Constants.USERS_COLLECTION
-import com.puntogris.recap.core.utils.Result
+import com.puntogris.recap.core.utils.Resource
+import com.puntogris.recap.feature_profile.domain.model.PrivateProfile
+import com.puntogris.recap.feature_profile.domain.model.PublicProfile
+import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
+import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import kotlinx.coroutines.Dispatchers
@@ -39,9 +39,9 @@ class ProfileRepositoryImpl(
 
     override fun getFirebaseUser() = firebase.auth.currentUser
 
-    override suspend fun getPublicProfile(userId: String): Result<Exception, PublicProfile> =
+    override suspend fun getPublicProfile(userId: String): Resource<PublicProfile> =
         withContext(Dispatchers.IO) {
-            Result.build {
+            Resource.build {
                 firebase.firestore
                     .collection(USERS_COLLECTION)
                     .document(userId)

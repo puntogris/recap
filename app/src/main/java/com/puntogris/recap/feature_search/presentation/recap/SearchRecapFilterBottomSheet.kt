@@ -2,8 +2,8 @@ package com.puntogris.recap.feature_search.presentation.recap
 
 import android.widget.ArrayAdapter
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.BottomSheetSearchRecapFilterBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
+import com.puntogris.recap.databinding.BottomSheetSearchRecapFilterBinding
 import com.puntogris.recap.feature_search.presentation.RecapLanguages
 import dagger.hilt.android.AndroidEntryPoint
 

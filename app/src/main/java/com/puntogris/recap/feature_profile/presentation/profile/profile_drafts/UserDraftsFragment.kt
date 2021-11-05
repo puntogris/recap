@@ -7,13 +7,13 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentUserDraftsBinding
-import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.core.utils.UiListener
+import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.recap.databinding.FragmentUserDraftsBinding
 import com.puntogris.recap.feature_profile.presentation.profile.UserFragment
 import com.puntogris.recap.feature_profile.presentation.profile.UserViewModel
-import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.recap.feature_recap.domain.model.Recap
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 

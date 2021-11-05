@@ -6,9 +6,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.ActivityMainBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingActivity
 import com.puntogris.recap.core.utils.getNavController
+import com.puntogris.recap.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

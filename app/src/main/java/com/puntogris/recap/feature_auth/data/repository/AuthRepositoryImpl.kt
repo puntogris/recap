@@ -2,9 +2,9 @@ package com.puntogris.recap.feature_auth.data.repository
 
 import androidx.activity.result.ActivityResult
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.feature_auth.data.datasource.GoogleSingInDataSource
 import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
-import com.puntogris.recap.core.utils.SimpleResult
 import com.puntogris.recap.feature_auth.presentation.util.LoginResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -26,7 +26,7 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun logout() = SimpleResult.build {
+    override suspend fun logout() = SimpleResource.build {
         firebase.signOut()
         googleSingIn.signOut()
     }

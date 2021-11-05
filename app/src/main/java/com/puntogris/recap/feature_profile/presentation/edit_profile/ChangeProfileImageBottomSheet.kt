@@ -4,9 +4,9 @@ import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.BottomSheetChangeProfileImageBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingBottomSheetFragment
 import com.puntogris.recap.core.utils.EditPhotoOptions
+import com.puntogris.recap.databinding.BottomSheetChangeProfileImageBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -5,20 +5,14 @@ import android.net.Uri
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.google.firebase.dynamiclinks.ktx.*
+import com.google.firebase.dynamiclinks.ktx.androidParameters
+import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
+import com.google.firebase.dynamiclinks.ktx.socialMetaTagParameters
 import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
-import com.puntogris.recap.feature_recap.domain.model.Report
-import com.puntogris.recap.core.utils.RecapOrder
-import com.puntogris.recap.core.utils.Result
-import com.puntogris.recap.core.utils.ReviewOrder
-import com.puntogris.recap.core.utils.SimpleResult
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
-import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
-import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.feature_recap.domain.model.RecapInteractions
 import com.puntogris.recap.core.utils.Constants.ANDROID_FALL_BACK_URL
 import com.puntogris.recap.core.utils.Constants.DEEP_LINK_PATH
 import com.puntogris.recap.core.utils.Constants.DOMAIN_URI_PREFIX
@@ -26,6 +20,14 @@ import com.puntogris.recap.core.utils.Constants.INTERACTIONS_COLLECTION
 import com.puntogris.recap.core.utils.Constants.RECAPS_COLLECTION
 import com.puntogris.recap.core.utils.Constants.SQUARE_APP_LOGO_URL
 import com.puntogris.recap.core.utils.Constants.USERS_COLLECTION
+import com.puntogris.recap.core.utils.RecapOrder
+import com.puntogris.recap.core.utils.Resource
+import com.puntogris.recap.core.utils.ReviewOrder
+import com.puntogris.recap.core.utils.SimpleResource
+import com.puntogris.recap.feature_recap.domain.model.Recap
+import com.puntogris.recap.feature_recap.domain.model.RecapInteractions
+import com.puntogris.recap.feature_recap.domain.model.Report
+import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
@@ -37,8 +39,8 @@ class RecapRepositoryImpl(
     private val context: Context
 ) : RecapRepository {
 
-    override suspend fun saveRecap(recap: Recap): SimpleResult = withContext(Dispatchers.IO) {
-        SimpleResult.build {
+    override suspend fun saveRecap(recap: Recap): SimpleResource = withContext(Dispatchers.IO) {
+        SimpleResource.build {
             val ref = firebase.firestore
                 .collection(USERS_COLLECTION)
                 .document(firebase.currentUid()!!)
@@ -113,9 +115,9 @@ class RecapRepositoryImpl(
         ) { recapDao.getDraftsPaged() }.flow
     }
 
-    override suspend fun getRecap(recapId: String): Result<Exception, Recap> =
+    override suspend fun getRecap(recapId: String): Resource<Recap> =
         withContext(Dispatchers.IO) {
-            Result.build {
+            Resource.build {
                 firebase
                     .firestore
                     .collection(RECAPS_COLLECTION)
@@ -141,18 +143,24 @@ class RecapRepositoryImpl(
 
         }
 
-    override suspend fun deleteDraft(recap: Recap): SimpleResult {
-        return if (recapDao.delete(recap.id) != 0) SimpleResult.Success else SimpleResult.Failure
+    override suspend fun deleteDraft(recap: Recap): SimpleResource = withContext(Dispatchers.IO) {
+        SimpleResource.build {
+            recapDao.delete(recap.id)
+        }
     }
 
     override suspend fun saveRecapDraft(recap: Recap) = withContext(Dispatchers.IO) {
-        recap.id = firebase.firestore.collection("recaps").document().id
-        if (recapDao.insert(recap) != 0L) SimpleResult.Success else SimpleResult.Failure
+        SimpleResource.build {
+            recap.apply {
+                id = firebase.firestore.collection("recaps").document().id
+                recapDao.insert(this)
+            }
+        }
     }
 
-    override suspend fun reportRecap(report: Report): SimpleResult =
+    override suspend fun reportRecap(report: Report): SimpleResource =
         withContext(Dispatchers.IO) {
-            SimpleResult.build {
+            SimpleResource.build {
                 report.uid = firebase.currentUid()!!
                 firebase.firestore.collection("reports").add(report)
             }

@@ -9,12 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentLoginBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.UiListener
+import com.puntogris.recap.databinding.FragmentLoginBinding
 import com.puntogris.recap.feature_auth.presentation.util.LoginResult
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

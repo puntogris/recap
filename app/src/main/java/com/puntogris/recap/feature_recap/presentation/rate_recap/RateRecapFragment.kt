@@ -5,10 +5,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentRateRecapBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
-import com.puntogris.recap.core.utils.Result
+import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
+import com.puntogris.recap.databinding.FragmentRateRecapBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,9 +26,9 @@ class RateRecapFragment :
     private fun subscribeUserRatingUi() {
         launchAndRepeatWithViewLifecycle(Lifecycle.State.CREATED) {
             when (viewModel.checkRatingData(args.recap.id)) {
-                is Result.Error -> {
+                is Resource.Error -> {
                 }
-                is Result.Success -> {
+                is Resource.Success -> {
                 }
             }
         }

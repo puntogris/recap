@@ -5,13 +5,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentRecapHeaderBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.getIntOrNull
 import com.puntogris.recap.core.utils.getString
-import com.puntogris.recap.feature_recap.presentation.create_recap.RecapHeaderValidator.*
 import com.puntogris.recap.core.utils.registerToolbarBackButton
 import com.puntogris.recap.core.utils.showSnackBar
+import com.puntogris.recap.databinding.FragmentRecapHeaderBinding
+import com.puntogris.recap.feature_recap.presentation.create_recap.RecapHeaderValidator.NotValid
+import com.puntogris.recap.feature_recap.presentation.create_recap.RecapHeaderValidator.Valid
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -4,8 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
+import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.use_case.UpdateProfileUseCase
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import dagger.hilt.android.lifecycle.HiltViewModel

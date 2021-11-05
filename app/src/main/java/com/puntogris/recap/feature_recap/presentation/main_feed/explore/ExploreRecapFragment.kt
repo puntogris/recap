@@ -5,9 +5,9 @@ import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.databinding.FragmentExploreRecapBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.feature_recap.presentation.main_feed.HomeFragment
 import com.puntogris.recap.feature_recap.presentation.main_feed.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint

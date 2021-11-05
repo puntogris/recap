@@ -9,35 +9,6 @@ import com.puntogris.recap.feature_recap.domain.model.RecapInteractions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.parcelize.Parcelize
 
-sealed class SimpleResult {
-    object Success : SimpleResult()
-    object Failure : SimpleResult()
-
-    companion object Factory {
-        inline fun build(function: () -> Unit): SimpleResult =
-            try {
-                function.invoke()
-                Success
-            } catch (e: Exception) {
-                Failure
-            }
-    }
-}
-
-
-sealed class Result<out E : Exception, out V> {
-    data class Success<out V>(val value: V) : Result<Nothing, V>()
-    data class Error<out E : Exception>(val exception: Exception) : Result<E, Nothing>()
-
-    companion object Factory {
-        inline fun <V> build(function: () -> V): Result<Exception, V> =
-            try {
-                Success(function.invoke())
-            } catch (e: Exception) {
-                Error(e)
-            }
-    }
-}
 
 sealed class RecapInteractionResult {
     data class Success(val data: RecapInteractions) : RecapInteractionResult()

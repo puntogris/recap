@@ -6,11 +6,11 @@ import androidx.paging.PagingData
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestorePublicProfilePagingSource
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
-import com.puntogris.recap.feature_search.domain.repository.SearchRepository
-import com.puntogris.recap.feature_profile.domain.model.PublicProfile
-import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.utils.Constants.PUBLIC_PROFILE_COLLECTION
 import com.puntogris.recap.core.utils.Constants.RECAPS_COLLECTION
+import com.puntogris.recap.feature_profile.domain.model.PublicProfile
+import com.puntogris.recap.feature_recap.domain.model.Recap
+import com.puntogris.recap.feature_search.domain.repository.SearchRepository
 import kotlinx.coroutines.flow.Flow
 
 class SearchRepositoryImpl(private val firebase: FirebaseClients) : SearchRepository {

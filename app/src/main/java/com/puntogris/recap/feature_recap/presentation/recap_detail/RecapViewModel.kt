@@ -1,12 +1,10 @@
 package com.puntogris.recap.feature_recap.presentation.recap_detail
 
 import androidx.lifecycle.*
-import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
+import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.utils.Result
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapInteractionsUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapUseCase
-import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -30,7 +28,7 @@ class RecapViewModel @Inject constructor(
         if (recapIdArgs != null) {
             emit(getRecap(recapIdArgs))
         } else {
-            emit(Result.Success(savedStateHandle.get<Recap>("recap")!!))
+            emit(Resource.Success(savedStateHandle.get<Recap>("recap")!!))
         }
     }
 

@@ -3,9 +3,9 @@ package com.puntogris.recap.feature_settings.presentation.settings
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat
 import com.puntogris.recap.R
+import com.puntogris.recap.core.utils.Constants.PREF_APP_THEME
 import com.puntogris.recap.core.utils.ThemeUtils
 import com.puntogris.recap.core.utils.onPreferenceChange
-import com.puntogris.recap.core.utils.Constants.PREF_APP_THEME
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

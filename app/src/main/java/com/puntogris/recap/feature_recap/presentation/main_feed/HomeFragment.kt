@@ -9,12 +9,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BaseViewPagerFragment
+import com.puntogris.recap.core.utils.UiListener
 import com.puntogris.recap.databinding.FragmentHomeBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.presentation.base.BaseViewPagerFragment
 import com.puntogris.recap.feature_recap.presentation.main_feed.explore.RecapOrderDialog
 import com.puntogris.recap.feature_recap.presentation.main_feed.reviews.ReviewOrderDialog
-import com.puntogris.recap.core.utils.UiListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

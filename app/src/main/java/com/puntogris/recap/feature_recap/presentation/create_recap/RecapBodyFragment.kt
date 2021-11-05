@@ -4,9 +4,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
-import com.puntogris.recap.databinding.FragmentRecapBodyBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.*
+import com.puntogris.recap.databinding.FragmentRecapBodyBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -47,8 +47,8 @@ class RecapBodyFragment :
     private fun saveRecap(previewOnSuccess: Boolean) {
         lifecycleScope.launch {
             when (viewModel.saveRecapLocally()) {
-                SimpleResult.Failure -> showSnackBar("Error")
-                SimpleResult.Success -> {
+                is SimpleResource.Error -> showSnackBar("Error")
+                SimpleResource.Success -> {
                     showSnackBar("Guardado en borradores")
                     if (previewOnSuccess) {
                         findNavController().navigate(R.id.action_recapBodyFragment_to_previewRecapFragment)

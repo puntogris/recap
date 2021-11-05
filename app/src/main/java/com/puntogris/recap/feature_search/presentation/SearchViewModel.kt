@@ -3,8 +3,8 @@ package com.puntogris.recap.feature_search.presentation
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.puntogris.recap.feature_search.domain.repository.SearchRepository
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
+import com.puntogris.recap.feature_search.domain.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

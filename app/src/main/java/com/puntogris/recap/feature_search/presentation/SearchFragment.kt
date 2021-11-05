@@ -7,11 +7,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BaseViewPagerFragment
+import com.puntogris.recap.core.utils.*
 import com.puntogris.recap.databinding.FragmentSearchBinding
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.presentation.base.BaseViewPagerFragment
-import com.puntogris.recap.core.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

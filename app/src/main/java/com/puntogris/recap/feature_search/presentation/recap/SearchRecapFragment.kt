@@ -2,12 +2,13 @@ package com.puntogris.recap.feature_search.presentation.recap
 
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.paging.*
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.puntogris.recap.R
+import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.databinding.FragmentSearchRecapBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.feature_recap.presentation.main_feed.explore.ExploreRecapAdapter
 import com.puntogris.recap.feature_search.presentation.SearchFragment
 import com.puntogris.recap.feature_search.presentation.SearchViewModel
