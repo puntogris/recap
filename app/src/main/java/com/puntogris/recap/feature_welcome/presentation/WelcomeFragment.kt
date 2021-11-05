@@ -1,4 +1,4 @@
-package com.puntogris.recap
+package com.puntogris.recap.feature_welcome.presentation
 
 import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentWelcomeBinding

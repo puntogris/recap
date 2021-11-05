@@ -1,4 +1,4 @@
-package com.puntogris.recap
+package com.puntogris.recap.feature_welcome.presentation
 
 import android.app.Dialog
 import android.os.Bundle

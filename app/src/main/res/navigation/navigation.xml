@@ -16,7 +16,7 @@
         android:name="com.puntogris.recap.feature_auth.presentation.login.LoginFragment"/>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.puntogris.recap.WelcomeFragment"/>
+        android:name="com.puntogris.recap.feature_welcome.presentation.WelcomeFragment"/>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.puntogris.recap.feature_search.presentation.SearchFragment">
@@ -102,7 +102,7 @@
         app:destination="@id/userFragment" />
     <dialog
         android:id="@+id/whatsNewDialog"
-        android:name="com.puntogris.recap.WhatsNewDialog" />
+        android:name="com.puntogris.recap.feature_welcome.presentation.WhatsNewDialog" />
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.puntogris.recap.feature_profile.presentation.edit_profile.EditProfileFragment">
