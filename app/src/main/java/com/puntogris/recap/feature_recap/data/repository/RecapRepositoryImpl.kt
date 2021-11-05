@@ -8,6 +8,7 @@ import androidx.paging.PagingData
 import com.google.firebase.dynamiclinks.ktx.*
 import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
+import com.puntogris.recap.Report
 import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.Result
 import com.puntogris.recap.core.utils.ReviewOrder
@@ -68,7 +69,7 @@ class RecapRepositoryImpl(
         }.await().shortLink?.path!!
     }
 
-    override fun getRecapsPagingData(order: RecapOrder): Flow<PagingData<Recap>> {
+    override fun getRecapsPaged(order: RecapOrder): Flow<PagingData<Recap>> {
         val baseQuery = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
@@ -87,7 +88,7 @@ class RecapRepositoryImpl(
         ) { FirestoreRecapPagingSource(query) }.flow
     }
 
-    override fun getReviewsPagingData(order: ReviewOrder): Flow<PagingData<Recap>> {
+    override fun getReviewsPaged(order: ReviewOrder): Flow<PagingData<Recap>> {
         val query = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
@@ -112,7 +113,7 @@ class RecapRepositoryImpl(
         ) { recapDao.getDraftsPaged() }.flow
     }
 
-    override suspend fun getRecapWithId(recapId: String): Result<Exception, Recap> =
+    override suspend fun getRecap(recapId: String): Result<Exception, Recap> =
         withContext(Dispatchers.IO) {
             Result.build {
                 firebase
@@ -148,4 +149,12 @@ class RecapRepositoryImpl(
         recap.id = firebase.firestore.collection("recaps").document().id
         if (recapDao.insert(recap) != 0L) SimpleResult.Success else SimpleResult.Failure
     }
+
+    override suspend fun reportRecap(report: Report): SimpleResult =
+        withContext(Dispatchers.IO) {
+            SimpleResult.build {
+                report.uid = firebase.currentUid()!!
+                firebase.firestore.collection("reports").add(report)
+            }
+        }
 }

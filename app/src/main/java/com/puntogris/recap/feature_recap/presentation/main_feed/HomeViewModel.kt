@@ -2,22 +2,27 @@ package com.puntogris.recap.feature_recap.presentation.main_feed
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
+import com.puntogris.recap.core.domain.use_case.isLoggedIn
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
 import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.ReviewOrder
 import com.puntogris.recap.core.utils.SimpleResult
+import com.puntogris.recap.feature_auth.domain.user_case.LogoutUseCase
+import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
+import com.puntogris.recap.feature_recap.domain.use_case.GetReviewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val recapRepository: RecapRepository,
-    private val profileRepository: ProfileRepository,
-    private val authRepository: AuthRepository
-): BaseRvViewModel() {
+    private val getRecapsUseCase: GetRecapsUseCase,
+    private val getReviewsUseCase: GetReviewsUseCase,
+    private val getCurrentAuthUser: GetCurrentAuthUser,
+    private val logoutUseCase: LogoutUseCase
+) : BaseRvViewModel() {
 
     private val _userId = MutableLiveData<String?>()
     val userId: LiveData<String?> = _userId
@@ -31,7 +36,7 @@ class HomeViewModel @Inject constructor(
     private val _profilePictureLiveData = MutableLiveData<String?>()
     val profilePictureLiveData: LiveData<String?> = _profilePictureLiveData
 
-    private val _authorizedLiveData = MutableLiveData(profileRepository.isUserLoggedIn())
+    private val _authorizedLiveData = MutableLiveData(getCurrentAuthUser.isLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
 
     private val _recapOrder = MutableLiveData(RecapOrder.LATEST)
@@ -40,12 +45,12 @@ class HomeViewModel @Inject constructor(
     private val _reviewOrder = MutableLiveData(ReviewOrder.ALL)
     val reviewOrder: LiveData<ReviewOrder> = _reviewOrder
 
-    val recapsLiveData = Transformations.switchMap(recapOrder){
-        recapRepository.getRecapsPagingData(it).asLiveData()
+    val recapsLiveData = Transformations.switchMap(recapOrder) {
+        getRecapsUseCase(it).asLiveData()
     }.cachedIn(viewModelScope)
 
     val reviewsLiveData = Transformations.switchMap(reviewOrder) {
-        recapRepository.getReviewsPagingData(it).asLiveData()
+        getReviewsUseCase(it).asLiveData()
     }.cachedIn(viewModelScope)
 
     fun orderRecapsBy(selection: Int) {
@@ -60,9 +65,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun isUserLoggedIn() = profileRepository.isUserLoggedIn()
+    fun isUserLoggedIn() = getCurrentAuthUser.isLoggedIn()
 
-    private fun updateUser(username: String?, email: String?, profilePicture: String?, uid: String?) {
+    private fun updateUser(
+        username: String?,
+        email: String?,
+        profilePicture: String?,
+        uid: String?
+    ) {
         _usernameLiveData.postValue(username)
         _emailLiveData.postValue(email)
         _profilePictureLiveData.postValue(profilePicture)
@@ -70,16 +80,20 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshUserProfile() {
-        val currentUser = profileRepository.getFirebaseUser()
-        if (currentUser != null) {
+        getCurrentAuthUser()?.let {
             _authorizedLiveData.postValue(true)
-            updateUser(currentUser.displayName, currentUser.email, currentUser.photoUrl.toString(), currentUser.uid)
+            updateUser(
+                it.displayName,
+                it.email,
+                it.photoUrl.toString(),
+                it.uid
+            )
         }
     }
 
     suspend fun logOut(): SimpleResult {
         _authorizedLiveData.value = false
         updateUser(null, null, null, null)
-        return authRepository.signOutUserFromServerAndGoogle()
+        return logoutUseCase()
     }
 }

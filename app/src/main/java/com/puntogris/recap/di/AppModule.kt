@@ -1,17 +1,13 @@
 package com.puntogris.recap.di
 
 import android.content.Context
-import android.content.SharedPreferences
 import androidx.room.Room
 import com.puntogris.recap.core.data.local.AppDatabase
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
-import com.puntogris.recap.core.data.repository.DraftRepositoryImpl
-import com.puntogris.recap.core.domain.DraftRepository
 import com.puntogris.recap.core.domain.RatingRepository
 import com.puntogris.recap.core.data.repository.RatingRepositoryImpl
-import com.puntogris.recap.core.domain.ReportRepository
-import com.puntogris.recap.core.data.repository.ReportRepositoryImpl
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
 import com.puntogris.recap.core.domain.use_case.GetOwnUserIdUseCase
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.StandardDispatchers
@@ -69,5 +65,11 @@ class AppModule {
     @Singleton
     fun provideGetOwnUserIdUseCase(firebase: FirebaseClients): GetOwnUserIdUseCase {
         return GetOwnUserIdUseCase(firebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetCurrentAuthUser(firebase: FirebaseClients): GetCurrentAuthUser {
+        return GetCurrentAuthUser(firebase)
     }
 }

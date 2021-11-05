@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_profile.presentation
+package com.puntogris.recap.feature_profile.presentation.profile
 
 import androidx.annotation.NonNull
 import androidx.fragment.app.FragmentManager

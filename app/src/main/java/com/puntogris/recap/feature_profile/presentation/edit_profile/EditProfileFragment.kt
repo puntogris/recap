@@ -11,6 +11,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.databinding.FragmentEditProfileBinding
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.*
+import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

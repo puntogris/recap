@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_recap.presentation.rate
+package com.puntogris.recap.feature_recap.presentation.rate_recap
 
 import android.app.Dialog
 import android.os.Bundle

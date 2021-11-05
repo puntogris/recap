@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_profile.presentation
+package com.puntogris.recap.feature_profile.presentation.profile
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn

@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_recap.presentation.rate
+package com.puntogris.recap.feature_recap.presentation.rate_recap
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle

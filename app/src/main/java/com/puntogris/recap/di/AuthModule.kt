@@ -10,6 +10,7 @@ import com.puntogris.recap.feature_auth.data.datasource.GoogleSingInDataSource
 import com.puntogris.recap.feature_auth.data.repository.AuthRepositoryImpl
 import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
 import com.puntogris.recap.feature_auth.domain.user_case.LoginUseCase
+import com.puntogris.recap.feature_auth.domain.user_case.LogoutUseCase
 import com.puntogris.recap.feature_profile.domain.use_case.GetProfileUseCase
 import dagger.Module
 import dagger.Provides
@@ -47,4 +48,9 @@ class AuthModule {
         return LoginUseCase(repository)
     }
 
+    @Provides
+    @Singleton
+    fun provideLogoutUseCase(repository: AuthRepository): LogoutUseCase {
+        return LogoutUseCase(repository)
+    }
 }

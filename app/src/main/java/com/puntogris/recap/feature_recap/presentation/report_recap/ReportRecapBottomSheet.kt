@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_recap.presentation.report
+package com.puntogris.recap.feature_recap.presentation.report_recap
 
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels

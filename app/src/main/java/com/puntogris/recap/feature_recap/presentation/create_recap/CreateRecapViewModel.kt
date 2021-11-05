@@ -3,7 +3,6 @@ package com.puntogris.recap.feature_recap.presentation.create_recap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.puntogris.recap.core.domain.DraftRepository
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -1,38 +1,40 @@
-package com.puntogris.recap.feature_recap.presentation
+package com.puntogris.recap.feature_recap.presentation.recap_detail
 
 import androidx.lifecycle.*
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.utils.Result
+import com.puntogris.recap.feature_recap.domain.use_case.GetRecapInteractionsUseCase
+import com.puntogris.recap.feature_recap.domain.use_case.GetRecapUseCase
+import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RecapViewModel @Inject constructor(
-    private val recapRepository: RecapRepository,
+    private val getRecap: GetRecapUseCase,
+    private val getRecapInteractions: GetRecapInteractionsUseCase,
     private val savedStateHandle: SavedStateHandle,
-): ViewModel() {
+) : ViewModel() {
 
     private fun recapIdFromArgs() =
         savedStateHandle.get<Recap>("recap")?.id ?: savedStateHandle.get<String>("recapId")!!
 
-    val recapInteractions = liveData {
-        emit(recapRepository.getUserRecapInteractions(recapIdFromArgs()))
-    }
+    val recapInteractions = getRecapInteractions(recapIdFromArgs()).asLiveData()
 
     private val _recap = MutableLiveData<Recap>()
     val recap: LiveData<Recap> = _recap
 
     val recapState = liveData {
         val recapIdArgs = savedStateHandle.get<String>("recapId")
-        if (recapIdArgs != null){
-            emit(recapRepository.getRecapWithId(savedStateHandle.get<String>("recapId")!!))
-        }else{
+        if (recapIdArgs != null) {
+            emit(getRecap(recapIdArgs))
+        } else {
             emit(Result.Success(savedStateHandle.get<Recap>("recap")!!))
         }
     }
 
-    fun updateRecap(recap: Recap){
+    fun updateRecap(recap: Recap) {
         _recap.value = recap
     }
 

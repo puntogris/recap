@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_profile.presentation
+package com.puntogris.recap.feature_profile.presentation.profile
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController

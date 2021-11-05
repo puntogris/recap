@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.puntogris.recap.feature_profile.presentation.UserViewModel" />
+            type="com.puntogris.recap.feature_profile.presentation.profile.UserViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

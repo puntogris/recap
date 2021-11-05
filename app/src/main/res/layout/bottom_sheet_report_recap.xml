@@ -5,7 +5,7 @@
     <data>
         <variable
             name="bottomSheet"
-            type="com.puntogris.recap.feature_recap.presentation.report.ReportRecapBottomSheet" />
+            type="com.puntogris.recap.feature_recap.presentation.report_recap.ReportRecapBottomSheet" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

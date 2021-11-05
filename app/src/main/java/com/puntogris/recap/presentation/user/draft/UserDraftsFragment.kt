@@ -2,7 +2,6 @@ package com.puntogris.recap.presentation.user.draft
 
 import android.content.Context
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +12,10 @@ import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.core.presentation.base.BasePagerTabFragment
 import com.puntogris.recap.core.utils.UiListener
 import com.puntogris.recap.feature_profile.presentation.profile.UserFragment
-import com.puntogris.recap.feature_profile.presentation.UserViewModel
-import com.puntogris.recap.core.utils.SimpleResult
+import com.puntogris.recap.feature_profile.presentation.profile.UserViewModel
 import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UserDraftsFragment : BasePagerTabFragment<FragmentUserDraftsBinding>(R.layout.fragment_user_drafts) {
