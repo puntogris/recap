@@ -47,8 +47,8 @@
             app:argType="string"
             app:nullable="true" />
         <action
-            android:id="@+id/action_recapFragment_to_rateRecapFragment"
-            app:destination="@id/rateRecapFragment" />
+            android:id="@+id/action_recapFragment_to_selectRatingDialog"
+            app:destination="@id/selectRatingDialog" />
 
     </fragment>
     <fragment
@@ -157,14 +157,4 @@
             android:name="recapId"
             app:argType="string" />
     </dialog>
-    <fragment
-        android:id="@+id/rateRecapFragment"
-        android:name="com.puntogris.recap.feature_recap.presentation.rate_recap.RateRecapFragment">
-        <action
-            android:id="@+id/action_rateRecapFragment_to_selectRatingDialog"
-            app:destination="@id/selectRatingDialog" />
-        <argument
-            android:name="recap"
-            app:argType="com.puntogris.recap.feature_recap.domain.model.Recap" />
-    </fragment>
 </navigation>

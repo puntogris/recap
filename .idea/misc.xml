@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_format_align_center_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_format_bold_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.36666666666666664" />
+        <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.36770833333333336" />
         <entry key="app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_by_fans_for_fans.xml" value="0.36666666666666664" />
         <entry key="app/src/main/res/drawable/ic_decrease_font.xml" value="0.36666666666666664" />
@@ -61,7 +62,7 @@
         <entry key="app/src/main/res/layout/fragment_publish_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_rate_collection.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_rate_recap.xml" value="0.35052083333333334" />
-        <entry key="app/src/main/res/layout/fragment_recap.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_recap.xml" value="0.30906389301634474" />
         <entry key="app/src/main/res/layout/fragment_recap_body.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap_header.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_recap_html.xml" value="0.35052083333333334" />
@@ -81,6 +82,8 @@
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_content.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/main_bottom_navigation_drawer_profile_header.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/public_profile_vh.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/rate_recap_header.xml" value="0.3515625" />
+        <entry key="app/src/main/res/layout/recap_detail_header.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/recap_editor_modifier_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/select_rating_dialog.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/user_draft_vh.xml" value="0.35052083333333334" />

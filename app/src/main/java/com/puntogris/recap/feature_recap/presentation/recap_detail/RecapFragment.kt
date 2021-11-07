@@ -1,6 +1,7 @@
 package com.puntogris.recap.feature_recap.presentation.recap_detail
 
 import android.content.Intent
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -11,6 +12,8 @@ import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.core.utils.showSnackBar
 import com.puntogris.recap.databinding.FragmentRecapBinding
+import com.puntogris.recap.databinding.RateRecapHeaderBinding
+import com.puntogris.recap.databinding.RecapDetailHeaderBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,9 +37,19 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
             when (it) {
                 is Resource.Error -> {
 
+
                 }
                 is Resource.Success -> {
                     viewModel.updateRecap(it.data)
+
+                    binding.recapHeader.viewStub?.apply {
+                        layoutResource = if (it.data.approved) {
+                            R.layout.recap_detail_header
+                        } else {
+                            R.layout.rate_recap_header
+                        }
+                        inflate()
+                    }
                 }
             }
         }
@@ -83,6 +96,11 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         } else {
 
         }
+    }
+
+    fun onRateClicked(){
+        val action = RecapFragmentDirections.actionRecapFragmentToSelectRatingDialog(viewModel.recap.value.id)
+        findNavController().navigate(action)
     }
 
     fun onShareClicked() {

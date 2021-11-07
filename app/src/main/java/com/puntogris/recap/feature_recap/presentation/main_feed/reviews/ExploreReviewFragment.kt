@@ -41,7 +41,7 @@ class ExploreReviewFragment :
     }
 
     private fun onRecapShortClick(recap: Recap) {
-        findNavController().navigate(R.id.recapFragment)
+        (requireParentFragment() as HomeFragment).navigateToRecap(recap)
     }
 
     private fun onRecapLongClick(recap: Recap) {

@@ -20,6 +20,8 @@ class PublishRecapFragment :
     private val viewModel: CreateRecapViewModel by navGraphViewModels(R.id.createRecapGraph) { defaultViewModelProviderFactory }
 
     override fun initializeViews() {
+        binding.fragment = this
+
         launchAndRepeatWithViewLifecycle {
             with(binding){
                 when(val result = viewModel.publishRecap()){

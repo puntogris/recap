@@ -29,7 +29,7 @@ class CreateRecapViewModel @Inject constructor(
     val recap: StateFlow<Recap> = _recap.asStateFlow()
 
     fun updateRecap(title: String, season: Int, episode: Int) {
-        _recap.value?.apply {
+        _recap.value.apply {
             this.title = title
             this.season = season
             this.episode = episode

@@ -8,6 +8,8 @@ import androidx.paging.PagingData
 import com.google.firebase.dynamiclinks.ktx.androidParameters
 import com.google.firebase.dynamiclinks.ktx.shortLinkAsync
 import com.google.firebase.dynamiclinks.ktx.socialMetaTagParameters
+import com.google.firebase.firestore.DocumentId
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 import com.puntogris.recap.R
 import com.puntogris.recap.core.data.local.RecapDao
@@ -32,6 +34,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class RecapRepositoryImpl(
     private val firebase: FirebaseClients,
@@ -49,7 +52,11 @@ class RecapRepositoryImpl(
                 id = ref.id
                 deepLink = generateRecapDynamicLink(title, id)
                 ref.set(recap).await()
-            }.deepLink
+            }
+
+            recapDao.delete(recap.id)
+
+            recap.deepLink
         }
     }
 
@@ -94,7 +101,7 @@ class RecapRepositoryImpl(
         val query = firebase
             .firestore
             .collection(RECAPS_COLLECTION)
-            .whereEqualTo("aproved", false)
+            .whereEqualTo("approved", false)
 
         return Pager(
             PagingConfig(

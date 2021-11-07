@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.puntogris.recap.R
 import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.databinding.SelectRatingDialogBinding
 import com.puntogris.recap.feature_recap.domain.model.Recap
@@ -25,7 +26,16 @@ class SelectRatingDialog : DialogFragment() {
 
         return MaterialAlertDialogBuilder(requireContext())
             .setView(binding.root)
-            .create()
+            .setTitle("Rate recap")
+            .setNegativeButton(R.string.action_cancel){ _, _->
+                dismiss()
+            }
+            .setPositiveButton(R.string.action_send){_, _ ->
+                rateRecap()
+            }
+            .create().also {
+                it.setCanceledOnTouchOutside(false)
+            }
     }
 
     private fun rateRecap() {
