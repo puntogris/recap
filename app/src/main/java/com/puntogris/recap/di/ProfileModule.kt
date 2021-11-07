@@ -3,8 +3,10 @@ package com.puntogris.recap.di
 import android.content.Context
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.feature_profile.data.repository.remote.FirebaseProfileApi
 import com.puntogris.recap.feature_profile.data.repository.remote.ProfileRepositoryImpl
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
+import com.puntogris.recap.feature_profile.domain.repository.ProfileServerApi
 import com.puntogris.recap.feature_profile.domain.use_case.*
 import dagger.Module
 import dagger.Provides
@@ -19,11 +21,10 @@ class ProfileModule {
 
     @Provides
     fun providesProfileRepository(
-        firebase: FirebaseClients,
-        @ApplicationContext context: Context,
+        profileServerApi: ProfileServerApi,
         recapDao: RecapDao
     ): ProfileRepository {
-        return ProfileRepositoryImpl(firebase, context, recapDao)
+        return ProfileRepositoryImpl(profileServerApi, recapDao)
     }
 
     @Provides
@@ -63,6 +64,18 @@ class ProfileModule {
             updateProfile = updateProfileUseCase,
             getRecaps = getRecapsForProfileUseCase,
             getDrafts = getDraftsForProfileUseCase
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideProfileServerApi(
+        firebaseClients: FirebaseClients,
+        @ApplicationContext context: Context
+    ): ProfileServerApi {
+        return FirebaseProfileApi(
+            firebase = firebaseClients,
+            context = context
         )
     }
 }

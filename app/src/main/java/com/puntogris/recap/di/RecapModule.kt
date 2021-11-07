@@ -3,8 +3,10 @@ package com.puntogris.recap.di
 import android.content.Context
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.feature_recap.data.data_source.remote.FirebaseRecapApi
 import com.puntogris.recap.feature_recap.data.repository.RecapRepositoryImpl
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
+import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
 import com.puntogris.recap.feature_recap.domain.use_case.*
 import dagger.Module
 import dagger.Provides
@@ -19,11 +21,10 @@ class RecapModule {
 
     @Provides
     fun providesRecapRepository(
-        firebase: FirebaseClients,
         recapDao: RecapDao,
-        @ApplicationContext context: Context
+        recapServerApi: RecapServerApi
     ): RecapRepository {
-        return RecapRepositoryImpl(firebase, recapDao, context)
+        return RecapRepositoryImpl(recapDao, recapServerApi)
     }
 
     @Singleton
@@ -66,5 +67,17 @@ class RecapModule {
     @Provides
     fun providePublishRecapUseCase(repository: RecapRepository): PublishRecapUseCase {
         return PublishRecapUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRecapServerApi(
+        firebaseClients: FirebaseClients,
+        @ApplicationContext context: Context
+    ): RecapServerApi {
+        return FirebaseRecapApi(
+            firebase = firebaseClients,
+            context = context
+        )
     }
 }

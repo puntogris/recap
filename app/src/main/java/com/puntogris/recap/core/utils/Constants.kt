@@ -21,5 +21,8 @@ object Constants {
     const val PUBLIC_PROFILE_FIELD = "profile"
     const val RECAPS_COLLECTION = "recaps"
     const val INTERACTIONS_COLLECTION = "interactions"
+    const val STATUS_FIELD = "status"
+    const val CREATED_FIELD = "created"
+    const val LIKED_FIELD = "liked"
 
 }

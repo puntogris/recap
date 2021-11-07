@@ -1,46 +1,56 @@
-package com.puntogris.recap.feature_recap.domain.model
+package com.puntogris.recap.feature_recap.data.data_source.local
 
-import android.os.Parcelable
 import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.firebase.Timestamp
-import kotlinx.parcelize.Parcelize
+import com.puntogris.recap.feature_recap.domain.model.RecapStatus
 
 @Keep
-@Parcelize
-data class Recap(
+@Entity
+data class RecapEntity(
+
+    @PrimaryKey
     var id: String = "",
 
+    @ColumnInfo
     var title: String = "",
 
+    @ColumnInfo
     var rating: Int = 0,
 
+    @ColumnInfo
     var season: Int = 0,
 
+    @ColumnInfo
     var episode: Int = 0,
 
+    @ColumnInfo
     var type: String = "",
 
+    @ColumnInfo
     var language: String = "",
 
+    @ColumnInfo
     var author: String = "",
 
+    @ColumnInfo
     var body: String = "",
 
+    @ColumnInfo
     var status: String = RecapStatus.PENDING,
 
+    @ColumnInfo
     var category: String = "",
 
+    @ColumnInfo
     var image: String = "",
 
+    @ColumnInfo
     var deepLink: String = "",
 
+    @ColumnInfo
     var created: Timestamp = Timestamp.now()
 
-) : Parcelable
-
-fun Recap.isPending() = status == RecapStatus.PENDING
-fun Recap.isApproved() = status == RecapStatus.APPROVED
-fun Recap.isRejected() = status == RecapStatus.REJECTED
+)

@@ -7,7 +7,6 @@ import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.Resource
-import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.core.utils.launchAndRepeatWithViewLifecycle
 import com.puntogris.recap.core.utils.playAnimationOnce
 import com.puntogris.recap.databinding.FragmentPublishRecapBinding
@@ -38,7 +37,7 @@ class PublishRecapFragment :
                         continueButton.isEnabled = true
                         floatingActionButton2.show()
                         floatingActionButton2.setOnClickListener {
-                            shareRecap(result.data)
+                            shareRecap(result.data.link)
                         }
                     }
                 }

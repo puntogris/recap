@@ -13,7 +13,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Keep
-class SharedPref @Inject constructor(@ApplicationContext context: Context) {
+class SharedPreferences @Inject constructor(@ApplicationContext context: Context) {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 

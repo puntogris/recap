@@ -1,7 +1,7 @@
 package com.puntogris.recap
 
 import android.app.Application
-import com.puntogris.recap.core.data.local.SharedPref
+import com.puntogris.recap.core.data.local.SharedPreferences
 import com.puntogris.recap.core.utils.ThemeUtils
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class RecapApplication : Application() {
 
     @Inject
-    lateinit var sharedPref: SharedPref
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate() {
         super.onCreate()
@@ -23,6 +23,6 @@ class RecapApplication : Application() {
     }
 
     private fun applyAppTheme() {
-        ThemeUtils.applyTheme(sharedPref.getAppTheme())
+        ThemeUtils.applyTheme(sharedPreferences.getAppTheme())
     }
 }

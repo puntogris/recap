@@ -1,13 +1,10 @@
 package com.puntogris.recap.feature_recap.domain.repository
 
 import androidx.paging.PagingData
-import com.puntogris.recap.core.utils.RecapOrder
 import com.puntogris.recap.core.utils.Resource
-import com.puntogris.recap.core.utils.ReviewOrder
 import com.puntogris.recap.core.utils.SimpleResource
-import com.puntogris.recap.feature_recap.domain.model.Recap
-import com.puntogris.recap.feature_recap.domain.model.RecapInteractions
-import com.puntogris.recap.feature_recap.domain.model.Report
+import com.puntogris.recap.feature_recap.data.repository.RecapLink
+import com.puntogris.recap.feature_recap.domain.model.*
 import kotlinx.coroutines.flow.Flow
 
 interface RecapRepository {
@@ -18,7 +15,7 @@ interface RecapRepository {
 
     fun getDraftsPaged(): Flow<PagingData<Recap>>
 
-    suspend fun publishRecap(recap: Recap): Resource<String>
+    suspend fun publishRecap(recap: Recap): Resource<RecapLink>
 
     suspend fun getRecap(recapId: String): Resource<Recap>
 
