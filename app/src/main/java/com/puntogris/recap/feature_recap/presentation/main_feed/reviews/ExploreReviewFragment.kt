@@ -1,7 +1,6 @@
 package com.puntogris.recap.feature_recap.presentation.main_feed.reviews
 
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView

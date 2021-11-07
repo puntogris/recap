@@ -12,11 +12,9 @@ import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
 import com.puntogris.recap.feature_recap.data.data_source.local.RecapEntity
-import com.puntogris.recap.feature_recap.data.data_source.toEntity
 import com.puntogris.recap.feature_recap.domain.model.*
 import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
 import kotlinx.coroutines.tasks.await
-import javax.inject.Inject
 
 class FirebaseRecapApi(
     private val firebase: FirebaseClients,

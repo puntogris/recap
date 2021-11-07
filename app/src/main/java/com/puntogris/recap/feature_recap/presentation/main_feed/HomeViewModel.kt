@@ -5,10 +5,10 @@ import androidx.paging.cachedIn
 import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
 import com.puntogris.recap.core.domain.use_case.isLoggedIn
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
-import com.puntogris.recap.core.utils.RecapOrder
-import com.puntogris.recap.core.utils.ReviewOrder
 import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.feature_auth.domain.user_case.LogoutUseCase
+import com.puntogris.recap.feature_recap.domain.model.RecapOrder
+import com.puntogris.recap.feature_recap.domain.model.ReviewOrder
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetReviewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

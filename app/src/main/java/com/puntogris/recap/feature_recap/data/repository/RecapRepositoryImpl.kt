@@ -3,19 +3,16 @@ package com.puntogris.recap.feature_recap.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.map
 import com.puntogris.recap.core.data.local.RecapDao
+import com.puntogris.recap.core.utils.IDGenerator
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.SimpleResource
-import com.puntogris.recap.core.utils.IDGenerator
-import com.puntogris.recap.feature_recap.data.data_source.toDomain
 import com.puntogris.recap.feature_recap.data.data_source.toEntity
 import com.puntogris.recap.feature_recap.domain.model.*
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class RecapRepositoryImpl(
@@ -52,18 +49,6 @@ class RecapRepositoryImpl(
         ) { recapServerApi.getReviewsPagingSource(order) }.flow
     }
 
-    override fun getDraftsPaged(): Flow<PagingData<Recap>> {
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200
-            )
-        ) { recapDao.getDraftsPaged() }.flow
-            .map { data ->
-                data.map { recap -> recap.toDomain() }
-            }
-    }
 
     override suspend fun getRecap(recapId: String): Resource<Recap> = withContext(Dispatchers.IO) {
         Resource.build {

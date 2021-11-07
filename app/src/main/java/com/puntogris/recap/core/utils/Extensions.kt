@@ -232,7 +232,7 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
     }
 }
 
-fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int){
+fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int) {
     setAnimation(animation)
     repeatCount = 0
     playAnimation()

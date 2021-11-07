@@ -11,9 +11,7 @@ import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.core.utils.showSnackBar
 import com.puntogris.recap.databinding.FragmentRecapBinding
-import com.puntogris.recap.feature_recap.domain.model.RecapStatus
 import com.puntogris.recap.feature_recap.domain.model.isApproved
-import com.puntogris.recap.feature_recap.domain.model.isPending
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -98,8 +96,9 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         }
     }
 
-    fun onRateClicked(){
-        val action = RecapFragmentDirections.actionRecapFragmentToSelectRatingDialog(viewModel.recap.value.id)
+    fun onRateClicked() {
+        val action =
+            RecapFragmentDirections.actionRecapFragmentToSelectRatingDialog(viewModel.recap.value.id)
         findNavController().navigate(action)
     }
 

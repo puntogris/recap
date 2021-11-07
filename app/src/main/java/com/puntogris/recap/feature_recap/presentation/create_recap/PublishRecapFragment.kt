@@ -22,8 +22,8 @@ class PublishRecapFragment :
         binding.fragment = this
 
         launchAndRepeatWithViewLifecycle {
-            with(binding){
-                when(val result = viewModel.publishRecap()){
+            with(binding) {
+                when (val result = viewModel.publishRecap()) {
                     is Resource.Error -> {
                         title.text = "Error"
                         summary.text = "An error occurred"

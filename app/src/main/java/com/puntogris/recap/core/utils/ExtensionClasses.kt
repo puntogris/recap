@@ -1,9 +1,7 @@
 package com.puntogris.recap.core.utils
 
 import android.os.Parcelable
-import androidx.annotation.StringRes
 import androidx.paging.PagingData
-import com.puntogris.recap.R
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.feature_recap.domain.model.RecapInteractions
 import kotlinx.coroutines.flow.Flow

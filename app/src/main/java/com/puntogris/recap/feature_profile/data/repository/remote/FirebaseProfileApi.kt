@@ -1,11 +1,12 @@
 package com.puntogris.recap.feature_profile.data.repository.remote
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
+import androidx.paging.PagingSource
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
 import com.puntogris.recap.core.utils.Utils
 import com.puntogris.recap.feature_profile.domain.model.PrivateProfile
@@ -13,17 +14,20 @@ import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.repository.ProfileServerApi
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
+import com.puntogris.recap.feature_recap.domain.model.Recap
 import kotlinx.coroutines.tasks.await
-import java.io.ByteArrayOutputStream
 
 class FirebaseProfileApi(
     private val firebase: FirebaseClients,
     private val context: Context
 ) : ProfileServerApi {
 
+    private val usersCollection = firebase.firestore.collection(Constants.USERS_COLLECTION)
+
+    override fun currentAuthUser() = firebase.auth.currentUser
+
     override suspend fun getProfile(userId: String): PublicProfile {
-        return firebase.firestore
-            .collection(Constants.USERS_COLLECTION)
+        return usersCollection
             .document(userId)
             .collection(Constants.PUBLIC_PROFILE_COLLECTION)
             .limit(1)
@@ -37,8 +41,7 @@ class FirebaseProfileApi(
         val publicProfile = mutableMapOf<String, String>()
         val privateProfile = mutableMapOf<String, Timestamp>()
 
-        val privateData = firebase.firestore
-            .collection(Constants.USERS_COLLECTION)
+        val privateData = usersCollection
             .document(firebase.currentUid()!!)
             .get().await().toObject(PrivateProfile::class.java)!!
 
@@ -67,17 +70,13 @@ class FirebaseProfileApi(
             } else return EditProfileResult.Failure.PhotoLimit
         }
 
-        val publicRef =
-            firebase.firestore
-                .collection(Constants.USERS_COLLECTION)
-                .document(firebase.currentUid()!!)
-                .collection(Constants.PUBLIC_PROFILE_COLLECTION)
-                .document(Constants.PUBLIC_PROFILE_FIELD)
+        val publicRef = usersCollection
+            .document(firebase.currentUid()!!)
+            .collection(Constants.PUBLIC_PROFILE_COLLECTION)
+            .document(Constants.PUBLIC_PROFILE_FIELD)
 
-        val privateRef =
-            firebase.firestore
-                .collection(Constants.USERS_COLLECTION)
-                .document(firebase.currentUid()!!)
+        val privateRef = usersCollection
+            .document(firebase.currentUid()!!)
 
         firebase.firestore.runBatch {
             it.update(publicRef, publicProfile.toMap())
@@ -98,5 +97,12 @@ class FirebaseProfileApi(
         }.await().toString()
     }
 
-    override fun currentAuthUser() = firebase.auth.currentUser
+    override fun getProfileRecapsPagingSource(): PagingSource<*, Recap> {
+        val query = firebase.firestore
+            .collection(Constants.RECAPS_COLLECTION)
+            .whereEqualTo("uid", currentAuthUser()!!.uid)
+            .orderBy(Constants.CREATED_FIELD, Query.Direction.DESCENDING)
+
+        return FirestoreRecapPagingSource(query)
+    }
 }

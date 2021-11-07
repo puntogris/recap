@@ -5,8 +5,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.puntogris.recap.core.data.local.RecapDao
-import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
-import com.puntogris.recap.core.utils.Constants
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
@@ -23,8 +21,7 @@ import kotlinx.coroutines.withContext
 class ProfileRepositoryImpl(
     private val profileServerApi: ProfileServerApi,
     private val recapDao: RecapDao
-) :
-    ProfileRepository {
+) : ProfileRepository {
 
     override fun isUserLoggedIn() = profileServerApi.currentAuthUser() != null
 
@@ -59,18 +56,12 @@ class ProfileRepositoryImpl(
     }
 
     override fun getRecapsPaged(): Flow<PagingData<Recap>> {
-        val query = firebase
-            .firestore
-            .collection(Constants.RECAPS_COLLECTION)
-            .whereEqualTo("approved", true)
-            .whereEqualTo("uid", firebase.currentUid())
-
         return Pager(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
                 maxSize = 200
             )
-        ) { FirestoreRecapPagingSource(query) }.flow
+        ) { profileServerApi.getProfileRecapsPagingSource() }.flow
     }
 }

@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.puntogris.recap.feature_recap.data.data_source.local.RecapEntity
-import com.puntogris.recap.feature_recap.domain.model.Recap
 
 @Dao
 interface RecapDao {

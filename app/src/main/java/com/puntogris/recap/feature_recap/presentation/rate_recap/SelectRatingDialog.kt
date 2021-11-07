@@ -27,10 +27,10 @@ class SelectRatingDialog : DialogFragment() {
         return MaterialAlertDialogBuilder(requireContext())
             .setView(binding.root)
             .setTitle("Rate recap")
-            .setNegativeButton(R.string.action_cancel){ _, _->
+            .setNegativeButton(R.string.action_cancel) { _, _ ->
                 dismiss()
             }
-            .setPositiveButton(R.string.action_send){_, _ ->
+            .setPositiveButton(R.string.action_send) { _, _ ->
                 rateRecap()
             }
             .create().also {

@@ -18,8 +18,4 @@ class FirebaseClients @Inject constructor() {
 
     fun currentUid() = auth.uid
 
-    fun signOut() {
-        auth.signOut()
-    }
-
 }

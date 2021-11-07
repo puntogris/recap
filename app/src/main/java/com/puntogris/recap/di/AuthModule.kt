@@ -6,9 +6,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.core.data.remote.FirebaseClients
-import com.puntogris.recap.feature_auth.data.datasource.GoogleSingInDataSource
+import com.puntogris.recap.feature_auth.data.data_source.FirebaseAuthApi
+import com.puntogris.recap.feature_auth.data.data_source.GoogleSingInDataSource
 import com.puntogris.recap.feature_auth.data.repository.AuthRepositoryImpl
 import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
+import com.puntogris.recap.feature_auth.domain.repository.AuthServerApi
 import com.puntogris.recap.feature_auth.domain.user_case.LoginUseCase
 import com.puntogris.recap.feature_auth.domain.user_case.LogoutUseCase
 import dagger.Module
@@ -24,10 +26,10 @@ class AuthModule {
 
     @Provides
     fun providesAuthRepository(
-        firebase: FirebaseClients,
+        authServerApi: AuthServerApi,
         googleSingInDataSource: GoogleSingInDataSource
     ): AuthRepository {
-        return AuthRepositoryImpl(firebase, googleSingInDataSource)
+        return AuthRepositoryImpl(authServerApi, googleSingInDataSource)
     }
 
     @Provides
@@ -51,5 +53,11 @@ class AuthModule {
     @Singleton
     fun provideLogoutUseCase(repository: AuthRepository): LogoutUseCase {
         return LogoutUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthServerApi(firebase: FirebaseClients): AuthServerApi {
+        return FirebaseAuthApi(firebase)
     }
 }
