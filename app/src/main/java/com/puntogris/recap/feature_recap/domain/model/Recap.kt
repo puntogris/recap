@@ -34,7 +34,9 @@ data class Recap(
 
     var deepLink: String = "",
 
-    var created: Timestamp = Timestamp.now()
+    var created: Timestamp = Timestamp.now(),
+
+    val reviewers: List<String> = emptyList()
 
 ) : Parcelable
 

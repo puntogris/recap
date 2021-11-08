@@ -18,7 +18,8 @@ fun RecapEntity.toDomain(): Recap {
         category = category,
         image = image,
         deepLink = deepLink,
-        created = created
+        created = created,
+        reviewers = reviewers
     )
 }
 

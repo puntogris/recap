@@ -1,8 +1,6 @@
 package com.puntogris.recap.feature_recap.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.*
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.IDGenerator
@@ -14,6 +12,9 @@ import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emitAll
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class RecapRepositoryImpl(
@@ -42,31 +43,38 @@ class RecapRepositoryImpl(
     }
 
     override fun getReviewsPaged(order: ReviewOrder): Flow<PagingData<Recap>> {
+        val pagingSourceAndUid = recapServerApi.getReviewsPagingSource(order)
         return Pager(
             PagingConfig(
                 pageSize = 30,
                 enablePlaceholders = true,
                 maxSize = 200
             )
-        ) { recapServerApi.getReviewsPagingSource(order) }.flow
-    }
-
-    override suspend fun getRecap(recapId: String): Resource<Recap> = withContext(dispatcherProvider.io) {
-        Resource.build {
-            recapServerApi.getRecap(recapId)
+        ) { pagingSourceAndUid.first }.flow.map { paging ->
+            paging.filter {
+                pagingSourceAndUid.second !in it.reviewers
+            }
         }
     }
+
+    override suspend fun getRecap(recapId: String): Resource<Recap> =
+        withContext(dispatcherProvider.io) {
+            Resource.build {
+                recapServerApi.getRecap(recapId)
+            }
+        }
 
     override suspend fun getUserRecapInteractions(recapId: String): RecapInteractions? =
         withContext(Dispatchers.IO) {
             recapServerApi.getRecapInteractionsWithCurrentUser(recapId)
         }
 
-    override suspend fun deleteDraft(recap: Recap): SimpleResource = withContext(dispatcherProvider.io) {
-        SimpleResource.build {
-            recapDao.delete(recap.id)
+    override suspend fun deleteDraft(recap: Recap): SimpleResource =
+        withContext(dispatcherProvider.io) {
+            SimpleResource.build {
+                recapDao.delete(recap.id)
+            }
         }
-    }
 
     override suspend fun saveRecapDraft(recap: Recap) = withContext(dispatcherProvider.io) {
         SimpleResource.build {
@@ -77,15 +85,17 @@ class RecapRepositoryImpl(
         }
     }
 
-    override suspend fun rateRecap(): SimpleResource = withContext(dispatcherProvider.io) {
-        SimpleResource.build {
-            recapServerApi.rateRecap("t3HlQH05PGs6JzNJPmlI", 1)
+    override suspend fun rateRecap(recapId: String, score: Int): SimpleResource =
+        withContext(dispatcherProvider.io) {
+            SimpleResource.build {
+                recapServerApi.rateRecap(recapId, score)
+            }
         }
-    }
 
-    override suspend fun reportRecap(report: Report): SimpleResource = withContext(dispatcherProvider.io) {
-        SimpleResource.build {
-            recapServerApi.reportRecap(report)
+    override suspend fun reportRecap(report: Report): SimpleResource =
+        withContext(dispatcherProvider.io) {
+            SimpleResource.build {
+                recapServerApi.reportRecap(report)
+            }
         }
-    }
 }

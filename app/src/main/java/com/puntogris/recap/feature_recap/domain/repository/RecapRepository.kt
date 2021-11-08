@@ -24,5 +24,5 @@ interface RecapRepository {
 
     suspend fun saveRecapDraft(recap: Recap): SimpleResource
 
-    suspend fun rateRecap():SimpleResource
+    suspend fun rateRecap(recapId: String, score: Int):SimpleResource
 }

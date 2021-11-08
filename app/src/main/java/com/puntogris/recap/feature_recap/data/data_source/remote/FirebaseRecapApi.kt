@@ -32,17 +32,27 @@ class FirebaseRecapApi(
                         Constants.CREATED_FIELD,
                         Query.Direction.DESCENDING
                     )
-                    RecapOrder.OLDEST -> orderBy(Constants.CREATED_FIELD, Query.Direction.ASCENDING)
-                    RecapOrder.POPULAR -> orderBy(Constants.LIKED_FIELD, Query.Direction.DESCENDING)
+                    RecapOrder.OLDEST -> orderBy(
+                        Constants.CREATED_FIELD,
+                        Query.Direction.ASCENDING
+                    )
+                    RecapOrder.POPULAR -> orderBy(
+                        Constants.LIKED_FIELD,
+                        Query.Direction.DESCENDING
+                    )
                 }
             }
 
         return FirestoreRecapPagingSource(query)
     }
 
-    override fun getReviewsPagingSource(order: ReviewOrder): PagingSource<*, Recap> {
-        val query = recapCollection.whereEqualTo(Constants.STATUS_FIELD, RecapStatus.PENDING)
-        return FirestoreRecapPagingSource(query)
+    override fun getReviewsPagingSource(order: ReviewOrder): Pair<PagingSource<*, Recap>, String> {
+        val query = recapCollection
+            .whereEqualTo(Constants.STATUS_FIELD, RecapStatus.PENDING)
+         //TODO commented for testing, remove later
+         //.whereNotEqualTo(Constants.AUTHOR_FILED, firebase.currentUid)
+
+        return FirestoreRecapPagingSource(query) to requireNotNull(firebase.currentUid)
     }
 
     override suspend fun getRecap(recapId: String): Recap {
@@ -67,7 +77,7 @@ class FirebaseRecapApi(
     }
 
     private suspend fun generateDynamicLink(recapTitle: String, recapId: String): Uri {
-        val result =  firebase.links.shortLinkAsync {
+        val result = firebase.links.shortLinkAsync {
             link = Uri.parse(Constants.DEEP_LINK_PATH + recapId)
             domainUriPrefix = Constants.DOMAIN_URI_PREFIX
 
@@ -101,7 +111,7 @@ class FirebaseRecapApi(
             .toObject(RecapInteractions::class.java)
     }
 
-    override suspend fun rateRecap(recapId: String, score: Int){
+    override suspend fun rateRecap(recapId: String, score: Int) {
         val data = hashMapOf(
             "recapId" to recapId,
             "score" to score,

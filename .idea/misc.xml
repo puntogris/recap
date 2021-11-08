@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/select_dialog_multichoice.xml" value="0.3515625" />
+        <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/select_dialog_singlechoice.xml" value="0.3515625" />
         <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.24635416666666668" />
         <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_2.xml" value="0.24635416666666668" />
         <entry key="../../../Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_activated_1.xml" value="0.24635416666666668" />
@@ -85,6 +87,7 @@
         <entry key="app/src/main/res/layout/rate_recap_header.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/recap_detail_header.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/recap_editor_modifier_vh.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/select_dialog_single_choice.xml" value="0.33" />
         <entry key="app/src/main/res/layout/select_rating_dialog.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/user_draft_vh.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/menu/main_drawer.xml" value="0.35052083333333334" />

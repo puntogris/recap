@@ -1,5 +1,6 @@
 package com.puntogris.recap.feature_recap.presentation.main_feed.reviews
 
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -17,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ExploreReviewFragment :
     BasePagerTabFragment<FragmentExploreReviewBinding>(R.layout.fragment_explore_review) {
 
-    override val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
+    override val viewModel: HomeViewModel by viewModels()
 
     override val adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick)
 

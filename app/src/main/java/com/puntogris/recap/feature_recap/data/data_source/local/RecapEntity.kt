@@ -3,6 +3,7 @@ package com.puntogris.recap.feature_recap.data.data_source.local
 import androidx.annotation.Keep
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.firebase.Timestamp
 import com.puntogris.recap.feature_recap.domain.model.RecapStatus
@@ -51,6 +52,8 @@ data class RecapEntity(
     var deepLink: String = "",
 
     @ColumnInfo
-    var created: Timestamp = Timestamp.now()
+    var created: Timestamp = Timestamp.now(),
 
+    @Ignore
+    val reviewers: List<String> = emptyList()
 )

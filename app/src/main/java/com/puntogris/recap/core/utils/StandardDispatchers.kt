@@ -2,8 +2,9 @@ package com.puntogris.recap.core.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Inject
 
-class StandardDispatchers : DispatcherProvider {
+class StandardDispatchers @Inject constructor() : DispatcherProvider {
 
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main

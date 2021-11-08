@@ -18,6 +18,15 @@ class CreateRecapViewModel @Inject constructor(
     private val publishRecapUseCase: PublishRecapUseCase
 ) : ViewModel() {
 
+    init {
+        println("create")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        println("cleared cretev")
+    }
+
     private val _showMenu = MutableLiveData(false)
     val showMenu: LiveData<Boolean> = _showMenu
 

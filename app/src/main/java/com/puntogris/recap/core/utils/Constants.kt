@@ -24,5 +24,6 @@ object Constants {
     const val STATUS_FIELD = "status"
     const val CREATED_FIELD = "created"
     const val LIKED_FIELD = "liked"
+    const val AUTHOR_FILED = "author"
 
 }
