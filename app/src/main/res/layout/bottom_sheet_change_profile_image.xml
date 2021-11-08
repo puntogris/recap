@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="bottomSheet"
             type="com.puntogris.recap.feature_profile.presentation.edit_profile.ChangeProfileImageBottomSheet" />

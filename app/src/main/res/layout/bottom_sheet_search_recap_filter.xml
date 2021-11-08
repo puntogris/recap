@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="bottomSheet"
             type="com.puntogris.recap.feature_search.presentation.recap.SearchRecapFilterBottomSheet" />
@@ -44,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/order_popular"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/order_relevance_button"
@@ -52,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/order_date"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <TextView
@@ -95,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/keyline_5"
-                android:text="@string/language"
+                android:text="@string/recap_language"
                 android:textSize="16sp"
                 android:fontFamily="sans-serif-medium" />
 

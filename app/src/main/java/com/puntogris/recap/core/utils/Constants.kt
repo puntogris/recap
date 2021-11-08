@@ -26,4 +26,8 @@ object Constants {
     const val LIKED_FIELD = "liked"
     const val AUTHOR_FILED = "author"
 
+
+    //Rating
+    const val RATING_APPROVE = 1
+    const val RATING_REJECT = -1
 }

@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="recap"
             type="com.puntogris.recap.feature_recap.domain.model.Recap" />
@@ -81,7 +82,6 @@
             android:text="@{String.valueOf(recap.rating)}"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/textView" />
-
 
 
         <TextView

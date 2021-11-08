@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.create_recap.RecapPreviewFragment" />
+
         <variable
             name="viewModel"
             type="com.puntogris.recap.feature_recap.presentation.create_recap.CreateRecapViewModel" />
@@ -27,31 +29,31 @@
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recap_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/name"
+            android:text="@string/recap_name"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/recap_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="@{viewModel.recap.title}"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintStart_toStartOf="@+id/recap_title"
+            app:layout_constraintTop_toBottomOf="@+id/recap_title" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/episode"
+            android:text="@string/recap_episode"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/textView12"
             app:layout_constraintHorizontal_bias="0.5"
@@ -74,13 +76,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@string/season"
+            android:text="@string/recap_season"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/textView8"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintTop_toBottomOf="@+id/recap_name" />
 
         <TextView
             android:id="@+id/textView11"
@@ -97,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="@string/language"
+            android:text="@string/recap_language"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"

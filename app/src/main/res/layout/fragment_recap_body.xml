@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.puntogris.recap.feature_recap.presentation.create_recap.CreateRecapViewModel" />
+
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.create_recap.RecapBodyFragment" />
@@ -40,9 +42,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <include
                     layout="@layout/editor_text_alignment"
                     app:recapEditor="@{recapEditor}" />
+
                 <include
                     layout="@layout/editor_text_format"
                     app:recapEditor="@{recapEditor}" />
@@ -56,7 +60,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editorActions"/>
+            app:layout_constraintTop_toBottomOf="@+id/editorActions" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"

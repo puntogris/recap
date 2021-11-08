@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.puntogris.recap.core.data.local.AppDatabase
 import com.puntogris.recap.core.data.remote.FirebaseClients
-import com.puntogris.recap.core.data.repository.RatingRepositoryImpl
 import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
 import com.puntogris.recap.core.domain.use_case.GetOwnUserIdUseCase
 import com.puntogris.recap.core.utils.DispatcherProvider
@@ -35,11 +34,6 @@ class AppModule {
                 roomName
             )
             .build()
-    }
-
-    @Provides
-    fun providesRatingRepository(firebase: FirebaseClients): RatingRepository {
-        return RatingRepositoryImpl(firebase)
     }
 
     @Singleton

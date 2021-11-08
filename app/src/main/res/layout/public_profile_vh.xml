@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="profile"
             type="com.puntogris.recap.feature_profile.domain.model.PublicProfile" />

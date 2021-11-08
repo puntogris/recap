@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:fontFamily="sans-serif-medium"
-            android:text="Publicando recap"
+            android:text="@string/publish_recap_in_progress_title"
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintBottom_toTopOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
@@ -41,20 +41,20 @@
             app:lottie_rawRes="@raw/loading_dots" />
 
         <Button
-            android:id="@+id/continueButton"
+            android:id="@+id/continue_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_marginBottom="8dp"
             android:enabled="false"
             android:onClick="@{()-> fragment.onContinueButtonClicked()}"
-            android:text="Continuar"
+            android:text="@string/action_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton2"
+            android:id="@+id/share_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -63,21 +63,22 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/summary"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
+            app:srcCompat="@drawable/ic_baseline_share_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/summary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Publishing recap, dont close the app!"
+            android:text="@string/publish_recap_in_progress_summary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
             app:layout_goneMarginBottom="72dp"
             app:layout_goneMarginTop="32dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
+            android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

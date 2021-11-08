@@ -25,18 +25,18 @@ class PublishRecapFragment :
             with(binding) {
                 when (val result = viewModel.publishRecap()) {
                     is Resource.Error -> {
-                        title.text = "Error"
-                        summary.text = "An error occurred"
+                        title.setText(R.string.general_error_message)
+                        summary.setText(R.string.general_connection_error_message)
                         animationView.playAnimationOnce(R.raw.error)
                         continueButton.isEnabled = true
                     }
                     is Resource.Success -> {
-                        title.text = "Success"
-                        summary.text = "Share it with friends and get it approved faster!"
+                        title.setText(R.string.general_success_message)
+                        summary.setText(R.string.publish_recap_success_summary)
                         animationView.playAnimationOnce(R.raw.success)
                         continueButton.isEnabled = true
-                        floatingActionButton2.show()
-                        floatingActionButton2.setOnClickListener {
+                        shareButton.show()
+                        shareButton.setOnClickListener {
                             shareRecap(result.data.link)
                         }
                     }
@@ -50,11 +50,11 @@ class PublishRecapFragment :
         findNavController().navigate(R.id.homeFragment, null, nav)
     }
 
-    fun shareRecap(link: String) {
+    private fun shareRecap(link: String) {
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
-            putExtra(Intent.EXTRA_TITLE, "Share this recap!")
+            putExtra(Intent.EXTRA_TITLE, getString(R.string.share_recap_intent_title))
             putExtra(Intent.EXTRA_TEXT, link)
         }, null)
         startActivity(share)

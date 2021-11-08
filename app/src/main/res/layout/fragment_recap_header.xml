@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.create_recap.RecapHeaderFragment" />
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginHorizontal="16dp"
-            android:hint="@string/title"
+            android:hint="@string/recap_title"
             app:expandedHintEnabled="false"
             app:boxStrokeWidth="@dimen/keyline_0"
             app:boxStrokeWidthFocused="@dimen/keyline_0"
@@ -70,7 +71,7 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="32dp"
             app:expandedHintEnabled="false"
-            android:hint="@string/season"
+            android:hint="@string/recap_season"
             app:boxStrokeWidth="@dimen/keyline_0"
             app:boxStrokeWidthFocused="@dimen/keyline_0"
             app:layout_constraintEnd_toStartOf="@+id/episodeField"
@@ -97,7 +98,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:hint="@string/episode"
+            android:hint="@string/recap_episode"
             app:expandedHintEnabled="false"
             app:boxStrokeWidth="@dimen/keyline_0"
             app:boxStrokeWidthFocused="@dimen/keyline_0"

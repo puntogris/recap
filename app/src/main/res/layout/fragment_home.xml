@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.main_feed.HomeFragment" />
@@ -20,13 +21,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <com.puntogris.recap.core.presentation.widget.AutoSizeTabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layoutDirection="ltr"
-            app:tabMode="fixed"
-            app:tabGravity="fill"/>
+            <com.puntogris.recap.core.presentation.widget.AutoSizeTabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
+                app:tabMode="fixed"
+                app:tabGravity="fill" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -43,7 +44,7 @@
             android:layout_gravity="bottom"
             app:hideOnScroll="true"
             app:menu="@menu/menu_bottom_nav"
-            app:navigationIcon="@drawable/ic_baseline_menu_24"/>
+            app:navigationIcon="@drawable/ic_baseline_menu_24" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/createFab"

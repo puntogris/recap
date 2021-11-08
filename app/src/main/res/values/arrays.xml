@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Theme -->
+    <string-array name="theme_options">
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+        <item>@string/theme_system</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+        <item>system</item>
+    </string-array>
+
+    <!-- Draft -->
+    <string-array name="draft_actions">
+        <item>@string/edit_draft_tab</item>
+        <item>@string/delete_draft_tab</item>
+    </string-array>
+
+    <!-- Search -->
+    <string-array name="search_tabs">
+        <item>@string/recaps_tab</item>
+        <item>@string/user_tab</item>
+    </string-array>
+
+    <!-- Main feed -->
+    <string-array name="main_feed_tabs">
+        <item>@string/explore_tab</item>
+        <item>@string/rate_tab</item>
+    </string-array>
+
+    <!-- Profile -->
+    <string-array name="profile_tabs">
+        <item>@string/recaps_tab</item>
+        <item>@string/pending_recap_tab</item>
+        <item>@string/draft_tab</item>
+    </string-array>
+
+</resources>

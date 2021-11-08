@@ -10,6 +10,8 @@
     <string name="action_cancel">Cancel</string>
     <string name="action_send">Send</string>
     <string name="action_apply">Apply</string>
+    <string name="action_close">Close</string>
+    <string name="action_continue">Continue</string>
 
     <!-- Login -->
     <string name="action_continue_anonymously">Continue anonymously</string>
@@ -17,12 +19,23 @@
     <string name="login_subtitle">The biggest recap database free forever by fans for fans</string>
     <string name="login_title">Sharing starts here</string>
 
+    <!-- Rating -->
+    <string name="rate_recap_title">Rate recap</string>
+    <string name="rate_recap_alert">Rating must be taken seriously, please analyze the recap and judge carefully.</string>
+    <string name="approve_recap_option">Approve! It follows all the rules and does not contain offensive language or content.</string>
+    <string name="reject_recap_option">Reject! The recap is inaccurate, contains offensive language or content.</string>
+    <string name="snack_option_required">Selecting one of the options is required.</string>
+    <string name="send_rating_progress">Sending your rating to the server, do not close the app.</string>
+    <string name="send_rating_success">Perfect! Your rating has been registered.</string>
+    <string name="send_rating_error">Whoops, an error occurred, check your connection and try again.</string>
+
     <!-- Profile -->
-    <string-array name="profile_tabs">
-        <item>Recaps</item>
-        <item>Pending</item>
-        <item>Drafts</item>
-    </string-array>
+    <string name="pending_recap_tab">Pending</string>
+    <string name="draft_tab">Drafts</string>
+    <string name="change_profile_image">Change profile image</string>
+    <string name="user_name_hint">Name</string>
+    <string name="username_hint">Username</string>
+    <string name="user_bio_hint">Bio</string>
 
     <!-- Search -->
     <string name="search">Search</string>
@@ -33,17 +46,12 @@
     <string name="order_date">Date</string>
     <string name="filter_low">Low</string>
     <string name="filter_high">High</string>
+    <string name="user_tab">Users</string>
+    <string name="recaps_tab">Recaps</string>
 
-    <string-array name="search_tabs">
-        <item>Recaps</item>
-        <item>Users</item>
-    </string-array>
-
-    <!-- Home -->
-    <string-array name="home_tabs">
-        <item>Explore</item>
-        <item>Rate</item>
-    </string-array>
+    <!-- Main feed -->
+    <string name="explore_tab">Explore</string>
+    <string name="rate_tab">Rate</string>
 
     <!-- Home Filter -->
     <string name="order_latest">Latest</string>
@@ -58,23 +66,21 @@
     <string name="log_out">Log out</string>
 
     <!-- Recap -->
-    <string name="name">Name</string>
-    <string name="title">Title</string>
-    <string name="season">Season</string>
-    <string name="episode">Episode</string>
-    <string name="language">Language</string>
+    <string name="recap_name">Name</string>
+    <string name="recap_title">Title</string>
+    <string name="recap_season">Season</string>
+    <string name="recap_episode">Episode</string>
+    <string name="recap_language">Language</string>
     <string name="recap_title_hint">The office</string>
     <string name="recap_season_hint">1</string>
     <string name="recap_episode_hint">14</string>
     <string name="recap_header_alert">* This information may be changed later.</string>
     <string name="recap_header_title">What do you want to publish?</string>
 
-    <!-- Other -->
-    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
-    <string name="snack_general_error">An error occurred. Please try again.</string>
-    <string name="error">Error</string>
-    <string name="recap_link_title">"Watch %1$s recap here!"</string>
-    <string name="error_unknown">Unknown error</string>
+    <!-- Publish -->
+    <string name="publish_recap_in_progress_title">Publishing recap..</string>
+    <string name="publish_recap_in_progress_summary">Your recap is being saved in our server, do not close the app!</string>
+    <string name="publish_recap_success_summary">Your recap was published successfully, share it with friends and get it approved faster!</string>
 
     <!-- What's new dialog-->
     <string name="updated_version">Updated to v%1$s</string>
@@ -124,32 +130,27 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System default</string>
-
-    <string-array name="theme_options">
-        <item>@string/theme_light</item>
-        <item>@string/theme_dark</item>
-        <item>@string/theme_system</item>
-    </string-array>
-
-    <string-array name="theme_values">
-        <item>light</item>
-        <item>dark</item>
-        <item>system</item>
-    </string-array>
-
     <string name="default_theme_value" translatable="false">system</string>
     <string name="general">General</string>
 
     <!-- Draft -->
-    <string-array name="draft_actions">
-        <item>Edit</item>
-        <item>Delete</item>
-    </string-array>
     <string name="action">Action</string>
+    <string name="edit_draft_tab">Edit</string>
+    <string name="delete_draft_tab">Delete</string>
 
     <!-- Languages -->
     <string name="english">English</string>
     <string name="spanish">Spanish</string>
     <string name="portuguese">Portuguese</string>
+
+    <!-- Other -->
+    <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
+    <string name="general_error_message">An error occurred. Please try again.</string>
+    <string name="general_connection_error_message">An error occurred, check your internet connection and try again</string>
+    <string name="error">Error</string>
+    <string name="recap_link_title">"Watch %1$s recap here!"</string>
+    <string name="error_unknown">Unknown error</string>
+    <string name="general_success_message">Yay! All done!</string>
+    <string name="share_recap_intent_title">Share this recap!</string>
 
 </resources>

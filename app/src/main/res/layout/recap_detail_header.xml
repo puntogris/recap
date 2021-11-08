@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.recap_detail.RecapFragment" />
+
         <variable
             name="viewModel"
             type="com.puntogris.recap.feature_recap.presentation.recap_detail.RecapViewModel" />
@@ -17,7 +19,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/profile_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -25,7 +27,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@tools:sample/avatars"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView5"
@@ -33,9 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@{viewModel.recap.title}"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2" />
+            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+            app:layout_constraintStart_toEndOf="@+id/profile_image"
+            app:layout_constraintTop_toTopOf="@+id/profile_image" />
 
         <ImageView
             android:id="@+id/action_like"
@@ -47,7 +50,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView5"
             app:layout_constraintEnd_toStartOf="@+id/action_fav"
             app:layout_constraintTop_toTopOf="@+id/textView5"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/action_fav"
@@ -59,7 +63,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/action_like"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/action_like"
-            app:srcCompat="@drawable/ic_baseline_bookmark_border_24" />
+            app:srcCompat="@drawable/ic_baseline_bookmark_border_24"
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/action_share"
@@ -71,7 +76,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/action_like"
             app:layout_constraintEnd_toStartOf="@+id/action_like"
             app:layout_constraintTop_toTopOf="@+id/action_like"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
+            app:srcCompat="@drawable/ic_baseline_share_24"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

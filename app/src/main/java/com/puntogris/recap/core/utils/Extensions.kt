@@ -228,7 +228,7 @@ fun Fragment.launchWebBrowserIntent(uri: String, packageName: String? = null) {
         }
 
     } catch (e: Exception) {
-        showSnackBar(getString(R.string.snack_general_error))
+        showSnackBar(getString(R.string.general_error_message))
     }
 }
 
