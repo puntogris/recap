@@ -8,8 +8,12 @@ sealed class SimpleResource {
         inline fun build(function: () -> Unit): SimpleResource =
             try {
                 function()
+                println("saaaaa")
                 Success
             } catch (e: Exception) {
+                println(e.localizedMessage)
+                println(e.cause)
+                println(e.message)
                 Error()
             }
     }

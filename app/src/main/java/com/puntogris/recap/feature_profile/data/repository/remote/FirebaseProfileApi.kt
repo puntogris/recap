@@ -42,7 +42,7 @@ class FirebaseProfileApi(
         val privateProfile = mutableMapOf<String, Timestamp>()
 
         val privateData = usersCollection
-            .document(firebase.currentUid()!!)
+            .document(requireNotNull(firebase.currentUid))
             .get().await().toObject(PrivateProfile::class.java)!!
 
         updateProfileData.name?.let {
@@ -71,12 +71,12 @@ class FirebaseProfileApi(
         }
 
         val publicRef = usersCollection
-            .document(firebase.currentUid()!!)
+            .document(requireNotNull(firebase.currentUid))
             .collection(Constants.PUBLIC_PROFILE_COLLECTION)
             .document(Constants.PUBLIC_PROFILE_FIELD)
 
         val privateRef = usersCollection
-            .document(firebase.currentUid()!!)
+            .document(requireNotNull(firebase.currentUid))
 
         firebase.firestore.runBatch {
             it.update(publicRef, publicProfile.toMap())
@@ -100,7 +100,7 @@ class FirebaseProfileApi(
     override fun getProfileRecapsPagingSource(): PagingSource<*, Recap> {
         val query = firebase.firestore
             .collection(Constants.RECAPS_COLLECTION)
-            .whereEqualTo("uid", currentAuthUser()!!.uid)
+            .whereEqualTo("uid", requireNotNull(firebase.currentUid))
             .orderBy(Constants.CREATED_FIELD, Query.Direction.DESCENDING)
 
         return FirestoreRecapPagingSource(query)

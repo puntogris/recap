@@ -5,15 +5,16 @@ import com.puntogris.recap.core.domain.RatingRepository
 import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.feature_recap.domain.model.Review
+import com.puntogris.recap.feature_recap.domain.use_case.RateRecapUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class RateRecapViewModel @Inject constructor(
-    private val ratingRepository: RatingRepository
+    private val rateRecapUseCase: RateRecapUseCase
 ) : ViewModel() {
 
-    suspend fun checkRatingData(recapId: String) = ratingRepository.checkIfUserRatedRecap(recapId)
+   // suspend fun checkRatingData(recapId: String) = ratingRepository.checkIfUserRatedRecap(recapId)
     //TODO instead of storing the recaps a user rated in a collection inside that user
     // what if we save inside the recap the id of what people rated it, and check if the current user
     // also we could include this in the query so a user doesnt get a recap that already reviewd
@@ -24,7 +25,7 @@ class RateRecapViewModel @Inject constructor(
 
     suspend fun sendRating(recap: Recap): SimpleResource {
         val review = Review(recapId = recap.id)
-        return ratingRepository.sendRecapRating(Review())
+        return rateRecapUseCase()
     }
 
 }

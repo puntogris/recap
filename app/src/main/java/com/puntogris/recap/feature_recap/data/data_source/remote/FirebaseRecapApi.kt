@@ -41,16 +41,18 @@ class FirebaseRecapApi(
     }
 
     override fun getReviewsPagingSource(order: ReviewOrder): PagingSource<*, Recap> {
-        val query = recapCollection.whereEqualTo(Constants.LIKED_FIELD, RecapStatus.PENDING)
+        val query = recapCollection.whereEqualTo(Constants.STATUS_FIELD, RecapStatus.PENDING)
         return FirestoreRecapPagingSource(query)
     }
 
     override suspend fun getRecap(recapId: String): Recap {
-        return recapCollection
+        val recap = recapCollection
             .document(recapId)
             .get()
             .await()
-            .toObject(Recap::class.java)!!
+            .toObject(Recap::class.java)
+
+        return requireNotNull(recap)
     }
 
     override suspend fun publishRecap(recap: RecapEntity): String {
@@ -58,14 +60,15 @@ class FirebaseRecapApi(
 
         return recap.apply {
             id = ref.id
+            author = requireNotNull(firebase.currentUid)
             deepLink = generateDynamicLink(title, id).toString()
             ref.set(this).await()
         }.deepLink
     }
 
-    private suspend fun generateDynamicLink(title: String, id: String): Uri {
-        return firebase.links.shortLinkAsync {
-            link = Uri.parse(Constants.DEEP_LINK_PATH + id)
+    private suspend fun generateDynamicLink(recapTitle: String, recapId: String): Uri {
+        val result =  firebase.links.shortLinkAsync {
+            link = Uri.parse(Constants.DEEP_LINK_PATH + recapId)
             domainUriPrefix = Constants.DOMAIN_URI_PREFIX
 
             androidParameters(context.packageName) {
@@ -73,26 +76,41 @@ class FirebaseRecapApi(
             }
 
             socialMetaTagParameters {
-                this.title = title
-                description = context.getString(R.string.recap_link_title, title)
+                title = recapTitle
+                description = context.getString(R.string.recap_link_title, recapTitle)
                 imageUrl = Uri.parse(Constants.SQUARE_APP_LOGO_URL)
             }
 
-        }.await().shortLink!!
+        }.await()
+
+        return requireNotNull(result.shortLink)
     }
 
     override suspend fun reportRecap(report: Report) {
-        report.uid = firebase.currentUid()!!
+        report.uid = requireNotNull(firebase.currentUid)
         firebase.firestore.collection("reports").add(report)
     }
 
     override suspend fun getRecapInteractionsWithCurrentUser(recapId: String): RecapInteractions? {
         return recapCollection
-            .document(firebase.currentUid()!!)
+            .document(requireNotNull(firebase.currentUid))
             .collection(Constants.INTERACTIONS_COLLECTION)
             .document(recapId)
             .get()
             .await()
             .toObject(RecapInteractions::class.java)
+    }
+
+    override suspend fun rateRecap(recapId: String, score: Int){
+        val data = hashMapOf(
+            "recapId" to recapId,
+            "score" to score,
+            "reviewerId" to requireNotNull(firebase.currentUid)
+        )
+
+        firebase.functions
+            .getHttpsCallable("rateRecapCallable")
+            .call(data)
+            .await()
     }
 }

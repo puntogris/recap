@@ -108,6 +108,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+    implementation 'com.google.firebase:firebase-functions-ktx'
+
+    //App checker
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta03'
+    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0-beta03' // Debug
+
 
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"

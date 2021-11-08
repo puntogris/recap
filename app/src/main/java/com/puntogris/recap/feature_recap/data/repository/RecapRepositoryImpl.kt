@@ -49,7 +49,6 @@ class RecapRepositoryImpl(
         ) { recapServerApi.getReviewsPagingSource(order) }.flow
     }
 
-
     override suspend fun getRecap(recapId: String): Resource<Recap> = withContext(Dispatchers.IO) {
         Resource.build {
             recapServerApi.getRecap(recapId)
@@ -73,6 +72,12 @@ class RecapRepositoryImpl(
                 id = IDGenerator.randomID()
                 recapDao.insert(this)
             }
+        }
+    }
+
+    override suspend fun rateRecap(): SimpleResource = withContext(Dispatchers.IO) {
+        SimpleResource.build {
+            recapServerApi.rateRecap("t3HlQH05PGs6JzNJPmlI", 1)
         }
     }
 

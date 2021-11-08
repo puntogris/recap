@@ -28,13 +28,14 @@ class SelectRatingDialog : DialogFragment() {
             .setView(binding.root)
             .setTitle("Rate recap")
             .setNegativeButton(R.string.action_cancel) { _, _ ->
-                dismiss()
+                //dismiss()
             }
             .setPositiveButton(R.string.action_send) { _, _ ->
-                rateRecap()
+                //rateRecap()
             }
             .create().also {
                 it.setCanceledOnTouchOutside(false)
+                rateRecap()
             }
     }
 

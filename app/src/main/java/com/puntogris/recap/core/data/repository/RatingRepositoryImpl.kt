@@ -16,7 +16,7 @@ class RatingRepositoryImpl(private val firebase: FirebaseClients) : RatingReposi
             SimpleResource.build {
                 val ref = firebase.firestore.collection("reviews").document()
                 review.id = ref.id
-                review.reviewerId = firebase.currentUid()!!
+                review.reviewerId = requireNotNull(firebase.currentUid)
             }
         }
 

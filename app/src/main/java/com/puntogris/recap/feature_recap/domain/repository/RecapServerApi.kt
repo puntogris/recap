@@ -17,4 +17,6 @@ interface RecapServerApi {
     suspend fun reportRecap(report: Report)
 
     suspend fun getRecapInteractionsWithCurrentUser(recapId: String): RecapInteractions?
+
+    suspend fun rateRecap(recapId: String, score: Int)
 }

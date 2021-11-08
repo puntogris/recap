@@ -25,6 +25,7 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         binding.recapEditor.setupBackgroundAndFontColors()
+        binding.recapEditor.setInputEnabled(false)
 
         subscribeRecapState()
         setupNavigation()

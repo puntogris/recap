@@ -71,6 +71,12 @@ class RecapModule {
 
     @Singleton
     @Provides
+    fun provideRateRecapUseCase(repository: RecapRepository): RateRecapUseCase {
+        return RateRecapUseCase(repository)
+    }
+
+    @Singleton
+    @Provides
     fun provideRecapServerApi(
         firebaseClients: FirebaseClients,
         @ApplicationContext context: Context
