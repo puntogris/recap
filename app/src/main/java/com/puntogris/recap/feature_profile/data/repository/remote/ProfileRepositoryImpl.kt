@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.puntogris.recap.core.data.local.RecapDao
+import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
@@ -20,7 +21,8 @@ import kotlinx.coroutines.withContext
 
 class ProfileRepositoryImpl(
     private val profileServerApi: ProfileServerApi,
-    private val recapDao: RecapDao
+    private val recapDao: RecapDao,
+    private val dispatcherProvider: DispatcherProvider
 ) : ProfileRepository {
 
     override fun isUserLoggedIn() = profileServerApi.currentAuthUser() != null
@@ -28,14 +30,14 @@ class ProfileRepositoryImpl(
     override fun getFirebaseUser() = profileServerApi.currentAuthUser()
 
     override suspend fun getPublicProfile(userId: String): Resource<PublicProfile> =
-        withContext(Dispatchers.IO) {
+        withContext(dispatcherProvider.io) {
             Resource.build {
                 profileServerApi.getProfile(userId)
             }
         }
 
     override suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult =
-        withContext(Dispatchers.IO) {
+        withContext(dispatcherProvider.io) {
             try {
                 profileServerApi.updateUserProfile(updateProfileData)
             } catch (e: Exception) {

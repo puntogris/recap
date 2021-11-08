@@ -3,6 +3,8 @@ package com.puntogris.recap.di
 import android.content.Context
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.core.utils.DispatcherProvider
+import com.puntogris.recap.core.utils.StandardDispatchers
 import com.puntogris.recap.feature_recap.data.data_source.remote.FirebaseRecapApi
 import com.puntogris.recap.feature_recap.data.repository.RecapRepositoryImpl
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
@@ -22,9 +24,10 @@ class RecapModule {
     @Provides
     fun providesRecapRepository(
         recapDao: RecapDao,
-        recapServerApi: RecapServerApi
+        recapServerApi: RecapServerApi,
+        standardDispatchers: StandardDispatchers
     ): RecapRepository {
-        return RecapRepositoryImpl(recapDao, recapServerApi)
+        return RecapRepositoryImpl(recapDao, recapServerApi, standardDispatchers)
     }
 
     @Singleton

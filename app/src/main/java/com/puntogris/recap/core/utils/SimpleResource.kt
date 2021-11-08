@@ -1,5 +1,6 @@
 package com.puntogris.recap.core.utils
 
+
 sealed class SimpleResource {
     object Success : SimpleResource()
     class Error(val uiText: UiText = UiText.unknownError()) : SimpleResource()
@@ -8,12 +9,8 @@ sealed class SimpleResource {
         inline fun build(function: () -> Unit): SimpleResource =
             try {
                 function()
-                println("saaaaa")
                 Success
             } catch (e: Exception) {
-                println(e.localizedMessage)
-                println(e.cause)
-                println(e.message)
                 Error()
             }
     }

@@ -3,6 +3,7 @@ package com.puntogris.recap.di
 import android.content.Context
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.core.utils.StandardDispatchers
 import com.puntogris.recap.feature_profile.data.repository.remote.FirebaseProfileApi
 import com.puntogris.recap.feature_profile.data.repository.remote.ProfileRepositoryImpl
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
@@ -22,9 +23,10 @@ class ProfileModule {
     @Provides
     fun providesProfileRepository(
         profileServerApi: ProfileServerApi,
-        recapDao: RecapDao
+        recapDao: RecapDao,
+        standardDispatchers: StandardDispatchers
     ): ProfileRepository {
-        return ProfileRepositoryImpl(profileServerApi, recapDao)
+        return ProfileRepositoryImpl(profileServerApi, recapDao, standardDispatchers)
     }
 
     @Provides
