@@ -29,7 +29,7 @@
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
         <TextView
-            android:id="@+id/recap_title"
+            android:id="@+id/recap_title_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -40,22 +40,22 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
-            android:id="@+id/recap_name"
+            android:id="@+id/recap_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="@{viewModel.recap.title}"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/recap_title"
-            app:layout_constraintTop_toBottomOf="@+id/recap_title" />
+            app:layout_constraintStart_toStartOf="@+id/recap_title_label"
+            app:layout_constraintTop_toBottomOf="@+id/recap_title_label" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/recap_episode_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/recap_episode"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView12"
+            app:layout_constraintEnd_toStartOf="@+id/recap_language_label"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView10"
             app:layout_constraintTop_toTopOf="@+id/textView10" />
@@ -67,8 +67,8 @@
             android:fontFamily="sans-serif-light"
             android:text="@{String.valueOf(viewModel.recap.episode)}"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toStartOf="@+id/recap_episode_label"
+            app:layout_constraintTop_toBottomOf="@+id/recap_episode_label" />
 
         <TextView
             android:id="@+id/textView10"
@@ -78,11 +78,11 @@
             android:layout_marginTop="16dp"
             android:text="@string/recap_season"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
+            app:layout_constraintEnd_toStartOf="@+id/recap_episode_label"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recap_name" />
+            app:layout_constraintTop_toBottomOf="@+id/recap_title" />
 
         <TextView
             android:id="@+id/textView11"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/recap_language_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -103,8 +103,8 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toTopOf="@+id/textView8" />
+            app:layout_constraintStart_toEndOf="@+id/recap_episode_label"
+            app:layout_constraintTop_toTopOf="@+id/recap_episode_label" />
 
         <TextView
             android:id="@+id/textView13"
@@ -113,11 +113,11 @@
             android:fontFamily="sans-serif-light"
             android:text="@{viewModel.recap.language}"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintStart_toStartOf="@+id/recap_language_label"
+            app:layout_constraintTop_toBottomOf="@+id/recap_language_label" />
 
         <View
-            android:id="@+id/divider2"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
@@ -136,7 +136,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButton"
@@ -147,7 +147,8 @@
             android:onClick="@{()->fragment.navigateToPublish()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_baseline_check_24" />
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

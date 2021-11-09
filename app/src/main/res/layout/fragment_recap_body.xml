@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -26,11 +26,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:title="@{viewModel.recap.title}"
-            app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+            app:title="@{viewModel.recap.title}" />
 
         <HorizontalScrollView
-            android:id="@+id/editorActions"
+            android:id="@+id/editor_actions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
@@ -60,10 +60,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editorActions" />
+            app:layout_constraintTop_toBottomOf="@+id/editor_actions" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+            android:id="@+id/menu_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -75,30 +75,30 @@
             tools:ignore="ContentDescription" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/checkFab"
+            android:id="@+id/check_fab"
+            showRecapBodyMenu="@{viewModel.showMenu}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            app:fabSize="mini"
             android:onClick="@{()-> fragment.onSaveRecapClicked(true)}"
-            showRecapBodyMenu="@{viewModel.showMenu}"
-            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
-            app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
-            app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/menu_fab"
+            app:layout_constraintEnd_toEndOf="@+id/menu_fab"
+            app:layout_constraintStart_toStartOf="@+id/menu_fab"
             app:srcCompat="@drawable/ic_baseline_check_24"
             tools:ignore="ContentDescription" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/saveFab"
+            android:id="@+id/save_fab"
+            showRecapBodyMenu="@{viewModel.showMenu}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            showRecapBodyMenu="@{viewModel.showMenu}"
             android:onClick="@{()-> fragment.onSaveRecapClicked(false)}"
             app:fabSize="mini"
-            app:layout_constraintBottom_toTopOf="@+id/checkFab"
-            app:layout_constraintEnd_toEndOf="@+id/checkFab"
-            app:layout_constraintStart_toStartOf="@+id/checkFab"
+            app:layout_constraintBottom_toTopOf="@+id/check_fab"
+            app:layout_constraintEnd_toEndOf="@+id/check_fab"
+            app:layout_constraintStart_toStartOf="@+id/check_fab"
             app:srcCompat="@drawable/ic_baseline_save_24"
             tools:ignore="ContentDescription" />
 

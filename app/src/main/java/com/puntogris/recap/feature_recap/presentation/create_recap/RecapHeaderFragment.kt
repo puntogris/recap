@@ -35,21 +35,17 @@ class RecapHeaderFragment :
 
     fun navigateToRecapBody() {
         val title = binding.recapTitle.getString()
-        val season = binding.recapSeason.getIntOrNull()
-        val episode = binding.recapEpisode.getIntOrNull()
+        val season = binding.recapSeason.getIntOrNull() ?: 0
+        val episode = binding.recapEpisode.getIntOrNull() ?: 0
 
-        val validation = RecapHeaderValidator.from(title, season, episode)
-
-        when (validation) {
-            is NotValid -> showSnackBar(getString(validation.error))
-            is Valid -> lifecycleScope.launch {
-                with(viewModel) {
-                    updateRecap(title, season!!, episode!!)
-                    saveRecapLocally()
+        RecapHeaderValidator.from(title, season, episode).let {
+            when (it) {
+                is NotValid -> showSnackBar(getString(it.error))
+                is Valid -> lifecycleScope.launch {
+                    viewModel.updateRecap(title, season, episode)
+                    viewModel.saveRecapLocally()
                 }
-                findNavController().navigate(R.id.action_headerRecapFragment_to_recapBodyFragment)
             }
         }
     }
-
 }

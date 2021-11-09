@@ -18,7 +18,7 @@
             android:background="@color/color_surface" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recycler_view"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:paddingBottom="88dp"
             android:clipToPadding="false"

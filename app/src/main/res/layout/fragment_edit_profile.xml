@@ -39,7 +39,8 @@
                 android:foreground="?actionBarItemBackground"
                 android:onClick="@{()->fragment.saveProfile()}"
                 android:padding="8dp"
-                android:src="@drawable/ic_baseline_check_24" />
+                android:src="@drawable/ic_baseline_check_24"
+                tools:ignore="ContentDescription" />
 
             <ProgressBar
                 android:id="@+id/save_progress_bar"
@@ -61,7 +62,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:onClick="@{()-> fragment.changeProfileImage()}"
-            tools:src="@tools:sample/avatars" />
+            tools:src="@tools:sample/avatars"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/change_profile_image"

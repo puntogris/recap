@@ -36,6 +36,7 @@
     <string name="user_name_hint">Name</string>
     <string name="username_hint">Username</string>
     <string name="user_bio_hint">Bio</string>
+    <string name="register_date">Registered</string>
 
     <!-- Search -->
     <string name="search">Search</string>
@@ -118,6 +119,9 @@
     <string name="privacy_policy_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/PRIVACY.md</string>
     <string name="terms_and_conditions">Terms &amp; Conditions</string>
     <string name="terms_and_conditions_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/TERMS.md</string>
+
+    <!-- Settings -->
+    <string name="settings_label">Privacy Policy</string>
 
     <!-- Urls -->
     <string name="recap_url" translatable="false">https://unsplash.com/?utm_source=resplash&amp;utm_medium=referral&amp;utm_campaign=api-credit</string>

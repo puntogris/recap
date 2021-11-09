@@ -60,7 +60,6 @@ fun Fragment.showSnackBar(
     anchorView: View? = null,
     actionListener: View.OnClickListener? = null
 ) {
-
     Snackbar.make(requireView(), message, duration).let {
         if (anchorView != null) it.anchorView = anchorView
         if (actionListener != null) it.setAction(actionText, actionListener)

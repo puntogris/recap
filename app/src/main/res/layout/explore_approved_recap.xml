@@ -17,7 +17,7 @@
         android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/recap_number_card"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
-                android:text="S05\nE12"
+                recapNumberCard="@{recap}"
                 android:textColor="@android:color/white"
                 android:textSize="13sp"
                 app:layout_constraintStart_toEndOf="@+id/cardView"
@@ -50,7 +50,7 @@
             android:fontFamily="sans-serif-black"
             android:text="@{recap.title}"
             app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintStart_toEndOf="@+id/recap_number_card"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
@@ -58,7 +58,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="English"
+            android:text="@{recap.language}"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/textView"
@@ -72,7 +72,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView3"
-            app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView3"
@@ -88,8 +89,8 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Joaquin M"
-            android:textSize="10sp"
+            android:text="@{recap.author}"
+            android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="@+id/imageView" />
 
