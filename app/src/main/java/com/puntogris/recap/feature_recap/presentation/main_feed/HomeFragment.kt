@@ -105,7 +105,7 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
     private fun showBottomDrawer() {
         HomeBottomNavigationDrawer
             .newInstance()
-            .show(parentFragmentManager, HomeBottomNavigationDrawer.TAG)
+            .show(childFragmentManager, HomeBottomNavigationDrawer.TAG)
     }
 
     override fun onStart() {

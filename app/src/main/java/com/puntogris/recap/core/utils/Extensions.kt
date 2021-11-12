@@ -236,3 +236,16 @@ fun LottieAnimationView.playAnimationOnce(@RawRes animation: Int) {
     repeatCount = 0
     playAnimation()
 }
+
+fun Fragment.actionOrLogin(isLoggedIn: Boolean, action: () -> Unit) {
+    if (isLoggedIn) {
+        action()
+    } else {
+        showSnackBar(
+            getString(R.string.login_required),
+            actionText = getString(R.string.action_login)
+        ) {
+            findNavController().navigate(R.id.loginFragment)
+        }
+    }
+}

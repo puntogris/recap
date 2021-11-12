@@ -50,9 +50,13 @@ class RecapRepositoryImpl(
                 enablePlaceholders = true,
                 maxSize = 200
             )
-        ) { pagingSourceAndUid.first }.flow.map { paging ->
-            paging.filter {
-                pagingSourceAndUid.second !in it.reviewers
+        ) { pagingSourceAndUid.first }.flow.apply {
+            if (pagingSourceAndUid.second != null){
+                map { paging ->
+                    paging.filter {
+                        pagingSourceAndUid.second !in it.reviewers
+                    }
+                }
             }
         }
     }

@@ -90,7 +90,7 @@ class HomeViewModel @Inject constructor(
     }
 
     suspend fun logOut(): SimpleResource {
-        _authorizedLiveData.value = false
+        _authorizedLiveData.postValue(false)
         updateUser(null, null, null, null)
         return logoutUseCase()
     }

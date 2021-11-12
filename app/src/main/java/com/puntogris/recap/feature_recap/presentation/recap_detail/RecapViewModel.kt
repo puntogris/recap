@@ -4,6 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
+import com.puntogris.recap.core.domain.use_case.isLoggedIn
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.feature_recap.domain.model.Recap
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapInteractionsUseCase
@@ -16,8 +18,9 @@ import javax.inject.Inject
 @HiltViewModel
 class RecapViewModel @Inject constructor(
     private val getRecap: GetRecapUseCase,
-    private val getRecapInteractions: GetRecapInteractionsUseCase,
+    getRecapInteractions: GetRecapInteractionsUseCase,
     private val savedStateHandle: SavedStateHandle,
+    private val getCurrentAuthUser: GetCurrentAuthUser
 ) : ViewModel() {
 
     private fun recapIdFromArgs() =
@@ -41,6 +44,6 @@ class RecapViewModel @Inject constructor(
         _recap.value = recap
     }
 
-    fun isUserLoggedIn() = true
+    fun isUserLoggedIn() = getCurrentAuthUser.isLoggedIn()
 
 }

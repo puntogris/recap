@@ -11,6 +11,7 @@ import com.puntogris.recap.NavigationDirections
 import com.puntogris.recap.R
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
 import com.puntogris.recap.core.utils.Resource
+import com.puntogris.recap.core.utils.actionOrLogin
 import com.puntogris.recap.core.utils.setupBackgroundAndFontColors
 import com.puntogris.recap.core.utils.showSnackBar
 import com.puntogris.recap.databinding.FragmentRecapBinding
@@ -39,7 +40,6 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
             when (it) {
                 is Resource.Error -> {
 
-
                 }
                 is Resource.Success -> {
                     viewModel.updateRecap(it.data)
@@ -64,7 +64,7 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
             }
             setOnMenuItemClickListener {
                 when (it.itemId) {
-                    R.id.action_report -> {
+                    R.id.action_report -> actionOrLogin(viewModel.isUserLoggedIn()) {
                         val id = args.recap?.id ?: args.recapId!!
                         val action =
                             RecapFragmentDirections.actionRecapFragmentToReportRecapBottomSheet(id)
@@ -77,43 +77,37 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
     }
 
     private fun navigateToProfile() {
-        val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value?.author)
+        val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value.author)
         findNavController().navigate(action)
     }
 
     fun onFavoriteClicked() {
-        findNavController().navigate(R.id.loginFragment)
-        if (viewModel.isUserLoggedIn()) {
-
-        } else {
-
+        actionOrLogin(viewModel.isUserLoggedIn()) {
+            showSnackBar("Agregado a favoritos")
         }
-        showSnackBar("Agregado a favoritos")
-
     }
 
     fun onLikedClicked() {
-        if (viewModel.isUserLoggedIn()) {
-
-        } else {
-
+        actionOrLogin(viewModel.isUserLoggedIn()) {
+            showSnackBar("Te gusto este recap.")
         }
     }
 
     fun onRateClicked() {
-        val action =
-            RecapFragmentDirections.actionRecapFragmentToSelectRatingDialog(viewModel.recap.value.id)
-        findNavController().navigate(action)
+        actionOrLogin(viewModel.isUserLoggedIn()) {
+            val action =
+                RecapFragmentDirections.actionRecapFragmentToSelectRatingDialog(viewModel.recap.value.id)
+            findNavController().navigate(action)
+        }
     }
 
     fun onShareClicked() {
         val share = Intent.createChooser(Intent().apply {
             action = Intent.ACTION_SEND
             type = "text/plain"
-            putExtra(Intent.EXTRA_TITLE, "Share this recap!")
+            putExtra(Intent.EXTRA_TITLE, getString(R.string.share_recap_intent_title))
             putExtra(Intent.EXTRA_TEXT, viewModel.recap.value.deepLink)
         }, null)
         startActivity(share)
     }
-
 }

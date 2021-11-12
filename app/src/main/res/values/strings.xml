@@ -13,12 +13,14 @@
     <string name="action_apply">Apply</string>
     <string name="action_close">Close</string>
     <string name="action_continue">Continue</string>
+    <string name="action_login">Login</string>
 
     <!-- Login -->
     <string name="action_continue_anonymously">Continue anonymously</string>
     <string name="action_login_with_google">Login con google</string>
     <string name="login_subtitle">The biggest recap database free forever by fans for fans</string>
     <string name="login_title">Sharing starts here</string>
+    <string name="login_required">This action requires login.</string>
 
     <!-- Rating -->
     <string name="rate_recap_title">Rate recap</string>

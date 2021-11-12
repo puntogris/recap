@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ExploreRecapFragment :
     BasePagerTabFragment<FragmentExploreRecapBinding>(R.layout.fragment_explore_recap) {
 
-    override val viewModel: HomeViewModel by viewModels()
+    override val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
     override val adapter = ExploreRecapAdapter(::onRecapShortClick, ::onRecapLongClick)
 

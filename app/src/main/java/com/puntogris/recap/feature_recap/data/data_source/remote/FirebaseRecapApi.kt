@@ -46,13 +46,13 @@ class FirebaseRecapApi(
         return FirestoreRecapPagingSource(query)
     }
 
-    override fun getReviewsPagingSource(order: ReviewOrder): Pair<PagingSource<*, Recap>, String> {
+    override fun getReviewsPagingSource(order: ReviewOrder): Pair<PagingSource<*, Recap>, String?> {
         val query = recapCollection
             .whereEqualTo(Constants.STATUS_FIELD, RecapStatus.PENDING)
          //TODO commented for testing, remove later
-         //.whereNotEqualTo(Constants.AUTHOR_FILED, firebase.currentUid)
+         //if (firebase.currentUid != null) query.whereNotEqualTo(Constants.AUTHOR_FILED, firebase.currentUid)
 
-        return FirestoreRecapPagingSource(query) to requireNotNull(firebase.currentUid)
+        return FirestoreRecapPagingSource(query) to firebase.currentUid
     }
 
     override suspend fun getRecap(recapId: String): Recap {

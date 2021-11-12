@@ -8,7 +8,7 @@ interface RecapServerApi {
 
     fun getRecapsPagingSource(order: RecapOrder): PagingSource<*, Recap>
 
-    fun getReviewsPagingSource(order: ReviewOrder): Pair<PagingSource<*, Recap>, String>
+    fun getReviewsPagingSource(order: ReviewOrder): Pair<PagingSource<*, Recap>, String?>
 
     suspend fun getRecap(recapId: String): Recap
 
