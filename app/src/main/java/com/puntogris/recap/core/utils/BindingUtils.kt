@@ -11,7 +11,7 @@ import com.puntogris.recap.feature_recap.domain.model.Recap
 @BindingAdapter("imageWithGlide")
 fun ImageView.setImageWithGlide(image: String?) {
     val uri = if (image.isNullOrBlank()) R.drawable.ic_desert else image
-
+    println(image)
     Glide
         .with(context)
         .load(uri)

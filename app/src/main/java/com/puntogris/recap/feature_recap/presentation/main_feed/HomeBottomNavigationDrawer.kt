@@ -83,7 +83,6 @@ class HomeBottomNavigationDrawer :BottomSheetDialogFragment() {
 
         with(viewModel) {
             authorizedLiveData.observe(viewLifecycleOwner) {
-             //   println(it)
                 with(contentBinding.headerNavigationView.menu) {
                     setGroupVisible(R.id.group_unauthorized, !it)
                     setGroupVisible(R.id.group_authorized, it)

@@ -18,7 +18,7 @@ class AuthRepositoryImpl(
         try {
             emit(LoginResult.InProgress)
             val credential = googleSingIn.getCredentialWithIntent(result.data!!)
-            authServerApi.signInWithCredential(credential)
+            authServerApi.signInAndCreateUser(credential)
             emit(LoginResult.Success)
         } catch (e: Exception) {
             emit(LoginResult.Error)
