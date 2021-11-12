@@ -13,7 +13,6 @@ sealed class RecapInteractionResult {
     object NotFound : RecapInteractionResult()
 }
 
-
 sealed class RecapResult {
     object InProgress : RecapResult()
     class Success(val result: Flow<PagingData<Recap>>) : RecapResult()

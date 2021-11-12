@@ -2,6 +2,7 @@
     <string name="app_name">recap</string>
     <string name="package_name" translatable="false">com.puntogris.recap</string>
     <string name="recap" translatable="false">Recap</string>
+    <string name="header_subtitle">Open source recap platform for Android</string>
 
     <!-- Navigation -->
 

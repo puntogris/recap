@@ -18,8 +18,7 @@ import com.puntogris.recap.feature_recap.presentation.main_feed.reviews.ReviewOr
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home),
-    UiListener {
+class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
 
     override val viewPager: ViewPager2
         get() = binding.viewPager
@@ -35,13 +34,10 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
     override val adapter: FragmentStateAdapter
         get() = HomeSlidePagerAdapter(childFragmentManager, viewLifecycleOwner.lifecycle)
 
-    private val bottomNavDrawer: HomeBottomNavigationDrawer by lazy(LazyThreadSafetyMode.NONE) {
-        HomeBottomNavigationDrawer.newInstance()
-    }
-
     override fun initializeViews() {
         super.initializeViews()
         binding.fragment = this
+
         setupBottomAppBar()
         registerResultListener()
     }
@@ -107,7 +103,9 @@ class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragmen
     }
 
     private fun showBottomDrawer() {
-        bottomNavDrawer.show(childFragmentManager, HomeBottomNavigationDrawer.TAG)
+        HomeBottomNavigationDrawer
+            .newInstance()
+            .show(parentFragmentManager, HomeBottomNavigationDrawer.TAG)
     }
 
     override fun onStart() {

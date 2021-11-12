@@ -23,9 +23,9 @@ abstract class BaseViewPagerFragment<T : ViewDataBinding>(@LayoutRes override va
         mediator?.attach()
     }
 
-    override fun onTabSelected(tab: TabLayout.Tab?) {}
+    override fun onTabSelected(tab: TabLayout.Tab?) = Unit
 
-    override fun onTabUnselected(tab: TabLayout.Tab?) {}
+    override fun onTabUnselected(tab: TabLayout.Tab?) = Unit
 
     override fun onTabReselected(tab: TabLayout.Tab?) {
         tab?.position?.let {
