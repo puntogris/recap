@@ -20,7 +20,7 @@ class AuthRepositoryImpl(
     override fun serverAuthWithGoogle(result: ActivityResult): Flow<LoginResult> = flow {
         try {
             emit(LoginResult.InProgress)
-            val credential = googleSingIn.getCredentialWithIntent(result.data!!)
+            val credential = googleSingIn.getCredentialWithIntent(requireNotNull(result.data))
             authServerApi.signInAndCreateUser(credential)
             emit(LoginResult.Success)
         } catch (e: Exception) {

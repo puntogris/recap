@@ -134,9 +134,9 @@
                         app:layout_constraintTop_toTopOf="@id/user_image_view">
 
                         <TextView
+                            monthYearFromTimestamp="@{viewModel.userProfile.registered}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            monthYearFromTimestamp="@{viewModel.userProfile.registered}"
                             android:textAlignment="center"
                             android:textSize="16sp"
                             android:textStyle="bold"

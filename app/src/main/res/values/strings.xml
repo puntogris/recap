@@ -14,6 +14,7 @@
     <string name="action_close">Close</string>
     <string name="action_continue">Continue</string>
     <string name="action_login">Login</string>
+    <string name="action_rate">Rate it</string>
 
     <!-- Login -->
     <string name="action_continue_anonymously">Continue anonymously</string>
@@ -58,6 +59,8 @@
     <string name="filter_high">High</string>
     <string name="user_tab">Users</string>
     <string name="recaps_tab">Recaps</string>
+    <string name="empty_state_title">Nothing to see here…</string>
+    <string name="error_state_title">Uh oh…</string>
 
     <!-- Main feed -->
     <string name="explore_tab">Explore</string>
@@ -86,6 +89,7 @@
     <string name="recap_episode_hint">14</string>
     <string name="recap_header_alert">* This information may be changed later.</string>
     <string name="recap_header_title">What do you want to publish?</string>
+    <string name="rate_recap_message">Review this recap to make it accessible to the community, give it a read and rate it.</string>
 
     <!-- Publish -->
     <string name="publish_recap_in_progress_title">Publishing recap..</string>
