@@ -55,6 +55,7 @@
         <entry key="app/src/main/res/layout/explore_approved_recap.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_about.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_create_recap.xml" value="0.35052083333333334" />
+        <entry key="app/src/main/res/layout/fragment_delete_account.xml" value="0.3515625" />
         <entry key="app/src/main/res/layout/fragment_draft.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.35052083333333334" />
         <entry key="app/src/main/res/layout/fragment_explore.xml" value="0.35052083333333334" />

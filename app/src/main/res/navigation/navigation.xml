@@ -157,4 +157,8 @@
             android:name="recapId"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.puntogris.recap.feature_settings.presentation.delete_account.DeleteAccountFragment"
+        android:label="Delete account" />
 </navigation>

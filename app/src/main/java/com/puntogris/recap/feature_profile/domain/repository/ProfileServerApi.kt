@@ -12,4 +12,5 @@ interface ProfileServerApi {
     suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult
     fun currentAuthUser(): FirebaseUser?
     fun getProfileRecapsPagingSource(): PagingSource<*, Recap>
+    suspend fun deleteAccount()
 }

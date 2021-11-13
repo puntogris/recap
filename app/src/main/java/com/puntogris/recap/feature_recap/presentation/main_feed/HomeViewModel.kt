@@ -2,7 +2,7 @@ package com.puntogris.recap.feature_recap.presentation.main_feed
 
 import androidx.lifecycle.*
 import androidx.paging.cachedIn
-import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUserUseCase
 import com.puntogris.recap.core.domain.use_case.isLoggedIn
 import com.puntogris.recap.core.presentation.base.BaseRvViewModel
 import com.puntogris.recap.core.utils.SimpleResource
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getRecapsUseCase: GetRecapsUseCase,
     private val getReviewsUseCase: GetReviewsUseCase,
-    private val getCurrentAuthUser: GetCurrentAuthUser,
+    private val getCurrentAuthUserUseCase: GetCurrentAuthUserUseCase,
     private val logoutUseCase: LogoutUseCase
 ) : BaseRvViewModel() {
 
@@ -34,7 +34,7 @@ class HomeViewModel @Inject constructor(
     private val _profilePictureLiveData = MutableLiveData<String?>()
     val profilePictureLiveData: LiveData<String?> = _profilePictureLiveData
 
-    private val _authorizedLiveData = MutableLiveData(getCurrentAuthUser.isLoggedIn())
+    private val _authorizedLiveData = MutableLiveData(getCurrentAuthUserUseCase.isLoggedIn())
     val authorizedLiveData: LiveData<Boolean> = _authorizedLiveData
 
     private val _recapOrder = MutableLiveData(RecapOrder.LATEST)
@@ -63,7 +63,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun isUserLoggedIn() = getCurrentAuthUser.isLoggedIn()
+    fun isUserLoggedIn() = getCurrentAuthUserUseCase.isLoggedIn()
 
     private fun updateUser(
         username: String?,
@@ -78,7 +78,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun refreshUserProfile() {
-        getCurrentAuthUser()?.let {
+        getCurrentAuthUserUseCase()?.let {
             _authorizedLiveData.postValue(true)
             updateUser(
                 it.displayName,

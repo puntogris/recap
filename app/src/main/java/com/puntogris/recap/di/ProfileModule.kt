@@ -4,6 +4,7 @@ import android.content.Context
 import com.lyft.kronos.KronosClock
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUserUseCase
 import com.puntogris.recap.core.utils.StandardDispatchers
 import com.puntogris.recap.feature_profile.data.repository.remote.FirebaseProfileApi
 import com.puntogris.recap.feature_profile.data.repository.remote.ProfileRepositoryImpl
@@ -85,5 +86,14 @@ class ProfileModule {
             context = context,
             kronosClock = kronosClock
         )
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteProfileUserCase(
+        repository: ProfileRepository,
+        getCurrentAuthUserUseCase: GetCurrentAuthUserUseCase
+    ): DeleteCurrentUserProfileUseCase{
+        return DeleteCurrentUserProfileUseCase(repository, getCurrentAuthUserUseCase)
     }
 }

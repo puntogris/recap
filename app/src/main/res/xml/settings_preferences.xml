@@ -18,5 +18,10 @@
             app:defaultValue="@string/default_theme_value"
             app:useSimpleSummaryProvider="true" />
 
+        <Preference
+            app:key="pref_delete_account"
+            app:title="@string/delete_account_title"
+            app:summary="@string/delete_account_summary"/>
+
     </PreferenceCategory>
 </PreferenceScreen>

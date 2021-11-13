@@ -6,7 +6,7 @@ import com.lyft.kronos.AndroidClockFactory
 import com.lyft.kronos.KronosClock
 import com.puntogris.recap.core.data.local.AppDatabase
 import com.puntogris.recap.core.data.remote.FirebaseClients
-import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
+import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUserUseCase
 import com.puntogris.recap.core.domain.use_case.GetOwnUserIdUseCase
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.StandardDispatchers
@@ -50,8 +50,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideGetCurrentAuthUser(firebase: FirebaseClients): GetCurrentAuthUser {
-        return GetCurrentAuthUser(firebase)
+    fun provideGetCurrentAuthUser(firebase: FirebaseClients): GetCurrentAuthUserUseCase {
+        return GetCurrentAuthUserUseCase(firebase)
     }
 
     @Provides

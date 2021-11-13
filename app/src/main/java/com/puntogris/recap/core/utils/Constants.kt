@@ -7,6 +7,7 @@ object Constants {
     //Prefs
     const val PREF_APP_THEME = "pref_app_theme"
     const val LAST_VERSION_CODE = "last_version_code"
+    const val DELETE_ACCOUNT = "pref_delete_account"
 
     //Dynamic Links
     const val DEEP_LINK_PATH = "https://recap.puntogris.com/recaps/"

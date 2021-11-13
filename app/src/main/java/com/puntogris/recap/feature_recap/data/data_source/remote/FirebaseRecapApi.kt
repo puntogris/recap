@@ -70,7 +70,7 @@ class FirebaseRecapApi(
 
         return recap.apply {
             id = ref.id
-            author = requireNotNull(firebase.currentUid)
+            author = firebase.currentUid
             deepLink = generateDynamicLink(title, id).toString()
             ref.set(this).await()
         }.deepLink
@@ -97,13 +97,13 @@ class FirebaseRecapApi(
     }
 
     override suspend fun reportRecap(report: Report) {
-        report.uid = requireNotNull(firebase.currentUid)
+        report.uid = firebase.currentUid
         firebase.firestore.collection("reports").add(report)
     }
 
     override suspend fun getRecapInteractionsWithCurrentUser(recapId: String): RecapInteractions? {
         return recapCollection
-            .document(requireNotNull(firebase.currentUid))
+            .document(firebase.currentUid)
             .collection(Constants.INTERACTIONS_COLLECTION)
             .document(recapId)
             .get()
@@ -115,7 +115,7 @@ class FirebaseRecapApi(
         val data = hashMapOf(
             "recapId" to recapId,
             "score" to score,
-            "reviewerId" to requireNotNull(firebase.currentUid)
+            "reviewerId" to firebase.currentUid
         )
 
         firebase.functions

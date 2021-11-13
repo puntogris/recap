@@ -7,6 +7,7 @@ import androidx.paging.map
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.Resource
+import com.puntogris.recap.core.utils.SimpleResource
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
@@ -21,7 +22,7 @@ import kotlinx.coroutines.withContext
 class ProfileRepositoryImpl(
     private val profileServerApi: ProfileServerApi,
     private val recapDao: RecapDao,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcher: DispatcherProvider
 ) : ProfileRepository {
 
     override fun isUserLoggedIn() = profileServerApi.currentAuthUser() != null
@@ -29,14 +30,14 @@ class ProfileRepositoryImpl(
     override fun getFirebaseUser() = profileServerApi.currentAuthUser()
 
     override suspend fun getPublicProfile(userId: String): Resource<PublicProfile> =
-        withContext(dispatcherProvider.io) {
+        withContext(dispatcher.io) {
             Resource.build {
                 requireNotNull(profileServerApi.getProfile(userId))
             }
         }
 
     override suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult =
-        withContext(dispatcherProvider.io) {
+        withContext(dispatcher.io) {
             try {
                 profileServerApi.updateUserProfile(updateProfileData)
             } catch (e: Exception) {
@@ -64,5 +65,11 @@ class ProfileRepositoryImpl(
                 maxSize = 200
             )
         ) { profileServerApi.getProfileRecapsPagingSource() }.flow
+    }
+
+    override suspend fun deleteProfile(): SimpleResource = withContext(dispatcher.io){
+        SimpleResource.build {
+            profileServerApi.deleteAccount()
+        }
     }
 }

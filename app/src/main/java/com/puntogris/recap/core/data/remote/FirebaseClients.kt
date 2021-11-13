@@ -18,6 +18,6 @@ class FirebaseClients @Inject constructor() {
     val storage = Firebase.storage.reference
     val functions = Firebase.functions
 
-    val currentUid
-        get() = auth.uid
+    val currentUid: String
+        get() = requireNotNull(auth.uid)
 }

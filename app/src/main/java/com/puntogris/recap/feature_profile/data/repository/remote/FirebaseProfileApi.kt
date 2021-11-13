@@ -26,12 +26,18 @@ class FirebaseProfileApi(
 ) : ProfileServerApi {
 
     private val usersCollection = firebase.firestore.collection(Constants.USERS_COLLECTION)
+    private val usernamesCollection = firebase.firestore.collection(Constants.USERNAMES_COLLECTION)
+
+    private fun getPublicRef(document: String = firebase.currentUid) =
+        firebase.firestore.collection(Constants.USERS_COLLECTION).document(document)
+
+    private fun getPrivateRef(document: String = firebase.currentUid) =
+        getPublicRef(document).collection(Constants.PRIVATE_PROFILE_COLLECTION).document(document)
 
     override fun currentAuthUser() = firebase.auth.currentUser
 
     override suspend fun getProfile(userId: String): PublicProfile? {
-        return usersCollection
-            .document(userId)
+        return getPublicRef(userId)
             .get()
             .await()
             .toObject(PublicProfile::class.java)
@@ -39,17 +45,15 @@ class FirebaseProfileApi(
 
     override suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult {
 
-        val profileRef = usersCollection.document(requireNotNull(firebase.currentUid))
+        val publicRef = getPublicRef()
 
-        val usernameRef = firebase.firestore
-            .collection(Constants.USERNAMES_COLLECTION)
-            .document(updateProfileData.username)
+        val usernameRef = usernamesCollection.document(updateProfileData.username)
 
         if (usernameRef.get().await().exists()) {
             return EditProfileResult.Error(R.string.username_taken)
         }
 
-        val profile = profileRef
+        val profile = publicRef
             .get()
             .await()
             .toObject(PublicProfile::class.java)!!
@@ -65,9 +69,9 @@ class FirebaseProfileApi(
             return@runTransaction if (it.get(usernameRef).exists()) {
                 EditProfileResult.Error(R.string.username_taken)
             } else {
-                it.set(profileRef, updateProfileData, SetOptions.merge())
-                it.delete(usernameRef)
+                it.set(publicRef, updateProfileData, SetOptions.merge())
                 it.set(usernameRef, Constants.UID_FIELD to firebase.currentUid)
+                it.delete(usernamesCollection.document(profile.username))
                 EditProfileResult.Success
             }
         }.await()
@@ -84,9 +88,21 @@ class FirebaseProfileApi(
     override fun getProfileRecapsPagingSource(): PagingSource<*, Recap> {
         val query = firebase.firestore
             .collection(Constants.RECAPS_COLLECTION)
-            .whereEqualTo(Constants.UID_FIELD, requireNotNull(firebase.currentUid))
+            .whereEqualTo(Constants.UID_FIELD, firebase.currentUid)
             .orderBy(Constants.CREATED_FIELD, Query.Direction.DESCENDING)
 
         return FirestoreRecapPagingSource(query)
+    }
+
+    override suspend fun deleteAccount() {
+        firebase.firestore.runTransaction {
+            val publicRef = getPublicRef()
+            val privateRef = getPrivateRef()
+            val username = it.get(publicRef).toObject(PublicProfile::class.java)?.username
+
+            it.delete(publicRef)
+            it.delete(privateRef)
+            it.delete(usersCollection.document(requireNotNull(username)))
+        }.await()
     }
 }
