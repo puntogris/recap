@@ -187,7 +187,7 @@
                     android:onClick="@{()-> appBar.setExpanded(true)}"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-                    app:title="@{viewModel.userProfile.name}" />
+                    app:title="@{viewModel.userProfile.username}" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <com.puntogris.recap.core.presentation.widget.AutoSizeTabLayout
