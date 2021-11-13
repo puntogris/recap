@@ -39,6 +39,7 @@
         <item name="subtitleTextColor">@android:color/white</item>
         <item name="android:theme">@style/ThemeOverlay.Theme.Toolbar.PhotoDetail</item>
     </style>
+
     <style name="ThemeOverlay.Theme.Toolbar.PhotoDetail" parent="">
         <item name="colorControlNormal">@android:color/white</item>
         <item name="actionMenuTextColor">@android:color/white</item>

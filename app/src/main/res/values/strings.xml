@@ -40,6 +40,10 @@
     <string name="username_hint">Username</string>
     <string name="user_bio_hint">Bio</string>
     <string name="register_date">Registered</string>
+    <string name="all_field_required">All field required, they can\'t be empty.</string>
+    <string name="time_to_unlock_profile_edit">Remember you can only edit your profile every 10 days! Time remaining to unlock it %1$dd. %2$d h. %3$d m.</string>
+    <string name="profile_time_unlock_alert">Remember you can only edit your profile every 10 days!</string>
+    <string name="profile_updated_success">Profile updated successfully.</string>
 
     <!-- Search -->
     <string name="search">Search</string>
@@ -97,6 +101,7 @@
     <string name="snack_recap_season_required">Season can\'t be empty.</string>
     <string name="snack_recap_episode_required">Episode can\'t be empty.</string>
     <string name="report_recap_title">Report reason</string>
+    <string name="report_label">Information</string>
 
     <!-- About -->
     <string name="about">About</string>
@@ -124,7 +129,11 @@
     <string name="terms_and_conditions_url" translatable="false">https://github.com/b-lam/Resplash/blob/master/TERMS.md</string>
 
     <!-- Settings -->
-    <string name="settings_label">Privacy Policy</string>
+    <string name="notifications_enabled">Enabled</string>
+    <string name="notifications_disabled">Disabled</string>
+    <string name="notifications_label">Notifications</string>
+    <string name="settings_label">Settings</string>
+    <string name="information_label">Information</string>
 
     <!-- Urls -->
     <string name="recap_url" translatable="false">https://unsplash.com/?utm_source=resplash&amp;utm_medium=referral&amp;utm_campaign=api-credit</string>

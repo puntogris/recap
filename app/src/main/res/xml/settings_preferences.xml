@@ -6,11 +6,12 @@
 
         <SwitchPreference
             android:key="pref_show_notifications"
-            app:summaryOn="Activadas"
-            android:summaryOff="Desactivadas"
-            android:title="Notificaciones"/>
+            app:summaryOn="@string/notifications_enabled"
+            android:summaryOff="@string/notifications_disabled"
+            android:title="@string/notifications_label" />
 
-        <ListPreference app:key="pref_app_theme"
+        <ListPreference
+            app:key="pref_app_theme"
             app:title="@string/theme"
             app:entries="@array/theme_options"
             app:entryValues="@array/theme_values"

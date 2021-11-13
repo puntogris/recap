@@ -6,8 +6,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.puntogris.recap.BuildConfig
 import com.puntogris.recap.core.data.remote.FirebaseClients
-import com.puntogris.recap.feature_auth.data.data_source.FirebaseAuthApi
-import com.puntogris.recap.feature_auth.data.data_source.GoogleSingInDataSource
+import com.puntogris.recap.core.utils.DispatcherProvider
+import com.puntogris.recap.feature_auth.data.data_source.remote.FirebaseAuthApi
+import com.puntogris.recap.feature_auth.data.data_source.remote.GoogleSingInDataSource
 import com.puntogris.recap.feature_auth.data.repository.AuthRepositoryImpl
 import com.puntogris.recap.feature_auth.domain.repository.AuthRepository
 import com.puntogris.recap.feature_auth.domain.repository.AuthServerApi
@@ -26,10 +27,11 @@ class AuthModule {
 
     @Provides
     fun providesAuthRepository(
+        dispatcherProvider: DispatcherProvider,
         authServerApi: AuthServerApi,
         googleSingInDataSource: GoogleSingInDataSource
     ): AuthRepository {
-        return AuthRepositoryImpl(authServerApi, googleSingInDataSource)
+        return AuthRepositoryImpl(dispatcherProvider, authServerApi, googleSingInDataSource)
     }
 
     @Provides

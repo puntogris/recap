@@ -18,7 +18,8 @@ import com.puntogris.recap.feature_recap.presentation.main_feed.reviews.ReviewOr
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home), UiListener {
+class HomeFragment : BaseViewPagerFragment<FragmentHomeBinding>(R.layout.fragment_home),
+    UiListener {
 
     override val viewPager: ViewPager2
         get() = binding.viewPager

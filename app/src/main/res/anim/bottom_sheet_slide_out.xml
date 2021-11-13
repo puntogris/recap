@@ -5,10 +5,10 @@
 
     <translate
         android:fromYDelta="0"
-        android:toYDelta="20%p"/>
+        android:toYDelta="20%p" />
 
     <alpha
         android:fromAlpha="1.0"
-        android:toAlpha="0.0"/>
+        android:toAlpha="0.0" />
 
 </set>

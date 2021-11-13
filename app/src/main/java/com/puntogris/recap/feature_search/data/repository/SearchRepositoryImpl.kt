@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestorePublicProfilePagingSource
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
-import com.puntogris.recap.core.utils.Constants.PUBLIC_PROFILE_COLLECTION
+import com.puntogris.recap.core.utils.Constants.PRIVATE_PROFILE_COLLECTION
 import com.puntogris.recap.core.utils.Constants.RECAPS_COLLECTION
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_recap.domain.model.Recap
@@ -33,7 +33,7 @@ class SearchRepositoryImpl(private val firebase: FirebaseClients) : SearchReposi
     override fun searchUsers(query: String): Flow<PagingData<PublicProfile>> {
         val firebaseQuery = firebase
             .firestore
-            .collection(PUBLIC_PROFILE_COLLECTION)
+            .collection(PRIVATE_PROFILE_COLLECTION)
 
         return Pager(
             PagingConfig(

@@ -10,10 +10,11 @@ import kotlinx.parcelize.Parcelize
 data class PublicProfile(
     val uid: String = "",
     val name: String = "",
-    val account: String = "",
+    val username: String = "",
     val bio: String = "",
     val registered: Timestamp = Timestamp.now(),
     val likesCounter: Int = 0,
     val recapsCounter: Int = 0,
-    val photoUrl: String = ""
+    val photoUrl: String = "",
+    val lastEdited: Timestamp = Timestamp.now()
 ) : Parcelable

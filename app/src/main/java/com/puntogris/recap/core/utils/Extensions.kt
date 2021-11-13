@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
@@ -30,11 +31,15 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
+import com.lyft.kronos.KronosClock
 import com.puntogris.recap.R
 import com.puntogris.recap.core.utils.Constants.CROSS_FADE_DURATION
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun View.gone() {
     visibility = View.GONE
@@ -55,6 +60,20 @@ fun AppCompatActivity.getNavHostFragment() =
 
 fun Fragment.showSnackBar(
     message: String,
+    duration: Int = Snackbar.LENGTH_LONG,
+    actionText: String = "",
+    anchorView: View? = null,
+    actionListener: View.OnClickListener? = null
+) {
+    Snackbar.make(requireView(), message, duration).let {
+        if (anchorView != null) it.anchorView = anchorView
+        if (actionListener != null) it.setAction(actionText, actionListener)
+        it.show()
+    }
+}
+
+fun Fragment.showSnackBar(
+    message: Int,
     duration: Int = Snackbar.LENGTH_LONG,
     actionText: String = "",
     anchorView: View? = null,
@@ -249,3 +268,13 @@ fun Fragment.actionOrLogin(isLoggedIn: Boolean, action: () -> Unit) {
         }
     }
 }
+
+fun Date.getMonthYearFormatted() =
+    SimpleDateFormat("MMM yy", Locale.getDefault()).format(this).toString()
+
+fun KronosClock.getTimestamp() = Timestamp(getCurrentTime().posixTimeMs / 1000, 0)
+fun Long.toTimestamp() = Timestamp(this / 1000, 0)
+fun Timestamp.toMs() = toDate().time
+fun Long.msToDays() = (this / (1000 * 60 * 60 * 24)).toInt()
+fun Long.msToHours() = (this / (1000 * 60 * 60)).toInt()
+

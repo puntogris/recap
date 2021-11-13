@@ -14,7 +14,6 @@ import com.puntogris.recap.feature_profile.domain.repository.ProfileServerApi
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import com.puntogris.recap.feature_recap.data.data_source.toDomain
 import com.puntogris.recap.feature_recap.domain.model.Recap
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -32,7 +31,7 @@ class ProfileRepositoryImpl(
     override suspend fun getPublicProfile(userId: String): Resource<PublicProfile> =
         withContext(dispatcherProvider.io) {
             Resource.build {
-                profileServerApi.getProfile(userId)
+                requireNotNull(profileServerApi.getProfile(userId))
             }
         }
 
@@ -41,7 +40,7 @@ class ProfileRepositoryImpl(
             try {
                 profileServerApi.updateUserProfile(updateProfileData)
             } catch (e: Exception) {
-                EditProfileResult.Failure.Error
+                EditProfileResult.Error()
             }
         }
 

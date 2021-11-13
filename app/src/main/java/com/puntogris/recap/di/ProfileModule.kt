@@ -1,6 +1,7 @@
 package com.puntogris.recap.di
 
 import android.content.Context
+import com.lyft.kronos.KronosClock
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.utils.StandardDispatchers
@@ -37,8 +38,11 @@ class ProfileModule {
 
     @Provides
     @Singleton
-    fun provideUpdateProfileUseCase(repository: ProfileRepository): UpdateProfileUseCase {
-        return UpdateProfileUseCase(repository)
+    fun provideUpdateProfileUseCase(
+        repository: ProfileRepository,
+        kronosClock: KronosClock
+    ): UpdateProfileUseCase {
+        return UpdateProfileUseCase(repository, kronosClock)
     }
 
     @Provides
@@ -73,11 +77,13 @@ class ProfileModule {
     @Provides
     fun provideProfileServerApi(
         firebaseClients: FirebaseClients,
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
+        kronosClock: KronosClock
     ): ProfileServerApi {
         return FirebaseProfileApi(
             firebase = firebaseClients,
-            context = context
+            context = context,
+            kronosClock = kronosClock
         )
     }
 }

@@ -1,7 +1,6 @@
 package com.puntogris.recap.feature_recap.presentation.create_recap
 
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.puntogris.recap.R

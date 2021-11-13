@@ -1,6 +1,9 @@
 package com.puntogris.recap.feature_recap.data.repository
 
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.filter
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.IDGenerator
@@ -12,8 +15,6 @@ import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
@@ -51,7 +52,7 @@ class RecapRepositoryImpl(
                 maxSize = 200
             )
         ) { pagingSourceAndUid.first }.flow.apply {
-            if (pagingSourceAndUid.second != null){
+            if (pagingSourceAndUid.second != null) {
                 map { paging ->
                     paging.filter {
                         pagingSourceAndUid.second !in it.reviewers

@@ -12,4 +12,5 @@ sealed class UiText {
             return StringResource(R.string.error_unknown)
         }
     }
+
 }

@@ -11,7 +11,7 @@ object Utils {
     fun compressImageFromUri(context: Context, uri: Uri): ByteArray {
         val baos = ByteArrayOutputStream()
         BitmapFactory.decodeStream(context.contentResolver.openInputStream(uri)).let {
-            it.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+            it.compress(Bitmap.CompressFormat.JPEG, 30, baos)
             it.recycle()
         }
         return baos.toByteArray()

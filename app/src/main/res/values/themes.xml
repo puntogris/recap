@@ -32,7 +32,7 @@
         <item name="colorControlNormal">@color/color_on_surface</item>
 
         <!-- Material type attributes -->
-<!--        <item name="android:textColor">@color/sl_text_color</item>-->
+        <!--        <item name="android:textColor">@color/sl_text_color</item>-->
         <item name="textAppearanceHeadline1">@style/TextAppearance.Recap.Headline1</item>
         <item name="textAppearanceHeadline2">@style/TextAppearance.Recap.Headline2</item>
         <item name="textAppearanceHeadline3">@style/TextAppearance.Recap.Headline3</item>
@@ -48,9 +48,12 @@
         <item name="textAppearanceOverline">@style/TextAppearance.Recap.Overline</item>
 
         <!-- Material shape attributes -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Recap.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Recap.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Recap.LargeComponent</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Recap.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Recap.MediumComponent
+        </item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Recap.LargeComponent
+        </item>
 
         <!-- Component styles -->
         <item name="dialogTheme">@style/ThemeOverlay.Theme.AlertDialog</item>

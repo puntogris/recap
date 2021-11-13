@@ -2,6 +2,7 @@ package com.puntogris.recap.feature_profile.presentation.edit_profile
 
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -9,10 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.puntogris.recap.R
 import com.puntogris.recap.core.presentation.base.BaseBindingFragment
-import com.puntogris.recap.core.utils.EditPhotoOptions
-import com.puntogris.recap.core.utils.gone
-import com.puntogris.recap.core.utils.registerToolbarBackButton
-import com.puntogris.recap.core.utils.visible
+import com.puntogris.recap.core.utils.*
 import com.puntogris.recap.databinding.FragmentEditProfileBinding
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,37 +54,32 @@ class EditProfileFragment :
     }
 
     fun saveProfile() {
-        binding.saveButton.gone()
-        binding.saveProgressBar.visible()
+        isLoadingUi(true)
+        updateProfile()
 
         lifecycleScope.launch {
-            val result = viewModel.saveProfileChanges()
-
-            binding.saveButton.visible()
-            binding.saveProgressBar.gone()
-
-            when (result) {
-                EditProfileResult.Failure.AccountIdLimit -> {
-
+            when (val result = viewModel.saveProfileChanges()) {
+                is EditProfileResult.EditLimit -> {
+                    binding.editProfileAlert.setTimeToUnlockProfileEdit(result.secondsToUnlock)
                 }
-                EditProfileResult.Failure.BioLimit -> {
-
-                }
-                EditProfileResult.Failure.Error -> {
-
-                }
-                EditProfileResult.Failure.NameLimit -> {
-
-                }
-                EditProfileResult.Failure.PhotoLimit -> {
-
-                }
-                EditProfileResult.Success -> {
-
-                }
+                is EditProfileResult.Error -> showSnackBar(result.error)
+                is EditProfileResult.Success -> showSnackBar(R.string.profile_updated_success)
             }
-
+            isLoadingUi(false)
         }
+    }
+
+    private fun isLoadingUi(isLoading: Boolean) {
+        binding.saveButton.isVisible = !isVisible
+        binding.saveProgressBar.isVisible = isLoading
+    }
+
+    private fun updateProfile() {
+        viewModel.updateProfileFields(
+            name = binding.nameInput.getString(),
+            username = binding.usernameInput.getString(),
+            bio = binding.bioInput.getString()
+        )
     }
 
     fun changeProfileImage() {

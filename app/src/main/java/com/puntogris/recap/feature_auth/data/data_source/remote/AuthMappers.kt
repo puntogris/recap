@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_auth.data.data_source
+package com.puntogris.recap.feature_auth.data.data_source.remote
 
 import com.google.firebase.auth.FirebaseUser
 import com.puntogris.recap.feature_profile.domain.model.PrivateProfile

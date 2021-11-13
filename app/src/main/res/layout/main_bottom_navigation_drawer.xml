@@ -6,38 +6,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="@dimen/bottom_sheet_handle_width"
+            android:layout_height="@dimen/bottom_sheet_handle_height"
+            android:layout_marginTop="@dimen/keyline_5"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bottom_sheet_handle" />
+
+        <com.puntogris.recap.core.presentation.widget.ExpandableCardView
+            android:id="@+id/expandable_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:header_view="@layout/main_bottom_navigation_drawer_profile_header"
+            app:content_view="@layout/main_bottom_navigation_drawer_profile_content"
+            tools:expanded="true" />
 
-            <View
-                android:layout_width="@dimen/bottom_sheet_handle_width"
-                android:layout_height="@dimen/bottom_sheet_handle_height"
-                android:layout_marginTop="@dimen/keyline_5"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/bottom_sheet_handle" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
-            <com.puntogris.recap.core.presentation.widget.ExpandableCardView
-                android:id="@+id/expandable_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:header_view="@layout/main_bottom_navigation_drawer_profile_header"
-                app:content_view="@layout/main_bottom_navigation_drawer_profile_content"
-                tools:expanded="true" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="?android:attr/listDivider" />
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/drawer_navigation_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/color_tinted_surface"
-                app:itemBackground="@color/color_tinted_surface"
-                app:elevation="0dp"
-                app:menu="@menu/menu_drawer_content" />
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/drawer_navigation_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_tinted_surface"
+            app:itemBackground="@color/color_tinted_surface"
+            app:elevation="0dp"
+            app:menu="@menu/menu_drawer_content" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

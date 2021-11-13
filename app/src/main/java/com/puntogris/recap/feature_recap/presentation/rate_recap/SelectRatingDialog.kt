@@ -2,7 +2,6 @@ package com.puntogris.recap.feature_recap.presentation.rate_recap
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.annotation.RawRes
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope

@@ -28,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeBottomNavigationDrawer :BottomSheetDialogFragment() {
+class HomeBottomNavigationDrawer : BottomSheetDialogFragment() {
 
     private val viewModel: HomeViewModel by viewModels(ownerProducer = { requireParentFragment() })
 

@@ -5,8 +5,8 @@ import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
 
 class RateRecapUseCase(
     private val repository: RecapRepository
-){
-    suspend operator fun invoke(recapId: String, score: Int): SimpleResource{
+) {
+    suspend operator fun invoke(recapId: String, score: Int): SimpleResource {
         return repository.rateRecap(recapId, score)
     }
 }

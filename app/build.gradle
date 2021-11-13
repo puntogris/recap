@@ -70,6 +70,7 @@ ext{
     viewBindingVersion = "1.4.6"
     glideVersion = "4.12.0"
     roomVersion = "2.4.0-alpha04"
+    kronosVersion = "0.0.1-alpha11"
 }
 
 dependencies {
@@ -166,4 +167,6 @@ dependencies {
     //Rv decorator
     implementation 'com.rubensousa:decorator:2.0.0'
 
+    //NTP Kronos
+    implementation "com.lyft.kronos:kronos-android:$kronosVersion"
 }

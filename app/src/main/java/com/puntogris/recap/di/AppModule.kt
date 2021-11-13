@@ -2,6 +2,8 @@ package com.puntogris.recap.di
 
 import android.content.Context
 import androidx.room.Room
+import com.lyft.kronos.AndroidClockFactory
+import com.lyft.kronos.KronosClock
 import com.puntogris.recap.core.data.local.AppDatabase
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.domain.use_case.GetCurrentAuthUser
@@ -50,5 +52,11 @@ class AppModule {
     @Singleton
     fun provideGetCurrentAuthUser(firebase: FirebaseClients): GetCurrentAuthUser {
         return GetCurrentAuthUser(firebase)
+    }
+
+    @Provides
+    @Singleton
+    fun provideKronosClock(@ApplicationContext context: Context): KronosClock {
+        return AndroidClockFactory.createKronosClock(context)
     }
 }

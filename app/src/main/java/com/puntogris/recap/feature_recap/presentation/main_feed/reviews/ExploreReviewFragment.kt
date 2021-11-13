@@ -1,6 +1,5 @@
 package com.puntogris.recap.feature_recap.presentation.main_feed.reviews
 
-import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState

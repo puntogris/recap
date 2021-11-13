@@ -1,4 +1,4 @@
-package com.puntogris.recap.feature_auth.data.data_source
+package com.puntogris.recap.feature_auth.data.data_source.remote
 
 import android.content.Intent
 import com.google.android.gms.auth.api.signin.GoogleSignIn

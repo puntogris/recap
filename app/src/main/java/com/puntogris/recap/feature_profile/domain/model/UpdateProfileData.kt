@@ -1,9 +1,11 @@
 package com.puntogris.recap.feature_profile.domain.model
 
+import com.google.firebase.Timestamp
+
 class UpdateProfileData(
-    val uid: String,
-    var imageUri: String? = null,
-    var name: String? = null,
-    var bio: String? = null,
-    var account: String? = null
+    var photoUrl: String = "",
+    var name: String = "",
+    var bio: String = "",
+    var account: String = "",
+    var lastEdited: Timestamp = Timestamp.now()
 )

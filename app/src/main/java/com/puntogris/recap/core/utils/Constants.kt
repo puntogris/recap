@@ -17,7 +17,7 @@ object Constants {
 
     //Firebase
     const val USERS_COLLECTION = "users"
-    const val PUBLIC_PROFILE_COLLECTION = "public_profile"
+    const val PRIVATE_PROFILE_COLLECTION = "private_profile"
     const val PUBLIC_PROFILE_FIELD = "profile"
     const val RECAPS_COLLECTION = "recaps"
     const val INTERACTIONS_COLLECTION = "interactions"
@@ -25,9 +25,14 @@ object Constants {
     const val CREATED_FIELD = "created"
     const val LIKED_FIELD = "liked"
     const val AUTHOR_FILED = "author"
+    const val UID_FIELD = "uid"
 
 
     //Rating
     const val RATING_APPROVE = 1
     const val RATING_REJECT = -1
+
+
+    const val TIME_EDIT_LOCKED_IN_MS = 864000000
+    const val TIME_EDIT_LOCKED_IN_SEC = 864000
 }
