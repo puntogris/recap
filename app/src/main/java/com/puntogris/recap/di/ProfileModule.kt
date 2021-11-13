@@ -78,13 +78,11 @@ class ProfileModule {
     @Provides
     fun provideProfileServerApi(
         firebaseClients: FirebaseClients,
-        @ApplicationContext context: Context,
-        kronosClock: KronosClock
+        @ApplicationContext context: Context
     ): ProfileServerApi {
         return FirebaseProfileApi(
             firebase = firebaseClients,
-            context = context,
-            kronosClock = kronosClock
+            context = context
         )
     }
 

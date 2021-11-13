@@ -12,6 +12,7 @@ import kotlinx.coroutines.tasks.await
 class FirebaseAuthApi(private val firebase: FirebaseClients) : AuthServerApi {
 
     private val usersCollection = firebase.firestore.collection(Constants.USERS_COLLECTION)
+    private val usernamesCollection = firebase.firestore.collection(Constants.USERNAMES_COLLECTION)
 
     override suspend fun signInAndCreateUser(credential: AuthCredential) {
         val authResult = firebase.auth.signInWithCredential(credential).await()
@@ -25,19 +26,19 @@ class FirebaseAuthApi(private val firebase: FirebaseClients) : AuthServerApi {
             .collection(Constants.PRIVATE_PROFILE_COLLECTION)
             .document(user.uid)
 
-        val usernameEmailRef = usersCollection.document(requireNotNull(user.email))
+        val usernameEmailRef = usernamesCollection.document(requireNotNull(user.email))
 
         firebase.firestore.runTransaction {
             if (it.get(publicRef).exists()) return@runTransaction
 
             val username =
                 if (it.get(usernameEmailRef).exists()) {
-                    requireNotNull(user.email)
-                } else {
                     IDGenerator.randomID()
+                } else {
+                    requireNotNull(user.email)
                 }
 
-            it.set(usersCollection.document(username), Constants.UID_FIELD to user.uid)
+            it.set(usernamesCollection.document(username), mapOf(Constants.UID_FIELD to user.uid))
             it.set(privateRef, user.toPrivate(username))
             it.set(publicRef, user.toPublic(username))
         }.await()

@@ -3,6 +3,7 @@ package com.puntogris.recap.feature_profile.domain.use_case
 import com.lyft.kronos.KronosClock
 import com.puntogris.recap.R
 import com.puntogris.recap.core.utils.Constants
+import com.puntogris.recap.core.utils.getTimestamp
 import com.puntogris.recap.core.utils.toMs
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
@@ -32,6 +33,9 @@ class UpdateProfileUseCase(
                     Constants.TIME_EDIT_LOCKED_IN_SEC - timeSinceLastEdit / 1000
                 )
             }
+
+            updateProfileData.lastEdited = kronosClock.getTimestamp()
+
             profileRepository.updateUserProfile(it)
         }
     }

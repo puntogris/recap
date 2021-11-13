@@ -3,6 +3,7 @@ package com.puntogris.recap.feature_profile.data.repository.remote
 import android.content.Context
 import android.net.Uri
 import androidx.paging.PagingSource
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.lyft.kronos.KronosClock
@@ -21,18 +22,21 @@ import kotlinx.coroutines.tasks.await
 
 class FirebaseProfileApi(
     private val firebase: FirebaseClients,
-    private val context: Context,
-    private val kronosClock: KronosClock
+    private val context: Context
 ) : ProfileServerApi {
 
-    private val usersCollection = firebase.firestore.collection(Constants.USERS_COLLECTION)
-    private val usernamesCollection = firebase.firestore.collection(Constants.USERNAMES_COLLECTION)
+    private fun getUsernameDocRef(document: String = firebase.currentUid): DocumentReference {
+        return firebase.firestore.collection(Constants.USERNAMES_COLLECTION).document(document)
+    }
 
-    private fun getPublicRef(document: String = firebase.currentUid) =
-        firebase.firestore.collection(Constants.USERS_COLLECTION).document(document)
+    private fun getPublicRef(document: String = firebase.currentUid): DocumentReference {
+        return firebase.firestore.collection(Constants.USERS_COLLECTION).document(document)
+    }
 
-    private fun getPrivateRef(document: String = firebase.currentUid) =
-        getPublicRef(document).collection(Constants.PRIVATE_PROFILE_COLLECTION).document(document)
+    private fun getPrivateRef(document: String = firebase.currentUid): DocumentReference {
+        return getPublicRef(document).collection(Constants.PRIVATE_PROFILE_COLLECTION)
+            .document(document)
+    }
 
     override fun currentAuthUser() = firebase.auth.currentUser
 
@@ -43,46 +47,54 @@ class FirebaseProfileApi(
             .toObject(PublicProfile::class.java)
     }
 
+    /*
+      We check twice if the new username is available to avoid uploading the photo if it isn't,
+      once before the transaction an then inside it to ensure a unique username.
+     */
     override suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult {
-
-        val publicRef = getPublicRef()
-
-        val usernameRef = usernamesCollection.document(updateProfileData.username)
-
-        if (usernameRef.get().await().exists()) {
-            return EditProfileResult.Error(R.string.username_taken)
-        }
-
-        val profile = publicRef
+        val currentProfile = getPublicRef()
             .get()
             .await()
             .toObject(PublicProfile::class.java)!!
 
+        val usernameRef = getUsernameDocRef(updateProfileData.username)
+
         updateProfileData.apply {
-            lastEdited = kronosClock.getTimestamp()
-            if (photoUrl != profile.photoUrl) {
-                photoUrl = uploadImageToServer(photoUrl, profile.uid)
+            if (currentProfile.username != username &&
+                currentProfile.photoUrl != photoUrl &&
+                usernameRef.get().await().exists()
+            ) {
+                return EditProfileResult.Error(R.string.username_taken)
+            }
+            if (photoUrl != currentProfile.photoUrl) {
+                photoUrl = uploadImageToServer(photoUrl, currentProfile.uid)
             }
         }
 
         return firebase.firestore.runTransaction {
-            return@runTransaction if (it.get(usernameRef).exists()) {
-                EditProfileResult.Error(R.string.username_taken)
-            } else {
-                it.set(publicRef, updateProfileData, SetOptions.merge())
-                it.set(usernameRef, Constants.UID_FIELD to firebase.currentUid)
-                it.delete(usernamesCollection.document(profile.username))
-                EditProfileResult.Success
+            if (it.get(usernameRef).exists()) {
+                return@runTransaction EditProfileResult.Error(R.string.username_taken)
             }
+
+            it.set(getPublicRef(), updateProfileData, SetOptions.merge())
+
+            if (updateProfileData.username != currentProfile.username) {
+                it.set(usernameRef, mapOf(Constants.UID_FIELD to firebase.currentUid))
+                it.delete(getUsernameDocRef(currentProfile.username))
+            }
+
+            EditProfileResult.Success
         }.await()
     }
 
     private suspend fun uploadImageToServer(imageUri: String, uid: String): String {
         val data = Utils.compressImageFromUri(context, Uri.parse(imageUri))
         val storageRef = firebase.storage.child("users/${uid}/images/profile/image")
-        storageRef.putBytes(data).await()
 
-        return storageRef.downloadUrl.await().toString()
+        return storageRef.let {
+            it.putBytes(data).await()
+            it.downloadUrl.await().toString()
+        }
     }
 
     override fun getProfileRecapsPagingSource(): PagingSource<*, Recap> {
@@ -102,7 +114,7 @@ class FirebaseProfileApi(
 
             it.delete(publicRef)
             it.delete(privateRef)
-            it.delete(usersCollection.document(requireNotNull(username)))
+            it.delete(getUsernameDocRef(requireNotNull(username)))
         }.await()
     }
 }
