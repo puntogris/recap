@@ -20,6 +20,7 @@ class DeleteAccountFragment :
 
     override fun initializeViews() {
         binding.fragment = this
+        registerToolbarBackButton(binding.toolbar)
     }
 
     fun deleteAccount() {

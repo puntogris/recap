@@ -159,6 +159,5 @@
     </dialog>
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="com.puntogris.recap.feature_settings.presentation.delete_account.DeleteAccountFragment"
-        android:label="Delete account" />
+        android:name="com.puntogris.recap.feature_settings.presentation.delete_account.DeleteAccountFragment"/>
 </navigation>
