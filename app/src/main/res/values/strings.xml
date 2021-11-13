@@ -40,7 +40,9 @@
     <string name="username_hint">Username</string>
     <string name="user_bio_hint">Bio</string>
     <string name="register_date">Registered</string>
-    <string name="all_field_required">All field required, they can\'t be empty.</string>
+    <string name="name_username_required">Your name and username can\'t be empty.</string>
+    <string name="username_not_valid">Your username can\'t contains special characters.</string>
+    <string name="username_taken">This username is already taken.</string>
     <string name="time_to_unlock_profile_edit">Remember you can only edit your profile every 10 days! Time remaining to unlock it %1$dd. %2$d h. %3$d m.</string>
     <string name="profile_time_unlock_alert">Remember you can only edit your profile every 10 days!</string>
     <string name="profile_updated_success">Profile updated successfully.</string>

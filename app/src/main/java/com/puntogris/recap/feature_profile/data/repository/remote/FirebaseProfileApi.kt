@@ -6,6 +6,7 @@ import androidx.paging.PagingSource
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import com.lyft.kronos.KronosClock
+import com.puntogris.recap.R
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
@@ -37,8 +38,16 @@ class FirebaseProfileApi(
     }
 
     override suspend fun updateUserProfile(updateProfileData: UpdateProfileData): EditProfileResult {
-        val profileRef = usersCollection
-            .document(requireNotNull(firebase.currentUid))
+
+        val profileRef = usersCollection.document(requireNotNull(firebase.currentUid))
+
+        val usernameRef = firebase.firestore
+            .collection(Constants.USERNAMES_COLLECTION)
+            .document(updateProfileData.username)
+
+        if (usernameRef.get().await().exists()) {
+            return EditProfileResult.Error(R.string.username_taken)
+        }
 
         val profile = profileRef
             .get()
@@ -48,16 +57,23 @@ class FirebaseProfileApi(
         updateProfileData.apply {
             lastEdited = kronosClock.getTimestamp()
             if (photoUrl != profile.photoUrl) {
-                photoUrl = uploadImageAndGetUrl(photoUrl, profile.uid)
+                photoUrl = uploadImageToServer(photoUrl, profile.uid)
             }
         }
 
-        profileRef.set(updateProfileData, SetOptions.merge())
-
-        return EditProfileResult.Success
+        return firebase.firestore.runTransaction {
+            return@runTransaction if (it.get(usernameRef).exists()) {
+                EditProfileResult.Error(R.string.username_taken)
+            } else {
+                it.set(profileRef, updateProfileData, SetOptions.merge())
+                it.delete(usernameRef)
+                it.set(usernameRef, Constants.UID_FIELD to firebase.currentUid)
+                EditProfileResult.Success
+            }
+        }.await()
     }
 
-    private suspend fun uploadImageAndGetUrl(imageUri: String, uid: String): String {
+    private suspend fun uploadImageToServer(imageUri: String, uid: String): String {
         val data = Utils.compressImageFromUri(context, Uri.parse(imageUri))
         val storageRef = firebase.storage.child("users/${uid}/images/profile/image")
         storageRef.putBytes(data).await()

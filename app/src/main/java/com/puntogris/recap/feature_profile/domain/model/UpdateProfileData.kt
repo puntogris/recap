@@ -6,6 +6,6 @@ class UpdateProfileData(
     var photoUrl: String = "",
     var name: String = "",
     var bio: String = "",
-    var account: String = "",
+    var username: String = "",
     var lastEdited: Timestamp = Timestamp.now()
 )

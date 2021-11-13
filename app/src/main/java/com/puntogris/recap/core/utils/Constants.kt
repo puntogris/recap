@@ -26,6 +26,7 @@ object Constants {
     const val LIKED_FIELD = "liked"
     const val AUTHOR_FILED = "author"
     const val UID_FIELD = "uid"
+    const val USERNAMES_COLLECTION = "usernames"
 
 
     //Rating

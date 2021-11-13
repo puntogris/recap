@@ -16,8 +16,12 @@ class UpdateProfileUseCase(
     suspend operator fun invoke(updateProfileData: UpdateProfileData): EditProfileResult {
         return updateProfileData.let {
 
-            if (it.name.isBlank() || it.account.isBlank()) {
-                return EditProfileResult.Error(R.string.all_field_required)
+            if (it.name.isBlank() || it.username.isBlank()) {
+                return EditProfileResult.Error(R.string.name_username_required)
+            }
+
+            if (it.username.contains(" ")) {
+                return EditProfileResult.Error(R.string.username_not_valid)
             }
 
             val timeNow = kronosClock.getCurrentTime().posixTimeMs

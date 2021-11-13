@@ -22,7 +22,7 @@ class EditProfileViewModel @Inject constructor(
     fun setUser(publicProfile: PublicProfile) {
         _userProfile.value.apply {
             name = publicProfile.name
-            account = publicProfile.username
+            username = publicProfile.username
             bio = publicProfile.bio
             photoUrl = publicProfile.photoUrl
             lastEdited = publicProfile.lastEdited
@@ -40,7 +40,7 @@ class EditProfileViewModel @Inject constructor(
     fun updateProfileFields(name: String, username: String, bio: String) {
         _userProfile.value.apply {
             this.name = name
-            this.account = username
+            this.username = username
             this.bio = bio
         }
     }
