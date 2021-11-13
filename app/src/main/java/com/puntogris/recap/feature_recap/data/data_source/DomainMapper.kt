@@ -6,13 +6,14 @@ import com.puntogris.recap.feature_recap.domain.model.Recap
 fun RecapEntity.toDomain(): Recap {
     return Recap(
         id = id,
+        uid = uid,
+        username = username,
         title = title,
         rating = rating,
         season = season,
         episode = episode,
         type = type,
         language = language,
-        author = author,
         body = body,
         status = status,
         category = category,
@@ -27,13 +28,14 @@ fun RecapEntity.toDomain(): Recap {
 fun Recap.toEntity(): RecapEntity {
     return RecapEntity(
         id = id,
+        uid = uid,
+        username = username,
         title = title,
         rating = rating,
         season = season,
         episode = episode,
         type = type,
         language = language,
-        author = author,
         body = body,
         status = status,
         category = category,

@@ -10,6 +10,10 @@ import kotlinx.parcelize.Parcelize
 data class Recap(
     var id: String = "",
 
+    var uid: String = "",
+
+    var username: String = "",
+
     var title: String = "",
 
     var rating: Int = 0,
@@ -21,8 +25,6 @@ data class Recap(
     var type: String = "",
 
     var language: String = "",
-
-    var author: String = "",
 
     var body: String = "",
 

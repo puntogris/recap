@@ -62,9 +62,9 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.action_report -> actionOrLogin(viewModel.isUserLoggedIn()) {
-                        val id = args.recap?.id ?: args.recapId!!
+                        val recapId = args.recap?.id ?: args.recapId!!
                         val action =
-                            RecapFragmentDirections.actionRecapFragmentToReportRecapBottomSheet(id)
+                            RecapFragmentDirections.actionRecapFragmentToReportRecapDialog(recapId)
                         findNavController().navigate(action)
                     }
                 }
@@ -74,7 +74,7 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
     }
 
     private fun navigateToProfile() {
-        val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value.author)
+        val action = NavigationDirections.actionGlobalUserFragment(viewModel.recap.value.uid)
         findNavController().navigate(action)
     }
 

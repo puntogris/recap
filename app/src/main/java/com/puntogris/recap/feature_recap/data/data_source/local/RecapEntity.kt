@@ -16,6 +16,12 @@ data class RecapEntity(
     var id: String = "",
 
     @ColumnInfo
+    var uid: String = "",
+
+    @ColumnInfo
+    var username: String = "",
+
+    @ColumnInfo
     var title: String = "",
 
     @ColumnInfo
@@ -32,9 +38,6 @@ data class RecapEntity(
 
     @ColumnInfo
     var language: String = "",
-
-    @ColumnInfo
-    var author: String = "",
 
     @ColumnInfo
     var body: String = "",

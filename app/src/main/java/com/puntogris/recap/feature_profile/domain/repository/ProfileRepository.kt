@@ -18,7 +18,7 @@ interface ProfileRepository {
 
     fun getRecapDraftsPaged(): Flow<PagingData<Recap>>
 
-    fun getRecapsPaged(): Flow<PagingData<Recap>>
+    fun getRecapsPaged(recapStatus: String): Flow<PagingData<Recap>>
 
     suspend fun getPublicProfile(userId: String): Resource<PublicProfile>
 

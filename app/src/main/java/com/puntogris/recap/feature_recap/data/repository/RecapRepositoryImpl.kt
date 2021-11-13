@@ -1,14 +1,10 @@
 package com.puntogris.recap.feature_recap.data.repository
 
 import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.filter
 import com.puntogris.recap.core.data.local.RecapDao
-import com.puntogris.recap.core.utils.DispatcherProvider
-import com.puntogris.recap.core.utils.IDGenerator
-import com.puntogris.recap.core.utils.Resource
-import com.puntogris.recap.core.utils.SimpleResource
+import com.puntogris.recap.core.utils.*
 import com.puntogris.recap.feature_recap.data.data_source.toEntity
 import com.puntogris.recap.feature_recap.domain.model.*
 import com.puntogris.recap.feature_recap.domain.repository.RecapRepository
@@ -34,24 +30,17 @@ class RecapRepositoryImpl(
         }
 
     override fun getRecapsPaged(order: RecapOrder): Flow<PagingData<Recap>> {
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200
-            )
-        ) { recapServerApi.getRecapsPagingSource(order) }.flow
+        return Pager(Utils.defaultPagingConfig()) {
+            recapServerApi.getRecapsPagingSource(order)
+        }.flow
     }
 
     override fun getReviewsPaged(order: ReviewOrder): Flow<PagingData<Recap>> {
         val pagingSourceAndUid = recapServerApi.getReviewsPagingSource(order)
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200
-            )
-        ) { pagingSourceAndUid.first }.flow.apply {
+
+        return Pager(Utils.defaultPagingConfig()) {
+            pagingSourceAndUid.first
+        }.flow.apply {
             if (pagingSourceAndUid.second != null) {
                 map { paging ->
                     paging.filter {
@@ -103,4 +92,5 @@ class RecapRepositoryImpl(
                 recapServerApi.reportRecap(report)
             }
         }
+
 }

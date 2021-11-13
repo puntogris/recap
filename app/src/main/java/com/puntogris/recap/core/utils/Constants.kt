@@ -35,6 +35,12 @@ object Constants {
     const val RATING_REJECT = -1
 
 
+    //Recap report
+    const val INAPPROPRIATE = "INAPPROPRIATE"
+    const val MISINFORMATION = "MISINFORMATION"
+
+
+
     const val TIME_EDIT_LOCKED_IN_MS = 864000000
     const val TIME_EDIT_LOCKED_IN_SEC = 864000
 }

@@ -2,7 +2,6 @@ package com.puntogris.recap.feature_auth.data.data_source.remote
 
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.Transaction
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.utils.Constants
 import com.puntogris.recap.core.utils.IDGenerator
@@ -39,8 +38,8 @@ class FirebaseAuthApi(private val firebase: FirebaseClients) : AuthServerApi {
                 }
 
             it.set(usernamesCollection.document(username), mapOf(Constants.UID_FIELD to user.uid))
-            it.set(privateRef, user.toPrivate(username))
-            it.set(publicRef, user.toPublic(username))
+            it.set(privateRef, user.toNewPrivateProfile())
+            it.set(publicRef, user.toNewPublicProfile(username))
         }.await()
     }
 

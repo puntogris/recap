@@ -6,7 +6,7 @@
 
         <variable
             name="dialog"
-            type="com.puntogris.recap.feature_recap.presentation.rate_recap.SelectRatingDialog" />
+            type="com.puntogris.recap.feature_recap.presentation.rate_recap.RateRecapDialog" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

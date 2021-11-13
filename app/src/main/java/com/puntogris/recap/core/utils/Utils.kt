@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
+import androidx.paging.PagingConfig
 import java.io.ByteArrayOutputStream
 
 object Utils {
@@ -15,5 +16,14 @@ object Utils {
             it.recycle()
         }
         return baos.toByteArray()
+    }
+
+
+    fun defaultPagingConfig(): PagingConfig {
+        return PagingConfig(
+            pageSize = 30,
+            enablePlaceholders = true,
+            maxSize = 200
+        )
     }
 }

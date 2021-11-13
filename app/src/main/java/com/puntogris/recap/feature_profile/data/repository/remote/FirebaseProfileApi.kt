@@ -6,18 +6,17 @@ import androidx.paging.PagingSource
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
-import com.lyft.kronos.KronosClock
 import com.puntogris.recap.R
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
 import com.puntogris.recap.core.utils.Utils
-import com.puntogris.recap.core.utils.getTimestamp
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.repository.ProfileServerApi
 import com.puntogris.recap.feature_profile.presentation.util.EditProfileResult
 import com.puntogris.recap.feature_recap.domain.model.Recap
+import com.puntogris.recap.feature_recap.domain.model.RecapStatus
 import kotlinx.coroutines.tasks.await
 
 class FirebaseProfileApi(
@@ -97,11 +96,12 @@ class FirebaseProfileApi(
         }
     }
 
-    override fun getProfileRecapsPagingSource(): PagingSource<*, Recap> {
+    override fun getRecapsPagingSource(recapStatus: String): PagingSource<*, Recap> {
         val query = firebase.firestore
             .collection(Constants.RECAPS_COLLECTION)
             .whereEqualTo(Constants.UID_FIELD, firebase.currentUid)
             .orderBy(Constants.CREATED_FIELD, Query.Direction.DESCENDING)
+            .whereEqualTo(Constants.STATUS_FIELD, recapStatus)
 
         return FirestoreRecapPagingSource(query)
     }

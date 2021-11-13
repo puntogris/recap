@@ -7,7 +7,12 @@ import com.puntogris.recap.core.presentation.base.BaseRvViewModel
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.use_case.ProfileUseCases
+import com.puntogris.recap.feature_recap.domain.model.RecapStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.transform
+import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,11 +28,11 @@ class UserViewModel @Inject constructor(
     private val userId = MutableLiveData<String>()
 
     val recapsLiveData = Transformations.switchMap(userId) {
-        profileUseCase.getRecaps().asLiveData()
+        profileUseCase.getRecaps(RecapStatus.APPROVED).asLiveData()
     }.cachedIn(viewModelScope)
 
     val reviewsLiveData = Transformations.switchMap(userId) {
-        profileUseCase.getRecaps().asLiveData()
+        profileUseCase.getRecaps(RecapStatus.PENDING).asLiveData()
     }.cachedIn(viewModelScope)
 
     fun getDrafts() = profileUseCase.getDrafts().cachedIn(viewModelScope)

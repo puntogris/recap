@@ -1,13 +1,11 @@
 package com.puntogris.recap.feature_profile.data.repository.remote
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.map
+import androidx.paging.*
 import com.puntogris.recap.core.data.local.RecapDao
 import com.puntogris.recap.core.utils.DispatcherProvider
 import com.puntogris.recap.core.utils.Resource
 import com.puntogris.recap.core.utils.SimpleResource
+import com.puntogris.recap.core.utils.Utils
 import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_profile.domain.model.UpdateProfileData
 import com.puntogris.recap.feature_profile.domain.repository.ProfileRepository
@@ -46,28 +44,20 @@ class ProfileRepositoryImpl(
         }
 
     override fun getRecapDraftsPaged(): Flow<PagingData<Recap>> {
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200
-            )
-        ) { recapDao.getDraftsPaged() }.flow.map { data ->
+        return Pager(Utils.defaultPagingConfig()) {
+            recapDao.getDraftsPaged()
+        }.flow.map { data ->
             data.map { recap -> recap.toDomain() }
         }
     }
 
-    override fun getRecapsPaged(): Flow<PagingData<Recap>> {
-        return Pager(
-            PagingConfig(
-                pageSize = 30,
-                enablePlaceholders = true,
-                maxSize = 200
-            )
-        ) { profileServerApi.getProfileRecapsPagingSource() }.flow
+    override fun getRecapsPaged(recapStatus: String): Flow<PagingData<Recap>> {
+        return Pager(Utils.defaultPagingConfig()) {
+            profileServerApi.getRecapsPagingSource(recapStatus)
+        }.flow
     }
 
-    override suspend fun deleteProfile(): SimpleResource = withContext(dispatcher.io){
+    override suspend fun deleteProfile(): SimpleResource = withContext(dispatcher.io) {
         SimpleResource.build {
             profileServerApi.deleteAccount()
         }

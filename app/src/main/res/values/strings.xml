@@ -31,7 +31,6 @@
     <string name="snack_option_required">Selecting one of the options is required.</string>
     <string name="send_rating_progress">Sending your rating to the server, do not close the app.</string>
     <string name="send_rating_success">Perfect! Your rating has been registered.</string>
-    <string name="send_rating_error">Whoops, an error occurred, check your connection and try again.</string>
 
     <!-- Profile -->
     <string name="pending_recap_tab">Pending</string>
@@ -47,6 +46,7 @@
     <string name="time_to_unlock_profile_edit">Remember you can only edit your profile every 10 days! Time remaining to unlock it %1$dd. %2$d h. %3$d m.</string>
     <string name="profile_time_unlock_alert">Remember you can only edit your profile every 10 days!</string>
     <string name="profile_updated_success">Profile updated successfully.</string>
+    <string name="snack_edit_profile_limit">Profile edition locked.</string>
 
     <!-- Delete account -->
     <string name="snack_account_email_not_matching">The email doesn\'t match the one in your account.</string>
@@ -115,8 +115,10 @@
     <string name="snack_recap_season_required">Season can\'t be empty.</string>
     <string name="snack_recap_episode_required">Episode can\'t be empty.</string>
     <string name="report_recap_title">Report reason</string>
-    <string name="report_label">Information</string>
-
+    <string name="report_label">Report</string>
+    <string name="report_recap_alert">Reporting is taken seriously, malicious use of this action will disable your account.</string>
+    <string name="send_report_progress">Sending your report to the server, do not close the app.</string>
+    <string name="send_report_success">Perfect! Your report has been registered.</string>
     <!-- About -->
     <string name="about">About</string>
     <string name="licenses">Licenses</string>
@@ -178,7 +180,7 @@
     <!-- Other -->
     <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
     <string name="general_error_message">An error occurred. Please try again.</string>
-    <string name="general_connection_error_message">An error occurred, check your internet connection and try again</string>
+    <string name="general_connection_error_message">>Whoops, an error occurred, check your connection and try again.</string>
     <string name="error">Error</string>
     <string name="recap_link_title">"Watch %1$s recap here!"</string>
     <string name="error_unknown">Unknown error</string>

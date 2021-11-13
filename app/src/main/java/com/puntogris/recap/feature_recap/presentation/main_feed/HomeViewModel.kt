@@ -12,6 +12,9 @@ import com.puntogris.recap.feature_recap.domain.model.ReviewOrder
 import com.puntogris.recap.feature_recap.domain.use_case.GetRecapsUseCase
 import com.puntogris.recap.feature_recap.domain.use_case.GetReviewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.shareIn
 import javax.inject.Inject
 
 @HiltViewModel

@@ -57,6 +57,6 @@ class DeleteAccountFragment :
     private fun onDeleteSuccess() {
         showSnackBar(getString(R.string.snack_account_deleted_success))
         val nav = NavOptions.Builder().setPopUpTo(R.id.navigation, true).build()
-        findNavController().navigate(R.id.loginFragment, null, nav)
+        findNavController().navigate(R.id.homeFragment, null, nav)
     }
 }

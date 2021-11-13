@@ -11,6 +11,7 @@ import com.puntogris.recap.R
 import com.puntogris.recap.core.data.remote.FirebaseClients
 import com.puntogris.recap.core.data.remote.FirestoreRecapPagingSource
 import com.puntogris.recap.core.utils.Constants
+import com.puntogris.recap.feature_profile.domain.model.PublicProfile
 import com.puntogris.recap.feature_recap.data.data_source.local.RecapEntity
 import com.puntogris.recap.feature_recap.domain.model.*
 import com.puntogris.recap.feature_recap.domain.repository.RecapServerApi
@@ -25,7 +26,7 @@ class FirebaseRecapApi(
 
     override fun getRecapsPagingSource(order: RecapOrder): PagingSource<*, Recap> {
         val query = recapCollection
-            .whereEqualTo(Constants.LIKED_FIELD, RecapStatus.APPROVED)
+            .whereEqualTo(Constants.STATUS_FIELD, RecapStatus.APPROVED)
             .apply {
                 when (order) {
                     RecapOrder.LATEST -> orderBy(
@@ -70,13 +71,26 @@ class FirebaseRecapApi(
 
         return recap.apply {
             id = ref.id
-            author = firebase.currentUid
-            deepLink = generateDynamicLink(title, id).toString()
+            uid = firebase.currentUid
+            username = getCurrentUsername()
+            deepLink = generateDynamicLink(title, id)
+
             ref.set(this).await()
         }.deepLink
     }
 
-    private suspend fun generateDynamicLink(recapTitle: String, recapId: String): Uri {
+    private suspend fun getCurrentUsername(): String {
+        val user = firebase.firestore
+            .collection(Constants.USERS_COLLECTION)
+            .document(firebase.currentUid)
+            .get()
+            .await()
+            .toObject(PublicProfile::class.java)
+
+        return requireNotNull(user).username
+    }
+
+    private suspend fun generateDynamicLink(recapTitle: String, recapId: String): String {
         val result = firebase.links.shortLinkAsync {
             link = Uri.parse(Constants.DEEP_LINK_PATH + recapId)
             domainUriPrefix = Constants.DOMAIN_URI_PREFIX
@@ -93,7 +107,7 @@ class FirebaseRecapApi(
 
         }.await()
 
-        return requireNotNull(result.shortLink)
+        return result.shortLink.toString()
     }
 
     override suspend fun reportRecap(report: Report) {

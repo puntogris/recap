@@ -61,6 +61,7 @@ class EditProfileFragment :
             when (val result = viewModel.saveProfileChanges()) {
                 is EditProfileResult.EditLimit -> {
                     binding.editProfileAlert.setTimeToUnlockProfileEdit(result.secondsToUnlock)
+                    showSnackBar(R.string.snack_edit_profile_limit)
                 }
                 is EditProfileResult.Error -> showSnackBar(result.error)
                 is EditProfileResult.Success -> showSnackBar(R.string.profile_updated_success)
@@ -70,7 +71,7 @@ class EditProfileFragment :
     }
 
     private fun isLoadingUi(isLoading: Boolean) {
-        binding.saveButton.isVisible = !isVisible
+        binding.saveButton.isVisible = !isLoading
         binding.saveProgressBar.isVisible = isLoading
     }
 

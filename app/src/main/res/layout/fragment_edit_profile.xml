@@ -117,10 +117,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/divider_16"
                 android:importantForAutofill="no"
-                android:maxLength="20"
+                android:maxLength="25"
                 android:inputType="text"
                 android:maxLines="1"
-                android:text="@{viewModel.userProfile.name}" />
+                android:text="@{viewModel.userProfile.username}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

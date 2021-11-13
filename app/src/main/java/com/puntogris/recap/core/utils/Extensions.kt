@@ -13,6 +13,7 @@ import android.widget.ImageView
 import androidx.annotation.RawRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.lifecycle.Observer
@@ -72,6 +73,19 @@ fun Fragment.showSnackBar(
     }
 }
 
+fun DialogFragment.showSnackBar(
+    message: String,
+    duration: Int = Snackbar.LENGTH_LONG,
+    actionText: String = "",
+    anchorView: View? = null,
+    actionListener: View.OnClickListener? = null
+) {
+    Snackbar.make(requireParentFragment().requireView(), message, duration).let {
+        if (anchorView != null) it.anchorView = anchorView
+        if (actionListener != null) it.setAction(actionText, actionListener)
+        it.show()
+    }
+}
 fun Fragment.showSnackBar(
     message: Int,
     duration: Int = Snackbar.LENGTH_LONG,
