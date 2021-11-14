@@ -19,21 +19,19 @@ object Constants {
     //Firebase
     const val USERS_COLLECTION = "users"
     const val PRIVATE_PROFILE_COLLECTION = "private_profile"
-    const val PUBLIC_PROFILE_FIELD = "profile"
     const val RECAPS_COLLECTION = "recaps"
     const val INTERACTIONS_COLLECTION = "interactions"
     const val STATUS_FIELD = "status"
     const val CREATED_FIELD = "created"
     const val LIKED_FIELD = "liked"
-    const val AUTHOR_FILED = "author"
     const val UID_FIELD = "uid"
     const val USERNAMES_COLLECTION = "usernames"
-
+    const val REPORTS_COLLECTION = "reports"
+    const val RATE_HTTPS_FUNCTION = "rateRecapCallable"
 
     //Rating
     const val RATING_APPROVE = 1
     const val RATING_REJECT = -1
-
 
     //Recap report
     const val INAPPROPRIATE = "INAPPROPRIATE"

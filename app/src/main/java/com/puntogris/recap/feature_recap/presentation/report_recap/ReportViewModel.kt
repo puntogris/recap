@@ -12,5 +12,4 @@ class ReportViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun sendReport(report: Report) = reportRecapUseCase(report)
-
 }

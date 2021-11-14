@@ -180,7 +180,7 @@
     <!-- Other -->
     <string name="snack_fail_login">Login canceled, connection error or a google account was not found on your cell phone.</string>
     <string name="general_error_message">An error occurred. Please try again.</string>
-    <string name="general_connection_error_message">>Whoops, an error occurred, check your connection and try again.</string>
+    <string name="general_connection_error_message">Whoops, an error occurred, check your connection and try again.</string>
     <string name="error">Error</string>
     <string name="recap_link_title">"Watch %1$s recap here!"</string>
     <string name="error_unknown">Unknown error</string>

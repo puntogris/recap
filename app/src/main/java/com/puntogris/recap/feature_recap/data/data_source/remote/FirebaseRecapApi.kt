@@ -112,7 +112,7 @@ class FirebaseRecapApi(
 
     override suspend fun reportRecap(report: Report) {
         report.uid = firebase.currentUid
-        firebase.firestore.collection("reports").add(report)
+        firebase.firestore.collection(Constants.REPORTS_COLLECTION).add(report)
     }
 
     override suspend fun getRecapInteractionsWithCurrentUser(recapId: String): RecapInteractions? {
@@ -133,7 +133,7 @@ class FirebaseRecapApi(
         )
 
         firebase.functions
-            .getHttpsCallable("rateRecapCallable")
+            .getHttpsCallable(Constants.RATE_HTTPS_FUNCTION)
             .call(data)
             .await()
     }

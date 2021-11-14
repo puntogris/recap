@@ -12,6 +12,7 @@ sealed class SimpleResource {
                 function()
                 Success
             } catch (e: Exception) {
+                println(e.localizedMessage)
                 Error()
             }
     }
