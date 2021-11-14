@@ -1,6 +1,7 @@
 package com.puntogris.recap.feature_recap.presentation.recap_detail
 
 import android.content.Intent
+import android.text.Html
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,8 +26,6 @@ class RecapFragment : BaseBindingFragment<FragmentRecapBinding>(R.layout.fragmen
         binding.fragment = this
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        binding.recapEditor.setupBackgroundAndFontColors()
-        binding.recapEditor.setInputEnabled(false)
 
         subscribeRecapState()
         setupNavigation()

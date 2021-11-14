@@ -2,6 +2,7 @@ package com.puntogris.recap.core.utils
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
@@ -9,6 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.Timestamp
 import com.puntogris.recap.R
 import com.puntogris.recap.feature_recap.domain.model.Recap
+import jp.wasabeef.richeditor.RichEditor
 
 @BindingAdapter("imageWithGlide")
 fun ImageView.setImageWithGlide(image: String?) {
@@ -48,4 +50,14 @@ fun TextView.setTimeToUnlockProfileEdit(seconds: Long) {
     val minutes = (((seconds % 86400) % 3600) / 60).toInt()
 
     text = context.getString(R.string.time_to_unlock_profile_edit, days, hours, minutes)
+}
+
+@BindingAdapter("recapUsername")
+fun TextView.setRecapUsername(username: String){
+    text = context.getString(R.string.recap_username_template, username)
+}
+
+@BindingAdapter("recapBody")
+fun TextView.setRecapBody(body: String){
+    text = HtmlCompat.fromHtml(body, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }

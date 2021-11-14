@@ -98,6 +98,7 @@
     <string name="recap_header_alert">* This information may be changed later.</string>
     <string name="recap_header_title">What do you want to publish?</string>
     <string name="rate_recap_message">Review this recap to make it accessible to the community, give it a read and rate it.</string>
+    <string name="recap_username_template">by %1$s</string>
 
     <!-- Publish -->
     <string name="publish_recap_in_progress_title">Publishing recap..</string>
@@ -119,6 +120,7 @@
     <string name="report_recap_alert">Reporting is taken seriously, malicious use of this action will disable your account.</string>
     <string name="send_report_progress">Sending your report to the server, do not close the app.</string>
     <string name="send_report_success">Perfect! Your report has been registered.</string>
+
     <!-- About -->
     <string name="about">About</string>
     <string name="licenses">Licenses</string>

@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="fragment"
             type="com.puntogris.recap.feature_recap.presentation.recap_detail.RecapFragment" />
@@ -19,37 +18,17 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginVertical="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:text="@{viewModel.recap.title}"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-            app:layout_constraintStart_toEndOf="@+id/profile_image"
-            app:layout_constraintTop_toTopOf="@+id/profile_image" />
-
-        <ImageView
             android:id="@+id/action_like"
             style="@style/MaterialImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:onClick="@{()-> fragment.onLikedClicked()}"
-            app:layout_constraintBottom_toBottomOf="@+id/textView5"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/action_fav"
-            app:layout_constraintTop_toTopOf="@+id/textView5"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_favorite_border_24"
             tools:ignore="ContentDescription" />
 
@@ -78,6 +57,16 @@
             app:layout_constraintTop_toTopOf="@+id/action_like"
             app:srcCompat="@drawable/ic_baseline_share_24"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textView8"
+            recapUsername="@{viewModel.recap.username}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
